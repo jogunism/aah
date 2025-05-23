@@ -1,7 +1,5 @@
-import '@/lib/i18n.client'; // 반드시 먼저 import
-
 import { ReactNode } from 'react';
-import initI18n from '../lib/i18n.server';
+import initI18n from '@/lib/i18n.server';
 import ClientWrapper from './layoutClientWrapper';
 
 import './globals.css';
