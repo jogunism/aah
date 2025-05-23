@@ -1,18 +1,19 @@
-'use client';
+import '@/lib/i18n.client'; // 반드시 먼저 import
 
 import { ReactNode } from 'react';
-import { ParallaxProvider } from 'react-scroll-parallax';
-import I18nProvider from './provider';
+import initI18n from '../lib/i18n.server';
+import ClientWrapper from './layoutClientWrapper';
 
 import './globals.css';
 
-export default function RootLayout({ children }: { children: ReactNode }) {
+export default async function RootLayout({ children }: { children: ReactNode }) {
+  const i18n = await initI18n(); // 서버 i18n 초기화
+  const lang = i18n.language || 'en';
+
   return (
-    <html lang="en">
+    <html lang={lang}>
       <body>
-        <I18nProvider>
-          <ParallaxProvider>{children}</ParallaxProvider>
-        </I18nProvider>
+        <ClientWrapper>{children}</ClientWrapper>
       </body>
     </html>
   );

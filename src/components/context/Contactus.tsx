@@ -1,3 +1,5 @@
+'use client';
+
 import { Parallax } from 'react-scroll-parallax';
 import Image from 'next/image';
 
@@ -25,7 +27,6 @@ export default function Contactus() {
             {/* body */}
 
             <div className="border-b border-gray-900/10 pb-12">
-              {/* <h2 className="text-base/7 font-semibold text-gray-900">Personal Information</h2> */}
               <p className="mt-1 text-md/6 text-gray-600">If you have any questions? Contact us!</p>
 
               <div className="mt-10 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
@@ -39,7 +40,7 @@ export default function Contactus() {
                       name="first-name"
                       id="first-name"
                       autoComplete="given-name"
-                      className="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline-1 -outline-offset-1"
+                      className="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6"
                     />
                   </div>
                 </div>

@@ -1,3 +1,5 @@
+'use client';
+
 import { Parallax } from 'react-scroll-parallax';
 import Image from 'next/image';
 

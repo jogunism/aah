@@ -1,23 +1,17 @@
-'use client';
+import Header from '@/components/Header';
 
-import Image from 'next/image';
-
-import Introduce from '@/components/Introduce';
-import Univercities from '@/components/Univercities';
-import Semesters from '@/components/Semesters';
-import Programs from '@/components/Programs';
-import Price from '@/components/Price';
-import Contactus from '@/components/Contactus';
+import Introduce from '@/components/context/Introduce';
+// import Univercities from '@/components/Univercities';
+// import Semesters from '@/components/context/Semesters';
+// import Programs from '@/components/context/Programs';
+// import Price from '@/components/context/Price';
+// import Contactus from '@/components/context/Contactus';
 
 export default function Home() {
   return (
     <div className="flex flex-col min-h-screen bg-white">
       {/* header */}
-      <header className="fixed top-0 left-0 w-full bg-white shadow-md z-50">
-        <div className="max-w-7xl mx-auto p-4">
-          <Image src="/assets/logo.png" width={169} height={21} alt="Logo" />
-        </div>
-      </header>
+      <Header />
 
       {/* header padding */}
       <div className="h-[72px]" />
@@ -25,11 +19,11 @@ export default function Home() {
       {/* components */}
       <main className="flex flex-col items-center flex-grow">
         <Introduce />
-        <Univercities />
+        {/* <Univercities />
         <Semesters />
         <Programs />
         <Price />
-        <Contactus />
+        <Contactus /> */}
       </main>
 
       {/* footer */}

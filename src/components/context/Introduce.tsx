@@ -1,28 +1,27 @@
-import { Parallax } from 'react-scroll-parallax';
 import Image from 'next/image';
+import initI18n from '@/lib/i18n.server';
 
-export default function Univercities() {
+export default async function Introduce() {
+  const i18n = await initI18n(); // 서버 i18n 초기화
+  const t = i18n.getFixedT(i18n.language);
+
   return (
     <div className="relative w-full bg-white mb-30">
       <div className="relative w-screen h-[500px] overflow-hidden">
-        <Parallax translateY={[-80, 0]} className="absolute inset-0 z-0">
-          <div className="relative w-full h-[160%]">
-            <Image
-              src="/assets/image4.jpg"
-              alt="Universities in Korea"
-              fill
-              className="object-cover"
-              priority
-            />
-          </div>
-        </Parallax>
+        <div className="relative w-full h-[100%]">
+          <Image
+            src="/assets/image1.jpg"
+            alt={t('MAIN_SLOGAN')}
+            fill
+            className="object-cover"
+            priority
+          />
+        </div>
       </div>
 
       <div className="relative z-10 bg-gradient-to-b from-[#f3e1eb] to-[#fff] w-full px-6 py-12">
         <div className="max-w-7xl mx-auto">
-          <h2 className="text-3xl font-bold text-gray-800 mb-4 text-center">
-            List of affiliated universities
-          </h2>
+          <h2 className="text-3xl font-bold text-gray-800 mb-4 text-center">{t('MAIN_SLOGAN')}</h2>
           <div className="text-lg text-gray-800 ">
             {/* body */}
             <p className="mb-5">
