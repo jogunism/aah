@@ -1,6 +1,6 @@
 import Image from 'next/image';
 
-import LanguageSelector from './LanguageSelector';
+import LanguageSelector from './languageSelector';
 
 export default function Header() {
   return (

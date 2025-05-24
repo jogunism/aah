@@ -32,7 +32,7 @@ export default function LanguageSelector() {
   return (
     <div className="relative">
       <select
-        className="block appearance-none bg-white border border-gray-300 text-gray-700 py-2 px-3 pr-8 rounded leading-tight focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+        className="block appearance-none bg-white border border-gray-300 text-gray-700 py-2 px-3 pr-4 rounded leading-tight focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
         onChange={handleChange}
         value={lang}
       >

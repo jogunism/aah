@@ -1,3 +1,19 @@
 {
-  "MAIN_SLOGAN": "Discover Korea. Discover Yourself!"
+  "MAIN_SLOGAN": "Discover Korea. Discover Yourself!",
+  "MAIN_DESCRIPTION": "",
+
+  "UNI_TITLE": "List of affiliated universities",
+  "UNI_DESCRIPTION": "",
+
+  "SEMESTERS_TITLE": "Semester",
+  "SEMESTERS_DESCRIPTION": "",
+
+  "CURRICULUM_TITLE": "Curriculum",
+  "CURRICULUM_DESCRIPTION": "",
+
+  "TUITION_TITLE": "Tuition fee",
+  "TUITION_DESCRIPTION": "",
+
+  "CONTACTUS_TITLE": "Contact Us",
+  "CONTACTUS_DESCRIPTION": ""
 }

@@ -1,28 +1,18 @@
-'use client';
+import { getTranslation } from '@/lib/i18n.server';
+import ParallaxImage from '@common/parallaxImage';
 
-import { Parallax } from 'react-scroll-parallax';
-import Image from 'next/image';
+export default async function Semesters() {
+  const { t } = await getTranslation();
 
-export default function Semesters() {
   return (
     <div className="relative w-full bg-white mb-30">
-      <div className="relative w-screen h-[500px] overflow-hidden">
-        <Parallax translateY={[-80, 0]} className="absolute inset-0 z-0">
-          <div className="relative w-full h-[160%]">
-            <Image
-              src="/assets/image5.jpg"
-              alt="Universities in Korea"
-              fill
-              className="object-cover"
-              priority
-            />
-          </div>
-        </Parallax>
-      </div>
+      <ParallaxImage section="semesters" imagePath="/assets/image5.jpg" />
 
       <div className="relative z-10 bg-gradient-to-b from-[#f3e1eb] to-[#fff] w-full px-6 py-12">
         <div className="max-w-7xl mx-auto">
-          <h2 className="text-3xl font-bold text-gray-800 mb-4 text-center">Semesters</h2>
+          <h2 className="text-3xl font-bold text-gray-800 mb-4 text-center">
+            {t('SEMESTERS_TITLE')}
+          </h2>
           <div className="text-lg text-gray-800 ">
             {/* body */}
             <p className="mb-5">

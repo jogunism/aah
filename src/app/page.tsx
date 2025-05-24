@@ -1,16 +1,16 @@
-import Header from '@/components/Header';
+import Header from '@/components/context/Header';
+import Footer from '@/components/context/Footer';
 
 import Introduce from '@/components/context/Introduce';
 import Univercities from '@/components/context/Univercities';
 import Semesters from '@/components/context/Semesters';
-// import Programs from '@/components/context/Programs';
-// import Price from '@/components/context/Price';
-// import Contactus from '@/components/context/Contactus';
+import Curriculum from '@/components/context/Curriculum';
+import Tuition from '@/components/context/Tuition';
+import Contactus from '@/components/context/Contactus';
 
 export default function Home() {
   return (
     <div className="flex flex-col min-h-screen bg-white">
-      {/* header */}
       <Header />
 
       {/* header padding */}
@@ -21,17 +21,12 @@ export default function Home() {
         <Introduce />
         <Univercities />
         <Semesters />
-        {/*<Programs />
-        <Price />
-        <Contactus /> */}
+        <Curriculum />
+        <Tuition />
+        <Contactus />
       </main>
 
-      {/* footer */}
-      <footer className="w-full bg-[#DF7B7B] text-center p-6 border-t border-gray-300">
-        <p className="text-gray-800 text-sm text-white">
-          © 2025 aah! education Europe. All rights reserved.
-        </p>
-      </footer>
+      <Footer />
     </div>
   );
 }
