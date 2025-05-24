@@ -1,9 +1,8 @@
 import Image from 'next/image';
-import initI18n from '@/lib/i18n.server';
+import { getTranslation } from '@/lib/i18n.server';
 
 export default async function Introduce() {
-  const i18n = await initI18n(); // 서버 i18n 초기화
-  const t = i18n.getFixedT(i18n.language);
+  const { t } = await getTranslation();
 
   return (
     <div className="relative w-full bg-white mb-30">

@@ -1,8 +1,8 @@
 import Header from '@/components/Header';
 
 import Introduce from '@/components/context/Introduce';
-// import Univercities from '@/components/Univercities';
-// import Semesters from '@/components/context/Semesters';
+import Univercities from '@/components/context/Univercities';
+import Semesters from '@/components/context/Semesters';
 // import Programs from '@/components/context/Programs';
 // import Price from '@/components/context/Price';
 // import Contactus from '@/components/context/Contactus';
@@ -19,9 +19,9 @@ export default function Home() {
       {/* components */}
       <main className="flex flex-col items-center flex-grow">
         <Introduce />
-        {/* <Univercities />
+        <Univercities />
         <Semesters />
-        <Programs />
+        {/*<Programs />
         <Price />
         <Contactus /> */}
       </main>
