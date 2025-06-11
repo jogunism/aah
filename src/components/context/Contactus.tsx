@@ -17,7 +17,7 @@ export default async function Contactus() {
             {/* body */}
 
             <div className="border-b border-gray-900/10 pb-12">
-              <p className="mt-1 text-md/6 text-gray-600">Any questions? Contact us!</p>
+              <p className="mt-1 text-md/6 text-gray-600">{t('CONTACTUS_DESCRIPTION')}</p>
 
               <div className="mt-10 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
                 <div className="sm:col-span-3">
