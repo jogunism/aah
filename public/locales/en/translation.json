@@ -10,8 +10,8 @@
   "MAIN_WE_ARE_DESCRIPTION_6": "capable of providing a wide range of study abroad options, including 3-week short-term programs, 10-week regular programs, full undergraduate and graduate degrees, and cyber university programs.",
   "MAIN_WE_ARE_DESCRIPTION_7": "fully equipped to support students with school and dormitory arrangements, documentation and visa guidance, local SIM card setup, insurance, and other on-site preparations.",
 
-  "UNI_TITLE": "List of affiliated universities",
-  "UNI_DESCRIPTION": "",
+  "UNI_TITLE": "List of universities",
+  "UNI_DESCRIPTION": "This is a list of our partner universities in Seoul, South Korea. In fact, each semester dozens of students study abroad with aah! education to study abroad for long or short term.",
 
   "SEMESTERS_TITLE": "Semester",
   "SEMESTERS_DESCRIPTION": "",
@@ -23,5 +23,6 @@
   "TUITION_DESCRIPTION": "",
 
   "CONTACTUS_TITLE": "Contact Us",
-  "CONTACTUS_DESCRIPTION": ""
+  "CONTACTUS_DESCRIPTION": "Any questions? Contact us!",
+  "CONTACTUS_1ST_NAME": ""
 }

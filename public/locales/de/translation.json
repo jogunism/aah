@@ -10,8 +10,8 @@
   "MAIN_WE_ARE_DESCRIPTION_6": "die eine breite Palette von Studienmöglichkeiten im Ausland anbieten können, darunter 3-wöchige Kurzzeitprogramme, 10-wöchige reguläre Programme, vollständige Studienabschlüsse und Cyber-Universitätsprogramme.",
   "MAIN_WE_ARE_DESCRIPTION_7": "bestens ausgerüstet, um Studenten bei der Organisation von Schulen und Wohnheimen, der Erstellung von Dokumenten und Visa, der Einrichtung lokaler SIM-Karten, Versicherungen und anderen Vorbereitungen vor Ort zu unterstützen.",
 
-  "UNI_TITLE": "Liste der angeschlossenen Universitäten",
-  "UNI_DESCRIPTION": "",
+  "UNI_TITLE": "Liste der Universitäten",
+  "UNI_DESCRIPTION": "Dies ist eine Liste unserer Partneruniversitäten in Seoul, Südkorea. Tatsächlich studieren jedes Semester Dutzende von Studenten mit aah! education im Ausland für kurze oder lange Zeit.",
 
   "SEMESTERS_TITLE": "Semester",
   "SEMESTERS_DESCRIPTION": "",
@@ -23,5 +23,6 @@
   "TUITION_DESCRIPTION": "",
 
   "CONTACTUS_TITLE": "Kontakt",
-  "CONTACTUS_DESCRIPTION": ""
+  "CONTACTUS_DESCRIPTION": "Haben Sie Fragen? Kontaktieren Sie uns!",
+  "CONTACTUS_1ST_NAME": ""
 }
