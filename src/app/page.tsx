@@ -2,7 +2,7 @@ import Header from '@/components/context/Header';
 import Footer from '@/components/context/Footer';
 
 import Introduce from '@/components/context/Introduce';
-import Univercities from '@/components/context/Univercities';
+import Universities from '@/components/context/Universities';
 import Semesters from '@/components/context/Semesters';
 import Curriculum from '@/components/context/Curriculum';
 import Tuition from '@/components/context/Tuition';
@@ -19,7 +19,7 @@ export default function Home() {
       {/* components */}
       <main className="flex flex-col items-center flex-grow">
         <Introduce />
-        <Univercities />
+        <Universities />
         <Semesters />
         <Curriculum />
         <Tuition />
