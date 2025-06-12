@@ -15,48 +15,66 @@ export default async function Price() {
           </h2>
           <div className="text-lg text-gray-800 ">
             {/* body */}
-            <p className="mb-5">
-              If you are thinking about studying abroad in Korea, our Japanese staff with experience
-              studying abroad will personally and personally help you with all the procedures for
-              studying abroad, such as choosing a school, various planning, and application, as well
-              as accommodation in Korea, local procedures, and student life.
-            </p>
-            <p>
-              <strong>We are</strong>
-            </p>
-            <ul className="list-disc pl-12 ml-0">
-              <li>
-                a trusted company with <strong>15 years of experience</strong>, specializing in{' '}
-                <strong>study abroad programs in Korea.</strong>
-              </li>
-              <li>
-                officially authorized and registered as{' '}
-                <strong>an education-related organization in both Japan and Korea</strong> — a rare
-                and reliable distinction in the industry.
-              </li>
-              <li>
-                a regular member of the NPO Study Abroad Association and designated as part of the
-                Korean Secretariat.
-              </li>
-              <li>
-                one of the largest study abroad agency, sending 700 students from Japan to Korea
-                every year.
-              </li>
-              <li>
-                partnered with numerous university training institutions across Korea, building
-                strong and lasting collaborations.
-              </li>
-              <li>
-                capable of providing a wide range of study abroad options, including 3-week
-                short-term programs, 10-week regular programs, full undergraduate and graduate
-                degrees, and cyber university programs.
-              </li>
-              <li>
-                fully equipped to support students with school and dormitory arrangements,
-                documentation and visa guidance, local SIM card setup, insurance, and other on-site
-                preparations.
-              </li>
-            </ul>
+            <div className="grid md:grid-cols-2 gap-6">
+              {/* Short-term box */}
+              <div className="bg-white border border-gray-200 rounded-2xl p-6 shadow-sm flex flex-col justify-between h-full">
+                <div>
+                  <h4 className="text-xl font-extrabold mb-4 text-indigo-700 border-b-4 border-indigo-400 pb-1">
+                    📘 Short-term Program (3 weeks)
+                  </h4>
+                  <p className="mb-4 text-base text-gray-700">
+                    A short but intensive experience that fits well into your vacation. Great for
+                    those who want to explore studying abroad before committing longer.
+                  </p>
+                  <p className="mb-2">
+                    <span className="text-2xl font-bold text-gray-900">€1,600</span>
+                    <span className="text-base text-gray-700 font-medium"> – €2,500</span>
+                  </p>
+                </div>
+                <div className="mt-auto flex justify-end">
+                  <p className="text-sm text-gray-500">Includes VAT / Flight not included</p>
+                </div>
+              </div>
+
+              {/* Long-term box */}
+              <div className="bg-white border border-gray-200 rounded-2xl p-6 shadow-sm flex flex-col justify-between h-full">
+                <div>
+                  <h4 className="text-xl font-extrabold mb-4 text-indigo-700 border-b-4 border-indigo-400 pb-1">
+                    📗 Long-term Program (1 semester)
+                  </h4>
+                  <p className="mb-4 text-base text-gray-700">
+                    A full-semester academic experience with deeper immersion. Ideal for those
+                    pursuing credits or long-term cultural integration.
+                  </p>
+                  <p className="mb-2">
+                    <span className="text-2xl font-bold text-gray-900">€1,800</span>
+                    <span className="text-base text-gray-700 font-medium"> – €2,800</span>
+                  </p>
+                </div>
+                <div className="mt-auto flex justify-end">
+                  <p className="text-sm text-gray-500">Includes VAT / Flight not included</p>
+                </div>
+              </div>
+            </div>
+
+            {/* Included items */}
+            <div className="mt-10">
+              <h5 className="text-2xl font-semibold mb-3">What's Included</h5>
+              <ul className="list-none space-y-2 text-base">
+                <li>✈️ Airport pickup at Incheon National Airport (ICN)</li>
+                <li>🏫 Tuition and registration fee of selected university</li>
+                <li>🏠 Accommodation</li>
+                <li>📶 Local SIM card (mobile data)</li>
+                <li>🛡️ Travel insurance</li>
+                <li>
+                  📘 VISA Support: H-1 (tourist employment), or working holiday (Long terms only)
+                </li>
+                <li>📞 Emergency support</li>
+              </ul>
+              <p className="text-sm text-gray-500 mt-4">
+                ※ Program contents and pricing may vary depending on university and curriculum.
+              </p>
+            </div>
             {/* ./body */}
           </div>
         </div>
