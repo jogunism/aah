@@ -17,12 +17,14 @@ export default async function Contactus() {
             {/* body */}
 
             <div className="border-b border-gray-900/10 pb-12">
-              <p className="mt-1 text-md/6 text-gray-600">{t('CONTACTUS_DESCRIPTION')}</p>
+              <p className="mt-1 text-md/6 text-gray-600 text-center">
+                {t('CONTACTUS_DESCRIPTION')}
+              </p>
 
               <div className="mt-10 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
                 <div className="sm:col-span-3">
                   <label htmlFor="first-name" className="block text-sm/6 font-medium text-gray-900">
-                    First name
+                    {t('CONTACTUS_1ST_NAME')}
                   </label>
                   <div className="mt-2">
                     <input
@@ -37,7 +39,7 @@ export default async function Contactus() {
 
                 <div className="sm:col-span-3">
                   <label htmlFor="last-name" className="block text-sm/6 font-medium text-gray-900">
-                    Last name
+                    {t('CONTACTUS_LAST_NAME')}
                   </label>
                   <div className="mt-2">
                     <input
@@ -52,7 +54,7 @@ export default async function Contactus() {
 
                 <div className="sm:col-span-4">
                   <label htmlFor="email" className="block text-sm/6 font-medium text-gray-900">
-                    Email address
+                    {t('CONTACTUS_EMAIL_ADDRESS')}
                   </label>
                   <div className="mt-2">
                     <input
@@ -67,7 +69,7 @@ export default async function Contactus() {
 
                 <div className="sm:col-span-3">
                   <label htmlFor="country" className="block text-sm/6 font-medium text-gray-900">
-                    Semesters
+                    {t('CONTACTUS_SEMESTERS')}
                   </label>
                   <div className="mt-2 grid grid-cols-1">
                     <select
@@ -76,9 +78,9 @@ export default async function Contactus() {
                       autoComplete="country-name"
                       className="col-start-1 row-start-1 w-full appearance-none rounded-md bg-white py-1.5 pr-8 pl-3 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6"
                     >
-                      <option>Select</option>
-                      <option>Short terms (3 weeks)</option>
-                      <option>Long terms</option>
+                      <option>{t('CONTACTUS_SEMESTERS_SELECT')}</option>
+                      <option>{t('CONTACTUS_SEMESTERS_SHORT_TERMS')}</option>
+                      <option>{t('CONTACTUS_SEMESTERS_LONG_TERMS')}</option>
                     </select>
                     <svg
                       className="pointer-events-none col-start-1 row-start-1 mr-2 size-5 self-center justify-self-end text-gray-500 sm:size-4"
@@ -96,75 +98,9 @@ export default async function Contactus() {
                   </div>
                 </div>
 
-                {/* <div className="col-span-full">
-                  <label
-                    htmlFor="street-address"
-                    className="block text-sm/6 font-medium text-gray-900"
-                  >
-                    Street address
-                  </label>
-                  <div className="mt-2">
-                    <input
-                      type="text"
-                      name="street-address"
-                      id="street-address"
-                      autoComplete="street-address"
-                      className="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6"
-                    />
-                  </div>
-                </div>
-
-                <div className="sm:col-span-2 sm:col-start-1">
-                  <label htmlFor="city" className="block text-sm/6 font-medium text-gray-900">
-                    City
-                  </label>
-                  <div className="mt-2">
-                    <input
-                      type="text"
-                      name="city"
-                      id="city"
-                      autoComplete="address-level2"
-                      className="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6"
-                    />
-                  </div>
-                </div>
-
-                <div className="sm:col-span-2">
-                  <label htmlFor="region" className="block text-sm/6 font-medium text-gray-900">
-                    State / Province
-                  </label>
-                  <div className="mt-2">
-                    <input
-                      type="text"
-                      name="region"
-                      id="region"
-                      autoComplete="address-level1"
-                      className="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6"
-                    />
-                  </div>
-                </div>
-
-                <div className="sm:col-span-2">
-                  <label
-                    htmlFor="postal-code"
-                    className="block text-sm/6 font-medium text-gray-900"
-                  >
-                    ZIP / Postal code
-                  </label>
-                  <div className="mt-2">
-                    <input
-                      type="text"
-                      name="postal-code"
-                      id="postal-code"
-                      autoComplete="postal-code"
-                      className="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6"
-                    />
-                  </div>
-                </div> */}
-
                 <div className="sm:col-span-full">
                   <label htmlFor="about" className="block text-sm/6 font-medium text-gray-900">
-                    Content
+                    {t('CONTACTUS_CONTENT')}
                   </label>
                   <div className="mt-2">
                     <textarea
@@ -174,8 +110,11 @@ export default async function Contactus() {
                       className="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6"
                     ></textarea>
                   </div>
-                  <p className="mt-3 text-sm/6 text-gray-600">
-                    We going to answer your question as soon as possible.
+
+                  <p className="mt-3 text-sm text-gray-500">
+                    <label>
+                      <input type="checkbox" required /> {t('CONTACTUS_GDPR')}
+                    </label>
                   </p>
                 </div>
               </div>
