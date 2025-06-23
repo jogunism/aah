@@ -1,8 +1,41 @@
-import { getTranslation } from '@/lib/i18n.server';
+'use client';
+import { useEffect, useState } from 'react';
+// i18n client
+import '@/lib/i18n.client';
+import { useTranslation } from 'react-i18next';
+import { i18nPromise } from '@/lib/i18n.client';
+// UI Component
 import ParallaxImage from '@common/parallaxImage';
 
-export default async function Contactus() {
-  const { t } = await getTranslation();
+/**
+ * Contact Us
+ */
+export default function Contactus() {
+  const { t } = useTranslation();
+  const [ready, setReady] = useState(false);
+
+  /*******************************************************
+   * methods
+   */
+  const handleSendButtonClick = () => {
+    console.log(`click`);
+  };
+
+  /*******************************************************
+   * lifecycle hooks
+   */
+  useEffect(() => {
+    i18nPromise.then(() => {
+      setReady(true);
+    });
+  }, []);
+
+  /*******************************************************
+   * render
+   */
+  if (!ready) {
+    return null;
+  }
 
   return (
     <div className="relative w-full bg-white">
@@ -121,8 +154,11 @@ export default async function Contactus() {
             </div>
 
             <div className="mt-6 flex items-center justify-end gap-x-6">
-              <button className="bg-[#DF7B7B] hover:bg-[#F1A0A0] text-white py-2 px-4 rounded-lg shadow-md transition duration-200">
-                Send
+              <button
+                className="bg-[#DF7B7B] hover:bg-[#F1A0A0] text-white py-2 px-4 rounded-lg shadow-md transition duration-200"
+                onClick={handleSendButtonClick}
+              >
+                {t('CONTACTUS_SEND')}
               </button>
             </div>
 

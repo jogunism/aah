@@ -52,5 +52,6 @@
   "CONTACTUS_SEMESTERS_SHORT_TERMS": "Short terms (3 weeks)",
   "CONTACTUS_SEMESTERS_LONG_TERMS": "Long terms (1 Semester)",
   "CONTACTUS_CONTENT": "Content",
-  "CONTACTUS_GDPR": "I consent to the collection and processing of my personal data."
+  "CONTACTUS_GDPR": "I consent to the collection and processing of my personal data.",
+  "CONTACTUS_SEND": "Send"
 }

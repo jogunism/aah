@@ -52,5 +52,6 @@
   "CONTACTUS_SEMESTERS_SHORT_TERMS": "Kurzzeitaufenthalte (3 Wochen)",
   "CONTACTUS_SEMESTERS_LONG_TERMS": "Langzeitaufenthalte (1 Semester)",
   "CONTACTUS_CONTENT": "Inhalt",
-  "CONTACTUS_GDPR": "Ich stimme der Erhebung und Verarbeitung meiner personenbezogenen Daten zu."
+  "CONTACTUS_GDPR": "Ich stimme der Erhebung und Verarbeitung meiner personenbezogenen Daten zu.",
+  "CONTACTUS_SEND": "Senden"
 }
