@@ -49,6 +49,7 @@
   "CONTACTUS_NAME_REQUIRED": "Name erforderlich.",
   "CONTACTUS_EMAIL_ADDRESS": "E-Mail-Adresse",
   "CONTACTUS_EMAIL_REQUIRED": "E-Mail-Adresse erforderlich.",
+  "CONTACTUS_EMAIL_INVALID": "Entspricht nicht dem E-Mail-Format.",
   "CONTACTUS_SEMESTERS": "Semester",
   "CONTACTUS_SEMESTERS_SELECT": "Auswählen",
   "CONTACTUS_SEMESTERS_SHORT_TERMS": "Kurzzeitaufenthalte (3 Wochen)",

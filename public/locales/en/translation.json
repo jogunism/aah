@@ -49,6 +49,7 @@
   "CONTACTUS_NAME_REQUIRED": "Name required.",
   "CONTACTUS_EMAIL_ADDRESS": "Email address",
   "CONTACTUS_EMAIL_REQUIRED": "Email address required.",
+  "CONTACTUS_EMAIL_INVALID": "Does not conform to email format.",
   "CONTACTUS_SEMESTERS": "Semesters",
   "CONTACTUS_SEMESTERS_SELECT": "Select",
   "CONTACTUS_SEMESTERS_SHORT_TERMS": "Short terms (3 weeks)",

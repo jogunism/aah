@@ -26,7 +26,12 @@ export default function Contactus() {
     gdpr: false,
   });
 
-  const [errors, setErrors] = useState({
+  const [errors, setErrors] = useState<{
+    name: boolean;
+    email: false | 'required' | 'invalid';
+    content: boolean;
+    gdpr: boolean;
+  }>({
     name: false,
     email: false,
     content: false,
@@ -35,18 +40,26 @@ export default function Contactus() {
 
   const validateForm = () => {
     const nameValid = formValues.firstName.trim() !== '' || formValues.lastName.trim() !== '';
-    const emailValid = formValues.email.trim() !== '';
+    const emailValue = formValues.email.trim();
     const contentValid = formValues.content.trim() !== '';
     const gdprValid = formValues.gdpr;
 
+    let emailError: false | 'required' | 'invalid' = false;
+
+    if (!emailValue) {
+      emailError = 'required';
+    } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(emailValue)) {
+      emailError = 'invalid';
+    }
+
     setErrors({
       name: !nameValid,
-      email: !emailValid,
+      email: emailError,
       content: !contentValid,
       gdpr: !gdprValid,
     });
 
-    return nameValid && emailValid && contentValid && gdprValid;
+    return nameValid && !emailError && contentValid && gdprValid;
   };
 
   const handleNameBlur = () => {
@@ -56,7 +69,15 @@ export default function Contactus() {
   };
 
   const handleEmailBlur = () => {
-    if (formValues.email.trim() !== '') {
+    const email = formValues.email.trim();
+
+    const isValidEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+
+    if (!email) {
+      setErrors(prev => ({ ...prev, email: 'required' }));
+    } else if (!isValidEmail) {
+      setErrors(prev => ({ ...prev, email: 'invalid' }));
+    } else {
       setErrors(prev => ({ ...prev, email: false }));
     }
   };
@@ -177,10 +198,13 @@ export default function Contactus() {
                       value={formValues.email}
                       onChange={e => setFormValues({ ...formValues, email: e.target.value })}
                       onBlur={handleEmailBlur}
-                      className={getInputClass(errors.email)}
+                      className={getInputClass(!!errors.email)}
                     />
-                    {errors.email && (
-                      <p className="text-red-700 text-sm mt-1">{t('CONTACTUS_EMAIL_REQUIRED')}</p>
+                    {errors.email === 'required' && (
+                      <p className="text-red-600 text-sm mt-1">{t('CONTACTUS_EMAIL_REQUIRED')}</p>
+                    )}
+                    {errors.email === 'invalid' && (
+                      <p className="text-red-600 text-sm mt-1">{t('CONTACTUS_EMAIL_INVALID')}</p>
                     )}
                   </div>
                 </div>
