@@ -10,6 +10,7 @@ import useContactUsStore from '@store/contactusStore';
 // UI Component
 import ParallaxImage from '@common/parallaxImage';
 import { FaSpinner } from 'react-icons/fa';
+import { toast } from '@lib/toast';
 // constants
 import type { ContactusValidation, Contactus } from '@/types/constants';
 
@@ -110,7 +111,8 @@ export default function Contactus() {
 
   const handleSendButtonClick = () => {
     if (!validateForm()) {
-      console.log('Form is invalid.');
+      // console.log();
+      toast.error('Form is invalid.');
       return;
     }
 

@@ -23,7 +23,8 @@
       "@/*": ["./src/*"],
       "@components/*": ["./src/components/*"],
       "@common/*": ["./src/components/common/*"],
-      "@store/*": ["./src/store/*"]
+      "@store/*": ["./src/store/*"],
+      "@lib/*": ["./src/lib/*"]
     },
     "typeRoots": ["./types", "./node_modules/@types"]
   },
