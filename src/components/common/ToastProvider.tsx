@@ -16,7 +16,7 @@ export default function ToastProvider() {
       draggable
       pauseOnHover
       theme="colored" // light, dark, colored
-      // limit={3} // 동시에 표시될 알림의 최대 개수 (선택 사항)
+      // limit={3}
     />
   );
 }

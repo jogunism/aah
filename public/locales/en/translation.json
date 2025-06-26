@@ -57,5 +57,7 @@
   "CONTACTUS_CONTENT": "Content",
   "CONTACTUS_CONTENT_REQUIRED": "Content required.",
   "CONTACTUS_GDPR": "I consent to the collection and processing of my personal data.",
-  "CONTACTUS_SEND": "Send"
+  "CONTACTUS_SEND": "Send",
+  "CONTACTUS_FORM_INVALID": "Please check the form values.",
+  "CONTACTUS_SEND_SUCCESS": "Sent succesfully."
 }

@@ -111,12 +111,11 @@ export default function Contactus() {
 
   const handleSendButtonClick = () => {
     if (!validateForm()) {
-      // console.log();
-      toast.error('Form is invalid.');
+      toast.error(t('CONTACTUS_FORM_INVALID'));
       return;
     }
 
-    send(formValues);
+    send(formValues, t);
   };
 
   /*******************************************************
