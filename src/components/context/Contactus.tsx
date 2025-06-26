@@ -5,39 +5,41 @@ import { useEffect, useState } from 'react';
 import '@/lib/i18n.client';
 import { useTranslation } from 'react-i18next';
 import { i18nPromise } from '@/lib/i18n.client';
+// store
+import useContactUsStore from '@store/contactusStore';
 // UI Component
 import ParallaxImage from '@common/parallaxImage';
+import { FaSpinner } from 'react-icons/fa';
+// constants
+import type { ContactusValidation, Contactus } from '@/types/constants';
 
 /**
  * Contact Us
  */
 export default function Contactus() {
   const { t } = useTranslation();
-  const [ready, setReady] = useState(false);
+  const { pending, send } = useContactUsStore();
 
-  /*******************************************************
-   * methods
-   */
+  const [ready, setReady] = useState(false);
   const [formValues, setFormValues] = useState({
     firstName: '',
     lastName: '',
     email: '',
+    semester: -1,
     content: '',
     gdpr: false,
-  });
+  } as Contactus);
 
-  const [errors, setErrors] = useState<{
-    name: boolean;
-    email: false | 'required' | 'invalid';
-    content: boolean;
-    gdpr: boolean;
-  }>({
+  const [errors, setErrors] = useState<ContactusValidation>({
     name: false,
     email: false,
     content: false,
     gdpr: false,
   });
 
+  /*******************************************************
+   * methods
+   */
   const validateForm = () => {
     const nameValid = formValues.firstName.trim() !== '' || formValues.lastName.trim() !== '';
     const emailValue = formValues.email.trim();
@@ -82,6 +84,13 @@ export default function Contactus() {
     }
   };
 
+  const handleSelectSemester = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    setFormValues(prev => ({
+      ...prev,
+      semester: Number(e.target.value),
+    }));
+  };
+
   const handleContentBlur = () => {
     if (formValues.content.trim() !== '') {
       setErrors(prev => ({ ...prev, content: false }));
@@ -100,12 +109,12 @@ export default function Contactus() {
     } `;
 
   const handleSendButtonClick = () => {
-    if (validateForm()) {
-      console.log('Form is valid. Sending data...');
-      // TODO: Send form data here
-    } else {
+    if (!validateForm()) {
       console.log('Form is invalid.');
+      return;
     }
+
+    send(formValues);
   };
 
   /*******************************************************
@@ -219,10 +228,11 @@ export default function Contactus() {
                       name="country"
                       autoComplete="country-name"
                       className="col-start-1 row-start-1 w-full appearance-none rounded-md bg-white py-1.5 pr-8 pl-3 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6"
+                      onChange={handleSelectSemester}
                     >
-                      <option>{t('CONTACTUS_SEMESTERS_SELECT')}</option>
-                      <option>{t('CONTACTUS_SEMESTERS_SHORT_TERMS')}</option>
-                      <option>{t('CONTACTUS_SEMESTERS_LONG_TERMS')}</option>
+                      <option value={-1}>{t('CONTACTUS_SEMESTERS_SELECT')}</option>
+                      <option value={0}>{t('CONTACTUS_SEMESTERS_SHORT_TERMS')}</option>
+                      <option value={1}>{t('CONTACTUS_SEMESTERS_LONG_TERMS')}</option>
                     </select>
                     <svg
                       className="pointer-events-none col-start-1 row-start-1 mr-2 size-5 self-center justify-self-end text-gray-500 sm:size-4"
@@ -284,10 +294,11 @@ export default function Contactus() {
 
             <div className="mt-6 flex items-center justify-end gap-x-6">
               <button
-                className="bg-[#DF7B7B] hover:bg-[#F1A0A0] text-white py-2 px-4 rounded-lg shadow-md transition duration-200"
+                disabled={pending}
+                className="bg-[#DF7B7B] hover:bg-[#F1A0A0] text-white py-2 px-4 rounded-lg shadow-md transition duration-200 w-30 h-13 flex items-center justify-center"
                 onClick={handleSendButtonClick}
               >
-                {t('CONTACTUS_SEND')}
+                {pending ? <FaSpinner className="animate-spin" size={18} /> : t('CONTACTUS_SEND')}
               </button>
             </div>
 

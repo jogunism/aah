@@ -29,3 +29,18 @@ a,
 button {
   cursor: pointer;
 }
+
+/* Keyframes for the spinning animation */
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* Apply the animation to any element with the 'animate-spin' class */
+.animate-spin {
+  animation: spin 1s linear infinite; /* 1초 동안 선형적으로 무한 반복 */
+}
