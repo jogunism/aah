@@ -22,7 +22,8 @@
     "paths": {
       "@/*": ["./src/*"],
       "@components/*": ["./src/components/*"],
-      "@common/*": ["./src/components/common/*"]
+      "@common/*": ["./src/components/common/*"],
+      "@store/*": ["./src/store/*"]
     },
     "typeRoots": ["./types", "./node_modules/@types"]
   },
