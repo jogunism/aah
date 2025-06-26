@@ -44,14 +44,17 @@
 
   "CONTACTUS_TITLE": "Kontakt",
   "CONTACTUS_DESCRIPTION": "Wenn Sie Fragen haben, können Sie uns gerne kontaktieren. Wir werden Ihre Frage so schnell wie möglich beantworten.",
-  "CONTACTUS_1ST_NAME": "Vorname",
+  "CONTACTUS_FIRST_NAME": "Vorname",
   "CONTACTUS_LAST_NAME": "Nachname",
+  "CONTACTUS_NAME_REQUIRED": "Name erforderlich.",
   "CONTACTUS_EMAIL_ADDRESS": "E-Mail-Adresse",
+  "CONTACTUS_EMAIL_REQUIRED": "E-Mail-Adresse erforderlich.",
   "CONTACTUS_SEMESTERS": "Semester",
   "CONTACTUS_SEMESTERS_SELECT": "Auswählen",
   "CONTACTUS_SEMESTERS_SHORT_TERMS": "Kurzzeitaufenthalte (3 Wochen)",
   "CONTACTUS_SEMESTERS_LONG_TERMS": "Langzeitaufenthalte (1 Semester)",
   "CONTACTUS_CONTENT": "Inhalt",
+  "CONTACTUS_CONTENT_REQUIRED": "Inhalt erforderlich.",
   "CONTACTUS_GDPR": "Ich stimme der Erhebung und Verarbeitung meiner personenbezogenen Daten zu.",
   "CONTACTUS_SEND": "Senden"
 }

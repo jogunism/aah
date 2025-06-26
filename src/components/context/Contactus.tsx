@@ -1,4 +1,5 @@
 'use client';
+
 import { useEffect, useState } from 'react';
 // i18n client
 import '@/lib/i18n.client';
@@ -17,8 +18,73 @@ export default function Contactus() {
   /*******************************************************
    * methods
    */
+  const [formValues, setFormValues] = useState({
+    firstName: '',
+    lastName: '',
+    email: '',
+    content: '',
+    gdpr: false,
+  });
+
+  const [errors, setErrors] = useState({
+    name: false,
+    email: false,
+    content: false,
+    gdpr: false,
+  });
+
+  const validateForm = () => {
+    const nameValid = formValues.firstName.trim() !== '' || formValues.lastName.trim() !== '';
+    const emailValid = formValues.email.trim() !== '';
+    const contentValid = formValues.content.trim() !== '';
+    const gdprValid = formValues.gdpr;
+
+    setErrors({
+      name: !nameValid,
+      email: !emailValid,
+      content: !contentValid,
+      gdpr: !gdprValid,
+    });
+
+    return nameValid && emailValid && contentValid && gdprValid;
+  };
+
+  const handleNameBlur = () => {
+    if (formValues.firstName.trim() !== '' || formValues.lastName.trim() !== '') {
+      setErrors(prev => ({ ...prev, name: false }));
+    }
+  };
+
+  const handleEmailBlur = () => {
+    if (formValues.email.trim() !== '') {
+      setErrors(prev => ({ ...prev, email: false }));
+    }
+  };
+
+  const handleContentBlur = () => {
+    if (formValues.content.trim() !== '') {
+      setErrors(prev => ({ ...prev, content: false }));
+    }
+  };
+
+  const handleGdprBlur = () => {
+    if (formValues.gdpr) {
+      setErrors(prev => ({ ...prev, gdpr: false }));
+    }
+  };
+
+  const getInputClass = (hasError: boolean) =>
+    `mt-1 block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 border focus:ring-2 focus:ring-indigo-600 sm:text-sm ${
+      hasError ? 'border-red-700' : 'border-gray-300'
+    } `;
+
   const handleSendButtonClick = () => {
-    console.log(`click`);
+    if (validateForm()) {
+      console.log('Form is valid. Sending data...');
+      // TODO: Send form data here
+    } else {
+      console.log('Form is invalid.');
+    }
   };
 
   /*******************************************************
@@ -57,54 +123,73 @@ export default function Contactus() {
               <div className="mt-10 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
                 <div className="sm:col-span-3">
                   <label htmlFor="first-name" className="block text-sm/6 font-medium text-gray-900">
-                    {t('CONTACTUS_1ST_NAME')}
+                    <strong>
+                      {t('CONTACTUS_FIRST_NAME')}
+                      <span className="text-red-700 text-base leading-none relative top-[3px] left-[3px]">
+                        *
+                      </span>
+                    </strong>
                   </label>
-                  <div className="mt-2">
+                  <div className="mt-1">
                     <input
                       type="text"
-                      name="first-name"
                       id="first-name"
-                      autoComplete="given-name"
-                      className="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6"
+                      value={formValues.firstName}
+                      onChange={e => setFormValues({ ...formValues, firstName: e.target.value })}
+                      onBlur={handleNameBlur}
+                      className={getInputClass(errors.name)}
                     />
                   </div>
+                  {errors.name && (
+                    <p className="text-red-600 text-sm mt-1">{t('CONTACTUS_NAME_REQUIRED')}</p>
+                  )}
                 </div>
 
                 <div className="sm:col-span-3">
                   <label htmlFor="last-name" className="block text-sm/6 font-medium text-gray-900">
-                    {t('CONTACTUS_LAST_NAME')}
+                    <strong>{t('CONTACTUS_LAST_NAME')}</strong>
                   </label>
-                  <div className="mt-2">
+                  <div className="mt-1">
                     <input
                       type="text"
-                      name="last-name"
                       id="last-name"
-                      autoComplete="family-name"
-                      className="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6"
+                      value={formValues.lastName}
+                      onChange={e => setFormValues({ ...formValues, lastName: e.target.value })}
+                      onBlur={handleNameBlur}
+                      className={getInputClass(errors.name)}
                     />
                   </div>
                 </div>
 
                 <div className="sm:col-span-4">
                   <label htmlFor="email" className="block text-sm/6 font-medium text-gray-900">
-                    {t('CONTACTUS_EMAIL_ADDRESS')}
+                    <strong>
+                      {t('CONTACTUS_EMAIL_ADDRESS')}
+                      <span className="text-red-700 text-base leading-none relative top-[3px] left-[3px]">
+                        *
+                      </span>
+                    </strong>
                   </label>
-                  <div className="mt-2">
+                  <div className="mt-1">
                     <input
-                      id="email"
-                      name="email"
                       type="email"
-                      autoComplete="email"
-                      className="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6"
+                      id="email"
+                      value={formValues.email}
+                      onChange={e => setFormValues({ ...formValues, email: e.target.value })}
+                      onBlur={handleEmailBlur}
+                      className={getInputClass(errors.email)}
                     />
+                    {errors.email && (
+                      <p className="text-red-700 text-sm mt-1">{t('CONTACTUS_EMAIL_REQUIRED')}</p>
+                    )}
                   </div>
                 </div>
 
                 <div className="sm:col-span-3">
                   <label htmlFor="country" className="block text-sm/6 font-medium text-gray-900">
-                    {t('CONTACTUS_SEMESTERS')}
+                    <strong>{t('CONTACTUS_SEMESTERS')}</strong>
                   </label>
-                  <div className="mt-2 grid grid-cols-1">
+                  <div className="mt-1 grid grid-cols-1">
                     <select
                       id="country"
                       name="country"
@@ -133,22 +218,42 @@ export default function Contactus() {
 
                 <div className="sm:col-span-full">
                   <label htmlFor="about" className="block text-sm/6 font-medium text-gray-900">
-                    {t('CONTACTUS_CONTENT')}
+                    <strong>
+                      {t('CONTACTUS_CONTENT')}
+                      <span className="text-red-700 text-base leading-none relative top-[3px] left-[3px]">
+                        *
+                      </span>
+                    </strong>
                   </label>
-                  <div className="mt-2">
+                  <div className="mt-1">
                     <textarea
-                      name="about"
-                      id="about"
-                      rows={5}
-                      className="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6"
-                    ></textarea>
+                      id="content"
+                      rows={4}
+                      value={formValues.content}
+                      onChange={e => setFormValues({ ...formValues, content: e.target.value })}
+                      onBlur={handleContentBlur}
+                      className={getInputClass(errors.content)}
+                    />
+                    {errors.content && (
+                      <p className="text-red-700 text-sm mt-1">{t('CONTACTUS_CONTENT_REQUIRED')}</p>
+                    )}
                   </div>
 
-                  <p className="mt-3 text-sm text-gray-500">
-                    <label>
-                      <input type="checkbox" required /> {t('CONTACTUS_GDPR')}
+                  <div className="mt-3 text-sm text-gray-500">
+                    <label htmlFor="gdpr" className="text-sm text-gray-700 flex items-center gap-2">
+                      <input
+                        type="checkbox"
+                        id="gdpr"
+                        checked={formValues.gdpr}
+                        onChange={e => setFormValues({ ...formValues, gdpr: e.target.checked })}
+                        onBlur={handleGdprBlur}
+                        className={`h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-600 ${errors.gdpr ? 'outline outline-1 outline-red-700' : ''}`}
+                      />
+                      <span className={errors.gdpr ? 'text-red-700' : ''}>
+                        {t('CONTACTUS_GDPR')}
+                      </span>
                     </label>
-                  </p>
+                  </div>
                 </div>
               </div>
             </div>

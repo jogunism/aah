@@ -44,14 +44,17 @@
 
   "CONTACTUS_TITLE": "Contact Us",
   "CONTACTUS_DESCRIPTION": "If you have any questions, feel free to contact us. We going to answer your question as soon as possible.",
-  "CONTACTUS_1ST_NAME": "First name",
+  "CONTACTUS_FIRST_NAME": "First name",
   "CONTACTUS_LAST_NAME": "Last name",
+  "CONTACTUS_NAME_REQUIRED": "Name required.",
   "CONTACTUS_EMAIL_ADDRESS": "Email address",
+  "CONTACTUS_EMAIL_REQUIRED": "Email address required.",
   "CONTACTUS_SEMESTERS": "Semesters",
   "CONTACTUS_SEMESTERS_SELECT": "Select",
   "CONTACTUS_SEMESTERS_SHORT_TERMS": "Short terms (3 weeks)",
   "CONTACTUS_SEMESTERS_LONG_TERMS": "Long terms (1 Semester)",
   "CONTACTUS_CONTENT": "Content",
+  "CONTACTUS_CONTENT_REQUIRED": "Content required.",
   "CONTACTUS_GDPR": "I consent to the collection and processing of my personal data.",
   "CONTACTUS_SEND": "Send"
 }
