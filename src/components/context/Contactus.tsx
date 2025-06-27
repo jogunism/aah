@@ -104,10 +104,10 @@ export default function Contactus() {
     }
   };
 
-  const getInputClass = (hasError: boolean) =>
+  const getInputClass = (hasError: boolean, isPending: boolean) =>
     `mt-1 block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 border focus:ring-2 focus:ring-indigo-600 sm:text-sm ${
       hasError ? 'border-red-700' : 'border-gray-300'
-    } `;
+    } ${isPending ? 'opacity-50 cursor-not-allowed bg-gray-100' : ''}`;
 
   const handleSendButtonClick = () => {
     if (!validateForm()) {
@@ -180,12 +180,13 @@ export default function Contactus() {
                   </label>
                   <div className="mt-1">
                     <input
-                      type="text"
                       id="first-name"
+                      type="text"
+                      disabled={pending}
                       value={formValues.firstName}
                       onChange={e => setFormValues({ ...formValues, firstName: e.target.value })}
                       onBlur={handleNameBlur}
-                      className={getInputClass(errors.name)}
+                      className={getInputClass(errors.name, pending)}
                     />
                   </div>
                   {errors.name && (
@@ -199,12 +200,13 @@ export default function Contactus() {
                   </label>
                   <div className="mt-1">
                     <input
-                      type="text"
                       id="last-name"
+                      type="text"
+                      disabled={pending}
                       value={formValues.lastName}
                       onChange={e => setFormValues({ ...formValues, lastName: e.target.value })}
                       onBlur={handleNameBlur}
-                      className={getInputClass(errors.name)}
+                      className={getInputClass(errors.name, pending)}
                     />
                   </div>
                 </div>
@@ -220,12 +222,13 @@ export default function Contactus() {
                   </label>
                   <div className="mt-1">
                     <input
-                      type="email"
                       id="email"
+                      type="email"
+                      disabled={pending}
                       value={formValues.email}
                       onChange={e => setFormValues({ ...formValues, email: e.target.value })}
                       onBlur={handleEmailBlur}
-                      className={getInputClass(!!errors.email)}
+                      className={getInputClass(!!errors.email, pending)}
                     />
                     {errors.email === 'required' && (
                       <p className="text-red-600 text-sm mt-1">{t('CONTACTUS_EMAIL_REQUIRED')}</p>
@@ -242,10 +245,18 @@ export default function Contactus() {
                   </label>
                   <div className="mt-1 grid grid-cols-1">
                     <select
-                      id="country"
-                      name="country"
-                      autoComplete="country-name"
-                      className="col-start-1 row-start-1 w-full appearance-none rounded-md bg-white py-1.5 pr-8 pl-3 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6"
+                      id="semester"
+                      name="semester"
+                      value={formValues.semester}
+                      disabled={pending}
+                      autoComplete="semester"
+                      className={`
+                        col-start-1 row-start-1 w-full appearance-none rounded-md bg-white 
+                        py-1.5 pr-8 pl-3 text-base text-gray-900 
+                        outline-1 -outline-offset-1 outline-gray-300 
+                        focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6
+                        ${pending ? 'opacity-50 cursor-not-allowed bg-gray-100' : ''}
+                      `}
                       onChange={handleSelectSemester}
                     >
                       <option value={-1}>{t('CONTACTUS_SEMESTERS_SELECT')}</option>
@@ -281,10 +292,11 @@ export default function Contactus() {
                     <textarea
                       id="content"
                       rows={4}
+                      disabled={pending}
                       value={formValues.content}
                       onChange={e => setFormValues({ ...formValues, content: e.target.value })}
                       onBlur={handleContentBlur}
-                      className={getInputClass(errors.content)}
+                      className={getInputClass(errors.content, pending)}
                     />
                     {errors.content && (
                       <p className="text-red-700 text-sm mt-1">{t('CONTACTUS_CONTENT_REQUIRED')}</p>
@@ -294,8 +306,9 @@ export default function Contactus() {
                   <div className="mt-3 text-sm text-gray-500">
                     <label htmlFor="gdpr" className="text-sm text-gray-700 flex items-center gap-2">
                       <input
-                        type="checkbox"
                         id="gdpr"
+                        type="checkbox"
+                        disabled={pending}
                         checked={formValues.gdpr}
                         onChange={e => setFormValues({ ...formValues, gdpr: e.target.checked })}
                         onBlur={handleGdprBlur}
