@@ -19,7 +19,7 @@ import type { ContactusValidation, Contactus } from '@/types/constants';
  */
 export default function Contactus() {
   const { t } = useTranslation();
-  const { pending, send } = useContactUsStore();
+  const { send, resetSendStatus, pending, isSuccess } = useContactUsStore();
 
   const [ready, setReady] = useState(false);
   const [formValues, setFormValues] = useState({
@@ -118,6 +118,16 @@ export default function Contactus() {
     send(formValues, t);
   };
 
+  const resetFormValues = () => {
+    setFormValues(prev => ({ ...prev, gdpr: false }));
+    setErrors({
+      name: false,
+      email: false,
+      content: false,
+      gdpr: false,
+    });
+  };
+
   /*******************************************************
    * lifecycle hooks
    */
@@ -126,6 +136,13 @@ export default function Contactus() {
       setReady(true);
     });
   }, []);
+
+  useEffect(() => {
+    if (isSuccess !== undefined && isSuccess) {
+      resetFormValues();
+      resetSendStatus();
+    }
+  }, [isSuccess]);
 
   /*******************************************************
    * render
