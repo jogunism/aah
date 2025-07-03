@@ -19,7 +19,7 @@ const createI18nInstance = (lng: string) => {
         ns: ['translation'],
         defaultNS: 'translation',
         backend: {
-          loadPath: path.resolve('./public/locales/{{lng}}/{{ns}}.json'),
+          loadPath: path.join(process.cwd(), 'public/locales/{{lng}}/{{ns}}.json'),
         },
         interpolation: {
           escapeValue: false,
