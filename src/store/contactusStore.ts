@@ -28,7 +28,7 @@ const useContactUsStore = create<ContactUsStore>(set => ({
       set({ isSuccess: true });
       //
     } catch (error: any) {
-      console.error(error.stack);
+      console.log(error.stack);
       set({ isSuccess: false });
     }
 
