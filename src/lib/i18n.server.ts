@@ -1,7 +1,9 @@
 import i18next, { i18n as I18nInstance } from 'i18next';
-import Backend from 'i18next-fs-backend';
 import { headers } from 'next/headers';
-import path from 'path';
+
+// 번역 파일을 직접 import 합니다.
+import enTranslation from '../../public/locales/en/translation.json';
+import deTranslation from '../../public/locales/de/translation.json';
 
 const i18nInstances: Record<string, Promise<I18nInstance>> = {};
 
@@ -10,16 +12,19 @@ const createI18nInstance = (lng: string) => {
     const instance = i18next.createInstance();
 
     i18nInstances[lng] = instance
-      .use(Backend)
       .init({
         fallbackLng: 'en',
         supportedLngs: ['en', 'de'],
-        preload: ['en', 'de'],
         lng,
         ns: ['translation'],
         defaultNS: 'translation',
-        backend: {
-          loadPath: path.join(process.cwd(), 'public/locales/{{lng}}/{{ns}}.json'),
+        resources: {
+          en: {
+            translation: enTranslation,
+          },
+          de: {
+            translation: deTranslation,
+          },
         },
         interpolation: {
           escapeValue: false,
