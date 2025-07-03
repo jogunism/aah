@@ -1,5 +1,6 @@
 import { getTranslation } from '@/lib/i18n.server';
 import ParallaxImage from '@common/parallaxImage';
+import Image from 'next/image';
 
 import { univercities } from '@/lib/univercities';
 import type { University } from '@/types/constants';
@@ -22,22 +23,14 @@ export default async function Univercities() {
             <div className="mt-10">
               <ul className="list-none grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-4 w-fit mx-auto">
                 {univercities.map((item: University, index) => {
-                  const widthClass = {
-                    9: 'w-9',
-                    12: 'w-12',
-                  }[item.width ?? 12];
-
-                  const heightClass = {
-                    10: 'h-10',
-                    12: 'h-12',
-                  }[item.height ?? 12];
-
                   return (
                     <li key={index} className="flex justify-start items-center gap-4 py-3">
-                      <img
+                      <Image
                         src={`/assets/emblem/${item.emblem}.png`}
                         alt={item.emblem}
-                        className={`${widthClass} ${heightClass} ${item.margin ? 'ml-1.5 mr-1.5' : ''}`}
+                        width={item.width ? item.width * 4 : 48}
+                        height={item.height ? item.height * 4 : 48}
+                        className={`${item.margin ? 'ml-1.5 mr-1.5' : ''}`}
                       />
                       <strong className="flex flex-col">
                         {item.title}

@@ -27,7 +27,7 @@ export default function LanguageSelector() {
     if (storedLang && storedLang !== i18n.language) {
       i18n.changeLanguage(storedLang);
     }
-  }, []);
+  }, [i18n]);
 
   return (
     <div className="relative">

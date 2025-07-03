@@ -142,7 +142,7 @@ export default function Contactus() {
       resetFormValues();
       resetSendStatus();
     }
-  }, [isSuccess]);
+  }, [isSuccess, resetSendStatus]);
 
   /*******************************************************
    * render

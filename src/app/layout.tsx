@@ -7,7 +7,7 @@ import ToastProvider from '@common/ToastProvider';
 import './globals.css';
 
 export default async function RootLayout({ children }: { children: ReactNode }) {
-  const { t, lang } = await getTranslation();
+  const { lang } = await getTranslation();
 
   return (
     <html lang={lang}>

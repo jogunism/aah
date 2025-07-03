@@ -22,13 +22,15 @@ const useContactUsStore = create<ContactUsStore>(set => ({
     set({ pending: true });
 
     try {
-      const response = await http.post('/contact', formValues);
+      await http.post('/contact', formValues);
 
       toast.success(t('CONTACTUS_SEND_SUCCESS'));
       set({ isSuccess: true });
       //
-    } catch (error: any) {
-      console.log(error.stack);
+    } catch (error) {
+      if (error instanceof Error) {
+        console.log(error.stack);
+      }
       set({ isSuccess: false });
     }
 

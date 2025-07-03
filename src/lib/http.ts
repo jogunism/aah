@@ -2,7 +2,7 @@
 import axios from 'axios';
 
 // Axios 기본 설정
-axios.defaults.baseURL = 'http://192.168.1.44:8080';
+axios.defaults.baseURL = process.env.NEXT_PUBLIC_API_BASE_URL;
 
 export default axios;
 

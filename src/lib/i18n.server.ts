@@ -3,7 +3,7 @@ import Backend from 'i18next-fs-backend';
 import { headers } from 'next/headers';
 import path from 'path';
 
-let i18nInstances: Record<string, Promise<I18nInstance>> = {};
+const i18nInstances: Record<string, Promise<I18nInstance>> = {};
 
 const createI18nInstance = (lng: string) => {
   if (!i18nInstances[lng]) {
