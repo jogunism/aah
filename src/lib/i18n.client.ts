@@ -3,11 +3,13 @@
 import i18n from 'i18next';
 import { initReactI18next } from 'react-i18next';
 import LanguageDetector from 'i18next-browser-languagedetector';
-import HttpBackend from 'i18next-http-backend';
+
+// 번역 파일을 직접 import 합니다.
+import enTranslation from '../../public/locales/en/translation.json';
+import deTranslation from '../../public/locales/de/translation.json';
 
 const i18nPromise = !i18n.isInitialized
   ? i18n
-      .use(HttpBackend)
       .use(LanguageDetector)
       .use(initReactI18next)
       .init({
@@ -18,8 +20,13 @@ const i18nPromise = !i18n.isInitialized
           caches: ['cookie'],
           lookupCookie: 'language',
         },
-        backend: {
-          loadPath: '/locales/{{lng}}/{{ns}}.json',
+        resources: {
+          en: {
+            translation: enTranslation,
+          },
+          de: {
+            translation: deTranslation,
+          },
         },
         react: {
           useSuspense: false,
