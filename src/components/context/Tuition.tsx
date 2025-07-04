@@ -1,5 +1,6 @@
 import { getTranslation } from '@/lib/i18n.server';
 import ParallaxImage from '@common/parallaxImage';
+import TuitionCalcurationButton from './TuitionCalcurationButton';
 
 export default async function Price() {
   const { t } = await getTranslation();
@@ -72,12 +73,7 @@ export default async function Price() {
               <p className="text-sm text-gray-500 mt-4">{t('TUITION_WHATS_INCLUDE_COMMENT')}</p>
             </div>
 
-            {/* Price calculator */}
-            <div className="mt-10 text-center">
-              <button className="bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-5 rounded">
-                {t('TUITION_CALCULATOR')}
-              </button>
-            </div>
+            <TuitionCalcurationButton />
 
             {/* ./body */}
           </div>
