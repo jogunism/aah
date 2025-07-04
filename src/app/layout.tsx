@@ -9,14 +9,14 @@ import GDPRPopup from '@/components/common/GDPRPopup'; // GDPRPopup 임포트
 import './globals.css';
 
 export default async function RootLayout({ children }: { children: ReactNode }) {
-  const { lang } = await getTranslation(headers()); // headers() 전달
+  const { lang } = await getTranslation();
 
   return (
     <html lang={lang}>
       <body>
         <ClientWrapper>{children}</ClientWrapper>
         <ToastProvider />
-        <GDPRPopup /> {/* GDPRPopup 컴포넌트 추가 */}
+        <GDPRPopup />
       </body>
     </html>
   );
