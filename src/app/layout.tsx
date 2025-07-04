@@ -1,5 +1,4 @@
 import { ReactNode } from 'react';
-import { headers } from 'next/headers'; // headers 임포트
 import { getTranslation } from '@/lib/i18n.server';
 import ClientWrapper from './layoutClientWrapper';
 
