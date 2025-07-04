@@ -6,7 +6,7 @@ import Cookies from 'js-cookie';
 
 export default function LanguageSelector() {
   const { i18n } = useTranslation();
-  const [lang, setLang] = useState(() => Cookies.get('language') ?? 'en');
+  const [lang, setLang] = useState<string>('');
 
   const handleChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
     const selectedLang = e.target.value;
@@ -24,6 +24,7 @@ export default function LanguageSelector() {
 
   useEffect(() => {
     const storedLang = Cookies.get('language');
+    setLang(storedLang ?? 'en');
     if (storedLang && storedLang !== i18n.language) {
       i18n.changeLanguage(storedLang);
     }
