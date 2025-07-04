@@ -7,9 +7,7 @@ import { useTranslation } from 'react-i18next';
 
 import Modal from '@/components/common/Modal';
 
-interface TuitionCalcurationButtonProps {}
-
-const TuitionCalcurationButton: React.FC<TuitionCalcurationButtonProps> = () => {
+const TuitionCalcurationButton: React.FC = () => {
   const { t } = useTranslation();
 
   const [isModalOpen, setIsModalOpen] = useState(false);
