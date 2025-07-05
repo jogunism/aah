@@ -1,13 +1,22 @@
 import { getTranslation } from '@/lib/i18n.server';
 import ParallaxImage from '@common/parallaxImage';
 import Image from 'next/image';
-
-import { univercities } from '@/lib/univercities';
+// API
+import { retrieveUniversityList } from '@/api';
+// Types
 import type { University } from '@/types/constants';
 
+/**
+ * Univercity list
+ */
 export default async function Univercities() {
   const { t } = await getTranslation();
 
+  const universityList: University[] = await retrieveUniversityList();
+
+  /*******************************************************
+   * render
+   */
   return (
     <div className="relative w-full bg-white mb-30">
       <ParallaxImage section="univercities" imagePath="/assets/image4.jpg" />
@@ -22,7 +31,7 @@ export default async function Univercities() {
 
             <div className="mt-10">
               <ul className="list-none grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-4 w-fit mx-auto">
-                {univercities.map((item: University, index) => {
+                {universityList.map((item: University, index) => {
                   return (
                     <li key={index} className="flex justify-start items-center gap-4 py-3">
                       <Image

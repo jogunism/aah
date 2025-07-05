@@ -241,7 +241,7 @@ export default function Contactus() {
 
                 <div className="sm:col-span-3">
                   <label htmlFor="country" className="block text-sm/6 font-medium text-gray-900">
-                    <strong>{t('CONTACTUS_SEMESTERS')}</strong>
+                    <strong>{t('CONTACTUS_PROGRAMS')}</strong>
                   </label>
                   <div className="mt-1 grid grid-cols-1">
                     <select
@@ -259,9 +259,9 @@ export default function Contactus() {
                       `}
                       onChange={handleSelectSemester}
                     >
-                      <option value={-1}>{t('CONTACTUS_SEMESTERS_SELECT')}</option>
-                      <option value={0}>{t('CONTACTUS_SEMESTERS_SHORT_TERMS')}</option>
-                      <option value={1}>{t('CONTACTUS_SEMESTERS_LONG_TERMS')}</option>
+                      <option value={-1}>{t('CONTACTUS_PROGRAMS_SELECT')}</option>
+                      <option value={0}>{t('CONTACTUS_PROGRAMS_SHORT_TERMS')}</option>
+                      <option value={1}>{t('CONTACTUS_PROGRAMS_LONG_TERMS')}</option>
                     </select>
                     <svg
                       className="pointer-events-none col-start-1 row-start-1 mr-2 size-5 self-center justify-self-end text-gray-500 sm:size-4"

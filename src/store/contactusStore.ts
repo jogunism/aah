@@ -1,7 +1,7 @@
 import { create } from 'zustand';
 import { TFunction } from 'i18next';
-
-import http from '@lib/http';
+// APIs
+import { sendContactUs } from '@/api';
 // toast
 import { toast } from '@lib/toast';
 // constants
@@ -22,7 +22,8 @@ const useContactUsStore = create<ContactUsStore>(set => ({
     set({ pending: true });
 
     try {
-      await http.post('/contact', formValues);
+      // await http.post('/contact', formValues);
+      await sendContactUs(formValues);
 
       toast.success(t('CONTACTUS_SEND_SUCCESS'));
       set({ isSuccess: true });
