@@ -18,27 +18,28 @@ export default async function Programes() {
           </h2>
           <div className="text-lg text-gray-800 ">
             {/* body */}
+
             <h2 className="text-xl font-bold text-gray-800 mb-5 text-center">
               {t('PROGRAMS_SUB_TITLE')}
             </h2>
-            <p className="mb-5 text-center">{t('PROGRAMS_DESCRIPTION')}</p>
+            <p className="mb-10 text-center">{t('PROGRAMS_DESCRIPTION')}</p>
 
             <div className="flex flex-col md:flex-row gap-6">
               {/* Short-Term Program */}
-              <div className="flex-1 bg-white shadow-lg rounded-xl p-6">
-                <button className="bg-pink-500 hover:bg-pink-600 text-white font-semibold py-2 px-4 rounded mb-4 w-full">
+              <button className="flex-1 bg-red-700 hover:bg-red-800 shadow-lg text-gray-100 rounded-xl w-full p-6 flex flex-col items-start">
+                <h1 className="font-semibold text-center w-full mt-3 mb-5 text-2xl">
                   {t('PROGRAMS_SHORT_BUTTON')}
-                </button>
-                <p className="text-gray-700 text-base">{t('PROGRAMS_SHORT_DESCRIPTION')}</p>
-              </div>
+                </h1>
+                <p className="text-gray-100 text-base">{t('PROGRAMS_SHORT_DESCRIPTION')}</p>
+              </button>
 
               {/* Long-Term Program */}
-              <div className="flex-1 bg-white shadow-lg rounded-xl p-6">
-                <button className="bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded mb-4 w-full">
+              <button className="flex-1 bg-blue-700 hover:bg-blue-800 shadow-lg text-gray-100 rounded-xl w-full p-6 flex flex-col items-start">
+                <h1 className="font-semibold text-center w-full mt-3 mb-5 text-2xl">
                   {t('PROGRAMS_LONG_BUTTON')}
-                </button>
-                <p className="text-gray-700 text-base">{t('PROGRAMS_LONG_DESCRIPTION')}</p>
-              </div>
+                </h1>
+                <p className="text-gray-100 text-base">{t('PROGRAMS_LONG_DESCRIPTION')}</p>
+              </button>
             </div>
 
             {/* ./body */}
