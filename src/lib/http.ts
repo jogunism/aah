@@ -1,11 +1,16 @@
 // http.ts
 import axios from 'axios';
 
-// Axios 기본 설정
-axios.defaults.baseURL = process.env.NEXT_PUBLIC_API_BASE_URL;
-axios.defaults.headers.post['Content-Type'] = 'application/json';
+// Axios default settings
+const http = axios.create({
+  baseURL: `${process.env.NEXT_PUBLIC_API_BASE_URL}`,
+  headers: {
+    'Content-Type': 'application/json',
+    Authorization: `Bearer ${process.env.NEXT_PUBLIC_API_TOKEN}`,
+  },
+});
 
-export default axios;
+export default http;
 
 // AxiosResponse는 named export
 export type { AxiosResponse } from 'axios';
