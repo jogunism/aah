@@ -1,3 +1,9 @@
+// constants
+
+/*********************************************
+ * interface
+ */
+
 export interface University {
   title: string;
   subtitle: string;
@@ -21,4 +27,13 @@ export interface Contactus {
   semester: number;
   content: string;
   gdpr: boolean;
+}
+
+/*********************************************
+ * enums
+ */
+
+export enum ProgramType {
+  SHORT = 'short-term',
+  LONG = 'long-term',
 }

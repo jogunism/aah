@@ -5,9 +5,9 @@ import React, { useState } from 'react';
 import '@/lib/i18n.client';
 import { useTranslation } from 'react-i18next';
 
-import Modal from '@/components/common/Modal';
+import TuitionCalculation from '@/components/modal/TuitionCalculation';
 
-const TuitionCalcurationButton: React.FC = () => {
+const TuitionCalculationButton: React.FC = () => {
   const { t } = useTranslation();
 
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -30,19 +30,9 @@ const TuitionCalcurationButton: React.FC = () => {
         {t('TUITION_CALCULATOR')}
       </button>
 
-      <Modal
-        size={'lg'}
-        isOpen={isModalOpen}
-        onClose={closeModal}
-        title={t('TUITION_CALCULATOR_MODAL_TITLE')}
-      >
-        <div className="p-6">
-          <p>This is the content of the Tuition Calculator Modal.</p>
-          <p>You can replace this with your actual calculator component.</p>
-        </div>
-      </Modal>
+      <TuitionCalculation isOpen={isModalOpen} onClose={closeModal} />
     </div>
   );
 };
 
-export default TuitionCalcurationButton;
+export default TuitionCalculationButton;

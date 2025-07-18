@@ -1,6 +1,6 @@
 import { getTranslation } from '@/lib/i18n.server';
 import ParallaxImage from '@common/parallaxImage';
-import TuitionCalcurationButton from './TuitionCalcurationButton';
+import TuitionCalcurationButton from './TuitionCalculationButton';
 
 export default async function Price() {
   const { t } = await getTranslation();

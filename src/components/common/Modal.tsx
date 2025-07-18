@@ -92,7 +92,7 @@ const Modal: React.FC<ModalProps> = ({
               &times;
             </button>
           )}
-          {title && <h2 className="text-xl font-bold p-3">{title}</h2>}
+          {title && <h2 className="text-xl font-bold text-gray-700 py-6 px-6">{title}</h2>}
           <div>{children}</div>
         </div>
       </div>
