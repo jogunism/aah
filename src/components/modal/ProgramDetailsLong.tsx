@@ -7,7 +7,9 @@ const ProgramDetailsLong: React.FC = () => {
   const { t } = useTranslation();
 
   return (
-    <p className="text-gray-800">{t('PROGRAM_LONG_TERM_CONTENT')}</p>
+    <div className="p-6">
+      <p className="text-gray-800">{t('PROGRAM_LONG_TERM_CONTENT')}</p>
+    </div>
   );
 };
 

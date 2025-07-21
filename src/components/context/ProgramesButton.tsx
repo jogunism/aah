@@ -26,14 +26,10 @@ export default function ProgramesButton({ programType }: ProgramesButtonProps) {
     setCurrentProgramType(null);
   };
 
-  const baseButtonClass =
-    'flex-1 shadow-lg text-gray-100 rounded-xl w-full p-6 flex flex-col items-start';
   const colorClass =
     programType === ProgramType.SHORT
       ? 'bg-[#D8484D] hover:bg-[#C03F44]'
       : 'bg-[#3A6EA5] hover:bg-[#2A5E95]';
-  const buttonClass = `${baseButtonClass} ${colorClass}`;
-
   const titleKey =
     programType === ProgramType.SHORT ? 'PROGRAMS_SHORT_BUTTON' : 'PROGRAMS_LONG_BUTTON';
   const descriptionKey =
@@ -41,12 +37,19 @@ export default function ProgramesButton({ programType }: ProgramesButtonProps) {
 
   return (
     <>
-      <button onClick={() => openModal(programType)} className={buttonClass}>
+      <button
+        className={`flex-1 shadow-lg text-gray-100 rounded-xl w-full p-6 flex flex-col items-start ${colorClass}`}
+        onClick={() => openModal(programType)}
+      >
         <h1 className="font-semibold text-center w-full mt-3 mb-5 text-2xl">{t(titleKey)}</h1>
-        <p className="text-gray-100 text-base">{t(descriptionKey)}</p>
+        <p className="text-gray-100 text-base h-30 md:min-h-24">{t(descriptionKey)}</p>
       </button>
 
-      <ProgramDetails isOpen={isModalOpen} onClose={closeModal} programType={currentProgramType} />
+      <ProgramDetails //
+        isOpen={isModalOpen}
+        onClose={closeModal}
+        programType={currentProgramType}
+      />
     </>
   );
 }

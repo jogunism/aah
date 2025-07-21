@@ -26,7 +26,13 @@ const ProgramDetails: React.FC<ProgramDetailsProps> = ({ isOpen, onClose, progra
       : t('PROGRAM_MODAL_LONG_TERM_TITLE');
 
   return (
-    <Modal size={'lg'} isOpen={isOpen} onClose={onClose} title={title}>
+    <Modal //
+      size={'lg'}
+      isOpen={isOpen}
+      onClose={onClose}
+      title={title}
+      isScrollAllowed={false}
+    >
       <div className="p-6">
         {programType === ProgramType.SHORT && <ProgramDetailsShort />}
         {programType === ProgramType.LONG && <ProgramDetailsLong />}

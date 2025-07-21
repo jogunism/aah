@@ -25,7 +25,7 @@ const Modal: React.FC<ModalProps> = ({
 
   const positionClasses = {
     top: 'items-start',
-    middle: 'items-center',
+    middle: 'items-start pt-25',
     bottom: 'items-end',
   };
 
@@ -51,16 +51,15 @@ const Modal: React.FC<ModalProps> = ({
 
     if (isOpen) {
       if (!isScrollAllowed) {
-        document.body.style.overflow = 'hidden'; // 스크롤 막기
+        document.body.classList.add('overflow-hidden'); // 스크롤 막기
       }
       document.addEventListener('keydown', handleEscape);
     } else {
-      document.body.style.overflow = ''; // 스크롤 허용
-      document.removeEventListener('keydown', handleEscape);
+      document.body.classList.remove('overflow-hidden'); // 스크롤 허용
     }
 
     return () => {
-      document.body.style.overflow = ''; // 컴포넌트 언마운트 시 스크롤 허용
+      document.body.classList.remove('overflow-hidden'); // 컴포넌트 언마운트 시 스크롤 허용
       document.removeEventListener('keydown', handleEscape);
     };
   }, [isOpen, onClose, isScrollAllowed]);
@@ -93,7 +92,7 @@ const Modal: React.FC<ModalProps> = ({
             </button>
           )}
           {title && <h2 className="text-xl font-bold text-gray-700 py-6 px-6">{title}</h2>}
-          <div>{children}</div>
+          <div className="max-h-[80vh] overflow-y-auto ">{children}</div>
         </div>
       </div>
     </div>
