@@ -16,7 +16,7 @@ const i18nPromise = !i18n.isInitialized
         fallbackLng: 'en',
         supportedLngs: ['en', 'de'],
         detection: {
-          order: ['cookie', 'navigator'],
+          order: ['cookie'],
           caches: ['cookie'],
           lookupCookie: 'language',
         },

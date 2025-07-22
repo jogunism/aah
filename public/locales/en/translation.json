@@ -14,17 +14,34 @@
   "UNI_DESCRIPTION": "This is a list of our partner universities in Seoul, South Korea. In fact, each semester dozens of students study abroad with aah! education to study abroad for long or short term.",
 
   "PROGRAMS_TITLE": "Programs",
-  "PROGRAMS_SUB_TITLE": "Signature Korean Language Programs at aah! education – Short-Term (3 Weeks) & Long-Term (3 months)",
+  "PROGRAMS_SUB_TITLE": "Signature Korean Language Programs at aah! education - Short-Term (3 Weeks) & Long-Term (3 months)",
   "PROGRAMS_DESCRIPTION": "Among the many programs offered by aah! education, our two most popular Korean language courses stand out :",
   "PROGRAMS_SHORT_BUTTON": "Short-Term (3 Weeks)",
   "PROGRAMS_SHORT_DESCRIPTION": "This program offers a unique opportunity to travel in Korea while learning the language and experiencing local culture firsthand. Ideal for first-time visitors or those looking to make the most of their school break with a meaningful and fun experience.",
   "PROGRAMS_LONG_BUTTON": "Long-Term (3 months)",
   "PROGRAMS_LONG_DESCRIPTION": "Designed for those who want to immerse themselves in a structured academic setting. Attend regular university classes alongside Korean students to build strong language skills and adapt to the culture over time.",
 
-  "PROGRAM_MODAL_SHORT_TERM_TITLE": "Shor-Term program",
-  "PROGRAM_MODAL_SHORT_TERM_H1": "Start Your Korean Journey with a Short-Term Study Abroad Program",
+  "PROGRAM_MODAL_SHORT_TERM": "Shor-Term program",
+  "PROGRAM_MODAL_SHORT_TERM_TITLE": "Start Your Korean Journey with a Short-Term Study Abroad Program",
+  "PROGRAM_MODAL_SHORT_TERM_SUBTITLE_1": "📌 Benefits of a Short-Term Language Program",
+  "PROGRAM_MODAL_SHORT_TERM_CONTENT_1_1": "Regular language courses at university-affiliated institutes typically last around 10 weeks (3 months), and even at private schools, a minimum duration of one month is often required. This makes it difficult for working professionals or students to commit to long-term study abroad.",
+  "PROGRAM_MODAL_SHORT_TERM_CONTENT_1_2": "However, if you're learning Korean, the desire to experience studying in Korea naturally grows. Language learning goes far beyond memorizing vocabulary — it's about living the language in its cultural context. A short-term language program is the ideal choice for learners looking for a meaningful experience without the long-term commitment.",
+  "PROGRAM_MODAL_SHORT_TERM_CONTENT_1_3": "Many short-term programs do not require a visa, making them accessible and easy to join—just like taking a trip with an educational twist.",
 
-  "PROGRAM_MODAL_LONG_TERM_TITLE": "Long-Term Program",
+  "PROGRAM_MODAL_SHORT_TERM_SUBTITLE_2": "👶 Especially Ideal for Beginners",
+  "PROGRAM_MODAL_SHORT_TERM_CONTENT_2": "Korean requires a strong foundation, and early learning should be accurate, focused and well-structured. For beginners who may find long-term programs overwhelming, short-term course is a perfect starting point.",
+
+  "PROGRAM_MODAL_SHORT_TERM_SUBTITLE_3": "🧑‍🎓 Valuable for Upper-Beginners and Intermediate Learners",
+  "PROGRAM_MODAL_SHORT_TERM_CONTENT_3": "If you've passed the beginner stage, staying in Korea even for a few weeks allows you to observe how locals think, speak, and behave—an experience that enhances both language skills and cultural understanding.",
+
+  "PROGRAM_MODAL_SHORT_TERM_SUBTITLE_4": "📅 Course Availability & Duration",
+  "PROGRAM_MODAL_SHORT_TERM_CONTENT_4": "Short-term programs are not available year-round. They are generally scheduled during vacation seasons:",
+  "PROGRAM_MODAL_SHORT_TERM_CONTENT_4_1": "Main intake periods: Summer break, spring/winter holidays, year-end/New Year, Golden Week",
+  "PROGRAM_MODAL_SHORT_TERM_CONTENT_4_2": "Typical duration: 2-3 weeks",
+  "PROGRAM_MODAL_SHORT_TERM_CONTENT_4_3": "Extended short-term options: 4 to 6 weeks",
+  "PROGRAM_MODAL_SHORT_TERM_CONTENT_4_4": "Ultra-short courses: 1 week, 3 days, or 5 days (offered occasionally)",
+
+  "PROGRAM_MODAL_LONG_TERM": "Long-Term Program",
 
   "CURRICULUM_TITLE": "Curriculum",
   "CURRICULUM_DESCRIPTION": "",

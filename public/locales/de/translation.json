@@ -21,8 +21,25 @@
   "PROGRAMS_LONG_BUTTON": "Langzeit (3 Monate)",
   "PROGRAMS_LONG_DESCRIPTION": "Dieses Programm bietet eine tolle Möglichkeit, Korea zu bereisen, dabei Koreanisch zu lernen und die Kultur hautnah zu erleben. Ideal für Erstbesucher*innen oder alle, die ihre Ferien sinnvoll und spannend gestalten möchten.",
 
-  "PROGRAM_MODAL_SHORT_TERM_TITLE": "Kurzfristig Programm",
-  "PROGRAM_MODAL_SHORT_TERM_H1": "Mach deinen ersten Schritt ins Koreanisch mit einem Kurzzeit-Sprachaufenthalt",
+  "PROGRAM_MODAL_SHORT_TERM": "Kurzfristig Programm",
+  "PROGRAM_MODAL_SHORT_TERM_TITLE": "Beginnen Sie Ihre Korea-Reise mit einem Kurzzeit-Auslandsstudienprogramm",
+  "PROGRAM_MODAL_SHORT_TERM_SUBTITLE_1": "📌 Vorteile eines Kurzzeit-Sprachprogramms",
+  "PROGRAM_MODAL_SHORT_TERM_CONTENT_1_1": "Reguläre Sprachkurse an universitären Einrichtungen dauern in der Regel etwa 10 Wochen (3 Monate), und selbst an Privatschulen ist oft eine Mindestdauer von einem Monat erforderlich. Dies macht es für Berufstätige oder Studierende schwierig, sich zu einem längeren Auslandsaufenthalt zu verpflichten.",
+  "PROGRAM_MODAL_SHORT_TERM_CONTENT_1_2": "Wenn Sie jedoch Koreanisch lernen, wächst natürlich der Wunsch, in Korea zu studieren. Sprachenlernen geht weit über das Auswendiglernen von Vokabeln hinaus - es geht darum, die Sprache in ihrem kulturellen Kontext zu leben. Ein Kurzzeit-Sprachprogramm ist die ideale Wahl für Lernende, die eine sinnvolle Erfahrung ohne langfristige Verpflichtung suchen.",
+  "PROGRAM_MODAL_SHORT_TERM_CONTENT_1_3": "Viele Kurzzeitprogramme erfordern kein Visum, wodurch sie leicht zugänglich und einfach zu absolvieren sind - ähnlich wie eine Reise mit einem pädagogischen Touch.",
+
+  "PROGRAM_MODAL_SHORT_TERM_SUBTITLE_2": "👶 Besonders ideal für Anfänger",
+  "PROGRAM_MODAL_SHORT_TERM_CONTENT_2": "Koreanisch erfordert eine solide Grundlage, und das frühe Lernen sollte präzise, zielgerichtet und gut strukturiert sein. Für Anfänger, denen langfristige Programme möglicherweise zu viel sind, ist ein Kurzzeitkurs der perfekte Einstieg.",
+
+  "PROGRAM_MODAL_SHORT_TERM_SUBTITLE_3": "🧑‍🎓 Valuable for Upper-Beginners and Intermediate Learners",
+  "PROGRAM_MODAL_SHORT_TERM_CONTENT_3": "Wenn Sie die Anfängerphase hinter sich haben, können Sie schon nach wenigen Wochen Aufenthalt in Korea beobachten, wie die Einheimischen denken, sprechen und sich verhalten - eine Erfahrung, die sowohl Ihre Sprachkenntnisse als auch Ihr kulturelles Verständnis verbessert.",
+
+  "PROGRAM_MODAL_SHORT_TERM_SUBTITLE_4": "📅 Kursverfügbarkeit und Dauer",
+  "PROGRAM_MODAL_SHORT_TERM_CONTENT_4": "Kurzzeitprogramme werden nicht das ganze Jahr über angeboten. Sie finden in der Regel während der Ferienzeiten statt:",
+  "PROGRAM_MODAL_SHORT_TERM_CONTENT_4_1": "Hauptanmeldezeiträume: Sommerferien, Frühjahrs-/Winterferien, Jahresende/Neujahr, Golden Week",
+  "PROGRAM_MODAL_SHORT_TERM_CONTENT_4_2": "Typische Dauer: 2-3 Wochen",
+  "PROGRAM_MODAL_SHORT_TERM_CONTENT_4_3": "Verlängerte kurzfristige Optionen: 4 bis 6 Wochen",
+  "PROGRAM_MODAL_SHORT_TERM_CONTENT_4_4": "Ultrakurze Kurse: 1 Woche, 3 Tage oder 5 Tage (werden gelegentlich angeboten)",
 
   "PROGRAM_MODAL_LONG_TERM_TITLE": "Langzeit Programm",
 

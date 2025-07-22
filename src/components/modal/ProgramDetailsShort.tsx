@@ -1,43 +1,33 @@
 'use client';
 
 import React from 'react';
-// import { useTranslation } from 'react-i18next';
+import { useTranslation } from 'react-i18next';
 
 import Image from 'next/image';
 
 const ProgramDetailsShort: React.FC = () => {
-  // const { t } = useTranslation();
+  const { t } = useTranslation();
 
   return (
-    <div className="p-6 space-y-12">
+    <div className="p-2 space-y-12">
       <div className="px-2 max-w-5xl mx-auto">
         <h1 className="text-3xl md:text-4xl font-bold text-center mb-16">
-          Start Your Korean Journey with a Short-Term Study Abroad Program
+          {t('PROGRAM_MODAL_SHORT_TERM_TITLE')}
         </h1>
 
         {/* Section 1 */}
-        <div className="mb-16">
-          <h2 className="text-xl font-semibold mb-4">
-            📌 Benefits of a Short-Term Language Program
-          </h2>
+        <div className="mb-12">
+          <h2 className="text-xl font-semibold mb-4">{t('PROGRAM_MODAL_SHORT_TERM_SUBTITLE_1')}</h2>
           <div className="flex flex-col md:flex-row items-start gap-6">
             <div className="w-full md:w-7/10">
               <p className="text-gray-700 leading-relaxed mb-4">
-                Regular language courses at university-affiliated institutes typically last around
-                10 weeks (3 months), and even at private schools, a minimum duration of one month is
-                often required. This makes it difficult for working professionals or students to
-                commit to long-term study abroad.
+                {t('PROGRAM_MODAL_SHORT_TERM_CONTENT_1_1')}
               </p>
               <p className="text-gray-700 leading-relaxed mb-4">
-                However, if you’re learning Korean, the desire to experience studying in Korea
-                naturally grows. Language learning goes far beyond memorizing vocabulary—it’s about
-                living the language in its cultural context. A short-term language program is the
-                ideal choice for learners looking for a meaningful experience without the long-term
-                commitment.
+                {t('PROGRAM_MODAL_SHORT_TERM_CONTENT_1_2')}
               </p>
               <p className="text-gray-700 leading-relaxed">
-                Many short-term programs do not require a visa, making them accessible and easy to
-                join—just like taking a trip with an educational twist.
+                {t('PROGRAM_MODAL_SHORT_TERM_CONTENT_1_3')}
               </p>
             </div>
             <div className="w-full md:w-3/10">
@@ -53,14 +43,12 @@ const ProgramDetailsShort: React.FC = () => {
         </div>
 
         {/* Section 2 */}
-        <div className="mb-16">
-          <h2 className="text-xl font-semibold mb-4">👶 Especially Ideal for Beginners</h2>
+        <div className="mb-12">
+          <h2 className="text-xl font-semibold mb-4">{t('PROGRAM_MODAL_SHORT_TERM_SUBTITLE_2')}</h2>
           <div className="flex flex-col md:flex-row-reverse items-start gap-6">
             <div className="w-full md:w-7/10">
               <p className="text-gray-700 leading-relaxed">
-                Korean requires a strong foundation, and early learning should be accurate, focused,
-                and well-structured. For beginners who may find long-term programs overwhelming, a
-                short-term course is a perfect starting point.
+                {t('PROGRAM_MODAL_SHORT_TERM_CONTENT_2')}
               </p>
             </div>
             <div className="w-full md:w-3/10">
@@ -76,16 +64,12 @@ const ProgramDetailsShort: React.FC = () => {
         </div>
 
         {/* Section 3 */}
-        <div className="mb-16">
-          <h2 className="text-xl font-semibold mb-4">
-            🧑‍🎓 Valuable for Upper-Beginners and Intermediate Learners
-          </h2>
+        <div className="mb-12">
+          <h2 className="text-xl font-semibold mb-4">{t('PROGRAM_MODAL_SHORT_TERM_SUBTITLE_3')}</h2>
           <div className="flex flex-col md:flex-row items-start gap-6">
             <div className="w-full md:w-7/10">
               <p className="text-gray-700 leading-relaxed">
-                If you’ve passed the beginner stage, staying in Korea even for a few weeks allows
-                you to observe how locals think, speak, and behave—an experience that enhances both
-                language skills and cultural understanding.
+                {t('PROGRAM_MODAL_SHORT_TERM_CONTENT_3')}
               </p>
             </div>
             <div className="w-full md:w-3/10">
@@ -102,21 +86,17 @@ const ProgramDetailsShort: React.FC = () => {
 
         {/* Section 4 */}
         <div className="mb-16">
-          <h2 className="text-xl font-semibold mb-4">📅 Course Availability & Duration</h2>
+          <h2 className="text-xl font-semibold mb-4">{t('PROGRAM_MODAL_SHORT_TERM_SUBTITLE_4')}</h2>
           <div className="flex flex-col md:flex-row-reverse items-start gap-6">
             <div className="w-full md:w-7/10">
               <p className="text-gray-700 leading-relaxed mb-2">
-                Short-term programs are not available year-round. They are generally scheduled
-                during vacation seasons:
+                {t('PROGRAM_MODAL_SHORT_TERM_CONTENT_4')}
               </p>
               <ul className="list-disc list-inside text-gray-700 leading-relaxed">
-                <li>
-                  Main intake periods: Summer break, spring/winter holidays, year-end/New Year,
-                  Golden Week
-                </li>
-                <li>Typical duration: 2–3 weeks</li>
-                <li>Extended short-term options: 4 to 6 weeks</li>
-                <li>Ultra-short courses: 1 week, 3 days, or 5 days (offered occasionally)</li>
+                <li>{t('PROGRAM_MODAL_SHORT_TERM_CONTENT_4_1')}</li>
+                <li>{t('PROGRAM_MODAL_SHORT_TERM_CONTENT_4_2')}</li>
+                <li>{t('PROGRAM_MODAL_SHORT_TERM_CONTENT_4_3')}</li>
+                <li>{t('PROGRAM_MODAL_SHORT_TERM_CONTENT_4_4')}</li>
               </ul>
             </div>
             <div className="w-full md:w-3/10">
@@ -128,6 +108,74 @@ const ProgramDetailsShort: React.FC = () => {
                 className="rounded-xl w-full h-auto object-cover"
               />
             </div>
+          </div>
+        </div>
+
+        {/* Section 5 */}
+        <div className="mb-12">
+          {/* <h2 className="text-xl font-semibold mb-4">Comparison of University Language Institute and Language School</h2> */}
+          <div className="overflow-x-auto">
+            <table className="min-w-full bg-white text-base rounded-xl overflow-hidden">
+              <thead>
+                <tr className="bg-[#f3e1eb]">
+                  <th className="py-2 px-4 text-center font-semibold">Comparison Item</th>
+                  <th className="py-2 px-4 text-center font-semibold">
+                    University Language Institute
+                  </th>
+                  <th className="py-2 px-4 text-center font-semibold">Language School</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr className="border-b border-[#e9d5e1]">
+                  <td className="py-2 px-4 text-center bg-[#f9f5f7]">Semester Start Time</td>
+                  <td className="py-2 px-4 text-center">
+                    Spring break, GW, summer vacation, year-end and New Year holidays, etc.
+                  </td>
+                  <td className="py-2 px-4 text-center">
+                    Spring break, GW, summer vacation, autumn, year-end and New Year holidays, etc.
+                  </td>
+                </tr>
+                <tr className="border-b border-[#e9d5e1]">
+                  <td className="py-2 px-4 text-center bg-[#f9f5f7]">Levels Offered</td>
+                  <td className="py-2 px-4 text-center">Levels 1-6</td>
+                  <td className="py-2 px-4 text-center">Levels 1-6</td>
+                </tr>
+                <tr className="border-b border-[#e9d5e1]">
+                  <td className="py-2 px-4 text-center bg-[#f9f5f7]">1 Semester Unit</td>
+                  <td className="py-2 px-4 text-center">3 weeks</td>
+                  <td className="py-2 px-4 text-center">1-2 weeks</td>
+                </tr>
+                <tr className="border-b border-[#e9d5e1]">
+                  <td className="py-2 px-4 text-center bg-[#f9f5f7]">Participation Unit</td>
+                  <td className="py-2 px-4 text-center">1 semester</td>
+                  <td className="py-2 px-4 text-center">1 semester</td>
+                </tr>
+                <tr className="border-b border-[#e9d5e1]">
+                  <td className="py-2 px-4 text-center bg-[#f9f5f7]">Class Hours</td>
+                  <td className="py-2 px-4 text-center">
+                    9:00-13:00, afternoon training available
+                  </td>
+                  <td className="py-2 px-4 text-center">
+                    9:00-13:00, afternoon training available
+                  </td>
+                </tr>
+                <tr className="border-b border-[#e9d5e1]">
+                  <td className="py-2 px-4 text-center bg-[#f9f5f7]">Weekly Class Schedule</td>
+                  <td className="py-2 px-4 text-center">Monday-Friday (5 days a week)</td>
+                  <td className="py-2 px-4 text-center">6 days a week</td>
+                </tr>
+                <tr className="border-b border-[#e9d5e1]">
+                  <td className="py-2 px-4 text-center bg-[#f9f5f7]">Average Class Size</td>
+                  <td className="py-2 px-4 text-center">Approx. 10-15 students</td>
+                  <td className="py-2 px-4 text-center">Approx. 6-8 students</td>
+                </tr>
+                <tr>
+                  <td className="py-2 px-4 text-center bg-[#f9f5f7]">Visa Issuance</td>
+                  <td className="py-2 px-4 text-center">None</td>
+                  <td className="py-2 px-4 text-center">None</td>
+                </tr>
+              </tbody>
+            </table>
           </div>
         </div>
       </div>

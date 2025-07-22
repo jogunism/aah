@@ -22,8 +22,8 @@ const ProgramDetails: React.FC<ProgramDetailsProps> = ({ isOpen, onClose, progra
 
   const title =
     programType === ProgramType.SHORT
-      ? t('PROGRAM_MODAL_SHORT_TERM_TITLE')
-      : t('PROGRAM_MODAL_LONG_TERM_TITLE');
+      ? t('PROGRAM_MODAL_SHORT_TERM')
+      : t('PROGRAM_MODAL_LONG_TERM');
 
   return (
     <Modal //
