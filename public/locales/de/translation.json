@@ -10,8 +10,12 @@
   "MAIN_WE_ARE_DESCRIPTION_6": "die eine breite Palette von Studienmöglichkeiten im Ausland anbieten können, darunter 3-wöchige Kurzzeitprogramme, 10-wöchige reguläre Programme, vollständige Studienabschlüsse und Cyber-Universitätsprogramme.",
   "MAIN_WE_ARE_DESCRIPTION_7": "bestens ausgerüstet, um Studenten bei der Organisation von Schulen und Wohnheimen, der Erstellung von Dokumenten und Visa, der Einrichtung lokaler SIM-Karten, Versicherungen und anderen Vorbereitungen vor Ort zu unterstützen.",
 
+  "***** UNIVERSITIES *****": "",
+
   "UNI_TITLE": "Liste der Universitäten",
   "UNI_DESCRIPTION": "Dies ist eine Liste unserer Partneruniversitäten in Seoul, Südkorea. Tatsächlich studieren jedes Semester Dutzende von Studenten mit aah! education im Ausland für kurze oder lange Zeit.",
+
+  "***** PROGRAM *****": "",
 
   "PROGRAMS_TITLE": "Programme",
   "PROGRAMS_SUB_TITLE": "Die beliebtesten Koreanisch-Programme bei aah! education – Kurzzeit (3 Wochen) & Langzeit (3 Monate)",
@@ -20,6 +24,8 @@
   "PROGRAMS_SHORT_DESCRIPTION": "Dieses Programm bietet eine tolle Möglichkeit, Korea zu bereisen, dabei Koreanisch zu lernen und die Kultur hautnah zu erleben. Ideal für Erstbesucher*innen oder alle, die ihre Ferien sinnvoll und spannend gestalten möchten.",
   "PROGRAMS_LONG_BUTTON": "Langzeit (3 Monate)",
   "PROGRAMS_LONG_DESCRIPTION": "Dieses Programm bietet eine tolle Möglichkeit, Korea zu bereisen, dabei Koreanisch zu lernen und die Kultur hautnah zu erleben. Ideal für Erstbesucher*innen oder alle, die ihre Ferien sinnvoll und spannend gestalten möchten.",
+
+  "----------- PROGRAM MODAL SHORT -----------": "",
 
   "PROGRAM_MODAL_SHORT_TERM": "Kurzfristig Programm",
   "PROGRAM_MODAL_SHORT_TERM_TITLE": "Beginnen Sie Ihre Korea-Reise mit einem Kurzzeit-Auslandsstudienprogramm",
@@ -70,10 +76,34 @@
   "PROGRAM_MODAL_SHORT_TERM_TABLE_VALUE_2_7": "Ca. 6-8 Teilnehmer",
   "PROGRAM_MODAL_SHORT_TERM_TABLE_VALUE_2_8": "Nicht erforderlich",
 
-  "PROGRAM_MODAL_LONG_TERM_TITLE": "Langzeit Programm",
+  "----------- PROGRAM MODAL LONG -----------": "",
+
+  "PROGRAM_MODAL_LONG_TERM": "Langzeit Programm",
+
+  "PROGRAM_MODAL_LONG_TERM_TITLE": "Bauen Sie eine starke Grundlage mit unserem langfristigen Sprachprogramm auf",
+  "PROGRAM_MODAL_LONG_TERM_SUBTITLE_1": "⏳ Was ist ein langfristiges Auslandsstudium?",
+  "PROGRAM_MODAL_LONG_TERM_CONTENT_1_1": "Ein langfristiges Sprachstudium bezieht sich in der Regel auf ein Studium in Korea von sechs Monaten oder länger an einem offiziellen, universitätsgebundenen Sprachzentrum.",
+  "PROGRAM_MODAL_LONG_TERM_CONTENT_1_2": "Nach einem Einstufungstest nehmen Sie an einem strukturierten Lehrplan teil, der Grammatik, Hörverständnis, Sprechen und Schreiben umfasst und standardisierte Lehrbücher sowie ausgewogene Lernmethoden verwendet.",
+
+  "PROGRAM_MODAL_LONG_TERM_SUBTITLE_2": "📚 Akademischer Lehrplan",
+  "PROGRAM_MODAL_LONG_TERM_CONTENT_2": "Sprachzentren arbeiten meist nach einem Quartalsplan, wobei jede Term ungefähr 10 Wochen dauert. Die Studierenden lernen 4–5 Tage pro Woche, jeweils etwa 4 Stunden pro Tag. Nach jedem Level steigen Sie in die nächste Stufe auf.",
+
+  "PROGRAM_MODAL_LONG_TERM_SUBTITLE_3": "🎓 Vorteile des langfristigen Lernens",
+  "PROGRAM_MODAL_LONG_TERM_CONTENT_3": "Sie können eine starke Sprachbeherrschung erlangen, kulturelles Eintauchen erleben und sich auf akademische oder berufliche Ziele vorbereiten, wie z. B. TOPIK-Zertifizierung oder den Eintritt an eine koreanische Universität.",
+
+  "PROGRAM_MODAL_LONG_TERM_SUBTITLE_4": "🛫 Visum- und Einschreibebestimmungen",
+  "PROGRAM_MODAL_LONG_TERM_CONTENT_4": "Für einen langfristigen Aufenthalt in Korea müssen Sie ein D-4-Visum (Sprachtrainingsvisum) beantragen. Die meisten Schulen verlangen Folgendes:",
+  "PROGRAM_MODAL_LONG_TERM_CONTENT_4_1": "Anmeldeformular und Passfotos",
+  "PROGRAM_MODAL_LONG_TERM_CONTENT_4_2": "Kopie Ihres Reisepasses",
+  "PROGRAM_MODAL_LONG_TERM_CONTENT_4_3": "Nachweis der letzten Ausbildung (Abitur oder höher)",
+  "PROGRAM_MODAL_LONG_TERM_CONTENT_4_4": "Nachweis über finanzielle Mittel (Bankauszug)",
+
+  "***** CURRICULUM *****": "",
 
   "CURRICULUM_TITLE": "Lehrplan",
   "CURRICULUM_DESCRIPTION": "",
+
+  "***** TUITION *****": "",
 
   "TUITION_TITLE": "Studiengebühren",
   "TUITION_DESCRIPTION": "Hier finden Sie die Kosteninformationen zu den Kursen von aah! education.",
@@ -93,6 +123,8 @@
   "TUITION_WHATS_INCLUDE_COMMENT": "※ Der Inhalt des Programms und die Preise können je nach Universität und Lehrplan variieren.",
   "TUITION_CALCULATOR": "Studiengebührenrechner",
   "TUITION_CALCULATOR_MODAL_TITLE": "Studiengebührenrechner",
+
+  "***** CONTACTUS *****": "",
 
   "CONTACTUS_TITLE": "Kontakt",
   "CONTACTUS_DESCRIPTION": "Wenn Sie Fragen haben, können Sie uns gerne kontaktieren. Wir werden Ihre Frage so schnell wie möglich beantworten.",

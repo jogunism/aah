@@ -10,8 +10,12 @@
   "MAIN_WE_ARE_DESCRIPTION_6": "capable of providing a wide range of study abroad options, including 3-week short-term programs, 10-week regular programs, full undergraduate and graduate degrees, and cyber university programs.",
   "MAIN_WE_ARE_DESCRIPTION_7": "fully equipped to support students with school and dormitory arrangements, documentation and visa guidance, local SIM card setup, insurance, and other on-site preparations.",
 
+  "***** UNIVERSITIES *****": "",
+
   "UNI_TITLE": "List of universities",
   "UNI_DESCRIPTION": "This is a list of our partner universities in Seoul, South Korea. In fact, each semester dozens of students study abroad with aah! education to study abroad for long or short term.",
+
+  "***** PROGRAM *****": "",
 
   "PROGRAMS_TITLE": "Programs",
   "PROGRAMS_SUB_TITLE": "Signature Korean Language Programs at aah! education - Short-Term (3 Weeks) & Long-Term (3 months)",
@@ -21,7 +25,10 @@
   "PROGRAMS_LONG_BUTTON": "Long-Term (3 months)",
   "PROGRAMS_LONG_DESCRIPTION": "Designed for those who want to immerse themselves in a structured academic setting. Attend regular university classes alongside Korean students to build strong language skills and adapt to the culture over time.",
 
-  "PROGRAM_MODAL_SHORT_TERM": "Shor-Term program",
+  "----------- PROGRAM MODAL SHORT -----------": "",
+
+  "PROGRAM_MODAL_SHORT_TERM": "Short-Term program",
+
   "PROGRAM_MODAL_SHORT_TERM_TITLE": "Start Your Korean Journey with a Short-Term Study Abroad Program",
   "PROGRAM_MODAL_SHORT_TERM_SUBTITLE_1": "📌 Benefits of a Short-Term Language Program",
   "PROGRAM_MODAL_SHORT_TERM_CONTENT_1_1": "Regular language courses at university-affiliated institutes typically last around 10 weeks (3 months), and even at private schools, a minimum duration of one month is often required. This makes it difficult for working professionals or students to commit to long-term study abroad.",
@@ -70,12 +77,63 @@
   "PROGRAM_MODAL_SHORT_TERM_TABLE_VALUE_2_7": "Approx. 6-8 students",
   "PROGRAM_MODAL_SHORT_TERM_TABLE_VALUE_2_8": "None",
 
-  "PROGRAM_MODAL_SHORT_TERM_TABLE_SECTION_2_TITLE": "Language School",
+  "----------- PROGRAM MODAL LONG -----------": "",
 
   "PROGRAM_MODAL_LONG_TERM": "Long-Term Program",
 
+  "PROGRAM_MODAL_LONG_TERM_TITLE": "Build a Strong Foundation with Our Long-Term Language Program",
+  "PROGRAM_MODAL_LONG_TERM_SUBTITLE_1": "⏳ What is Long-Term Study Abroad?",
+  "PROGRAM_MODAL_LONG_TERM_CONTENT_1_1": "A long-term language study program typically refers to studying in Korea for six months or more, enrolled in an official university-affiliated language center.",
+  "PROGRAM_MODAL_LONG_TERM_CONTENT_1_2": "After a placement test, you will join a structured curriculum focused on grammar, listening, speaking, and writing, using standardized textbooks and balanced learning methods.",
+
+  "PROGRAM_MODAL_LONG_TERM_SUBTITLE_2": "📚 Academic Curriculum",
+  "PROGRAM_MODAL_LONG_TERM_CONTENT_2": "Language centers typically operate on a quarterly schedule, with each term lasting around 10 weeks. Students study 4-5 days a week for approximately 4 hours a day. After each level, you move up to the next tier.",
+
+  "PROGRAM_MODAL_LONG_TERM_SUBTITLE_3": "🎓 Benefits of Long-Term Learning",
+  "PROGRAM_MODAL_LONG_TERM_CONTENT_3": "You can achieve strong fluency, cultural immersion, and prepare for academic or professional goals like TOPIK certification or entering a Korean university.",
+
+  "PROGRAM_MODAL_LONG_TERM_SUBTITLE_4": "🛫 Visa & Enrollment Requirements",
+  "PROGRAM_MODAL_LONG_TERM_CONTENT_4": "For a long-term stay in Korea, you'll need to apply for a D-4 visa (language training visa). Most schools request the following:",
+  "PROGRAM_MODAL_LONG_TERM_CONTENT_4_1": "Application form and ID photos",
+  "PROGRAM_MODAL_LONG_TERM_CONTENT_4_2": "Copy of your passport",
+  "PROGRAM_MODAL_LONG_TERM_CONTENT_4_3": "Proof of last education (high school diploma or higher)",
+  "PROGRAM_MODAL_LONG_TERM_CONTENT_4_4": "Proof of financial means (bank balance certificate)",
+
+  "PROGRAM_MODAL_LONG_TERM_TABLE_SECTION_1": "Semester Start Time",
+  "PROGRAM_MODAL_LONG_TERM_TABLE_SECTION_2": "Levels Offered",
+  "PROGRAM_MODAL_LONG_TERM_TABLE_SECTION_3": "1 Semester Unit",
+  "PROGRAM_MODAL_LONG_TERM_TABLE_SECTION_4": "Participation Unit",
+  "PROGRAM_MODAL_LONG_TERM_TABLE_SECTION_5": "Class Hours",
+  "PROGRAM_MODAL_LONG_TERM_TABLE_SECTION_6": "Weekly Class Schedule",
+  "PROGRAM_MODAL_LONG_TERM_TABLE_SECTION_7": "Average Class Size",
+  "PROGRAM_MODAL_LONG_TERM_TABLE_SECTION_8": "Visa Issuance",
+
+  "PROGRAM_MODAL_LONG_TERM_TABLE_VALUE_1_TITLE": "University Language Institute",
+  "PROGRAM_MODAL_LONG_TERM_TABLE_VALUE_1_1": "Spring break, GW, summer vacation, year-end and New Year holidays, etc.",
+  "PROGRAM_MODAL_LONG_TERM_TABLE_VALUE_1_2": "Levels 1-6",
+  "PROGRAM_MODAL_LONG_TERM_TABLE_VALUE_1_3": "3 weeks",
+  "PROGRAM_MODAL_LONG_TERM_TABLE_VALUE_1_4": "1 semester",
+  "PROGRAM_MODAL_LONG_TERM_TABLE_VALUE_1_5": "9:00-13:00, afternoon training available",
+  "PROGRAM_MODAL_LONG_TERM_TABLE_VALUE_1_6": "Monday-Friday (5 days a week)",
+  "PROGRAM_MODAL_LONG_TERM_TABLE_VALUE_1_7": "Approx. 10-15 students",
+  "PROGRAM_MODAL_LONG_TERM_TABLE_VALUE_1_8": "None",
+
+  "PROGRAM_MODAL_LONG_TERM_TABLE_VALUE_2_TITLE": "Language School",
+  "PROGRAM_MODAL_LONG_TERM_TABLE_VALUE_2_1": "Spring break, GW, summer vacation, autumn, year-end and New Year holidays, etc.",
+  "PROGRAM_MODAL_LONG_TERM_TABLE_VALUE_2_2": "Levels 1-6",
+  "PROGRAM_MODAL_LONG_TERM_TABLE_VALUE_2_3": "1-2 weeks",
+  "PROGRAM_MODAL_LONG_TERM_TABLE_VALUE_2_4": "1 semester",
+  "PROGRAM_MODAL_LONG_TERM_TABLE_VALUE_2_5": "9:00-13:00, afternoon training available",
+  "PROGRAM_MODAL_LONG_TERM_TABLE_VALUE_2_6": "6 days a week",
+  "PROGRAM_MODAL_LONG_TERM_TABLE_VALUE_2_7": "Approx. 6-8 students",
+  "PROGRAM_MODAL_LONG_TERM_TABLE_VALUE_2_8": "None",
+
+  "***** CURRICULUM *****": "",
+
   "CURRICULUM_TITLE": "Curriculum",
   "CURRICULUM_DESCRIPTION": "",
+
+  "***** TUITION *****": "",
 
   "TUITION_TITLE": "Tuition fee",
   "TUITION_DESCRIPTION": "Here is the cost information for the courses provided by aah! education.",
@@ -95,6 +153,8 @@
   "TUITION_WHATS_INCLUDE_COMMENT": "※ Program contents and pricing may vary depending on university and curriculum.",
   "TUITION_CALCULATOR": "Tuition Calculator",
   "TUITION_CALCULATOR_MODAL_TITLE": "Tuition Calculator",
+
+  "***** CONTACTUS *****": "",
 
   "CONTACTUS_TITLE": "Contact Us",
   "CONTACTUS_DESCRIPTION": "If you have any questions, feel free to contact us. We going to answer your question as soon as possible.",

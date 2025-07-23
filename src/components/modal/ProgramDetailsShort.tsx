@@ -113,7 +113,6 @@ const ProgramDetailsShort: React.FC = () => {
 
         {/* Section 5 */}
         <div className="mb-12">
-          {/* <h2 className="text-xl font-semibold mb-4">Comparison of University Language Institute and Language School</h2> */}
           <div className="overflow-x-auto">
             <table className="min-w-full bg-white text-base rounded-xl overflow-hidden">
               <thead>
