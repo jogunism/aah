@@ -155,7 +155,7 @@ export default function Contactus() {
     <div className="relative w-full bg-white">
       <ParallaxImage section="contactus" imagePath="/assets/image8.jpg" />
 
-      <div className="relative z-10 bg-[#f3e1eb] w-full px-6 py-12">
+      <div className="relative bg-[#f3e1eb] w-full px-6 py-12">
         <div className="max-w-7xl mx-auto">
           <h2 className="text-3xl font-bold text-gray-800 mb-4 text-center">
             {t('CONTACTUS_TITLE')}

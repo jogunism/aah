@@ -29,7 +29,7 @@ const Modal: React.FC<ModalProps> = ({
     bottom: 'items-end',
   };
 
-  const backdropClasses = `fixed inset-0 z-50 flex justify-center ${positionClasses[position]} ${isParentBlur ? 'backdrop-blur-sm backdrop-brightness-50' : ''}`;
+  const backdropClasses = `fixed inset-0 z-[9999] flex justify-center ${positionClasses[position]} ${isParentBlur ? 'backdrop-blur-sm backdrop-brightness-50' : ''}`;
 
   // size prop에 따른 max-w-* 클래스 매핑
   const sizeClasses = {

@@ -41,6 +41,37 @@
   "PROGRAM_MODAL_SHORT_TERM_CONTENT_4_3": "Extended short-term options: 4 to 6 weeks",
   "PROGRAM_MODAL_SHORT_TERM_CONTENT_4_4": "Ultra-short courses: 1 week, 3 days, or 5 days (offered occasionally)",
 
+  "PROGRAM_MODAL_SHORT_TERM_TABLE_SECTION_1": "Semester Start Time",
+  "PROGRAM_MODAL_SHORT_TERM_TABLE_SECTION_2": "Levels Offered",
+  "PROGRAM_MODAL_SHORT_TERM_TABLE_SECTION_3": "1 Semester Unit",
+  "PROGRAM_MODAL_SHORT_TERM_TABLE_SECTION_4": "Participation Unit",
+  "PROGRAM_MODAL_SHORT_TERM_TABLE_SECTION_5": "Class Hours",
+  "PROGRAM_MODAL_SHORT_TERM_TABLE_SECTION_6": "Weekly Class Schedule",
+  "PROGRAM_MODAL_SHORT_TERM_TABLE_SECTION_7": "Average Class Size",
+  "PROGRAM_MODAL_SHORT_TERM_TABLE_SECTION_8": "Visa Issuance",
+
+  "PROGRAM_MODAL_SHORT_TERM_TABLE_VALUE_1_TITLE": "University Language Institute",
+  "PROGRAM_MODAL_SHORT_TERM_TABLE_VALUE_1_1": "Spring break, GW, summer vacation, year-end and New Year holidays, etc.",
+  "PROGRAM_MODAL_SHORT_TERM_TABLE_VALUE_1_2": "Levels 1-6",
+  "PROGRAM_MODAL_SHORT_TERM_TABLE_VALUE_1_3": "3 weeks",
+  "PROGRAM_MODAL_SHORT_TERM_TABLE_VALUE_1_4": "1 semester",
+  "PROGRAM_MODAL_SHORT_TERM_TABLE_VALUE_1_5": "9:00-13:00, afternoon training available",
+  "PROGRAM_MODAL_SHORT_TERM_TABLE_VALUE_1_6": "Monday-Friday (5 days a week)",
+  "PROGRAM_MODAL_SHORT_TERM_TABLE_VALUE_1_7": "Approx. 10-15 students",
+  "PROGRAM_MODAL_SHORT_TERM_TABLE_VALUE_1_8": "None",
+
+  "PROGRAM_MODAL_SHORT_TERM_TABLE_VALUE_2_TITLE": "Language School",
+  "PROGRAM_MODAL_SHORT_TERM_TABLE_VALUE_2_1": "Spring break, GW, summer vacation, autumn, year-end and New Year holidays, etc.",
+  "PROGRAM_MODAL_SHORT_TERM_TABLE_VALUE_2_2": "Levels 1-6",
+  "PROGRAM_MODAL_SHORT_TERM_TABLE_VALUE_2_3": "1-2 weeks",
+  "PROGRAM_MODAL_SHORT_TERM_TABLE_VALUE_2_4": "1 semester",
+  "PROGRAM_MODAL_SHORT_TERM_TABLE_VALUE_2_5": "9:00-13:00, afternoon training available",
+  "PROGRAM_MODAL_SHORT_TERM_TABLE_VALUE_2_6": "6 days a week",
+  "PROGRAM_MODAL_SHORT_TERM_TABLE_VALUE_2_7": "Approx. 6-8 students",
+  "PROGRAM_MODAL_SHORT_TERM_TABLE_VALUE_2_8": "None",
+
+  "PROGRAM_MODAL_SHORT_TERM_TABLE_SECTION_2_TITLE": "Language School",
+
   "PROGRAM_MODAL_LONG_TERM": "Long-Term Program",
 
   "CURRICULUM_TITLE": "Curriculum",

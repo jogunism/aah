@@ -21,7 +21,7 @@ export default async function Univercities() {
     <div className="relative w-full bg-white mb-30">
       <ParallaxImage section="univercities" imagePath="/assets/image4.jpg" />
 
-      <div className="relative z-10 bg-gradient-to-b from-[#f3e1eb] to-[#fff] w-full px-6 py-12">
+      <div className="relative bg-gradient-to-b from-[#f3e1eb] to-[#fff] w-full px-6 py-12">
         <div className="max-w-7xl mx-auto">
           <h2 className="text-3xl font-bold text-gray-800 mb-4 text-center">{t('UNI_TITLE')}</h2>
 
