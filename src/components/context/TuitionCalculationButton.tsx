@@ -2,13 +2,12 @@
 
 import React, { useState } from 'react';
 // i18n client
-import '@/lib/i18n.client';
-import { useTranslation } from 'react-i18next';
+import { useClientTranslation } from '@/lib/useClientTranslation';
 
 import TuitionCalculation from '@/components/modal/TuitionCalculation';
 
 const TuitionCalculationButton: React.FC = () => {
-  const { t } = useTranslation();
+  const { t, ready } = useClientTranslation();
 
   const [isModalOpen, setIsModalOpen] = useState(false);
 
@@ -21,6 +20,10 @@ const TuitionCalculationButton: React.FC = () => {
   /*******************************************************
    * render
    */
+  if (!ready) {
+    return null;
+  }
+
   return (
     <div className="mt-10 text-center">
       <button

@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useState } from 'react';
-import { useTranslation } from 'react-i18next';
+import { useClientTranslation } from '@/lib/useClientTranslation';
 // UI Components
 import ProgramDetails from '@/components/modal/ProgramDetails';
 // type
@@ -12,7 +12,7 @@ interface ProgramesButtonProps {
 }
 
 export default function ProgramesButton({ programType }: ProgramesButtonProps) {
-  const { t } = useTranslation();
+  const { t, ready } = useClientTranslation();
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [currentProgramType, setCurrentProgramType] = useState<ProgramType | null>(null);
 
@@ -34,6 +34,10 @@ export default function ProgramesButton({ programType }: ProgramesButtonProps) {
     programType === ProgramType.SHORT ? 'PROGRAMS_SHORT_BUTTON' : 'PROGRAMS_LONG_BUTTON';
   const descriptionKey =
     programType === ProgramType.SHORT ? 'PROGRAMS_SHORT_DESCRIPTION' : 'PROGRAMS_LONG_DESCRIPTION';
+
+  if (!ready) {
+    return null;
+  }
 
   return (
     <>
