@@ -1,4 +1,5 @@
 import React, { useEffect, useRef } from 'react';
+import { lockScroll, unlockScroll } from '@/lib/scrollLock';
 
 interface ModalProps {
   isOpen: boolean;
@@ -43,25 +44,26 @@ const Modal: React.FC<ModalProps> = ({
    * lifecycle hooks
    */
   useEffect(() => {
-    const handleEscape = (event: KeyboardEvent) => {
-      if (event.key === 'Escape' && onClose) {
-        onClose();
-      }
-    };
-
     if (isOpen) {
+      const handleEscape = (event: KeyboardEvent) => {
+        if (event.key === 'Escape' && onClose) {
+          onClose();
+        }
+      };
+
       if (!isScrollAllowed) {
-        document.body.classList.add('overflow-hidden'); // 스크롤 막기
+        lockScroll();
       }
       document.addEventListener('keydown', handleEscape);
-    } else {
-      document.body.classList.remove('overflow-hidden'); // 스크롤 허용
-    }
 
-    return () => {
-      document.body.classList.remove('overflow-hidden'); // 컴포넌트 언마운트 시 스크롤 허용
-      document.removeEventListener('keydown', handleEscape);
-    };
+      // This cleanup function will be called when the modal is closed or unmounted.
+      return () => {
+        if (!isScrollAllowed) {
+          unlockScroll();
+        }
+        document.removeEventListener('keydown', handleEscape);
+      };
+    }
   }, [isOpen, onClose, isScrollAllowed]);
 
   /*******************************************************
