@@ -3,10 +3,12 @@
 import { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import Cookies from 'js-cookie';
+import { useRouter } from 'next/navigation';
 
 export default function LanguageSelector() {
   const { i18n } = useTranslation();
   const [lang, setLang] = useState<string>('');
+  const router = useRouter();
 
   const handleChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
     const selectedLang = e.target.value;
@@ -14,10 +16,9 @@ export default function LanguageSelector() {
 
     Cookies.set('language', selectedLang, { expires: 365 });
 
-    // 언어 변경 적용 후 새로고침 (SSR 대응)
     if (i18n.language !== selectedLang) {
       i18n.changeLanguage(selectedLang).then(() => {
-        window.location.reload();
+        router.refresh();
       });
     }
   };
