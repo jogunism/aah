@@ -119,17 +119,17 @@ const ProgramDetailsShort: React.FC = () => {
                 <tr className="bg-[#f3e1eb]">
                   <th className="py-2 px-4 text-center font-semibold"></th>
                   <th className="py-2 px-4 text-center font-semibold">
-                    {t('PROGRAM_MODAL_SHORT_TERM_TABLE_VALUE_1_TITLE')}
+                    {t('PROGRAM_MODAL_TABLE_VALUE_1_TITLE')}
                   </th>
                   <th className="py-2 px-4 text-center font-semibold">
-                    {t('PROGRAM_MODAL_SHORT_TERM_TABLE_VALUE_2_TITLE')}
+                    {t('PROGRAM_MODAL_TABLE_VALUE_2_TITLE')}
                   </th>
                 </tr>
               </thead>
               <tbody>
                 <tr className="border-b border-[#e9d5e1]">
                   <td className="py-2 px-4 text-center bg-[#f9f5f7]">
-                    {t('PROGRAM_MODAL_SHORT_TERM_TABLE_SECTION_1')}
+                    {t('PROGRAM_MODAL_TABLE_SECTION_1')}
                   </td>
                   <td className="py-2 px-4 text-center">
                     {t('PROGRAM_MODAL_SHORT_TERM_TABLE_VALUE_1_1')}
@@ -140,7 +140,7 @@ const ProgramDetailsShort: React.FC = () => {
                 </tr>
                 <tr className="border-b border-[#e9d5e1]">
                   <td className="py-2 px-4 text-center bg-[#f9f5f7]">
-                    {t('PROGRAM_MODAL_SHORT_TERM_TABLE_SECTION_2')}
+                    {t('PROGRAM_MODAL_TABLE_SECTION_2')}
                   </td>
                   <td className="py-2 px-4 text-center">
                     {t('PROGRAM_MODAL_SHORT_TERM_TABLE_VALUE_1_2')}
@@ -151,7 +151,7 @@ const ProgramDetailsShort: React.FC = () => {
                 </tr>
                 <tr className="border-b border-[#e9d5e1]">
                   <td className="py-2 px-4 text-center bg-[#f9f5f7]">
-                    {t('PROGRAM_MODAL_SHORT_TERM_TABLE_SECTION_3')}
+                    {t('PROGRAM_MODAL_TABLE_SECTION_3')}
                   </td>
                   <td className="py-2 px-4 text-center">
                     {t('PROGRAM_MODAL_SHORT_TERM_TABLE_VALUE_1_3')}
@@ -162,7 +162,7 @@ const ProgramDetailsShort: React.FC = () => {
                 </tr>
                 <tr className="border-b border-[#e9d5e1]">
                   <td className="py-2 px-4 text-center bg-[#f9f5f7]">
-                    {t('PROGRAM_MODAL_SHORT_TERM_TABLE_SECTION_4')}
+                    {t('PROGRAM_MODAL_TABLE_SECTION_4')}
                   </td>
                   <td className="py-2 px-4 text-center">
                     {t('PROGRAM_MODAL_SHORT_TERM_TABLE_VALUE_1_4')}
@@ -173,7 +173,7 @@ const ProgramDetailsShort: React.FC = () => {
                 </tr>
                 <tr className="border-b border-[#e9d5e1]">
                   <td className="py-2 px-4 text-center bg-[#f9f5f7]">
-                    {t('PROGRAM_MODAL_SHORT_TERM_TABLE_SECTION_5')}
+                    {t('PROGRAM_MODAL_TABLE_SECTION_5')}
                   </td>
                   <td className="py-2 px-4 text-center">
                     {t('PROGRAM_MODAL_SHORT_TERM_TABLE_VALUE_1_5')}
@@ -184,7 +184,7 @@ const ProgramDetailsShort: React.FC = () => {
                 </tr>
                 <tr className="border-b border-[#e9d5e1]">
                   <td className="py-2 px-4 text-center bg-[#f9f5f7]">
-                    {t('PROGRAM_MODAL_SHORT_TERM_TABLE_SECTION_6')}
+                    {t('PROGRAM_MODAL_TABLE_SECTION_6')}
                   </td>
                   <td className="py-2 px-4 text-center">
                     {t('PROGRAM_MODAL_SHORT_TERM_TABLE_VALUE_1_6')}
@@ -195,7 +195,7 @@ const ProgramDetailsShort: React.FC = () => {
                 </tr>
                 <tr className="border-b border-[#e9d5e1]">
                   <td className="py-2 px-4 text-center bg-[#f9f5f7]">
-                    {t('PROGRAM_MODAL_SHORT_TERM_TABLE_SECTION_7')}
+                    {t('PROGRAM_MODAL_TABLE_SECTION_7')}
                   </td>
                   <td className="py-2 px-4 text-center">
                     {t('PROGRAM_MODAL_SHORT_TERM_TABLE_VALUE_1_7')}
@@ -206,7 +206,7 @@ const ProgramDetailsShort: React.FC = () => {
                 </tr>
                 <tr>
                   <td className="py-2 px-4 text-center bg-[#f9f5f7]">
-                    {t('PROGRAM_MODAL_SHORT_TERM_TABLE_SECTION_8')}
+                    {t('PROGRAM_MODAL_TABLE_SECTION_8')}
                   </td>
                   <td className="py-2 px-4 text-center">
                     {t('PROGRAM_MODAL_SHORT_TERM_TABLE_VALUE_1_8')}

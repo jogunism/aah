@@ -115,55 +115,101 @@ const ProgramDetailsLong: React.FC = () => {
                 <tr className="bg-[#f3e1eb]">
                   <th className="py-2 px-4 text-center font-semibold"></th>
                   <th className="py-2 px-4 text-center font-semibold">
-                    University Language Institute
+                    {t('PROGRAM_MODAL_TABLE_VALUE_1_TITLE')}
                   </th>
-                  <th className="py-2 px-4 text-center font-semibold">Language School</th>
+                  <th className="py-2 px-4 text-center font-semibold">
+                    {t('PROGRAM_MODAL_TABLE_VALUE_2_TITLE')}
+                  </th>
                 </tr>
               </thead>
               <tbody>
                 <tr className="border-b border-[#e9d5e1]">
-                  <td className="py-2 px-4 text-center bg-[#f9f5f7]">Semester Start Time</td>
-                  <td className="py-2 px-4 text-center">
-                    4 times a year (start of each semester in spring, summer, autumn, winter)
+                  <td className="py-2 px-4 text-center bg-[#f9f5f7]">
+                    {t('PROGRAM_MODAL_TABLE_SECTION_1')}
                   </td>
                   <td className="py-2 px-4 text-center">
-                    12 times a year (classes start every month)
+                    {t('PROGRAM_MODAL_LONG_TERM_TABLE_VALUE_1_1')}
+                  </td>
+                  <td className="py-2 px-4 text-center">
+                    {t('PROGRAM_MODAL_LONG_TERM_TABLE_VALUE_2_1')}
                   </td>
                 </tr>
                 <tr className="border-b border-[#e9d5e1]">
-                  <td className="py-2 px-4 text-center bg-[#f9f5f7]">Levels Offered</td>
-                  <td className="py-2 px-4 text-center">Levels 1-6</td>
-                  <td className="py-2 px-4 text-center">Levels 1-6</td>
+                  <td className="py-2 px-4 text-center bg-[#f9f5f7]">
+                    {t('PROGRAM_MODAL_TABLE_SECTION_2')}
+                  </td>
+                  <td className="py-2 px-4 text-center">
+                    {t('PROGRAM_MODAL_LONG_TERM_TABLE_VALUE_1_2')}
+                  </td>
+                  <td className="py-2 px-4 text-center">
+                    {t('PROGRAM_MODAL_LONG_TERM_TABLE_VALUE_2_2')}
+                  </td>
                 </tr>
                 <tr className="border-b border-[#e9d5e1]">
-                  <td className="py-2 px-4 text-center bg-[#f9f5f7]">1 Semester Unit</td>
-                  <td className="py-2 px-4 text-center">10 weeks</td>
-                  <td className="py-2 px-4 text-center">4 weeks</td>
+                  <td className="py-2 px-4 text-center bg-[#f9f5f7]">
+                    {t('PROGRAM_MODAL_TABLE_SECTION_3')}
+                  </td>
+                  <td className="py-2 px-4 text-center">
+                    {t('PROGRAM_MODAL_LONG_TERM_TABLE_VALUE_1_3')}
+                  </td>
+                  <td className="py-2 px-4 text-center">
+                    {t('PROGRAM_MODAL_LONG_TERM_TABLE_VALUE_2_3')}
+                  </td>
                 </tr>
                 <tr className="border-b border-[#e9d5e1]">
-                  <td className="py-2 px-4 text-center bg-[#f9f5f7]">Participation Unit</td>
-                  <td className="py-2 px-4 text-center">1 semester (approx. 3 months)</td>
-                  <td className="py-2 px-4 text-center">1 semester (approx. 1 month)</td>
+                  <td className="py-2 px-4 text-center bg-[#f9f5f7]">
+                    {t('PROGRAM_MODAL_TABLE_SECTION_4')}
+                  </td>
+                  <td className="py-2 px-4 text-center">
+                    {t('PROGRAM_MODAL_LONG_TERM_TABLE_VALUE_1_4')}
+                  </td>
+                  <td className="py-2 px-4 text-center">
+                    {t('PROGRAM_MODAL_LONG_TERM_TABLE_VALUE_2_4')}
+                  </td>
                 </tr>
                 <tr className="border-b border-[#e9d5e1]">
-                  <td className="py-2 px-4 text-center bg-[#f9f5f7]">Class Hours</td>
-                  <td className="py-2 px-4 text-center">9:00-13:00 (morning class)</td>
-                  <td className="py-2 px-4 text-center">10:00-13:00</td>
+                  <td className="py-2 px-4 text-center bg-[#f9f5f7]">
+                    {t('PROGRAM_MODAL_TABLE_SECTION_5')}
+                  </td>
+                  <td className="py-2 px-4 text-center">
+                    {t('PROGRAM_MODAL_LONG_TERM_TABLE_VALUE_1_5')}
+                  </td>
+                  <td className="py-2 px-4 text-center">
+                    {t('PROGRAM_MODAL_LONG_TERM_TABLE_VALUE_2_5')}
+                  </td>
                 </tr>
                 <tr className="border-b border-[#e9d5e1]">
-                  <td className="py-2 px-4 text-center bg-[#f9f5f7]">Weekly Class Schedule</td>
-                  <td className="py-2 px-4 text-center">Monday-Friday (5 days a week)</td>
-                  <td className="py-2 px-4 text-center">Mon, Tue, Thu, Fri (4 days a week)</td>
+                  <td className="py-2 px-4 text-center bg-[#f9f5f7]">
+                    {t('PROGRAM_MODAL_TABLE_SECTION_6')}
+                  </td>
+                  <td className="py-2 px-4 text-center">
+                    {t('PROGRAM_MODAL_LONG_TERM_TABLE_VALUE_1_6')}
+                  </td>
+                  <td className="py-2 px-4 text-center">
+                    {t('PROGRAM_MODAL_LONG_TERM_TABLE_VALUE_2_6')}
+                  </td>
                 </tr>
                 <tr className="border-b border-[#e9d5e1]">
-                  <td className="py-2 px-4 text-center bg-[#f9f5f7]">Average Class Size</td>
-                  <td className="py-2 px-4 text-center">Approx. 10-15 students</td>
-                  <td className="py-2 px-4 text-center">Approx. 5-10 students</td>
+                  <td className="py-2 px-4 text-center bg-[#f9f5f7]">
+                    {t('PROGRAM_MODAL_TABLE_SECTION_7')}
+                  </td>
+                  <td className="py-2 px-4 text-center">
+                    {t('PROGRAM_MODAL_LONG_TERM_TABLE_VALUE_1_7')}
+                  </td>
+                  <td className="py-2 px-4 text-center">
+                    {t('PROGRAM_MODAL_LONG_TERM_TABLE_VALUE_2_7')}
+                  </td>
                 </tr>
                 <tr>
-                  <td className="py-2 px-4 text-center bg-[#f9f5f7]">Visa Issuance</td>
-                  <td className="py-2 px-4 text-center">D-4 (General Training)</td>
-                  <td className="py-2 px-4 text-center">※ No visa or H-1 (Working Holiday)</td>
+                  <td className="py-2 px-4 text-center bg-[#f9f5f7]">
+                    {t('PROGRAM_MODAL_TABLE_SECTION_8')}
+                  </td>
+                  <td className="py-2 px-4 text-center">
+                    {t('PROGRAM_MODAL_LONG_TERM_TABLE_VALUE_1_8')}
+                  </td>
+                  <td className="py-2 px-4 text-center">
+                    {t('PROGRAM_MODAL_LONG_TERM_TABLE_VALUE_2_8')}
+                  </td>
                 </tr>
               </tbody>
             </table>
