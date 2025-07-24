@@ -130,7 +130,7 @@
   "TUITION_SHORT_TERM_DESCRIPTION": "A short but intensive experience that fits well into your vacation. Great for those who want to explore studying abroad before committing longer.",
   "TUITION_LONG_TERM_TITLE": "Long-term Program (3 months)",
   "TUITION_LONG_TERM_DESCRIPTION": "A full-semester academic experience with deeper immersion. Ideal for those pursuing credits or long-term cultural integration.",
-  "TUITION_COMMENT": "Includes VAT / Flight not included",
+  "TUITION_COMMENT": "Includes VAT",
   "TUITION_WHATS_INCLUDE_TITLE": "What's Included?",
   "TUITION_WHATS_INCLUDE_ELEMENT_1": "✈️ Airport pickup at Incheon National Airport (ICN)",
   "TUITION_WHATS_INCLUDE_ELEMENT_2": "🏫 Tuition and registration fee of selected university",
@@ -139,7 +139,8 @@
   "TUITION_WHATS_INCLUDE_ELEMENT_5": "🛡️ Travel insurance",
   "TUITION_WHATS_INCLUDE_ELEMENT_6": "📘 VISA Support: D-4-1 (general training for Korean), or H-1 (working holiday - Long terms only)",
   "TUITION_WHATS_INCLUDE_ELEMENT_7": "📞 Emergency support",
-  "TUITION_WHATS_INCLUDE_COMMENT": "※ Program contents and pricing may vary depending on university and curriculum.",
+  "TUITION_WHATS_INCLUDE_COMMENT_1": "※ Program contents and pricing may vary depending on university and curriculum.",
+  "TUITION_WHATS_INCLUDE_COMMENT_2": "※ Flight not included",
   "TUITION_CALCULATOR": "Tuition Calculator",
   "TUITION_CALCULATOR_MODAL_TITLE": "Tuition Calculator",
 

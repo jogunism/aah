@@ -1,9 +1,10 @@
 import { getTranslation } from '@/lib/i18n.server';
 import ParallaxImage from '@common/parallaxImage';
 import TuitionCalcurationButton from './TuitionCalculationButton';
+import { formatPrice } from '@/utils';
 
 export default async function Price() {
-  const { t } = await getTranslation();
+  const { t, lang } = await getTranslation();
 
   return (
     <div className="relative w-full bg-white mb-30">
@@ -22,15 +23,20 @@ export default async function Price() {
               {/* Short-term box */}
               <div className="bg-white border border-gray-200 rounded-2xl p-6 shadow-sm flex flex-col justify-between h-full">
                 <div>
-                  <h4 className="text-xl font-extrabold mb-4 text-indigo-700 border-b-4 border-indigo-400 pb-1">
-                    📘 {t('TUITION_SHORT_TERM_TITLE')}
+                  <h4 className="text-xl font-extrabold mb-4 text-[#C03F44] border-b-2 border-[#C03F44] pb-1">
+                    {t('TUITION_SHORT_TERM_TITLE')}
                   </h4>
                   <p className="mb-4 text-base text-gray-700">
                     {t('TUITION_SHORT_TERM_DESCRIPTION')}
                   </p>
                   <p className="mb-2">
-                    <span className="text-2xl font-bold text-gray-900">€1,600</span>
-                    <span className="text-base text-gray-700 font-medium"> - €2,500</span>
+                    <span className="text-2xl font-bold text-gray-900">
+                      €{formatPrice(1600, lang)}
+                    </span>
+                    <span className="text-base text-gray-700 font-medium">
+                      {' '}
+                      - €{formatPrice(2500, lang)}
+                    </span>
                   </p>
                 </div>
                 <div className="mt-auto flex justify-end">
@@ -41,15 +47,20 @@ export default async function Price() {
               {/* Long-term box */}
               <div className="bg-white border border-gray-200 rounded-2xl p-6 shadow-sm flex flex-col justify-between h-full">
                 <div>
-                  <h4 className="text-xl font-extrabold mb-4 text-indigo-700 border-b-4 border-indigo-400 pb-1">
-                    📗 {t('TUITION_LONG_TERM_TITLE')}
+                  <h4 className="text-xl font-extrabold mb-4 text-[#2A5E95] border-b-2 border-[#2A5E95] pb-1">
+                    {t('TUITION_LONG_TERM_TITLE')}
                   </h4>
                   <p className="mb-4 text-base text-gray-700">
                     {t('TUITION_LONG_TERM_DESCRIPTION')}
                   </p>
                   <p className="mb-2">
-                    <span className="text-2xl font-bold text-gray-900">€1,800</span>
-                    <span className="text-base text-gray-700 font-medium"> - €2,800</span>
+                    <span className="text-2xl font-bold text-gray-900">
+                      €{formatPrice(1800, lang)}
+                    </span>
+                    <span className="text-base text-gray-700 font-medium">
+                      {' '}
+                      - €{formatPrice(2800, lang)}
+                    </span>
                   </p>
                 </div>
                 <div className="mt-auto flex justify-end">
@@ -70,7 +81,10 @@ export default async function Price() {
                 <li>{t('TUITION_WHATS_INCLUDE_ELEMENT_6')}</li>
                 <li>{t('TUITION_WHATS_INCLUDE_ELEMENT_7')}</li>
               </ul>
-              <p className="text-sm text-gray-500 mt-4">{t('TUITION_WHATS_INCLUDE_COMMENT')}</p>
+              <p className="text-sm text-gray-500 mt-4">{t('TUITION_WHATS_INCLUDE_COMMENT_1')}</p>
+              <p className="text-sm text-gray-500 mt-1 text-red-600 italic">
+                {t('TUITION_WHATS_INCLUDE_COMMENT_2')}
+              </p>
             </div>
 
             <TuitionCalcurationButton />
