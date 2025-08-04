@@ -1,6 +1,14 @@
-export default function Footer() {
+// API
+import { retrieveAppVersion } from '@/api';
+
+/**
+ * Footer
+ */
+export default async function Footer() {
+  const appVersion = await retrieveAppVersion();
+
   return (
-    <footer className="w-full bg-[#DF7B7B] text-center px-6 py-4 border-t border-gray-300">
+    <footer className="relative w-full bg-[#DF7B7B] text-center px-6 py-4 border-t border-gray-300">
       <div className="mb-2 flex items-center justify-center">
         {/* Added margin-top for spacing */}
         <a
@@ -24,6 +32,9 @@ export default function Footer() {
       <p className="text-gray-800 text-sm text-white">
         © 2025 aah! education Europe. All rights reserved.
       </p>
+      {appVersion && (
+        <p className="absolute bottom-4 right-6 text-xs text-gray-300">v{appVersion}</p>
+      )}
     </footer>
   );
 }

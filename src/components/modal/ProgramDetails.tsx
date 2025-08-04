@@ -1,8 +1,7 @@
 'use client';
 
 import React from 'react';
-
-import '@/lib/i18n.client';
+// i18n client
 import { useTranslation } from 'react-i18next';
 
 import Modal from '@/components/common/Modal';

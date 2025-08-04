@@ -11,6 +11,9 @@ export interface University {
   width?: number;
   height?: number;
   margin?: boolean;
+
+  priceShort?: number;
+  priceLong?: number;
 }
 
 export interface ContactusValidation {
@@ -27,6 +30,13 @@ export interface Contactus {
   semester: number;
   content: string;
   gdpr: boolean;
+}
+
+export interface Version {
+  category: string;
+  rate: string;
+  updatedAt: string;
+  itemId: string;
 }
 
 /*********************************************

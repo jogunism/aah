@@ -39,6 +39,10 @@ export default async function Univercities() {
                         alt={item.emblem}
                         width={item.width ? item.width * 4 : 48}
                         height={item.height ? item.height * 4 : 48}
+                        style={{
+                          width: item.width ? item.width * 4 : 48,
+                          height: item.height ? item.height * 4 : 48,
+                        }}
                         className={`${item.margin ? 'ml-1.5 mr-1.5' : ''}`}
                       />
                       <strong className="flex flex-col">

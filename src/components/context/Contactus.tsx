@@ -2,7 +2,6 @@
 
 import { useEffect, useState } from 'react';
 // i18n client
-import '@/lib/i18n.client';
 import { useTranslation } from 'react-i18next';
 import { i18nPromise } from '@/lib/i18n.client';
 // store
