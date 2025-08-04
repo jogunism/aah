@@ -87,7 +87,9 @@ export default async function Price() {
               </p>
             </div>
 
-            <TuitionCalcurationButton />
+            <div className="mt-10 w-full text-center">
+              <TuitionCalcurationButton />
+            </div>
 
             {/* ./body */}
           </div>

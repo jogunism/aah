@@ -25,18 +25,16 @@ const TuitionCalculationButton: React.FC = () => {
   }
 
   return (
-    <div className="mt-10">
-      <div className="w-full text-center">
-        <button
-          className="bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-5 rounded"
-          onClick={openModal}
-        >
-          {t('TUITION_CALCULATOR')}
-        </button>
-      </div>
+    <>
+      <button
+        className="bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-5 rounded"
+        onClick={openModal}
+      >
+        {t('TUITION_CALCULATOR')}
+      </button>
 
       <TuitionCalculation isOpen={isModalOpen} onClose={closeModal} />
-    </div>
+    </>
   );
 };
 

@@ -30,7 +30,7 @@ const Modal: React.FC<ModalProps> = ({
     bottom: 'items-end',
   };
 
-  const backdropClasses = `fixed inset-0 z-[9999] flex justify-center ${positionClasses[position]} ${isParentBlur ? 'backdrop-blur-sm backdrop-brightness-50' : ''}`;
+  const backdropClasses = `fixed inset-0 z-[999] flex justify-center ${positionClasses[position]} ${isParentBlur ? 'backdrop-blur-sm backdrop-brightness-50' : ''}`;
 
   // size prop에 따른 max-w-* 클래스 매핑
   const sizeClasses = {
@@ -93,7 +93,7 @@ const Modal: React.FC<ModalProps> = ({
               &times;
             </button>
           )}
-          {title && <h2 className="text-xl font-bold text-gray-700 py-6 px-6">{title}</h2>}
+          {title && <h2 className="text-xl font-bold text-gray-700 py-6 px-6 text-left">{title}</h2>}
           <div className="max-h-[80vh] overflow-y-auto ">{children}</div>
         </div>
       </div>
