@@ -19,7 +19,7 @@ export default async function Univercities() {
    */
   return (
     <div className="relative w-full bg-white mb-30">
-      <ParallaxImage section="univercities" imagePath="/assets/image4.jpg" />
+      <ParallaxImage section="univercities" imagePath="/assets/image2.jpg" />
 
       <div className="relative bg-gradient-to-b from-[#f3e1eb] to-[#fff] w-full px-6 py-12">
         <div className="max-w-7xl mx-auto">

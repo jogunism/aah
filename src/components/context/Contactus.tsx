@@ -152,7 +152,7 @@ export default function Contactus() {
 
   return (
     <div className="relative w-full bg-white">
-      <ParallaxImage section="contactus" imagePath="/assets/image8.jpg" />
+      <ParallaxImage section="contactus" imagePath="/assets/image5.jpg" />
 
       <div className="relative bg-[#f3e1eb] w-full px-6 py-12">
         <div className="max-w-7xl mx-auto">

@@ -4,7 +4,6 @@ import type { Version, University, Contactus } from '@/types/constants';
 
 /**
  * Get the app version
- * @returns {Promise<string>} The app version
  */
 export const retrieveAppVersion: () => Promise<string> = async () => {
   try {
@@ -12,6 +11,21 @@ export const retrieveAppVersion: () => Promise<string> = async () => {
     return response.data.rate;
   } catch (error) {
     console.error('Error fetching app version:', error);
+    throw error;
+  }
+};
+
+/**
+ * Get currency rate
+ */
+export const retrieveCurrency: () => Promise<string> = async () => {
+  try {
+    const response = await http.get<Version>('/currency');
+
+    console.log(response.data);
+    return response.data?.rate ?? 0;
+  } catch (error) {
+    console.error('Error fetching currency:', error);
     throw error;
   }
 };
@@ -33,7 +47,6 @@ export const retrieveUniversityList: () => Promise<University[]> = async () => {
 /**
  * Send contact us form
  * @param {Contactus} formValues - The contact us form values
- * @returns {Promise<any>} The response from the server
  */
 export const sendContactUs = async (formValues: Contactus) => {
   try {

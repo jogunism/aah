@@ -14,7 +14,7 @@ export default async function Programes() {
 
   return (
     <div className="relative w-full bg-white mb-30">
-      <ParallaxImage section="semesters" imagePath="/assets/image5.jpg" />
+      <ParallaxImage section="semesters" imagePath="/assets/image3.jpg" />
 
       <div className="relative z-10 bg-gradient-to-b from-[#f3e1eb] to-[#fff] w-full px-6 py-12">
         <div className="max-w-7xl mx-auto">

@@ -1,14 +1,22 @@
 import { getTranslation } from '@/lib/i18n.server';
 import ParallaxImage from '@common/parallaxImage';
 import TuitionCalcurationButton from './TuitionCalculationButton';
+// API
+import { retrieveCurrency } from '@/api';
+// Utils
 import { formatPrice } from '@/utils';
 
 export default async function Price() {
   const { t, lang } = await getTranslation();
 
+  const currency: string = await retrieveCurrency();
+
+  /*******************************************************
+   * render
+   */
   return (
     <div className="relative w-full bg-white mb-30">
-      <ParallaxImage section="tuition" imagePath="/assets/image7.jpg" />
+      <ParallaxImage section="tuition" imagePath="/assets/image4.jpg" />
 
       <div className="relative bg-gradient-to-b from-[#f3e1eb] to-[#fff] w-full px-6 py-12">
         <div className="max-w-7xl mx-auto">
