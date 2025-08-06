@@ -8,11 +8,11 @@ import Programes from '@/components/context/Programes';
 import Tuition from '@/components/context/Tuition';
 import Contactus from '@/components/context/Contactus';
 // API
-import { retrieveCurrency } from '@/api';
+import { updateCurrency } from '@/api';
 
 export default function Home() {
-  // update currency
-  retrieveCurrency();
+  // currency
+  updateCurrency();
 
   return (
     <div className="flex flex-col min-h-screen bg-white">

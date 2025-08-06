@@ -12,8 +12,8 @@ export interface University {
   height?: number;
   margin?: boolean;
 
-  priceShort?: number;
-  priceLong?: number;
+  priceShort: number;
+  priceLong: number;
 }
 
 export interface ContactusValidation {
