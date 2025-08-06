@@ -2,14 +2,14 @@ import { getTranslation } from '@/lib/i18n.server';
 import ParallaxImage from '@common/parallaxImage';
 import TuitionCalcurationButton from './TuitionCalculationButton';
 // API
-import { retrieveCurrency } from '@/api';
+// import { retrieveCurrency } from '@/api';
 // Utils
 import { formatPrice } from '@/utils';
 
 export default async function Price() {
   const { t, lang } = await getTranslation();
 
-  const currency: string = await retrieveCurrency();
+  // const currency: string = await retrieveCurrency();
 
   /*******************************************************
    * render
@@ -21,7 +21,7 @@ export default async function Price() {
       <div className="relative bg-gradient-to-b from-[#f3e1eb] to-[#fff] w-full px-6 py-12">
         <div className="max-w-7xl mx-auto">
           <h2 className="text-3xl font-bold text-gray-800 mb-4 text-center">
-            {t('TUITION_TITLE')} <span className="hidden">{currency}</span>
+            {t('TUITION_TITLE')}
           </h2>
           <div className="text-lg text-gray-800 ">
             {/* body */}
