@@ -35,8 +35,8 @@ export default async function Univercities() {
                   return (
                     <li key={index} className="flex justify-start items-center gap-4 py-3">
                       <Image
-                        src={`/assets/emblem/${item.emblem}.png`}
-                        alt={item.emblem}
+                        src={`/assets/emblem/${item.id}.png`}
+                        alt={item.id}
                         width={item.width ? item.width * 4 : 48}
                         height={item.height ? item.height * 4 : 48}
                         style={{
@@ -47,7 +47,7 @@ export default async function Univercities() {
                       />
                       <strong className="flex flex-col">
                         {item.title}
-                        <span className="text-sm text-gray-500 font-normal">{item.subtitle}</span>
+                        <span className="text-sm text-gray-500 font-normal">{item.subTitle}</span>
                       </strong>
                     </li>
                   );
