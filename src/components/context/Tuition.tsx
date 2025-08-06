@@ -1,15 +1,11 @@
 import { getTranslation } from '@/lib/i18n.server';
 import ParallaxImage from '@common/parallaxImage';
 import TuitionCalcurationButton from './TuitionCalculationButton';
-// API
-// import { retrieveCurrency } from '@/api';
 // Utils
 import { formatPrice } from '@/utils';
 
 export default async function Price() {
   const { t, lang } = await getTranslation();
-
-  // const currency: string = await retrieveCurrency();
 
   /*******************************************************
    * render

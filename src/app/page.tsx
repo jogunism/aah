@@ -7,8 +7,13 @@ import Programes from '@/components/context/Programes';
 // import Curriculum from '@/components/context/Curriculum';
 import Tuition from '@/components/context/Tuition';
 import Contactus from '@/components/context/Contactus';
+// API
+import { retrieveCurrency } from '@/api';
 
 export default function Home() {
+  // update currency
+  retrieveCurrency();
+
   return (
     <div className="flex flex-col min-h-screen bg-white">
       <Header />
