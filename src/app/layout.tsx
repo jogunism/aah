@@ -8,25 +8,29 @@ import GDPRPopup from '@/components/common/GDPRPopup';
 
 import './globals.css';
 
-export const metadata: Metadata = {
-  title: 'aah! education',
-  description: 'aah! education - Discover Korea. Discover Yourself!',
-  openGraph: {
-    title: 'aah! education',
-    description: 'aah! education - Discover Korea. Discover Yourself!',
-    images: [
-      {
-        url: '/assets/image1.jpg',
-        width: 800,
-        height: 600,
-        alt: 'aah! education',
-      },
-    ],
-    url: 'https://aah.education',
-    siteName: 'aah! education',
-    type: 'website',
-  },
-};
+export async function generateMetadata(): Promise<Metadata> {
+  const { t } = await getTranslation();
+
+  return {
+    title: t('METADATA_TITLE'),
+    description: t('METADATA_DESCRIPTION'),
+    openGraph: {
+      title: t('METADATA_TITLE'),
+      description: t('METADATA_DESCRIPTION'),
+      images: [
+        {
+          url: 'https://aah.education/assets/image1.jpg',
+          width: 800,
+          height: 600,
+          alt: 'aah! education',
+        },
+      ],
+      url: 'https://aah.education',
+      siteName: 'aah! education',
+      type: 'website',
+    },
+  };
+}
 
 export default async function RootLayout({ children }: { children: ReactNode }) {
   const { lang } = await getTranslation();
