@@ -1,11 +1,32 @@
+import { Metadata } from 'next';
 import { ReactNode } from 'react';
 import { getTranslation } from '@/lib/i18n.server';
 import ClientWrapper from './layoutClientWrapper';
 
 import ToastProvider from '@common/ToastProvider';
-import GDPRPopup from '@/components/common/GDPRPopup'; // GDPRPopup 임포트
+import GDPRPopup from '@/components/common/GDPRPopup';
 
 import './globals.css';
+
+export const metadata: Metadata = {
+  title: 'aah! education',
+  description: 'aah! education - Discover Korea. Discover Yourself!',
+  openGraph: {
+    title: 'aah! education',
+    description: 'aah! education - Discover Korea. Discover Yourself!',
+    images: [
+      {
+        url: '/assets/image1.jpg',
+        width: 800,
+        height: 600,
+        alt: 'aah! education',
+      },
+    ],
+    url: 'https://aah.education',
+    siteName: 'aah! education',
+    type: 'website',
+  },
+};
 
 export default async function RootLayout({ children }: { children: ReactNode }) {
   const { lang } = await getTranslation();
