@@ -129,9 +129,9 @@
 
   "TUITION_TITLE": "Tuition fee",
   "TUITION_DESCRIPTION": "Here is the cost information for the courses provided by aah! education.",
-  "TUITION_SHORT_TERM_TITLE": "Short-term Program (3 weeks)",
+  "TUITION_SHORT_TERM_TITLE": "Short-term Program",
   "TUITION_SHORT_TERM_DESCRIPTION": "A short but intensive experience that fits well into your vacation. Great for those who want to explore studying abroad before committing longer.",
-  "TUITION_LONG_TERM_TITLE": "Long-term Program (3 months)",
+  "TUITION_LONG_TERM_TITLE": "Long-term Program",
   "TUITION_LONG_TERM_DESCRIPTION": "A full-semester academic experience with deeper immersion. Ideal for those pursuing credits or long-term cultural integration.",
   "TUITION_COMMENT": "Includes VAT",
   "TUITION_WHATS_INCLUDE_TITLE": "What's Included?",
@@ -146,6 +146,7 @@
   "TUITION_WHATS_INCLUDE_COMMENT_2": "※ Flight not included",
   "TUITION_CALCULATOR": "Tuition Calculator",
   "TUITION_CALCULATOR_MODAL_TITLE": "Tuition Calculator",
+  "TUITION_CALCULATOR_DESCRIPTION": "You can check the estimated costs for each university here. <br />If you need more detailed information, feel free to contact us anytime.😊",
   "TUITION_CALCULATOR_MODAL_SELECT_UNIVERSITY": "Select a university",
   "TUITION_CALCULATOR_MODAL_ESTIMATED_PRICE": "Estimated Price",
 

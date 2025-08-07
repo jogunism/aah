@@ -7,9 +7,10 @@ interface ModalProps {
   children: React.ReactNode;
   title?: string;
   isParentBlur?: boolean;
-  size?: 'sm' | 'md' | 'lg' | 'full'; // size 타입에 full 추가
-  isScrollAllowed?: boolean; // 스크롤 허용 여부 추가
-  position?: 'top' | 'middle' | 'bottom'; // 위치 조정 추가
+  size?: 'sm' | 'md' | 'lg' | 'full';
+  isScrollAllowed?: boolean;
+  position?: 'top' | 'middle' | 'bottom';
+  lockBodyScroll?: boolean; // 새로운 prop 추가
 }
 
 const Modal: React.FC<ModalProps> = ({
@@ -21,6 +22,7 @@ const Modal: React.FC<ModalProps> = ({
   size = 'sm',
   isScrollAllowed = false,
   position = 'middle',
+  lockBodyScroll = true, // 기본값 true로 설정
 }) => {
   const modalRef = useRef<HTMLDivElement>(null);
 
@@ -51,20 +53,20 @@ const Modal: React.FC<ModalProps> = ({
         }
       };
 
-      if (!isScrollAllowed) {
+      if (lockBodyScroll) { // lockBodyScroll prop에 따라 스크롤 잠금
         lockScroll();
       }
       document.addEventListener('keydown', handleEscape);
 
       // This cleanup function will be called when the modal is closed or unmounted.
       return () => {
-        if (!isScrollAllowed) {
+        if (lockBodyScroll) { // lockBodyScroll prop에 따라 스크롤 잠금 해제
           unlockScroll();
         }
         document.removeEventListener('keydown', handleEscape);
       };
     }
-  }, [isOpen, onClose, isScrollAllowed]);
+  }, [isOpen, onClose, lockBodyScroll]); // 의존성 배열에 lockBodyScroll 추가
 
   /*******************************************************
    * render
@@ -94,7 +96,7 @@ const Modal: React.FC<ModalProps> = ({
             </button>
           )}
           {title && <h2 className="text-xl font-bold text-gray-700 py-6 px-6 text-left">{title}</h2>}
-          <div className="max-h-[80vh] overflow-y-auto ">{children}</div>
+          <div className={`${isScrollAllowed ? '' : 'max-h-[80vh] overflow-y-auto'}`}>{children}</div>
         </div>
       </div>
     </div>

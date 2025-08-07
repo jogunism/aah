@@ -128,9 +128,9 @@
 
   "TUITION_TITLE": "Studiengebühren",
   "TUITION_DESCRIPTION": "Hier finden Sie die Kosteninformationen zu den Kursen von aah! education.",
-  "TUITION_SHORT_TERM_TITLE": "Kurzzeitprogramm (3 Wochen)",
+  "TUITION_SHORT_TERM_TITLE": "Kurzzeitprogramm",
   "TUITION_SHORT_TERM_DESCRIPTION": "Eine kurze, aber intensive Erfahrung, die sich gut in Ihren Urlaub einfügt. Ideal für alle, die das Studium im Ausland ausprobieren möchten, bevor sie sich für einen längeren Aufenthalt entscheiden.",
-  "TUITION_LONG_TERM_TITLE": "Langzeitprogramm (3 Monate)",
+  "TUITION_LONG_TERM_TITLE": "Langzeitprogramm",
   "TUITION_LONG_TERM_DESCRIPTION": "Ein akademisches Vollsemester mit intensiverer Immersion. Ideal für diejenigen, die Credits sammeln oder sich langfristig kulturell integrieren möchten.",
   "TUITION_COMMENT": "Inklusive Mehrwertsteuer",
   "TUITION_WHATS_INCLUDE_TITLE": "Was ist enthalten?",
@@ -145,6 +145,7 @@
   "TUITION_WHATS_INCLUDE_COMMENT_2": "※ Flug nicht inbegriffen.",
   "TUITION_CALCULATOR": "Studiengebührenrechner",
   "TUITION_CALCULATOR_MODAL_TITLE": "Studiengebührenrechner",
+  "TUITION_CALCULATOR_DESCRIPTION": "Die geschätzten Kosten für jede Universität können Sie hier einsehen. <br />Wenn Sie weitere Informationen benötigen, kontaktieren Sie uns gerne jederzeit.😊",
   "TUITION_CALCULATOR_MODAL_SELECT_UNIVERSITY": "Wählen Sie eine Universität",
   "TUITION_CALCULATOR_MODAL_ESTIMATED_PRICE": "Geschätzter Preis",
 

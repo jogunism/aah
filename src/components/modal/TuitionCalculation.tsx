@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useState, useEffect, useRef } from 'react';
-import { useTranslation } from 'react-i18next';
+import { Trans, useTranslation } from 'react-i18next';
 import Image from 'next/image';
 import Modal from '@/components/common/Modal';
 import { ProgramType, University } from '@/types/constants';
@@ -100,9 +100,14 @@ const TuitionCalculation: React.FC<TuitionCalculationProps> = ({ isOpen, onClose
       isOpen={isOpen}
       onClose={onClose}
       title={t('TUITION_CALCULATOR_MODAL_TITLE')}
-      isScrollAllowed={false}
+      isScrollAllowed={true}
     >
-      <div className="py-2 px-8 h-[400px]">
+      <div className="py-2 px-8 h-[450px] flex flex-col">
+        {/* Description for Program Type Selection */}
+        <p className="text-left text-gray-600 mb-6">
+          <Trans i18nKey="TUITION_CALCULATOR_DESCRIPTION" />
+        </p>
+
         {/* Program Type Selector */}
         <div className="flex justify-center gap-8 mb-6">
           <label className="flex items-center cursor-pointer">
@@ -115,7 +120,7 @@ const TuitionCalculation: React.FC<TuitionCalculationProps> = ({ isOpen, onClose
               className="hidden"
             />
             <div
-              className={`px-6 py-2 rounded-full text-lg font-semibold transition-all duration-300 ${
+              className={`px-6 py-2 rounded-lg text-lg font-semibold transition-all duration-300 ${
                 programType === ProgramType.SHORT
                   ? 'bg-[#C03F44] text-white shadow-md'
                   : 'bg-gray-200 text-gray-700'
@@ -134,7 +139,7 @@ const TuitionCalculation: React.FC<TuitionCalculationProps> = ({ isOpen, onClose
               className="hidden"
             />
             <div
-              className={`px-6 py-2 rounded-full text-lg font-semibold transition-all duration-300 ${
+              className={`px-6 py-2 rounded-lg text-lg font-semibold transition-all duration-300 ${
                 programType === ProgramType.LONG
                   ? 'bg-[#2A5E95] text-white shadow-md'
                   : 'bg-gray-200 text-gray-700'
@@ -149,7 +154,7 @@ const TuitionCalculation: React.FC<TuitionCalculationProps> = ({ isOpen, onClose
         <div className="relative w-full mb-6" ref={dropdownRef}>
           <button
             onClick={() => setIsDropdownOpen(!isDropdownOpen)}
-            className="w-full bg-white border border-gray-300 rounded-lg px-4 py-3 text-left flex justify-between items-center"
+            className="w-full bg-white border border-gray-300 rounded-lg px-4 py-3 text-left flex justify-between items-center h-[80px]"
           >
             {selectedUniversity ? (
               <div className="flex items-center gap-4">
@@ -216,7 +221,7 @@ const TuitionCalculation: React.FC<TuitionCalculationProps> = ({ isOpen, onClose
         </div>
 
         {/* Price Display */}
-        <div className="mt-8 p-6 bg-gray-100 rounded-lg text-center">
+        <div className="mt-auto p-6 mb-8 bg-gray-100 rounded-lg text-center h-[200px] flex flex-col justify-center items-center">
           <h4 className="text-xl font-semibold text-gray-800 mb-2">
             {t('TUITION_CALCULATOR_MODAL_ESTIMATED_PRICE')}
           </h4>
