@@ -102,7 +102,7 @@ const TuitionCalculation: React.FC<TuitionCalculationProps> = ({ isOpen, onClose
       title={t('TUITION_CALCULATOR_MODAL_TITLE')}
       isScrollAllowed={true}
     >
-      <div className="py-2 px-8 h-[450px] flex flex-col">
+      <div className="py-2 px-8 flex flex-col">
         {/* Description for Program Type Selection */}
         <p className="text-left text-gray-600 mb-6">
           <Trans i18nKey="TUITION_CALCULATOR_DESCRIPTION" />
@@ -221,7 +221,7 @@ const TuitionCalculation: React.FC<TuitionCalculationProps> = ({ isOpen, onClose
         </div>
 
         {/* Price Display */}
-        <div className="mt-auto p-6 mb-8 bg-gray-100 rounded-lg text-center h-[200px] flex flex-col justify-center items-center">
+        <div className="mt-auto p-6 mb-8 bg-gray-100 rounded-lg text-center h-[150px] flex flex-col justify-center items-center">
           <h4 className="text-xl font-semibold text-gray-800 mb-2">
             {t('TUITION_CALCULATOR_MODAL_ESTIMATED_PRICE')}
           </h4>

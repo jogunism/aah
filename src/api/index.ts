@@ -32,9 +32,6 @@ export const updateCurrency = async () => {
 export const retrieveCurrency: () => Promise<string> = async () => {
   try {
     const response = await http.get<Version>('/currency');
-
-    console.log(response.data);
-
     return response.data?.rate ?? 0;
   } catch (error) {
     console.error('Error fetching currency:', error);
