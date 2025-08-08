@@ -19,7 +19,7 @@ export default function Home() {
       <Header />
 
       {/* header padding */}
-      <div className="h-[72px]" />
+      <div className="h-[60px]" />
 
       {/* components */}
       <main className="flex flex-col items-center flex-grow">

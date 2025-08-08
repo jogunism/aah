@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useRef } from 'react';
 // i18n client
 import { useTranslation } from 'react-i18next';
 import { i18nPromise } from '@/lib/i18n.client';
@@ -36,6 +36,15 @@ export default function Contactus() {
     content: false,
     gdpr: false,
   });
+
+  const [isProgramOpen, setIsProgramOpen] = useState(false);
+  const programDropdownRef = useRef<HTMLDivElement>(null);
+
+  const programs = [
+    { value: -1, label: t('CONTACTUS_PROGRAMS_SELECT') },
+    { value: 0, label: t('CONTACTUS_PROGRAMS_SHORT_TERMS') },
+    { value: 1, label: t('CONTACTUS_PROGRAMS_LONG_TERMS') },
+  ];
 
   /*******************************************************
    * methods
@@ -84,11 +93,9 @@ export default function Contactus() {
     }
   };
 
-  const handleSelectSemester = (e: React.ChangeEvent<HTMLSelectElement>) => {
-    setFormValues(prev => ({
-      ...prev,
-      semester: Number(e.target.value),
-    }));
+  const handleSelectProgram = (value: number) => {
+    setFormValues(prev => ({ ...prev, semester: value }));
+    setIsProgramOpen(false);
   };
 
   const handleContentBlur = () => {
@@ -143,12 +150,30 @@ export default function Contactus() {
     }
   }, [isSuccess, resetSendStatus]);
 
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (
+        programDropdownRef.current &&
+        !programDropdownRef.current.contains(event.target as Node)
+      ) {
+        setIsProgramOpen(false);
+      }
+    };
+
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, []);
+
   /*******************************************************
    * render
    */
   if (!ready) {
     return null;
   }
+
+  const selectedProgram = programs.find(p => p.value === formValues.semester);
 
   return (
     <div className="relative w-full bg-white">
@@ -239,42 +264,55 @@ export default function Contactus() {
                 </div>
 
                 <div className="sm:col-span-3">
-                  <label htmlFor="country" className="block text-sm/6 font-medium text-gray-900">
+                  <label htmlFor="program" className="block text-sm/6 font-medium text-gray-900">
                     <strong>{t('CONTACTUS_PROGRAMS')}</strong>
                   </label>
-                  <div className="mt-1 grid grid-cols-1">
-                    <select
-                      id="semester"
-                      name="semester"
-                      value={formValues.semester}
+                  <div className="relative mt-1" ref={programDropdownRef}>
+                    <button
+                      type="button"
                       disabled={pending}
-                      autoComplete="semester"
-                      className={`
-                        col-start-1 row-start-1 w-full appearance-none rounded-md bg-white 
-                        py-1.5 pr-8 pl-3 text-base text-gray-900 
-                        outline-1 -outline-offset-1 outline-gray-300 
-                        focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6
-                        ${pending ? 'opacity-50 cursor-not-allowed bg-gray-100' : ''}
-                      `}
-                      onChange={handleSelectSemester}
+                      onClick={() => setIsProgramOpen(!isProgramOpen)}
+                      className={`flex items-center justify-between w-full px-3 py-2 text-gray-700 bg-white border border-gray-300 rounded leading-tight focus:outline-none focus:ring-2 focus:ring-blue-500 text-sm ${
+                        pending ? 'opacity-50 cursor-not-allowed bg-gray-100' : ''
+                      }`}
                     >
-                      <option value={-1}>{t('CONTACTUS_PROGRAMS_SELECT')}</option>
-                      <option value={0}>{t('CONTACTUS_PROGRAMS_SHORT_TERMS')}</option>
-                      <option value={1}>{t('CONTACTUS_PROGRAMS_LONG_TERMS')}</option>
-                    </select>
-                    <svg
-                      className="pointer-events-none col-start-1 row-start-1 mr-2 size-5 self-center justify-self-end text-gray-500 sm:size-4"
-                      viewBox="0 0 16 16"
-                      fill="currentColor"
-                      aria-hidden="true"
-                      data-slot="icon"
-                    >
-                      <path
-                        fillRule="evenodd"
-                        d="M4.22 6.22a.75.75 0 0 1 1.06 0L8 8.94l2.72-2.72a.75.75 0 1 1 1.06 1.06l-3.25 3.25a.75.75 0 0 1-1.06 0L4.22 7.28a.75.75 0 0 1 0-1.06Z"
-                        clipRule="evenodd"
-                      />
-                    </svg>
+                      <span className="block truncate">{selectedProgram?.label}</span>
+                      <span className="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-2">
+                        <svg
+                          className={`w-4 h-4 ml-2 transition-transform duration-200 ${isProgramOpen ? 'transform rotate-180' : ''}`}
+                          fill="none"
+                          stroke="currentColor"
+                          viewBox="0 0 24 24"
+                          xmlns="http://www.w3.org/2000/svg"
+                        >
+                          <path
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            strokeWidth="2"
+                            d="M19 9l-7 7-7-7"
+                          ></path>
+                        </svg>
+                      </span>
+                    </button>
+                    {isProgramOpen && (
+                      <div className="absolute z-10 mt-2 w-full origin-top-right bg-white border border-gray-200 rounded-md shadow-lg">
+                        <ul tabIndex={-1} role="listbox" className="py-1 text-sm">
+                          {programs.map(program => (
+                            <li
+                              key={program.value}
+                              onClick={() => handleSelectProgram(program.value)}
+                              className={`px-4 py-2 text-gray-700 cursor-pointer ${
+                                program.value === formValues.semester
+                                  ? 'bg-gray-200'
+                                  : 'hover:bg-gray-100'
+                              }`}
+                            >
+                              <span className="block truncate">{program.label}</span>
+                            </li>
+                          ))}
+                        </ul>
+                      </div>
+                    )}
                   </div>
                 </div>
 
@@ -298,7 +336,7 @@ export default function Contactus() {
                       className={getInputClass(errors.content, pending)}
                     />
                     {errors.content && (
-                      <p className="text-red-700 text-sm mt-1">{t('CONTACTUS_CONTENT_REQUIRED')}</p>
+                      <p className="text-red-600 text-sm mt-1">{t('CONTACTUS_CONTENT_REQUIRED')}</p>
                     )}
                   </div>
 
