@@ -59,7 +59,7 @@ const TuitionCalculation: React.FC<TuitionCalculationProps> = ({ isOpen, onClose
 
     if (price && currency > 0) {
       const calculated = Math.ceil(price / currency + 100000 / currency);
-      setCalculatedPrice(calculated);
+      setCalculatedPrice(Math.ceil(calculated / 10) * 10);
     } else {
       setCalculatedPrice(null);
     }

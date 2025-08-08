@@ -1,6 +1,6 @@
 import http from '@lib/http';
 // constants
-import type { Version, University, Contactus } from '@/types/constants';
+import type { Version, University, Prices, Contactus } from '@/types/constants';
 
 /**
  * Get the app version
@@ -49,6 +49,20 @@ export const retrieveUniversityList: () => Promise<University[]> = async () => {
     return response.data;
   } catch (error) {
     console.error('Error fetching university list:', error);
+    throw error;
+  }
+};
+
+/**
+ * Get prices
+ * @returns
+ */
+export const retrievePrices: () => Promise<Prices> = async () => {
+  try {
+    const response = await http.get<Prices>('/university/prices');
+    return response.data;
+  } catch (error) {
+    console.error('Error fetching prices:', error);
     throw error;
   }
 };

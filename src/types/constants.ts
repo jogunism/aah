@@ -16,6 +16,13 @@ export interface University {
   priceLong: number;
 }
 
+export interface Prices {
+  shortMin: number;
+  shortMax: number;
+  longMin: number;
+  longMax: number;
+}
+
 export interface ContactusValidation {
   name: boolean;
   email: boolean | string;

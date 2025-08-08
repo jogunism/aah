@@ -1,11 +1,18 @@
 import { getTranslation } from '@/lib/i18n.server';
 import ParallaxImage from '@common/parallaxImage';
 import TuitionCalcurationButton from './TuitionCalculationButton';
+// API
+import { retrievePrices } from '@/api';
 // Utils
 import { formatPrice } from '@/utils';
+// Types
+import type { Prices } from '@/types/constants';
 
 export default async function Price() {
   const { t, lang } = await getTranslation();
+
+  // calculated prices
+  const prices: Prices = await retrievePrices();
 
   /*******************************************************
    * render
@@ -35,11 +42,11 @@ export default async function Price() {
                   </p>
                   <p className="mb-2">
                     <span className="text-2xl font-bold text-gray-900">
-                      €{formatPrice(1600, lang)}
+                      €{formatPrice(prices?.shortMin ?? 0, lang)}
                     </span>
                     <span className="text-base text-gray-700 font-medium">
                       {' '}
-                      - €{formatPrice(2500, lang)}
+                      - €{formatPrice(prices?.shortMax ?? 0, lang)}
                     </span>
                   </p>
                 </div>
@@ -59,11 +66,11 @@ export default async function Price() {
                   </p>
                   <p className="mb-2">
                     <span className="text-2xl font-bold text-gray-900">
-                      €{formatPrice(1800, lang)}
+                      €{formatPrice(prices?.longMin ?? 0, lang)}
                     </span>
                     <span className="text-base text-gray-700 font-medium">
                       {' '}
-                      - €{formatPrice(2800, lang)}
+                      - €{formatPrice(prices?.longMax ?? 0, lang)}
                     </span>
                   </p>
                 </div>
