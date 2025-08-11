@@ -2,6 +2,7 @@
 
 import React, { useState } from 'react';
 import { useClientTranslation } from '@/lib/useClientTranslation';
+import * as gtag from '@/lib/gtag';
 // UI Components
 import ProgramDetails from '@/components/modal/ProgramDetails';
 // type
@@ -19,6 +20,14 @@ export default function ProgramesButton({ programType }: ProgramesButtonProps) {
   const openModal = (type: ProgramType) => {
     setCurrentProgramType(type);
     setIsModalOpen(true);
+
+    const eventLabel = type === ProgramType.SHORT ? 'short-term' : 'long-term';
+
+    gtag.event({
+      action: 'click',
+      category: 'programes',
+      label: eventLabel,
+    });
   };
 
   const closeModal = () => {
