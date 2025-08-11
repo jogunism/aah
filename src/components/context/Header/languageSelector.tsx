@@ -4,6 +4,7 @@ import { useEffect, useState, useRef } from 'react';
 import { useTranslation } from 'react-i18next';
 import Cookies from 'js-cookie';
 import { useRouter } from 'next/navigation';
+import * as gtag from '@/lib/gtag';
 
 export default function LanguageSelector() {
   const { i18n } = useTranslation();
@@ -32,6 +33,12 @@ export default function LanguageSelector() {
         router.refresh();
       });
     }
+
+    gtag.event({
+      action: 'change_language',
+      category: 'header',
+      label: selectedLang,
+    });
   };
 
   /*******************************************************

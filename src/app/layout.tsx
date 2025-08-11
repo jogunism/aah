@@ -2,6 +2,7 @@ import { Metadata } from 'next';
 import { ReactNode } from 'react';
 import { getTranslation } from '@/lib/i18n.server';
 import ClientWrapper from './layoutClientWrapper';
+import GoogleAnalytics from '@/components/common/GoogleAnalytics';
 
 import ToastProvider from '@common/ToastProvider';
 import GDPRPopup from '@/components/common/GDPRPopup';
@@ -38,6 +39,7 @@ export default async function RootLayout({ children }: { children: ReactNode }) 
   return (
     <html lang={lang}>
       <body>
+        {process.env.NEXT_PUBLIC_GA_ID && <GoogleAnalytics />}
         <ClientWrapper>{children}</ClientWrapper>
         <ToastProvider />
         <GDPRPopup />

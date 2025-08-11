@@ -3,6 +3,7 @@
 import React, { useState } from 'react';
 // i18n client
 import { useClientTranslation } from '@/lib/useClientTranslation';
+import * as gtag from '@/lib/gtag';
 
 import TuitionCalculation from '@/components/modal/TuitionCalculation';
 
@@ -14,7 +15,14 @@ const TuitionCalculationButton: React.FC = () => {
   /*******************************************************
    * functions
    */
-  const openModal = () => setIsModalOpen(true);
+  const openModal = () => {
+    setIsModalOpen(true);
+    gtag.event({
+      action: 'click',
+      category: 'tuition',
+      label: 'price_calculation',
+    });
+  };
   const closeModal = () => setIsModalOpen(false);
 
   /*******************************************************
