@@ -3,7 +3,7 @@ declare global {
     gtag?: (
       command: 'config' | 'event',
       targetIdOrAction: string,
-      params?: { [key: string]: any }
+      params?: { [key: string]: unknown }
     ) => void;
   }
 }

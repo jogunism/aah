@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef, useCallback } from 'react';
 import { Trans, useTranslation } from 'react-i18next';
 import Image from 'next/image';
 import Modal from '@/components/common/Modal';
@@ -32,24 +32,27 @@ const TuitionCalculation: React.FC<TuitionCalculationProps> = ({ isOpen, onClose
   /*******************************************************
    * methods
    */
-  const handleSelectProgramType = (type: ProgramType) => {
-    setProgramType(type);
+  const handleSelectProgramType = useCallback(
+    (type: ProgramType) => {
+      setProgramType(type);
 
-    let list: University[] = [];
-    switch (type) {
-      case ProgramType.SHORT:
-        list = universityList.filter(uni => uni.priceShort > 0) ?? [];
-        break;
-      case ProgramType.LONG:
-        list = universityList.filter(uni => uni.priceLong > 0) ?? [];
-        break;
-      default:
-    }
+      let list: University[] = [];
+      switch (type) {
+        case ProgramType.SHORT:
+          list = universityList.filter(uni => uni.priceShort > 0) ?? [];
+          break;
+        case ProgramType.LONG:
+          list = universityList.filter(uni => uni.priceLong > 0) ?? [];
+          break;
+        default:
+      }
 
-    setSelectedUniversityList(list);
-    setSelectedUniversity(null);
-    setCalculatedPrice(0);
-  };
+      setSelectedUniversityList(list);
+      setSelectedUniversity(null);
+      setCalculatedPrice(0);
+    },
+    [universityList],
+  );
 
   const handleUniversitySelect = (university: University) => {
     setSelectedUniversity(university);
@@ -89,7 +92,7 @@ const TuitionCalculation: React.FC<TuitionCalculationProps> = ({ isOpen, onClose
 
   useEffect(() => {
     handleSelectProgramType(ProgramType.SHORT);
-  }, [universityList]);
+  }, [universityList, handleSelectProgramType]);
 
   /*******************************************************
    * render
