@@ -20,7 +20,7 @@ export async function generateMetadata(): Promise<Metadata> {
       description: t('METADATA_DESCRIPTION'),
       images: [
         {
-          url: 'https://aah.education/assets/image1.jpg',
+          url: 'https://aah.education/assets/main.jpg',
           width: 800,
           height: 600,
           alt: 'aah! education',

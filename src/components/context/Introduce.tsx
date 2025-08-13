@@ -9,7 +9,7 @@ export default async function Introduce() {
       <div className="relative w-screen h-[500px] overflow-hidden">
         <div className="relative w-full h-[100%]">
           <Image
-            src="/assets/image1.jpg"
+            src="/assets/main.jpg"
             alt={t('MAIN_SLOGAN')}
             fill
             className="object-cover"
