@@ -328,12 +328,14 @@ export default function Contactus() {
                   <div className="mt-1">
                     <textarea
                       id="content"
-                      rows={4}
+                      rows={6}
                       disabled={pending}
                       value={formValues.content}
                       onChange={e => setFormValues({ ...formValues, content: e.target.value })}
                       onBlur={handleContentBlur}
                       className={getInputClass(errors.content, pending)}
+                      placeholder={t('CONTACTUS_CONTENT_PLACEHOLDER')}
+                      style={{ whiteSpace: "pre-line" }}
                     />
                     {errors.content && (
                       <p className="text-red-600 text-sm mt-1">{t('CONTACTUS_CONTENT_REQUIRED')}</p>
@@ -363,7 +365,7 @@ export default function Contactus() {
             <div className="mt-6 flex items-center justify-end gap-x-6">
               <button
                 disabled={pending}
-                className="bg-[#DF7B7B] hover:bg-[#F1A0A0] text-white py-2 px-4 rounded-lg shadow-md transition duration-200 w-30 h-13 flex items-center justify-center"
+                className="bg-[#D8484D] hover:bg-[#C03F44] text-white py-2 px-4 rounded-lg shadow-md transition duration-200 w-30 h-13 flex items-center justify-center"
                 onClick={handleSendButtonClick}
               >
                 {pending ? <FaSpinner className="animate-spin" size={18} /> : t('CONTACTUS_SEND')}

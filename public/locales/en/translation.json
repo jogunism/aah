@@ -166,6 +166,7 @@
   "CONTACTUS_PROGRAMS_SHORT_TERMS": "Short terms (3 weeks)",
   "CONTACTUS_PROGRAMS_LONG_TERMS": "Long terms (3 months)",
   "CONTACTUS_CONTENT": "Content",
+  "CONTACTUS_CONTENT_PLACEHOLDER": "It would be helpful if you could provide more detailed information. \nFor example: \n- Have you been to South Korea? \n- What is your level of Korean proficiency? etc.",
   "CONTACTUS_CONTENT_REQUIRED": "Content required.",
   "CONTACTUS_GDPR": "I consent to the collection and processing of my personal data.",
   "CONTACTUS_SEND": "Send",

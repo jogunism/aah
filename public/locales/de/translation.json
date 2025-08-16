@@ -165,6 +165,7 @@
   "CONTACTUS_PROGRAMS_SHORT_TERMS": "Kurzzeitaufenthalte (3 Wochen)",
   "CONTACTUS_PROGRAMS_LONG_TERMS": "Langzeitaufenthalte (3 Monate)",
   "CONTACTUS_CONTENT": "Inhalt",
+  "CONTACTUS_CONTENT_PLACEHOLDER": "Es wäre hilfreich, wenn Sie nähere Informationen geben könnten. \nZum Beispiel: \n- Waren Sie schon einmal in Südkorea? \n- Wie ist Ihr Niveau in Koreanisch? usw.",
   "CONTACTUS_CONTENT_REQUIRED": "Inhalt erforderlich.",
   "CONTACTUS_GDPR": "Ich stimme der Erhebung und Verarbeitung meiner personenbezogenen Daten zu.",
   "CONTACTUS_SEND": "Senden",
