@@ -5,7 +5,7 @@ interface CookieAttributes {
   path?: string;
   domain?: string;
   secure?: boolean;
-  sameSite?: 'strict' | 'lax' | 'none';
+  sameSite?: 'strict' | 'Lax' | 'none';
   [property: string]: unknown;
 }
 
@@ -14,7 +14,7 @@ const isProduction = process.env.NEXT_NODE_ENV === 'production';
 const productionOptions: CookieAttributes = {
   path: '/',
   secure: true,
-  sameSite: 'lax',
+  sameSite: 'Lax',
   domain: '.aah.education',
 };
 
@@ -27,9 +27,13 @@ export const setCookie = (name: string, value: string, options?: CookieAttribute
     expires: 365, // Default expiration of one year
   };
 
+  console.log(`[Cookie Setter] Environment (isProduction): ${isProduction}`);
+
   const finalOptions = isProduction
     ? { ...defaultOptions, ...productionOptions, ...options }
     : { ...defaultOptions, ...options };
+
+  console.log('[Cookie Setter] Final options applied:', finalOptions);
 
   Cookies.set(name, value, finalOptions);
 };
