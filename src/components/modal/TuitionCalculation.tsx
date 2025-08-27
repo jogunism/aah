@@ -2,12 +2,17 @@
 
 import React, { useState, useEffect, useRef, useCallback } from 'react';
 import { Trans, useTranslation } from 'react-i18next';
+// UI Components
 import Image from 'next/image';
 import Modal from '@/components/common/Modal';
+// Constants
 import { ProgramType, University } from '@/types/constants';
-import { formatPrice } from '@/utils';
+// Store
+import { useCurrencyStore } from '@/store/currencyStore';
 // API
-import { retrieveCurrency, retrieveUniversityList } from '@/api';
+import { retrieveCurrencyRate, retrieveUniversityList } from '@/api';
+// Utils
+import { formatPrice } from '@/utils';
 
 interface TuitionCalculationProps {
   isOpen: boolean;
@@ -16,8 +21,9 @@ interface TuitionCalculationProps {
 
 const TuitionCalculation: React.FC<TuitionCalculationProps> = ({ isOpen, onClose }) => {
   const { t, i18n } = useTranslation();
+  const { currency } = useCurrencyStore();
 
-  const [currency, setCurrency] = useState<number>(0.0);
+  const [currencyRate, setCurrencyRate] = useState<number>(0.0);
   const [universityList, setUniversityList] = useState<University[]>([]);
   const [selectedUniversityList, setSelectedUniversityList] = useState<University[]>([]);
   const [selectedUniversity, setSelectedUniversity] = useState<University | null>(null);
@@ -32,6 +38,25 @@ const TuitionCalculation: React.FC<TuitionCalculationProps> = ({ isOpen, onClose
   /*******************************************************
    * methods
    */
+  const fetchCurrencyRate = async () => {
+    try {
+      const rate = await retrieveCurrencyRate();
+      setCurrencyRate(Number(rate));
+    } catch (error) {
+      console.error('Failed to fetch currency rate', error);
+    }
+  };
+
+  const fetchUniversityList = async () => {
+    try {
+      const universities = await retrieveUniversityList();
+      setUniversityList(universities);
+      setInitialDataLoaded(true);
+    } catch (error) {
+      console.error('Failed to fetch university list:', error);
+    }
+  };
+  
   const handleSelectProgramType = useCallback(
     (type: ProgramType) => {
       setProgramType(type);
@@ -60,8 +85,8 @@ const TuitionCalculation: React.FC<TuitionCalculationProps> = ({ isOpen, onClose
 
     const price = programType === ProgramType.SHORT ? university.priceShort : university.priceLong;
 
-    if (price && currency > 0) {
-      const calculated = Math.ceil(price / currency + 100000 / currency);
+    if (price && currencyRate > 0) {
+      const calculated = Math.ceil(price / currencyRate + 70000 / currencyRate);
       setCalculatedPrice(Math.ceil(calculated / 10) * 10);
     } else {
       setCalculatedPrice(null);
@@ -72,27 +97,25 @@ const TuitionCalculation: React.FC<TuitionCalculationProps> = ({ isOpen, onClose
    * lifecycle hooks
    */
   useEffect(() => {
-    const fetchInitialData = async () => {
-      try {
-        const currency = await retrieveCurrency();
-        setCurrency(Number(currency));
-
-        const universities = await retrieveUniversityList();
-        setUniversityList(universities);
-        setInitialDataLoaded(true);
-      } catch (error) {
-        console.error('Failed to fetch initial data:', error);
-      }
-    };
-
     if (isOpen && !initialDataLoaded) {
-      fetchInitialData();
+      fetchCurrencyRate();
+      fetchUniversityList();
     }
   }, [isOpen, initialDataLoaded]);
 
   useEffect(() => {
     handleSelectProgramType(ProgramType.SHORT);
   }, [universityList, handleSelectProgramType]);
+
+  useEffect(() => {
+    fetchCurrencyRate();
+  }, [currency]);
+
+  useEffect(() => {
+    if (selectedUniversity) {
+      handleUniversitySelect(selectedUniversity)
+    }
+  }, [currencyRate]);
 
   /*******************************************************
    * render
@@ -231,7 +254,7 @@ const TuitionCalculation: React.FC<TuitionCalculationProps> = ({ isOpen, onClose
           <p
             className={`text-4xl font-bold ${programType === ProgramType.SHORT ? 'text-[#C03F44]' : 'text-[#2A5E95]'}`}
           >
-            {calculatedPrice !== null ? `€${formatPrice(calculatedPrice, i18n.language)}` : '-'}
+            {calculatedPrice !== null ? `${currency === 'USD' ? '$' : '€'}${formatPrice(calculatedPrice, i18n.language)}` : '-'}
           </p>
         </div>
       </div>

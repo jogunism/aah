@@ -1,6 +1,10 @@
-import { getTranslation } from '@/lib/i18n.server';
+'use client';
+
+import { useState, useEffect } from 'react';
+import { useTranslation } from 'react-i18next';
 import ParallaxImage from '@common/parallaxImage';
 import TuitionCalcurationButton from './TuitionCalculationButton';
+import { useCurrencyStore } from '@/store/currencyStore';
 // API
 import { retrievePrices } from '@/api';
 // Utils
@@ -8,11 +12,23 @@ import { formatPrice } from '@/utils';
 // Types
 import type { Prices } from '@/types/constants';
 
-export default async function Price() {
-  const { t, lang } = await getTranslation();
+export default function Price() {
+  const { t, i18n } = useTranslation();
+  const [prices, setPrices] = useState<Prices | null>(null);
 
-  // calculated prices
-  const prices: Prices = await retrievePrices();
+  const currency = useCurrencyStore(state => state.currency);
+  const currencySymbol = currency === 'USD' ? '$' : '€';
+
+  /*******************************************************
+   * lifecycle hooks
+   */
+  useEffect(() => {
+    const fetchPrices = async () => {
+      const fetchedPrices = await retrievePrices();
+      setPrices(fetchedPrices);
+    };
+    fetchPrices();
+  }, [currency]);
 
   /*******************************************************
    * render
@@ -42,11 +58,11 @@ export default async function Price() {
                   </p>
                   <p className="mb-2">
                     <span className="text-2xl font-bold text-gray-900">
-                      €{formatPrice(prices?.shortMin ?? 0, lang)}
+                      {currencySymbol}{formatPrice(prices?.shortMin ?? 0, i18n.language)}
                     </span>
                     <span className="text-base text-gray-700 font-medium">
                       {' '}
-                      - €{formatPrice(prices?.shortMax ?? 0, lang)}
+                      - {currencySymbol}{formatPrice(prices?.shortMax ?? 0, i18n.language)}
                     </span>
                   </p>
                 </div>
@@ -66,11 +82,11 @@ export default async function Price() {
                   </p>
                   <p className="mb-2">
                     <span className="text-2xl font-bold text-gray-900">
-                      €{formatPrice(prices?.longMin ?? 0, lang)}
+                      {currencySymbol}{formatPrice(prices?.longMin ?? 0, i18n.language)}
                     </span>
                     <span className="text-base text-gray-700 font-medium">
                       {' '}
-                      - €{formatPrice(prices?.longMax ?? 0, lang)}
+                      - {currencySymbol}{formatPrice(prices?.longMax ?? 0, i18n.language)}
                     </span>
                   </p>
                 </div>
