@@ -9,7 +9,7 @@ interface CookieAttributes {
   [property: string]: unknown;
 }
 
-const isProduction = process.env.NEXT_NODE_ENV === 'production';
+const isProduction = process.env.NEXT_PUBLIC_NODE_ENV === 'production';
 
 const productionOptions: CookieAttributes = {
   path: '/',
