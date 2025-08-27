@@ -6,7 +6,7 @@ interface CookieAttributes {
   domain?: string;
   secure?: boolean;
   sameSite?: 'strict' | 'lax' | 'none';
-  [property: string]: any;
+  [property: string]: unknown;
 }
 
 const isProduction = process.env.NEXT_NODE_ENV === 'production';

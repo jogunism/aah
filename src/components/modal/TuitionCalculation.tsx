@@ -82,15 +82,6 @@ const TuitionCalculation: React.FC<TuitionCalculationProps> = ({ isOpen, onClose
   const handleUniversitySelect = (university: University) => {
     setSelectedUniversity(university);
     setIsDropdownOpen(false);
-
-    const price = programType === ProgramType.SHORT ? university.priceShort : university.priceLong;
-
-    if (price && currencyRate > 0) {
-      const calculated = Math.ceil(price / currencyRate + 70000 / currencyRate);
-      setCalculatedPrice(Math.ceil(calculated / 10) * 10);
-    } else {
-      setCalculatedPrice(null);
-    }
   };
 
   /*******************************************************
@@ -112,10 +103,22 @@ const TuitionCalculation: React.FC<TuitionCalculationProps> = ({ isOpen, onClose
   }, [currency]);
 
   useEffect(() => {
-    if (selectedUniversity) {
-      handleUniversitySelect(selectedUniversity)
+    if (selectedUniversity && currencyRate > 0) {
+      const price =
+        programType === ProgramType.SHORT
+          ? selectedUniversity.priceShort
+          : selectedUniversity.priceLong;
+
+      if (price) {
+        const calculated = Math.ceil(price / currencyRate + 70000 / currencyRate);
+        setCalculatedPrice(Math.ceil(calculated / 10) * 10);
+      } else {
+        setCalculatedPrice(null);
+      }
+    } else {
+      setCalculatedPrice(null);
     }
-  }, [currencyRate]);
+  }, [selectedUniversity, currencyRate, programType]);
 
   /*******************************************************
    * render

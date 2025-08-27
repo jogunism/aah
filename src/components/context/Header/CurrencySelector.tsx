@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useState, useRef } from 'react';
+import { useEffect, useState, useRef, useCallback } from 'react';
 import { getCookie, setCookie } from '@/lib/cookie';
 import * as gtag from '@/lib/gtag';
 import { useCurrencyStore } from '@/store/currencyStore';
@@ -21,11 +21,11 @@ export default function CurrencySelector() {
   /*******************************************************
    * methods
    */
-  const handleClickOutside = (event: MouseEvent) => {
+  const handleClickOutside = useCallback((event: MouseEvent) => {
     if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
       setIsOpen(false);
     }
-  };
+  }, []);
 
   const handleCurrencySelect = (selectedCurrency: string) => {
     setCurrency(selectedCurrency);
@@ -45,16 +45,21 @@ export default function CurrencySelector() {
    */
   useEffect(() => {
     const storedCurrency = getCookie('currency');
-    if (!storedCurrency) {
-      setCookie('currency', "USD");
+    if (storedCurrency) {
+      setCurrency(storedCurrency);
+    } else {
+      const defaultCurrency = 'USD';
+      setCurrency(defaultCurrency);
+      setCookie('currency', defaultCurrency);
     }
-    setCurrency(storedCurrency ?? "USD");
+  }, [setCurrency]);
 
+  useEffect(() => {
     document.addEventListener('mousedown', handleClickOutside);
     return () => {
       document.removeEventListener('mousedown', handleClickOutside);
     };
-  }, []);
+  }, [handleClickOutside]);
 
   /*******************************************************
    * render
