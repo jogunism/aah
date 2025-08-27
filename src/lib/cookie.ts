@@ -9,7 +9,7 @@ interface CookieAttributes {
   [property: string]: unknown;
 }
 
-const isProduction = process.env.NEXT_PUBLIC_NODE_ENV === 'production';
+const isProduction = process.env.NEXT_PUBLIC_APP_ENV === 'production';
 
 const productionOptions: CookieAttributes = {
   path: '/',
@@ -27,13 +27,9 @@ export const setCookie = (name: string, value: string, options?: CookieAttribute
     expires: 365, // Default expiration of one year
   };
 
-  console.log(`[Cookie Setter] Environment (isProduction): ${isProduction}`);
-
   const finalOptions = isProduction
     ? { ...defaultOptions, ...productionOptions, ...options }
     : { ...defaultOptions, ...options };
-
-  console.log('[Cookie Setter] Final options applied:', finalOptions);
 
   Cookies.set(name, value, finalOptions);
 };
