@@ -15,7 +15,7 @@ const productionOptions: CookieAttributes = {
   path: '/',
   secure: true,
   sameSite: 'Lax',
-  domain: '.aah.education',
+  domain: 'aah.education',
 };
 
 /**
