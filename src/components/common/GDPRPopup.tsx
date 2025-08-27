@@ -1,23 +1,21 @@
 'use client';
 
 import { useEffect, useState } from 'react';
-import Cookies from 'js-cookie';
-import Modal from './Modal'; // Modal 컴포넌트 임포트
+import { getCookie, setCookie } from '@/lib/cookie';
+import Modal from './Modal';
 
 export default function GDPRPopup() {
   const [isVisible, setIsVisible] = useState(false);
 
   useEffect(() => {
-    // 쿠키를 확인하여 팝업을 표시할지 결정합니다.
-    const consent = Cookies.get('gdpr_consent');
+    const consent = getCookie('gdpr_consent');
     if (!consent) {
       setIsVisible(true);
     }
   }, []);
 
   const handleAccept = () => {
-    // 쿠키를 설정하고 팝업을 숨깁니다.
-    Cookies.set('gdpr_consent', 'true', { expires: 365 });
+    setCookie('gdpr_consent', 'true');
     setIsVisible(false);
   };
 

@@ -1,7 +1,7 @@
 'use client';
 
 import { useEffect, useState, useRef } from 'react';
-import Cookies from 'js-cookie';
+import { getCookie, setCookie } from '@/lib/cookie';
 import * as gtag from '@/lib/gtag';
 import { useCurrencyStore } from '@/store/currencyStore';
 import { FaDollarSign, FaEuroSign } from 'react-icons/fa';
@@ -25,7 +25,7 @@ export default function CurrencySelector() {
     setCurrency(selectedCurrency);
     setIsOpen(false);
 
-    Cookies.set('currency', selectedCurrency, { expires: 365, path: '/', secure: true, sameSite: 'Lax', domain: 'aah.education' });
+    setCookie('currency', selectedCurrency);
 
     gtag.event({
       action: 'change_currency',
@@ -38,7 +38,7 @@ export default function CurrencySelector() {
    * lifecycle hooks
    */
   useEffect(() => {
-    const storedCurrency = Cookies.get('currency');
+    const storedCurrency = getCookie('currency');
     if (storedCurrency) {
       setCurrency(storedCurrency);
     }

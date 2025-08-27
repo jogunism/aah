@@ -2,7 +2,8 @@
 
 import { useEffect, useState, useRef } from 'react';
 import { useTranslation } from 'react-i18next';
-import Cookies from 'js-cookie';
+// import Cookies from 'js-cookie';
+import { getCookie, setCookie } from '@/lib/cookie';
 import { useRouter } from 'next/navigation';
 import * as gtag from '@/lib/gtag';
 import { useCurrencyStore } from '@/store/currencyStore';
@@ -29,7 +30,7 @@ export default function LanguageSelector() {
     setLang(selectedLang);
     setIsOpen(false);
 
-    Cookies.set('language', selectedLang, { expires: 365, path: '/', secure: true, sameSite: 'Lax', domain: 'aah.education' });
+    setCookie('language', selectedLang);
 
     if (i18n.language !== selectedLang) {
       i18n.changeLanguage(selectedLang).then(() => {
@@ -39,10 +40,10 @@ export default function LanguageSelector() {
 
     if (selectedLang === 'en') {
       setCurrency('USD');
-      Cookies.set('currency', 'USD', { expires: 365, path: '/', secure: true, sameSite: 'Lax', domain: 'aah.education' });
+      setCookie('currency', 'USD');
     } else if (selectedLang === 'de') {
       setCurrency('EUR');
-      Cookies.set('currency', 'EUR', { expires: 365, path: '/', secure: true, sameSite: 'Lax', domain: 'aah.education' });
+      setCookie('currency', 'EUR');
     }
 
     gtag.event({
@@ -56,7 +57,7 @@ export default function LanguageSelector() {
    * lifecycle hooks
    */
   useEffect(() => {
-    const storedLang = Cookies.get('language');
+    const storedLang = getCookie('language');
     const currentLang = storedLang ?? 'en';
     setLang(currentLang);
     if (storedLang && storedLang !== i18n.language) {
