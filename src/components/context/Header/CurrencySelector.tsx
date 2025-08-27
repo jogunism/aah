@@ -25,7 +25,7 @@ export default function CurrencySelector() {
     setCurrency(selectedCurrency);
     setIsOpen(false);
 
-    Cookies.set('currency', selectedCurrency, { expires: 365 });
+    Cookies.set('currency', selectedCurrency, { expires: 365, path: '/' });
 
     gtag.event({
       action: 'change_currency',
