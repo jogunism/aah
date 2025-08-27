@@ -29,7 +29,7 @@ export default function LanguageSelector() {
     setLang(selectedLang);
     setIsOpen(false);
 
-    Cookies.set('language', selectedLang, { expires: 365, path: '/', secure: true, sameSite: 'Lax' });
+    Cookies.set('language', selectedLang, { expires: 365, path: '/', secure: true, sameSite: 'Lax', domain: 'aah.education' });
 
     if (i18n.language !== selectedLang) {
       i18n.changeLanguage(selectedLang).then(() => {
@@ -39,10 +39,10 @@ export default function LanguageSelector() {
 
     if (selectedLang === 'en') {
       setCurrency('USD');
-      Cookies.set('currency', 'USD', { expires: 365, path: '/', secure: true, sameSite: 'Lax' });
+      Cookies.set('currency', 'USD', { expires: 365, path: '/', secure: true, sameSite: 'Lax', domain: 'aah.education' });
     } else if (selectedLang === 'de') {
       setCurrency('EUR');
-      Cookies.set('currency', 'EUR', { expires: 365, path: '/', secure: true, sameSite: 'Lax' });
+      Cookies.set('currency', 'EUR', { expires: 365, path: '/', secure: true, sameSite: 'Lax', domain: 'aah.education' });
     }
 
     gtag.event({
