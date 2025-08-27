@@ -21,6 +21,12 @@ export default function CurrencySelector() {
   /*******************************************************
    * methods
    */
+  const handleClickOutside = (event: MouseEvent) => {
+    if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
+      setIsOpen(false);
+    }
+  };
+
   const handleCurrencySelect = (selectedCurrency: string) => {
     setCurrency(selectedCurrency);
     setIsOpen(false);
@@ -39,17 +45,10 @@ export default function CurrencySelector() {
    */
   useEffect(() => {
     const storedCurrency = getCookie('currency');
-    if (storedCurrency) {
-      setCurrency(storedCurrency);
+    if (!storedCurrency) {
+      setCookie('currency', "USD");
     }
-  }, [setCurrency]);
-
-  useEffect(() => {
-    const handleClickOutside = (event: MouseEvent) => {
-      if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
-        setIsOpen(false);
-      }
-    };
+    setCurrency(storedCurrency ?? "USD");
 
     document.addEventListener('mousedown', handleClickOutside);
     return () => {
