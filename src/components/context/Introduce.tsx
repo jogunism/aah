@@ -31,13 +31,13 @@ export default async function Introduce() {
               <strong>{t('MAIN_WE_ARE')}</strong>
             </p>
             <ul className="list-disc pl-12 ml-0">
-              <li>{t('MAIN_WE_ARE_DESCRIPTION_1')}</li>
-              <li>{t('MAIN_WE_ARE_DESCRIPTION_2')}</li>
-              <li>{t('MAIN_WE_ARE_DESCRIPTION_3')}</li>
-              <li>{t('MAIN_WE_ARE_DESCRIPTION_4')}</li>
-              <li>{t('MAIN_WE_ARE_DESCRIPTION_5')}</li>
-              <li>{t('MAIN_WE_ARE_DESCRIPTION_6')}</li>
-              <li>{t('MAIN_WE_ARE_DESCRIPTION_7')}</li>
+              <li dangerouslySetInnerHTML={{ __html: t('MAIN_WE_ARE_DESCRIPTION_1') }} />
+              <li dangerouslySetInnerHTML={{ __html: t('MAIN_WE_ARE_DESCRIPTION_2') }} />
+              <li dangerouslySetInnerHTML={{ __html: t('MAIN_WE_ARE_DESCRIPTION_3') }} />
+              <li dangerouslySetInnerHTML={{ __html: t('MAIN_WE_ARE_DESCRIPTION_4') }} />
+              <li dangerouslySetInnerHTML={{ __html: t('MAIN_WE_ARE_DESCRIPTION_5') }} />
+              <li dangerouslySetInnerHTML={{ __html: t('MAIN_WE_ARE_DESCRIPTION_6') }} />
+              <li dangerouslySetInnerHTML={{ __html: t('MAIN_WE_ARE_DESCRIPTION_7') }} />
             </ul>
             {/* ./body */}
           </div>
