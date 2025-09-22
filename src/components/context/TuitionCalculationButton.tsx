@@ -35,7 +35,7 @@ const TuitionCalculationButton: React.FC = () => {
   return (
     <>
       <button
-        className="bg-[#3A6EA5] hover:bg-[#2A5E95] text-white font-semibold py-3 px-5 rounded"
+        className="bg-aah-blue hover:bg-aah-blue text-white font-semibold py-3 px-5 rounded"
         onClick={openModal}
       >
         {t('TUITION_CALCULATOR')}

@@ -128,7 +128,7 @@
   "***** TUITION *****": "",
 
   "TUITION_TITLE": "Studiengebühren",
-  "TUITION_DESCRIPTION": "Hier finden Sie die Kosteninformationen zu den Kursen von aah! education.",
+  "TUITION_DESCRIPTION": "Hier finden Sie die Kosteninformationen zu den Kursen von aah! education.\nDie angezeigten Beträge sind die Mindest- bis Höchstgebühren je Schule und Programm, und die tatsächlichen Kosten sind in den meisten Fällen niedriger als diese. \nBitte kontaktieren Sie uns direkt für detailliertere Informationen.",
   "TUITION_SHORT_TERM_TITLE": "Kurzzeitprogramm",
   "TUITION_SHORT_TERM_DESCRIPTION": "Eine kurze, aber intensive Erfahrung, die sich gut in Ihren Urlaub einfügt. Ideal für alle, die das Studium im Ausland ausprobieren möchten, bevor sie sich für einen längeren Aufenthalt entscheiden.",
   "TUITION_LONG_TERM_TITLE": "Langzeitprogramm",
@@ -153,7 +153,7 @@
   "***** CONTACTUS *****": "",
 
   "CONTACTUS_TITLE": "Kontakt",
-  "CONTACTUS_DESCRIPTION": "Wenn Sie Fragen haben, können Sie uns gerne kontaktieren. Wir werden Ihre Frage so schnell wie möglich beantworten.",
+  "CONTACTUS_DESCRIPTION": "Wenn Sie Fragen haben, können Sie uns gerne kontaktieren. Sie können eine Anfrage über das untenstehende Formular senden oder eine E-Mail direkt senden, indem Sie <a href=\"mailto:hyunwoo@aah-e.net\" class=\"text-aah-red font-bold italic underline\">hier</a> klicken.\nWir werden Ihre Frage so schnell wie möglich beantworten.",
   "CONTACTUS_FIRST_NAME": "Vorname",
   "CONTACTUS_LAST_NAME": "Nachname",
   "CONTACTUS_NAME_REQUIRED": "Name erforderlich.",
@@ -165,9 +165,9 @@
   "CONTACTUS_PROGRAMS_SHORT_TERMS": "Kurzzeitaufenthalte (3 Wochen)",
   "CONTACTUS_PROGRAMS_LONG_TERMS": "Langzeitaufenthalte (3 Monate)",
   "CONTACTUS_CONTENT": "Inhalt",
-  "CONTACTUS_CONTENT_PLACEHOLDER": "Es wäre hilfreich, wenn Sie nähere Informationen geben könnten. \nZum Beispiel: \n- Waren Sie schon einmal in Südkorea? \n- Wie ist Ihr Niveau in Koreanisch? usw.",
+  "CONTACTUS_CONTENT_PLACEHOLDER": "Teilen Sie gerne alle Fragen oder Informationen mit, die uns helfen könnten, Sie besser zu unterstützen. \nZum Beispiel: \n- Für welches Programm interessieren Sie sich? \n- Wann möchten Sie anfangen? \n- Haben Sie spezielle Fragen? usw.",
   "CONTACTUS_CONTENT_REQUIRED": "Inhalt erforderlich.",
-  "CONTACTUS_GDPR": "Ich stimme der Erhebung und Verarbeitung meiner personenbezogenen Daten zu.",
+  "CONTACTUS_GDPR": "Die Inhalte der Anfrage werden nicht separat gespeichert.",
   "CONTACTUS_SEND": "Senden",
   "CONTACTUS_FORM_INVALID": "Bitte überprüfen Sie die Werte im Formular.",
   "CONTACTUS_SEND_SUCCESS": "Erfolgreich gesendet."

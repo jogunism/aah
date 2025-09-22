@@ -129,7 +129,7 @@
   "***** TUITION *****": "",
 
   "TUITION_TITLE": "Tuition fee",
-  "TUITION_DESCRIPTION": "Here is the cost information for the courses provided by aah! education.",
+  "TUITION_DESCRIPTION": "Here is the cost information for the courses provided by aah! education.\nThe amounts shown are the minimum to maximum fees by school and program, and actual costs are typically lower than these in most cases. \nPlease contact us directly for more detailed information.",
   "TUITION_SHORT_TERM_TITLE": "Short-term Program",
   "TUITION_SHORT_TERM_DESCRIPTION": "A short but intensive experience that fits well into your vacation. Great for those who want to explore studying abroad before committing longer.",
   "TUITION_LONG_TERM_TITLE": "Long-term Program",
@@ -154,7 +154,7 @@
   "***** CONTACTUS *****": "",
 
   "CONTACTUS_TITLE": "Contact Us",
-  "CONTACTUS_DESCRIPTION": "If you have any questions, feel free to contact us. We going to answer your question as soon as possible.",
+  "CONTACTUS_DESCRIPTION": "If you have any questions, feel free to contact us. You can send an inquiry using the form below or send an email directly by clicking <a href=\"mailto:hyunwoo@aah-e.net\" class=\"text-aah-red font-bold italic underline\">here</a>.\nWe going to answer your question as soon as possible.",
   "CONTACTUS_FIRST_NAME": "First name",
   "CONTACTUS_LAST_NAME": "Last name",
   "CONTACTUS_NAME_REQUIRED": "Name required.",
@@ -166,9 +166,9 @@
   "CONTACTUS_PROGRAMS_SHORT_TERMS": "Short terms (3 weeks)",
   "CONTACTUS_PROGRAMS_LONG_TERMS": "Long terms (3 months)",
   "CONTACTUS_CONTENT": "Content",
-  "CONTACTUS_CONTENT_PLACEHOLDER": "It would be helpful if you could provide more detailed information. \nFor example: \n- Have you been to South Korea? \n- What is your level of Korean proficiency? etc.",
+  "CONTACTUS_CONTENT_PLACEHOLDER": "Please feel free to share any questions or information that would help us assist you better. \nFor example: \n- Which program are you interested in? \n- When would you like to start? \n- Do you have any specific questions? etc.",
   "CONTACTUS_CONTENT_REQUIRED": "Content required.",
-  "CONTACTUS_GDPR": "I consent to the collection and processing of my personal data.",
+  "CONTACTUS_GDPR": "The inquiry content will not be stored separately.",
   "CONTACTUS_SEND": "Send",
   "CONTACTUS_FORM_INVALID": "Please check the form values.",
   "CONTACTUS_SEND_SUCCESS": "Sent succesfully."

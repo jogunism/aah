@@ -151,7 +151,7 @@ const TuitionCalculation: React.FC<TuitionCalculationProps> = ({ isOpen, onClose
             <div
               className={`px-6 py-2 rounded-lg text-lg font-semibold transition-all duration-300 ${
                 programType === ProgramType.SHORT
-                  ? 'bg-[#C03F44] text-white shadow-md'
+                  ? 'bg-aah-red text-white shadow-md'
                   : 'bg-gray-200 text-gray-700'
               }`}
             >
@@ -170,7 +170,7 @@ const TuitionCalculation: React.FC<TuitionCalculationProps> = ({ isOpen, onClose
             <div
               className={`px-6 py-2 rounded-lg text-lg font-semibold transition-all duration-300 ${
                 programType === ProgramType.LONG
-                  ? 'bg-[#2A5E95] text-white shadow-md'
+                  ? 'bg-aah-blue text-white shadow-md'
                   : 'bg-gray-200 text-gray-700'
               }`}
             >
@@ -255,7 +255,7 @@ const TuitionCalculation: React.FC<TuitionCalculationProps> = ({ isOpen, onClose
             {t('TUITION_CALCULATOR_MODAL_ESTIMATED_PRICE')}
           </h4>
           <p
-            className={`text-4xl font-bold ${programType === ProgramType.SHORT ? 'text-[#C03F44]' : 'text-[#2A5E95]'}`}
+            className={`text-4xl font-bold ${programType === ProgramType.SHORT ? 'text-aah-red' : 'text-aah-blue'}`}
           >
             {calculatedPrice !== null ? `${currency === 'USD' ? '$' : '€'}${formatPrice(calculatedPrice, i18n.language)}` : '-'}
           </p>

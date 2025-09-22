@@ -37,8 +37,8 @@ export default function ProgramesButton({ programType }: ProgramesButtonProps) {
 
   const colorClass =
     programType === ProgramType.SHORT
-      ? 'bg-[#D8484D] hover:bg-[#C03F44]'
-      : 'bg-[#3A6EA5] hover:bg-[#2A5E95]';
+      ? 'bg-aah-red hover:bg-aah-red'
+      : 'bg-aah-blue hover:bg-aah-blue';
   const titleKey =
     programType === ProgramType.SHORT ? 'PROGRAMS_SHORT_BUTTON' : 'PROGRAMS_LONG_BUTTON';
   const descriptionKey =

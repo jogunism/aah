@@ -27,14 +27,12 @@ export default function Contactus() {
     email: '',
     semester: -1,
     content: '',
-    gdpr: false,
-  } as Contactus);
+  });
 
   const [errors, setErrors] = useState<ContactusValidation>({
     name: false,
     email: false,
     content: false,
-    gdpr: false,
   });
 
   const [isProgramOpen, setIsProgramOpen] = useState(false);
@@ -53,7 +51,6 @@ export default function Contactus() {
     const nameValid = formValues.firstName.trim() !== '' || formValues.lastName.trim() !== '';
     const emailValue = formValues.email.trim();
     const contentValid = formValues.content.trim() !== '';
-    const gdprValid = formValues.gdpr;
 
     let emailError: false | 'required' | 'invalid' = false;
 
@@ -67,10 +64,9 @@ export default function Contactus() {
       name: !nameValid,
       email: emailError,
       content: !contentValid,
-      gdpr: !gdprValid,
     });
 
-    return nameValid && !emailError && contentValid && gdprValid;
+    return nameValid && !emailError && contentValid;
   };
 
   const handleNameBlur = () => {
@@ -104,11 +100,6 @@ export default function Contactus() {
     }
   };
 
-  const handleGdprBlur = () => {
-    if (formValues.gdpr) {
-      setErrors(prev => ({ ...prev, gdpr: false }));
-    }
-  };
 
   const getInputClass = (hasError: boolean, isPending: boolean) =>
     `mt-1 block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 border focus:ring-2 focus:ring-indigo-600 sm:text-sm ${
@@ -125,12 +116,17 @@ export default function Contactus() {
   };
 
   const resetFormValues = () => {
-    setFormValues(prev => ({ ...prev, gdpr: false }));
+    setFormValues({
+      firstName: '',
+      lastName: '',
+      email: '',
+      semester: -1,
+      content: '',
+    });
     setErrors({
       name: false,
       email: false,
       content: false,
-      gdpr: false,
     });
   };
 
@@ -188,9 +184,11 @@ export default function Contactus() {
             {/* body */}
 
             <div className="border-b border-gray-900/10 pb-12">
-              <p className="mt-1 text-md/6 text-gray-600 text-center">
-                {t('CONTACTUS_DESCRIPTION')}
-              </p>
+              <p
+                className="mt-1 text-md/6 text-gray-600 text-center"
+                style={{ whiteSpace: "pre-line" }}
+                dangerouslySetInnerHTML={{ __html: t('CONTACTUS_DESCRIPTION') }}
+              />
 
               <div className="mt-10 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
                 <div className="sm:col-span-3">
@@ -343,20 +341,10 @@ export default function Contactus() {
                   </div>
 
                   <div className="mt-3 text-sm text-gray-500">
-                    <label htmlFor="gdpr" className="text-sm text-gray-700 flex items-center gap-2">
-                      <input
-                        id="gdpr"
-                        type="checkbox"
-                        disabled={pending}
-                        checked={formValues.gdpr}
-                        onChange={e => setFormValues({ ...formValues, gdpr: e.target.checked })}
-                        onBlur={handleGdprBlur}
-                        className={`h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-600 ${errors.gdpr ? 'outline outline-1 outline-red-700' : ''}`}
-                      />
-                      <span className={errors.gdpr ? 'text-red-700' : ''}>
-                        {t('CONTACTUS_GDPR')}
-                      </span>
-                    </label>
+                    <p className="text-sm text-red-600 italic flex items-center gap-2">
+                      <span className="text-red-600">※</span>
+                      {t('CONTACTUS_GDPR')}
+                    </p>
                   </div>
                 </div>
               </div>
@@ -365,7 +353,7 @@ export default function Contactus() {
             <div className="mt-6 flex items-center justify-end gap-x-6">
               <button
                 disabled={pending}
-                className="bg-[#D8484D] hover:bg-[#C03F44] text-white py-2 px-4 rounded-lg shadow-md transition duration-200 w-30 h-13 flex items-center justify-center"
+                className="bg-aah-red hover:bg-aah-red text-white py-2 px-4 rounded-lg shadow-md transition duration-200 w-30 h-13 flex items-center justify-center"
                 onClick={handleSendButtonClick}
               >
                 {pending ? <FaSpinner className="animate-spin" size={18} /> : t('CONTACTUS_SEND')}

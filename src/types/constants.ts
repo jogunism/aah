@@ -27,7 +27,6 @@ export interface ContactusValidation {
   name: boolean;
   email: boolean | string;
   content: boolean;
-  gdpr: boolean;
 }
 
 export interface Contactus {
@@ -36,7 +35,6 @@ export interface Contactus {
   email: string;
   semester: number;
   content: string;
-  gdpr: boolean;
 }
 
 export interface Version {

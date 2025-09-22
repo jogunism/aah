@@ -44,13 +44,13 @@ export default function Price() {
           </h2>
           <div className="text-lg text-gray-800 ">
             {/* body */}
-            <p className="mb-5 text-center">{t('TUITION_DESCRIPTION')}</p>
+            <p className="mb-5 text-center" style={{ whiteSpace: "pre-line" }}>{t('TUITION_DESCRIPTION')}</p>
 
             <div className="grid md:grid-cols-2 gap-6">
               {/* Short-term box */}
               <div className="bg-white border border-gray-200 rounded-2xl p-6 shadow-sm flex flex-col justify-between h-full">
                 <div>
-                  <h4 className="text-xl font-extrabold mb-4 text-[#C03F44] border-b-2 border-[#C03F44] pb-1">
+                  <h4 className="text-xl font-extrabold mb-4 text-aah-red border-b-2 border-aah-red pb-1">
                     {t('TUITION_SHORT_TERM_TITLE')}
                   </h4>
                   <p className="mb-4 text-base text-gray-700">
@@ -74,7 +74,7 @@ export default function Price() {
               {/* Long-term box */}
               <div className="bg-white border border-gray-200 rounded-2xl p-6 shadow-sm flex flex-col justify-between h-full">
                 <div>
-                  <h4 className="text-xl font-extrabold mb-4 text-[#2A5E95] border-b-2 border-[#2A5E95] pb-1">
+                  <h4 className="text-xl font-extrabold mb-4 text-aah-blue border-b-2 border-aah-blue pb-1">
                     {t('TUITION_LONG_TERM_TITLE')}
                   </h4>
                   <p className="mb-4 text-base text-gray-700">
