@@ -4,9 +4,13 @@
   "private": true,
   "scripts": {
     "dev": "next dev --turbopack",
-    "build": "next build",
+    "build": "npm run sitemap:generate && next build",
+    "build:only": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "sitemap:update": "node scripts/update-sitemap.js",
+    "sitemap:generate": "node scripts/generate-sitemap.js",
+    "prebuild": "npm run sitemap:generate"
   },
   "dependencies": {
     "axios": "^1.10.0",
