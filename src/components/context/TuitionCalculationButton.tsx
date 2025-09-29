@@ -3,7 +3,7 @@
 import React, { useState } from 'react';
 // i18n client
 import { useClientTranslation } from '@/lib/useClientTranslation';
-import * as gtag from '@/lib/gtag';
+import { trackTuitionCalculationOpen, trackTuitionCalculationClose } from '@/lib/gtag';
 
 import TuitionCalculation from '@/components/modal/TuitionCalculation';
 
@@ -17,13 +17,12 @@ const TuitionCalculationButton: React.FC = () => {
    */
   const openModal = () => {
     setIsModalOpen(true);
-    gtag.event({
-      action: 'click',
-      category: 'tuition',
-      label: 'price_calculation',
-    });
+    trackTuitionCalculationOpen('tuition_button');
   };
-  const closeModal = () => setIsModalOpen(false);
+  const closeModal = () => {
+    setIsModalOpen(false);
+    trackTuitionCalculationClose('close_button');
+  };
 
   /*******************************************************
    * render

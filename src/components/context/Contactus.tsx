@@ -12,6 +12,8 @@ import { FaSpinner } from 'react-icons/fa';
 import { toast } from '@lib/toast';
 // constants
 import type { ContactusValidation, Contactus } from '@/types/constants';
+// Analytics
+import { trackContactFormSubmit } from '@/lib/gtag';
 
 /**
  * Contact Us
@@ -111,6 +113,16 @@ export default function Contactus() {
       toast.error(t('CONTACTUS_FORM_INVALID'));
       return;
     }
+
+    // Track contact form submission
+    trackContactFormSubmit('contact_us', {
+      program_type: formValues.semester === 0 ? 'short_term' : formValues.semester === 1 ? 'long_term' : 'not_specified',
+      has_first_name: !!formValues.firstName,
+      has_last_name: !!formValues.lastName,
+      has_email: !!formValues.email,
+      has_content: !!formValues.content,
+      content_length: formValues.content.length,
+    });
 
     send(formValues, t);
   };

@@ -5,7 +5,7 @@ import { useTranslation } from 'react-i18next';
 // import Cookies from 'js-cookie';
 import { getCookie, setCookie } from '@/lib/cookie';
 import { useRouter } from 'next/navigation';
-import * as gtag from '@/lib/gtag';
+import { trackLanguageChange, trackCurrencyChange } from '@/lib/gtag';
 import { useCurrencyStore } from '@/store/currencyStore';
 
 export default function LanguageSelector() {
@@ -27,6 +27,9 @@ export default function LanguageSelector() {
    * methods
    */
   const handleLanguageChange = (selectedLang: string) => {
+    const previousLang = lang;
+    const currentCurrency = getCookie('currency');
+
     setLang(selectedLang);
     setIsOpen(false);
 
@@ -38,19 +41,25 @@ export default function LanguageSelector() {
       });
     }
 
+    // Track language change
+    trackLanguageChange(selectedLang, previousLang);
+
+    // Handle currency change based on language
+    let newCurrency = '';
     if (selectedLang === 'en') {
+      newCurrency = 'USD';
       setCurrency('USD');
       setCookie('currency', 'USD');
     } else if (selectedLang === 'de') {
+      newCurrency = 'EUR';
       setCurrency('EUR');
       setCookie('currency', 'EUR');
     }
 
-    gtag.event({
-      action: 'change_language',
-      category: 'header',
-      label: selectedLang,
-    });
+    // Track currency change if it actually changed
+    if (newCurrency && currentCurrency !== newCurrency) {
+      trackCurrencyChange(newCurrency, currentCurrency || undefined);
+    }
   };
 
   /*******************************************************

@@ -2,7 +2,7 @@
 
 import { useEffect, useState, useRef, useCallback } from 'react';
 import { getCookie, setCookie } from '@/lib/cookie';
-import * as gtag from '@/lib/gtag';
+import { trackCurrencyChange } from '@/lib/gtag';
 import { useCurrencyStore } from '@/store/currencyStore';
 import { FaDollarSign, FaEuroSign } from 'react-icons/fa';
 
@@ -28,16 +28,13 @@ export default function CurrencySelector() {
   }, []);
 
   const handleCurrencySelect = (selectedCurrency: string) => {
+    const previousCurrency = currency;
     setCurrency(selectedCurrency);
     setIsOpen(false);
 
     setCookie('currency', selectedCurrency);
 
-    gtag.event({
-      action: 'change_currency',
-      category: 'header',
-      label: selectedCurrency,
-    });
+    trackCurrencyChange(selectedCurrency, previousCurrency);
   };
 
   /*******************************************************

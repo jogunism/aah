@@ -13,6 +13,8 @@ import { useCurrencyStore } from '@/store/currencyStore';
 import { retrieveCurrencyRate, retrieveUniversityList } from '@/api';
 // Utils
 import { formatPrice } from '@/utils';
+// Analytics
+import { trackTuitionCalculationSubmit, event } from '@/lib/gtag';
 
 interface TuitionCalculationProps {
   isOpen: boolean;
@@ -61,6 +63,16 @@ const TuitionCalculation: React.FC<TuitionCalculationProps> = ({ isOpen, onClose
     (type: ProgramType) => {
       setProgramType(type);
 
+      // Track program type selection
+      event({
+        action: 'program_type_select',
+        category: 'tuition_calculator',
+        label: type,
+        custom_parameters: {
+          program_type: type,
+        },
+      });
+
       let list: University[] = [];
       switch (type) {
         case ProgramType.SHORT:
@@ -82,6 +94,18 @@ const TuitionCalculation: React.FC<TuitionCalculationProps> = ({ isOpen, onClose
   const handleUniversitySelect = (university: University) => {
     setSelectedUniversity(university);
     setIsDropdownOpen(false);
+
+    // Track university selection
+    event({
+      action: 'university_select',
+      category: 'tuition_calculator',
+      label: university.title,
+      custom_parameters: {
+        university_id: university.id,
+        university_name: university.title,
+        program_type: programType,
+      },
+    });
   };
 
   /*******************************************************
@@ -111,14 +135,26 @@ const TuitionCalculation: React.FC<TuitionCalculationProps> = ({ isOpen, onClose
 
       if (price) {
         const calculated = Math.ceil(price / currencyRate + 70000 / currencyRate);
-        setCalculatedPrice(Math.ceil(calculated / 10) * 10);
+        const finalPrice = Math.ceil(calculated / 10) * 10;
+        setCalculatedPrice(finalPrice);
+
+        // Track tuition calculation completion
+        trackTuitionCalculationSubmit({
+          university_id: selectedUniversity.id,
+          university_name: selectedUniversity.title,
+          program_type: programType,
+          currency: currency,
+          calculated_price: finalPrice,
+          original_price_krw: price,
+          currency_rate: currencyRate,
+        });
       } else {
         setCalculatedPrice(null);
       }
     } else {
       setCalculatedPrice(null);
     }
-  }, [selectedUniversity, currencyRate, programType]);
+  }, [selectedUniversity, currencyRate, programType, currency]);
 
   /*******************************************************
    * render
