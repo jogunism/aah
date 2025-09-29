@@ -14,7 +14,7 @@ type GTagEvent = {
   category: string;
   label?: string;
   value?: number;
-  custom_parameters?: Record<string, any>;
+  custom_parameters?: Record<string, string | number | boolean | undefined | null>;
 };
 
 // https://developers.google.com/analytics/devguides/collection/gtagjs/events
@@ -94,7 +94,7 @@ export const trackTuitionCalculationOpen = (source?: string) => {
   });
 };
 
-export const trackTuitionCalculationSubmit = (formData: Record<string, any>) => {
+export const trackTuitionCalculationSubmit = (formData: Record<string, string | number | boolean | undefined | null>) => {
   event({
     action: 'tuition_calculation_submit',
     category: 'conversion',
@@ -142,7 +142,7 @@ export const trackProgramDetailsOpen = (programName: string, detailsType: 'short
 };
 
 // Contact form tracking
-export const trackContactFormSubmit = (formType: string, formData?: Record<string, any>) => {
+export const trackContactFormSubmit = (formType: string, formData?: Record<string, string | number | boolean | undefined | null>) => {
   event({
     action: 'contact_form_submit',
     category: 'conversion',
