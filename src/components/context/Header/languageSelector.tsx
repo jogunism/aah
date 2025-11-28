@@ -5,6 +5,7 @@ import { useRouter, usePathname } from 'next/navigation';
 import { trackLanguageChange, trackCurrencyChange } from '@/lib/gtag';
 import { useCurrencyStore } from '@/store/currencyStore';
 import { setCookie, getCookie } from '@/lib/cookie';
+import i18n from '@/lib/i18n.client';
 
 interface LanguageSelectorProps {
   currentLang: string;
@@ -13,6 +14,7 @@ interface LanguageSelectorProps {
 export default function LanguageSelector({ currentLang }: LanguageSelectorProps) {
   const { setCurrency } = useCurrencyStore();
   const [isOpen, setIsOpen] = useState(false);
+  const [activeLang, setActiveLang] = useState(currentLang);
   const router = useRouter();
   const pathname = usePathname();
   const dropdownRef = useRef<HTMLDivElement>(null);
@@ -22,13 +24,21 @@ export default function LanguageSelector({ currentLang }: LanguageSelectorProps)
     { code: 'de', label: '🇩🇪 DE' },
   ];
 
-  const selectedLanguage = languages.find(l => l.code === currentLang);
+  // pathname이 바뀌면 activeLang도 동기화
+  useEffect(() => {
+    const langFromPath = pathname.match(/^\/(en|de)/)?.[1];
+    if (langFromPath && langFromPath !== activeLang) {
+      setActiveLang(langFromPath);
+    }
+  }, [pathname, activeLang]);
+
+  const selectedLanguage = languages.find(l => l.code === activeLang);
 
   /*******************************************************
    * methods
    */
   const handleLanguageChange = (selectedLang: string) => {
-    if (selectedLang === currentLang) {
+    if (selectedLang === activeLang) {
       setIsOpen(false);
       return;
     }
@@ -38,7 +48,7 @@ export default function LanguageSelector({ currentLang }: LanguageSelectorProps)
     setIsOpen(false);
 
     // Track language change
-    trackLanguageChange(selectedLang, currentLang);
+    trackLanguageChange(selectedLang, activeLang);
 
     // Handle currency change based on language
     let newCurrency = '';
@@ -58,18 +68,19 @@ export default function LanguageSelector({ currentLang }: LanguageSelectorProps)
     }
 
     // URL 경로 변경 (예: /en/about → /de/about)
-    const newPathname = pathname.replace(/^\/(en|de)/, `/${selectedLang}`);
-    const isModalPath = pathname.includes('/programs/');
+    // 현재 브라우저 URL에서 직접 가져옴 (history API 사용 시 pathname이 업데이트되지 않으므로)
+    const currentPath = window.location.pathname;
+    const newPathname = currentPath.replace(/^\/(en|de)/, `/${selectedLang}`);
+    const isModalPath = currentPath.includes('/programs/');
 
     if (isModalPath) {
-      // 모달 URL인 경우: 먼저 메인 페이지로 이동 후 모달 URL로 push
-      // 이렇게 해야 Intercepting Route가 제대로 작동
-      router.replace(`/${selectedLang}`, { scroll: false });
-      setTimeout(() => {
-        router.push(newPathname, { scroll: false });
-      }, 100);
+      // 모달 URL인 경우: URL만 변경하고 i18n 언어 변경 (모달 유지)
+      // 클라이언트 컴포넌트이므로 i18n.changeLanguage()로 UI가 업데이트됨
+      window.history.replaceState(null, '', newPathname);
+      i18n.changeLanguage(selectedLang);
+      setActiveLang(selectedLang);
     } else {
-      // 일반 페이지면 언어만 변경
+      // 일반 페이지면 Next.js router 사용
       router.replace(newPathname, { scroll: false });
     }
   };
@@ -124,7 +135,7 @@ export default function LanguageSelector({ currentLang }: LanguageSelectorProps)
                 key={language.code}
                 onClick={() => handleLanguageChange(language.code)}
                 className={`px-4 py-2 text-gray-700 cursor-pointer ${
-                  language.code === currentLang ? 'bg-gray-200' : 'hover:bg-gray-100'
+                  language.code === activeLang ? 'bg-gray-200' : 'hover:bg-gray-100'
                 }`}
               >
                 {language.label}

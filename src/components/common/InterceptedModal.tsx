@@ -2,16 +2,21 @@
 
 import React, { useEffect, useRef, useCallback, ReactNode } from 'react';
 import { useRouter } from 'next/navigation';
+import { useTranslation } from 'react-i18next';
 import { lockScroll, unlockScroll } from '@/lib/scrollLock';
 
 interface InterceptedModalProps {
   children: ReactNode;
   title?: string;
+  titleKey?: string;
 }
 
-const InterceptedModal: React.FC<InterceptedModalProps> = ({ children, title }) => {
+const InterceptedModal: React.FC<InterceptedModalProps> = ({ children, title, titleKey }) => {
   const router = useRouter();
+  const { t } = useTranslation();
   const modalRef = useRef<HTMLDivElement>(null);
+
+  const displayTitle = titleKey ? t(titleKey) : title;
 
   const onClose = useCallback(() => {
     router.back();
@@ -55,7 +60,7 @@ const InterceptedModal: React.FC<InterceptedModalProps> = ({ children, title }) 
           >
             &times;
           </button>
-          {title && <h2 className="text-xl font-bold text-gray-700 py-6 px-6 text-left">{title}</h2>}
+          {displayTitle && <h2 className="text-xl font-bold text-gray-700 py-6 px-6 text-left">{displayTitle}</h2>}
           <div className="max-h-[80vh] overflow-y-auto">{children}</div>
         </div>
       </div>

@@ -1,21 +1,11 @@
 import ProgramContentShort from '@/components/programs/ProgramContentShort';
 import InterceptedModal from '@/components/common/InterceptedModal';
-import { getTranslation } from '@/lib/i18n.server';
 
-export const dynamic = 'force-dynamic';
-
-interface PageProps {
-  params: Promise<{ lang: string }>;
-}
-
-export default async function ShortProgramModal({ params }: PageProps) {
-  const { lang } = await params;
-  const { t } = await getTranslation(lang);
-
+export default function ShortProgramModal() {
   return (
-    <InterceptedModal title={t('PROGRAM_MODAL_SHORT_TERM')}>
+    <InterceptedModal titleKey="PROGRAM_MODAL_SHORT_TERM">
       <div className="p-6">
-        <ProgramContentShort lang={lang} />
+        <ProgramContentShort />
       </div>
     </InterceptedModal>
   );

@@ -1,12 +1,29 @@
+'use client';
+
 import Image from 'next/image';
-import { getTranslation } from '@/lib/i18n.server';
+import { useTranslation } from 'react-i18next';
+import { useEffect, useState } from 'react';
 
 interface ProgramContentShortProps {
-  lang: string;
+  lang?: string;
 }
 
-export default async function ProgramContentShort({ lang }: ProgramContentShortProps) {
-  const { t } = await getTranslation(lang);
+export default function ProgramContentShort({ lang }: ProgramContentShortProps) {
+  const { t, i18n } = useTranslation();
+  const [mounted, setMounted] = useState(false);
+
+  // 서버에서 전달된 lang이 있으면 동기화
+  useEffect(() => {
+    if (lang && i18n.language !== lang) {
+      i18n.changeLanguage(lang);
+    }
+    setMounted(true);
+  }, [lang, i18n]);
+
+  // hydration mismatch 방지: 마운트 전에는 빈 화면 표시
+  if (!mounted) {
+    return <div className="p-2 space-y-12 min-h-[500px]" />;
+  }
 
   return (
     <div className="p-2 space-y-12">
