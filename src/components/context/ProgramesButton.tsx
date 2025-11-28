@@ -1,10 +1,10 @@
 'use client';
 
-import React, { useState } from 'react';
+import React from 'react';
+import Link from 'next/link';
+import { usePathname } from 'next/navigation';
 import { useClientTranslation } from '@/lib/useClientTranslation';
 import { trackProgramDetailsOpen } from '@/lib/gtag';
-// UI Components
-import ProgramDetails from '@/components/modal/ProgramDetails';
 // type
 import { ProgramType } from '@/types/constants';
 
@@ -14,22 +14,15 @@ interface ProgramesButtonProps {
 
 export default function ProgramesButton({ programType }: ProgramesButtonProps) {
   const { t, ready } = useClientTranslation();
-  const [isModalOpen, setIsModalOpen] = useState(false);
-  const [currentProgramType, setCurrentProgramType] = useState<ProgramType | null>(null);
+  const pathname = usePathname();
 
-  const openModal = (type: ProgramType) => {
-    setCurrentProgramType(type);
-    setIsModalOpen(true);
+  // 현재 언어 추출 (예: /en → en, /de → de)
+  const lang = pathname.split('/')[1] || 'en';
 
-    const programName = type === ProgramType.SHORT ? 'short-term' : 'long-term';
-    const detailsType = type === ProgramType.SHORT ? 'short' : 'long';
-
+  const handleClick = () => {
+    const programName = programType === ProgramType.SHORT ? 'short-term' : 'long-term';
+    const detailsType = programType === ProgramType.SHORT ? 'short' : 'long';
     trackProgramDetailsOpen(programName, detailsType);
-  };
-
-  const closeModal = () => {
-    setIsModalOpen(false);
-    setCurrentProgramType(null);
   };
 
   const colorClass =
@@ -41,25 +34,22 @@ export default function ProgramesButton({ programType }: ProgramesButtonProps) {
   const descriptionKey =
     programType === ProgramType.SHORT ? 'PROGRAMS_SHORT_DESCRIPTION' : 'PROGRAMS_LONG_DESCRIPTION';
 
+  // URL path (short-term → short, long-term → long)
+  const programPath = programType === ProgramType.SHORT ? 'short' : 'long';
+
   if (!ready) {
     return null;
   }
 
   return (
-    <>
-      <button
-        className={`flex-1 shadow-lg text-gray-100 rounded-xl w-full p-6 flex flex-col items-start ${colorClass}`}
-        onClick={() => openModal(programType)}
-      >
-        <h1 className="font-semibold text-center w-full mt-3 mb-5 text-2xl">{t(titleKey)}</h1>
-        <p className="text-gray-100 text-base h-30 md:min-h-24">{t(descriptionKey)}</p>
-      </button>
-
-      <ProgramDetails //
-        isOpen={isModalOpen}
-        onClose={closeModal}
-        programType={currentProgramType}
-      />
-    </>
+    <Link
+      href={`/${lang}/programs/${programPath}`}
+      onClick={handleClick}
+      scroll={false}
+      className={`flex-1 shadow-lg text-gray-100 rounded-xl w-full p-6 flex flex-col items-start ${colorClass}`}
+    >
+      <h1 className="font-semibold text-center w-full mt-3 mb-5 text-2xl">{t(titleKey)}</h1>
+      <p className="text-gray-100 text-base h-30 md:min-h-24">{t(descriptionKey)}</p>
+    </Link>
   );
 }

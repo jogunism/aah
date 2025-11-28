@@ -1,19 +1,20 @@
 'use client';
 
-import { useEffect, useState, useRef } from 'react';
-import { useTranslation } from 'react-i18next';
-// import Cookies from 'js-cookie';
-import { getCookie, setCookie } from '@/lib/cookie';
-import { useRouter } from 'next/navigation';
+import { useState, useRef, useEffect } from 'react';
+import { useRouter, usePathname } from 'next/navigation';
 import { trackLanguageChange, trackCurrencyChange } from '@/lib/gtag';
 import { useCurrencyStore } from '@/store/currencyStore';
+import { setCookie, getCookie } from '@/lib/cookie';
 
-export default function LanguageSelector() {
-  const { i18n } = useTranslation();
+interface LanguageSelectorProps {
+  currentLang: string;
+}
+
+export default function LanguageSelector({ currentLang }: LanguageSelectorProps) {
   const { setCurrency } = useCurrencyStore();
-  const [lang, setLang] = useState<string>('');
   const [isOpen, setIsOpen] = useState(false);
   const router = useRouter();
+  const pathname = usePathname();
   const dropdownRef = useRef<HTMLDivElement>(null);
 
   const languages = [
@@ -21,28 +22,23 @@ export default function LanguageSelector() {
     { code: 'de', label: '🇩🇪 DE' },
   ];
 
-  const selectedLanguage = languages.find(l => l.code === lang);
+  const selectedLanguage = languages.find(l => l.code === currentLang);
 
   /*******************************************************
    * methods
    */
   const handleLanguageChange = (selectedLang: string) => {
-    const previousLang = lang;
-    const currentCurrency = getCookie('currency');
-
-    setLang(selectedLang);
-    setIsOpen(false);
-
-    setCookie('language', selectedLang);
-
-    if (i18n.language !== selectedLang) {
-      i18n.changeLanguage(selectedLang).then(() => {
-        router.refresh();
-      });
+    if (selectedLang === currentLang) {
+      setIsOpen(false);
+      return;
     }
 
+    const currentCurrency = getCookie('currency');
+
+    setIsOpen(false);
+
     // Track language change
-    trackLanguageChange(selectedLang, previousLang);
+    trackLanguageChange(selectedLang, currentLang);
 
     // Handle currency change based on language
     let newCurrency = '';
@@ -60,20 +56,27 @@ export default function LanguageSelector() {
     if (newCurrency && currentCurrency !== newCurrency) {
       trackCurrencyChange(newCurrency, currentCurrency || undefined);
     }
+
+    // URL 경로 변경 (예: /en/about → /de/about)
+    const newPathname = pathname.replace(/^\/(en|de)/, `/${selectedLang}`);
+    const isModalPath = pathname.includes('/programs/');
+
+    if (isModalPath) {
+      // 모달 URL인 경우: 먼저 메인 페이지로 이동 후 모달 URL로 push
+      // 이렇게 해야 Intercepting Route가 제대로 작동
+      router.replace(`/${selectedLang}`, { scroll: false });
+      setTimeout(() => {
+        router.push(newPathname, { scroll: false });
+      }, 100);
+    } else {
+      // 일반 페이지면 언어만 변경
+      router.replace(newPathname, { scroll: false });
+    }
   };
 
   /*******************************************************
    * lifecycle hooks
    */
-  useEffect(() => {
-    const storedLang = getCookie('language');
-    const currentLang = storedLang ?? 'en';
-    setLang(currentLang);
-    if (storedLang && storedLang !== i18n.language) {
-      i18n.changeLanguage(storedLang);
-    }
-  }, [i18n]);
-
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
       if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
@@ -121,7 +124,7 @@ export default function LanguageSelector() {
                 key={language.code}
                 onClick={() => handleLanguageChange(language.code)}
                 className={`px-4 py-2 text-gray-700 cursor-pointer ${
-                  language.code === lang ? 'bg-gray-200' : 'hover:bg-gray-100'
+                  language.code === currentLang ? 'bg-gray-200' : 'hover:bg-gray-100'
                 }`}
               >
                 {language.label}
