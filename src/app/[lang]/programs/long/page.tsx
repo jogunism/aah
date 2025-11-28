@@ -3,6 +3,8 @@ import ProgramContentLong from '@/components/programs/ProgramContentLong';
 import { getTranslation } from '@/lib/i18n.server';
 import { Metadata } from 'next';
 
+export const dynamic = 'force-dynamic';
+
 interface PageProps {
   params: Promise<{ lang: string }>;
 }
