@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useEffect, useRef, ReactNode } from 'react';
+import React, { useEffect, useRef, useCallback, ReactNode } from 'react';
 import { useRouter } from 'next/navigation';
 import { lockScroll, unlockScroll } from '@/lib/scrollLock';
 
@@ -13,9 +13,9 @@ const InterceptedModal: React.FC<InterceptedModalProps> = ({ children, title }) 
   const router = useRouter();
   const modalRef = useRef<HTMLDivElement>(null);
 
-  const onClose = () => {
+  const onClose = useCallback(() => {
     router.back();
-  };
+  }, [router]);
 
   useEffect(() => {
     const handleEscape = (event: KeyboardEvent) => {
@@ -31,7 +31,7 @@ const InterceptedModal: React.FC<InterceptedModalProps> = ({ children, title }) 
       unlockScroll();
       document.removeEventListener('keydown', handleEscape);
     };
-  }, []);
+  }, [onClose]);
 
   const backdropClasses = 'fixed inset-0 z-[999] flex justify-center items-start pt-25 backdrop-blur-sm backdrop-brightness-50';
 

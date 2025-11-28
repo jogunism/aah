@@ -2,6 +2,8 @@ import ProgramContentLong from '@/components/programs/ProgramContentLong';
 import InterceptedModal from '@/components/common/InterceptedModal';
 import { getTranslation } from '@/lib/i18n.server';
 
+export const dynamic = 'force-dynamic';
+
 interface PageProps {
   params: Promise<{ lang: string }>;
 }
