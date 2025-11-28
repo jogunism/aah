@@ -1,5 +1,5 @@
 import { Metadata } from 'next';
-import { ReactNode } from 'react';
+import { ReactNode, Suspense } from 'react';
 import { notFound } from 'next/navigation';
 import ClientWrapper from '../layoutClientWrapper';
 import GoogleAnalytics from '@/components/common/GoogleAnalytics';
@@ -92,7 +92,11 @@ export default async function LangLayout({
   return (
     <html lang={lang}>
       <body>
-        {process.env.NEXT_PUBLIC_GA_ID && <GoogleAnalytics />}
+        {process.env.NEXT_PUBLIC_GA_ID && (
+          <Suspense fallback={null}>
+            <GoogleAnalytics />
+          </Suspense>
+        )}
         <ClientWrapper lang={lang}>
           {children}
           {modal}
