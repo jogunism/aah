@@ -6,6 +6,7 @@ import GoogleAnalytics from '@/components/common/GoogleAnalytics';
 
 import ToastProvider from '@common/ToastProvider';
 import GDPRPopup from '@/components/common/GDPRPopup';
+import MailingListModal from '@/components/common/MailingListModal';
 
 import '../globals.css';
 
@@ -100,6 +101,7 @@ export default async function LangLayout({
         <ClientWrapper lang={lang}>
           {children}
           {modal}
+          <MailingListModal />
         </ClientWrapper>
         <ToastProvider />
         <GDPRPopup />

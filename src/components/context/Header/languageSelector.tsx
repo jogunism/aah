@@ -1,7 +1,7 @@
 'use client';
 
 import { useState, useRef, useEffect } from 'react';
-import { useRouter, usePathname } from 'next/navigation';
+import { usePathname } from 'next/navigation';
 import { trackLanguageChange, trackCurrencyChange } from '@/lib/gtag';
 import { useCurrencyStore } from '@/store/currencyStore';
 import { setCookie, getCookie } from '@/lib/cookie';
@@ -15,7 +15,6 @@ export default function LanguageSelector({ currentLang }: LanguageSelectorProps)
   const { setCurrency } = useCurrencyStore();
   const [isOpen, setIsOpen] = useState(false);
   const [activeLang, setActiveLang] = useState(currentLang);
-  const router = useRouter();
   const pathname = usePathname();
   const dropdownRef = useRef<HTMLDivElement>(null);
 
@@ -71,18 +70,12 @@ export default function LanguageSelector({ currentLang }: LanguageSelectorProps)
     // 현재 브라우저 URL에서 직접 가져옴 (history API 사용 시 pathname이 업데이트되지 않으므로)
     const currentPath = window.location.pathname;
     const newPathname = currentPath.replace(/^\/(en|de)/, `/${selectedLang}`);
-    const isModalPath = currentPath.includes('/programs/');
 
-    if (isModalPath) {
-      // 모달 URL인 경우: URL만 변경하고 i18n 언어 변경 (모달 유지)
-      // 클라이언트 컴포넌트이므로 i18n.changeLanguage()로 UI가 업데이트됨
-      window.history.replaceState(null, '', newPathname);
-      i18n.changeLanguage(selectedLang);
-      setActiveLang(selectedLang);
-    } else {
-      // 일반 페이지면 Next.js router 사용
-      router.replace(newPathname, { scroll: false });
-    }
+    // history.replaceState + i18n.changeLanguage로 언어 변경 (페이지 리렌더 없이)
+    // 이렇게 하면 뉴스레터 모달 등 현재 상태가 유지됨
+    window.history.replaceState(null, '', newPathname);
+    i18n.changeLanguage(selectedLang);
+    setActiveLang(selectedLang);
   };
 
   /*******************************************************

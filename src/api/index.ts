@@ -81,3 +81,31 @@ export const sendContactUs = async (formValues: Contactus) => {
     throw error;
   }
 };
+
+/**
+ * Subscribe to mailing list
+ * @param {string} email - The email address to subscribe
+ */
+export const subscribeMailingList = async (email: string, lang: string) => {
+  try {
+    const response = await http.post('/subscribe', { email, lang });
+    return response.data;
+  } catch (error) {
+    console.error('Error subscribing to mailing list:', error);
+    throw error;
+  }
+};
+
+/**
+ * Cancel mailing list subscription
+ * @param {string} email - The email address to unsubscribe
+ */
+export const cancelSubscription = async (email: string, lang: string) => {
+  try {
+    const response = await http.delete('/subscribe/remove', { data: { email, lang } });
+    return response.data;
+  } catch (error) {
+    console.error('Error canceling subscription:', error);
+    throw error;
+  }
+};
