@@ -8,7 +8,7 @@ import { i18nPromise } from '@/lib/i18n.client';
 import useContactUsStore from '@store/contactusStore';
 // UI Component
 import ParallaxImage from '@common/parallaxImage';
-import { FaSpinner } from 'react-icons/fa';
+import { FaCheck } from 'react-icons/fa';
 import { toast } from '@lib/toast';
 // constants
 import type { ContactusValidation, Contactus } from '@/types/constants';
@@ -19,7 +19,7 @@ import { trackContactFormSubmit } from '@/lib/gtag';
  * Contact Us
  */
 export default function Contactus() {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
   const { send, resetSendStatus, pending, isSuccess } = useContactUsStore();
 
   const [ready, setReady] = useState(false);
@@ -124,7 +124,7 @@ export default function Contactus() {
       content_length: formValues.content.length,
     });
 
-    send(formValues, t);
+    send({ ...formValues, lang: i18n.language });
   };
 
   const resetFormValues = () => {
@@ -151,12 +151,19 @@ export default function Contactus() {
     });
   }, []);
 
+  const handleCloseSuccessModal = () => {
+    resetFormValues();
+    resetSendStatus();
+  };
+
   useEffect(() => {
-    if (isSuccess !== undefined && isSuccess) {
-      resetFormValues();
-      resetSendStatus();
+    if (isSuccess) {
+      const timer = setTimeout(() => {
+        handleCloseSuccessModal();
+      }, 3000);
+      return () => clearTimeout(timer);
     }
-  }, [isSuccess, resetSendStatus]);
+  }, [isSuccess]);
 
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
@@ -365,12 +372,34 @@ export default function Contactus() {
             <div className="mt-6 flex items-center justify-end gap-x-6">
               <button
                 disabled={pending}
-                className="bg-aah-red hover:bg-aah-red text-white py-2 px-4 rounded-lg shadow-md transition duration-200 w-30 h-13 flex items-center justify-center"
+                className="bg-aah-red hover:bg-aah-red text-white py-2 px-4 rounded-lg shadow-md transition duration-200 min-w-[80px] h-13 flex items-center justify-center disabled:opacity-50 whitespace-nowrap"
                 onClick={handleSendButtonClick}
               >
-                {pending ? <FaSpinner className="animate-spin" size={18} /> : t('CONTACTUS_SEND')}
+                {pending ? t('CONTACTUS_SENDING') : t('CONTACTUS_SEND')}
               </button>
             </div>
+
+            {/* Success Modal */}
+            {isSuccess && (
+              <div className="fixed inset-0 z-[999] flex items-center justify-center bg-black/50 backdrop-blur-sm">
+                <div className="relative bg-white rounded-2xl shadow-2xl max-w-md w-full mx-4 overflow-hidden">
+                  <div className="bg-aah-red px-6 py-4 text-white text-center">
+                    <h2 className="text-xl font-bold">{t('CONTACTUS_TITLE')}</h2>
+                  </div>
+                  <button
+                    onClick={handleCloseSuccessModal}
+                    className="absolute top-3 right-3 text-white/80 hover:text-white text-2xl font-bold w-8 h-8 flex items-center justify-center"
+                    aria-label="Close"
+                  >
+                    &times;
+                  </button>
+                  <div className="px-6 py-8 text-center">
+                    <FaCheck className="text-aah-red text-5xl mx-auto mb-4" />
+                    <p className="text-gray-700 font-medium">{t('CONTACTUS_SUCCESS')}</p>
+                  </div>
+                </div>
+              </div>
+            )}
 
             {/* ./body */}
           </div>

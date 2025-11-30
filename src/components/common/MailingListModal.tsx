@@ -1,65 +1,68 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useRef } from 'react';
 import { useTranslation } from 'react-i18next';
+import { toast } from 'react-toastify';
 import { FaCheck } from 'react-icons/fa';
-import { getCookie, setCookie } from '@/lib/cookie';
+import { getCookie } from '@/lib/cookie';
 import { subscribeMailingList } from '@/api';
 
 export default function MailingListModal() {
   const { t, i18n } = useTranslation();
   const [isVisible, setIsVisible] = useState(false);
   const [email, setEmail] = useState('');
-  const [dontShowFor24h, setDontShowFor24h] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
+  const toastShownRef = useRef(false);
 
   useEffect(() => {
     // GDPR 동의 여부 확인
     const gdprConsent = getCookie('gdpr_consent');
     if (!gdprConsent) {
-      return; // GDPR 동의 안했으면 표시 안함
-    }
-
-    // 24시간 내 닫기 여부 확인
-    const dismissedUntil = getCookie('mailing_modal_dismissed');
-    if (dismissedUntil) {
-      const dismissedTime = parseInt(dismissedUntil, 10);
-      if (Date.now() < dismissedTime) {
-        return; // 아직 24시간 안 지났으면 표시 안함
-      }
-    }
-
-    // 이미 구독한 경우 표시 안함
-    const subscribed = getCookie('mailing_subscribed');
-    if (subscribed) {
       return;
     }
 
-    // 페이지 80% 정도 스크롤했을 때 모달 표시
+    // 페이지 80% 정도 스크롤했을 때 토스트 표시
     const handleScroll = () => {
       const scrollTop = window.scrollY;
       const docHeight = document.documentElement.scrollHeight - window.innerHeight;
       const scrollPercent = (scrollTop / docHeight) * 100;
 
-      // 80% 이상 스크롤하면 모달 표시
-      if (scrollPercent >= 80) {
-        setIsVisible(true);
+      // 80% 이상 스크롤하면 토스트 표시
+      if (scrollPercent >= 80 && !toastShownRef.current) {
+        toastShownRef.current = true;
         window.removeEventListener('scroll', handleScroll);
+
+        toast(
+          <div
+            onClick={() => {
+              setIsVisible(true);
+              toast.dismiss();
+            }}
+            className="cursor-pointer"
+          >
+            <span className="font-semibold">{t('MAILING_TOAST_MESSAGE')}</span>
+            <br />
+            <span className="underline">{t('MAILING_TOAST_CLICK')}</span>
+          </div>,
+          {
+            autoClose: 10000,
+            closeOnClick: false,
+            style: {
+              background: '#D8484D',
+              color: 'white',
+            },
+          }
+        );
       }
     };
 
     window.addEventListener('scroll', handleScroll);
 
     return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
+  }, [t]);
 
   const handleClose = () => {
-    if (dontShowFor24h) {
-      // 24시간 후 timestamp 저장
-      const dismissUntil = Date.now() + 24 * 60 * 60 * 1000;
-      setCookie('mailing_modal_dismissed', dismissUntil.toString());
-    }
     setIsVisible(false);
   };
 
@@ -75,15 +78,12 @@ export default function MailingListModal() {
       console.error('Subscription error:', error);
     }
 
-    // 성공/실패 상관없이 구독 완료 처리 (사용자 경험 위해)
-    setCookie('mailing_subscribed', 'true');
     setIsSuccess(true);
     setIsSubmitting(false);
 
-    // 2초 후 모달 닫기
     setTimeout(() => {
       setIsVisible(false);
-    }, 2000);
+    }, 3000);
   };
 
   if (!isVisible) return null;
@@ -147,20 +147,6 @@ export default function MailingListModal() {
           )}
         </div>
 
-        {/* 24시간 동안 보지 않기 */}
-        {!isSuccess && (
-          <div className="px-6 pb-6">
-            <label className="flex items-center justify-center text-sm text-gray-500 cursor-pointer">
-              <input
-                type="checkbox"
-                checked={dontShowFor24h}
-                onChange={e => setDontShowFor24h(e.target.checked)}
-                className="mr-2 w-4 h-4 accent-aah-red"
-              />
-              {t('MAILING_MODAL_DONT_SHOW_24H')}
-            </label>
-          </div>
-        )}
       </div>
     </div>
   );

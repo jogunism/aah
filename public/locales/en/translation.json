@@ -172,22 +172,26 @@
   "CONTACTUS_CONTENT_REQUIRED": "Content required.",
   "CONTACTUS_GDPR": "The inquiry content will not be stored separately.",
   "CONTACTUS_SEND": "Send",
+  "CONTACTUS_SENDING": "Sending...",
+  "CONTACTUS_SUCCESS": "Your message has been sent successfully!",
   "CONTACTUS_FORM_INVALID": "Please check the form values.",
   "CONTACTUS_SEND_SUCCESS": "Sent succesfully.",
 
   "***** MAILING LIST MODAL *****": "",
 
-  "MAILING_MODAL_TITLE": "Join Our Mailing List",
-  "MAILING_MODAL_DESCRIPTION": "We don't send any other advertisements. However, you can receive links to our <strong class='text-gray-800'>FREE WEBINARS</strong> on a regular basis.",
+  "MAILING_TOAST_MESSAGE": "Join our FREE online information session!",
+  "MAILING_TOAST_CLICK": "View more",
+  "MAILING_MODAL_TITLE": "Register for FREE Online Info Sessions",
+  "MAILING_MODAL_DESCRIPTION": "Join our regular FREE online information sessions! By registering your email, you'll receive links to our free online sessions.<br/>You can unsubscribe at any time.",
   "MAILING_MODAL_EMAIL_PLACEHOLDER": "Enter your email address",
-  "MAILING_MODAL_SUBMIT": "Subscribe",
-  "MAILING_MODAL_SUBMITTING": "Subscribing...",
-  "MAILING_MODAL_SUCCESS": "Thank you for subscribing!",
+  "MAILING_MODAL_SUBMIT": "Register",
+  "MAILING_MODAL_SUBMITTING": "Registering...",
+  "MAILING_MODAL_SUCCESS": "Thank you for registering!",
   "MAILING_MODAL_DONT_SHOW_24H": "Don't show this again for 24 hours",
 
   "***** UNSUBSCRIBE *****": "",
 
   "UNSUBSCRIBE_LOADING": "Processing...",
-  "UNSUBSCRIBE_SUCCESS": "You have been unsubscribed successfully.",
+  "UNSUBSCRIBE_SUCCESS": "You have been unregistered successfully.",
   "UNSUBSCRIBE_ERROR": "An error occurred while unsubscribing."
 }

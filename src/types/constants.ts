@@ -35,6 +35,7 @@ export interface Contactus {
   email: string;
   semester: number;
   content: string;
+  lang: string;
 }
 
 export interface Version {
