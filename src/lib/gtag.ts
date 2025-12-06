@@ -193,6 +193,18 @@ export const trackSiteSearch = (searchTerm: string, resultsCount?: number) => {
   });
 };
 
+// Mailing list toast click tracking
+export const trackMailingToastClick = () => {
+  event({
+    action: 'mailing_toast_click',
+    category: 'engagement',
+    label: 'subscribe_prompt',
+    custom_parameters: {
+      scroll_depth: '80_percent',
+    },
+  });
+};
+
 // Error tracking
 export const trackError = (errorType: string, errorMessage: string, page?: string) => {
   event({

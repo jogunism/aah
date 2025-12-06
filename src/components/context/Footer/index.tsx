@@ -12,7 +12,7 @@ export default async function Footer() {
       <div className="mb-2 flex items-center justify-center">
         {/* Added margin-top for spacing */}
         <a
-          href="https://www.instagram.com/aah_education_official"
+          href="https://www.instagram.com/cloverleaf0827"
           target="_blank"
           rel="noopener noreferrer"
           className="p-2 text-white hover:text-gray-200 text-sm"

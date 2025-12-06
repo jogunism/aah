@@ -6,6 +6,7 @@ import { toast } from 'react-toastify';
 import { FaCheck } from 'react-icons/fa';
 import { getCookie } from '@/lib/cookie';
 import { subscribeMailingList } from '@/api';
+import { trackMailingToastClick } from '@/lib/gtag';
 
 export default function MailingListModal() {
   const { t, i18n } = useTranslation();
@@ -36,6 +37,7 @@ export default function MailingListModal() {
         toast(
           <div
             onClick={() => {
+              trackMailingToastClick();
               setIsVisible(true);
               toast.dismiss();
             }}
