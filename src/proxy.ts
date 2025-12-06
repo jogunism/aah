@@ -4,7 +4,7 @@ import type { NextRequest } from 'next/server';
 const supportedLocales = ['en', 'de'];
 const defaultLocale = 'en';
 
-export function middleware(request: NextRequest) {
+export function proxy(request: NextRequest) {
   const { pathname } = request.nextUrl;
 
   // public 파일, api, _next 등은 제외
