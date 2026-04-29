@@ -35,6 +35,7 @@ export async function generateMetadata({ params }: { params: Promise<{ lang: str
   const { t } = await getTranslation(lang);
 
   return {
+    metadataBase: new URL('https://aah.education'),
     title: t('METADATA_TITLE'),
     description: t('METADATA_DESCRIPTION'),
     keywords: 'study in Korea, Korean language, study abroad Korea, Korean university, Seoul study, Korea education, Korean course, visa support Korea, study visa Korea, Korean language school',
@@ -42,6 +43,9 @@ export async function generateMetadata({ params }: { params: Promise<{ lang: str
     creator: 'aah! education',
     publisher: 'aah! education',
     robots: 'index, follow',
+    verification: {
+      google: process.env.NEXT_PUBLIC_GSC_VERIFICATION,
+    },
     alternates: {
       canonical: `https://aah.education/${lang}`,
       languages: {
@@ -90,9 +94,28 @@ export default async function LangLayout({
     notFound();
   }
 
+  const { t } = await getTranslation(lang as Locale);
+
+  const jsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'EducationalOrganization',
+    name: 'aah! education',
+    alternateName: 'aah! education Europe',
+    url: 'https://aah.education',
+    logo: 'https://aah.education/assets/logo.png',
+    image: 'https://aah.education/assets/main.jpg',
+    description: t('METADATA_DESCRIPTION'),
+    sameAs: ['https://www.instagram.com/cloverleaf0827'],
+    inLanguage: ['en', 'de'],
+  };
+
   return (
     <html lang={lang}>
       <body>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        />
         {process.env.NEXT_PUBLIC_GA_ID && (
           <Suspense fallback={null}>
             <GoogleAnalytics />

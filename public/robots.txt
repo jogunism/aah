@@ -1,3 +1,4 @@
 User-agent: *
 Allow: /
+Disallow: /*/unsubscribe
 Sitemap: https://aah.education/sitemap.xml
