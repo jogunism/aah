@@ -219,81 +219,71 @@ export default function Contactus() {
 
               <div className="mt-10 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
                 <div className="sm:col-span-3">
-                  <label htmlFor="first-name" className="block text-sm/6 font-medium text-gray-900">
-                    <strong>
-                      {t('CONTACTUS_FIRST_NAME')}
-                      <span className="text-red-700 text-base leading-none relative top-[3px] left-[3px]">
-                        *
-                      </span>
-                    </strong>
+                  <label htmlFor="first-name" className="sr-only">
+                    {t('CONTACTUS_FIRST_NAME')}
                   </label>
-                  <div className="mt-1">
-                    <input
-                      id="first-name"
-                      type="text"
-                      disabled={pending}
-                      value={formValues.firstName}
-                      onChange={e => setFormValues({ ...formValues, firstName: e.target.value })}
-                      onBlur={handleNameBlur}
-                      className={getInputClass(errors.name, pending)}
-                    />
-                  </div>
+                  <input
+                    id="first-name"
+                    type="text"
+                    disabled={pending}
+                    value={formValues.firstName}
+                    onChange={e => setFormValues({ ...formValues, firstName: e.target.value })}
+                    onBlur={handleNameBlur}
+                    placeholder={`${t('CONTACTUS_FIRST_NAME')} *`}
+                    aria-required="true"
+                    className={getInputClass(errors.name, pending)}
+                  />
                   {errors.name && (
                     <p className="text-red-600 text-sm mt-1">{t('CONTACTUS_NAME_REQUIRED')}</p>
                   )}
                 </div>
 
                 <div className="sm:col-span-3">
-                  <label htmlFor="last-name" className="block text-sm/6 font-medium text-gray-900">
-                    <strong>{t('CONTACTUS_LAST_NAME')}</strong>
+                  <label htmlFor="last-name" className="sr-only">
+                    {t('CONTACTUS_LAST_NAME')}
                   </label>
-                  <div className="mt-1">
-                    <input
-                      id="last-name"
-                      type="text"
-                      disabled={pending}
-                      value={formValues.lastName}
-                      onChange={e => setFormValues({ ...formValues, lastName: e.target.value })}
-                      onBlur={handleNameBlur}
-                      className={getInputClass(errors.name, pending)}
-                    />
-                  </div>
+                  <input
+                    id="last-name"
+                    type="text"
+                    disabled={pending}
+                    value={formValues.lastName}
+                    onChange={e => setFormValues({ ...formValues, lastName: e.target.value })}
+                    onBlur={handleNameBlur}
+                    placeholder={t('CONTACTUS_LAST_NAME')}
+                    className={getInputClass(errors.name, pending)}
+                  />
                 </div>
 
                 <div className="sm:col-span-4">
-                  <label htmlFor="email" className="block text-sm/6 font-medium text-gray-900">
-                    <strong>
-                      {t('CONTACTUS_EMAIL_ADDRESS')}
-                      <span className="text-red-700 text-base leading-none relative top-[3px] left-[3px]">
-                        *
-                      </span>
-                    </strong>
+                  <label htmlFor="email" className="sr-only">
+                    {t('CONTACTUS_EMAIL_ADDRESS')}
                   </label>
-                  <div className="mt-1">
-                    <input
-                      id="email"
-                      type="email"
-                      disabled={pending}
-                      value={formValues.email}
-                      onChange={e => setFormValues({ ...formValues, email: e.target.value })}
-                      onBlur={handleEmailBlur}
-                      className={getInputClass(!!errors.email, pending)}
-                    />
-                    {errors.email === 'required' && (
-                      <p className="text-red-600 text-sm mt-1">{t('CONTACTUS_EMAIL_REQUIRED')}</p>
-                    )}
-                    {errors.email === 'invalid' && (
-                      <p className="text-red-600 text-sm mt-1">{t('CONTACTUS_EMAIL_INVALID')}</p>
-                    )}
-                  </div>
+                  <input
+                    id="email"
+                    type="email"
+                    disabled={pending}
+                    value={formValues.email}
+                    onChange={e => setFormValues({ ...formValues, email: e.target.value })}
+                    onBlur={handleEmailBlur}
+                    placeholder={`${t('CONTACTUS_EMAIL_ADDRESS')} *`}
+                    aria-required="true"
+                    className={getInputClass(!!errors.email, pending)}
+                  />
+                  {errors.email === 'required' && (
+                    <p className="text-red-600 text-sm mt-1">{t('CONTACTUS_EMAIL_REQUIRED')}</p>
+                  )}
+                  {errors.email === 'invalid' && (
+                    <p className="text-red-600 text-sm mt-1">{t('CONTACTUS_EMAIL_INVALID')}</p>
+                  )}
                 </div>
 
                 <div className="sm:col-span-3">
-                  <label htmlFor="program" className="block text-sm/6 font-medium text-gray-900">
-                    <strong>{t('CONTACTUS_PROGRAMS')}</strong>
+                  <label htmlFor="program" className="sr-only">
+                    {t('CONTACTUS_PROGRAMS')}
                   </label>
-                  <div className="relative mt-1" ref={programDropdownRef}>
+                  <div className="relative" ref={programDropdownRef}>
                     <button
+                      id="program"
                       type="button"
                       disabled={pending}
                       onClick={() => setIsProgramOpen(!isProgramOpen)}
@@ -342,30 +332,24 @@ export default function Contactus() {
                 </div>
 
                 <div className="sm:col-span-full">
-                  <label htmlFor="about" className="block text-sm/6 font-medium text-gray-900">
-                    <strong>
-                      {t('CONTACTUS_CONTENT')}
-                      <span className="text-red-700 text-base leading-none relative top-[3px] left-[3px]">
-                        *
-                      </span>
-                    </strong>
+                  <label htmlFor="content" className="sr-only">
+                    {t('CONTACTUS_CONTENT')}
                   </label>
-                  <div className="mt-1">
-                    <textarea
-                      id="content"
-                      rows={6}
-                      disabled={pending}
-                      value={formValues.content}
-                      onChange={e => setFormValues({ ...formValues, content: e.target.value })}
-                      onBlur={handleContentBlur}
-                      className={getInputClass(errors.content, pending)}
-                      placeholder={t('CONTACTUS_CONTENT_PLACEHOLDER')}
-                      style={{ whiteSpace: "pre-line" }}
-                    />
-                    {errors.content && (
-                      <p className="text-red-600 text-sm mt-1">{t('CONTACTUS_CONTENT_REQUIRED')}</p>
-                    )}
-                  </div>
+                  <textarea
+                    id="content"
+                    rows={6}
+                    disabled={pending}
+                    value={formValues.content}
+                    onChange={e => setFormValues({ ...formValues, content: e.target.value })}
+                    onBlur={handleContentBlur}
+                    className={getInputClass(errors.content, pending)}
+                    placeholder={`${t('CONTACTUS_CONTENT_PLACEHOLDER')} *`}
+                    aria-required="true"
+                    style={{ whiteSpace: 'pre-line' }}
+                  />
+                  {errors.content && (
+                    <p className="text-red-600 text-sm mt-1">{t('CONTACTUS_CONTENT_REQUIRED')}</p>
+                  )}
 
                   <div className="mt-3 text-sm text-gray-500">
                     <p className="text-sm text-red-600 italic flex items-center gap-2">
