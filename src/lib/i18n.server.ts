@@ -1,11 +1,21 @@
 import i18next, { i18n as I18nInstance } from 'i18next';
 import { headers } from 'next/headers';
 
-// 번역 파일을 직접 import 합니다.
 import enTranslation from '../../public/locales/en/translation.json';
 import deTranslation from '../../public/locales/de/translation.json';
+import frTranslation from '../../public/locales/fr/translation.json';
+import esTranslation from '../../public/locales/es/translation.json';
+import itTranslation from '../../public/locales/it/translation.json';
 
-const supportedLocales = ['en', 'de'];
+import { SUPPORTED_LOCALES, DEFAULT_LOCALE, isSupportedLocale } from './locales';
+
+const resources = {
+  en: { translation: enTranslation },
+  de: { translation: deTranslation },
+  fr: { translation: frTranslation },
+  es: { translation: esTranslation },
+  it: { translation: itTranslation },
+} as const;
 
 const i18nInstances: Record<string, Promise<I18nInstance>> = {};
 
@@ -15,19 +25,12 @@ export const createI18nInstance = (lng: string) => {
 
     i18nInstances[lng] = instance
       .init({
-        fallbackLng: 'en',
-        supportedLngs: supportedLocales,
+        fallbackLng: DEFAULT_LOCALE,
+        supportedLngs: SUPPORTED_LOCALES as unknown as string[],
         lng,
         ns: ['translation'],
         defaultNS: 'translation',
-        resources: {
-          en: {
-            translation: enTranslation,
-          },
-          de: {
-            translation: deTranslation,
-          },
-        },
+        resources,
         interpolation: {
           escapeValue: false,
         },
@@ -39,24 +42,21 @@ export const createI18nInstance = (lng: string) => {
   return i18nInstances[lng];
 };
 
-// 미들웨어에서 설정한 x-locale 헤더에서 언어 감지
 const getLanguageFromHeaders = async (): Promise<string> => {
   try {
     const headersList = await headers();
     const locale = headersList.get('x-locale');
-    if (locale && supportedLocales.includes(locale)) {
+    if (locale && isSupportedLocale(locale)) {
       return locale;
     }
   } catch {
     // headers() 호출 실패 시 기본값 사용
   }
 
-  return 'en';
+  return DEFAULT_LOCALE;
 };
 
-// URL 파라미터 기반으로 번역 가져오기
 export const getTranslation = async (lang?: string) => {
-  // lang이 명시적으로 전달되지 않으면 헤더에서 감지
   const resolvedLang = lang || (await getLanguageFromHeaders());
   const i18n = await createI18nInstance(resolvedLang);
 

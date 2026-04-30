@@ -3,50 +3,167 @@
         xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
     <loc>https://aah.education/en</loc>
-    <lastmod>2025-11-30</lastmod>
+    <lastmod>2026-04-30</lastmod>
     <changefreq>monthly</changefreq>
     <priority>1.0</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://aah.education/en" />
     <xhtml:link rel="alternate" hreflang="de" href="https://aah.education/de" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://aah.education/fr" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://aah.education/es" />
+    <xhtml:link rel="alternate" hreflang="it" href="https://aah.education/it" />
   </url>
   <url>
     <loc>https://aah.education/de</loc>
-    <lastmod>2025-11-30</lastmod>
+    <lastmod>2026-04-30</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://aah.education/en" />
     <xhtml:link rel="alternate" hreflang="de" href="https://aah.education/de" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://aah.education/fr" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://aah.education/es" />
+    <xhtml:link rel="alternate" hreflang="it" href="https://aah.education/it" />
+  </url>
+  <url>
+    <loc>https://aah.education/fr</loc>
+    <lastmod>2026-04-30</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://aah.education/en" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://aah.education/de" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://aah.education/fr" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://aah.education/es" />
+    <xhtml:link rel="alternate" hreflang="it" href="https://aah.education/it" />
+  </url>
+  <url>
+    <loc>https://aah.education/es</loc>
+    <lastmod>2026-04-30</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://aah.education/en" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://aah.education/de" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://aah.education/fr" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://aah.education/es" />
+    <xhtml:link rel="alternate" hreflang="it" href="https://aah.education/it" />
+  </url>
+  <url>
+    <loc>https://aah.education/it</loc>
+    <lastmod>2026-04-30</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://aah.education/en" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://aah.education/de" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://aah.education/fr" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://aah.education/es" />
+    <xhtml:link rel="alternate" hreflang="it" href="https://aah.education/it" />
   </url>
   <url>
     <loc>https://aah.education/en/programs/short</loc>
-    <lastmod>2025-11-30</lastmod>
+    <lastmod>2026-04-30</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://aah.education/en/programs/short" />
     <xhtml:link rel="alternate" hreflang="de" href="https://aah.education/de/programs/short" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://aah.education/fr/programs/short" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://aah.education/es/programs/short" />
+    <xhtml:link rel="alternate" hreflang="it" href="https://aah.education/it/programs/short" />
   </url>
   <url>
     <loc>https://aah.education/de/programs/short</loc>
-    <lastmod>2025-11-30</lastmod>
+    <lastmod>2026-04-30</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://aah.education/en/programs/short" />
     <xhtml:link rel="alternate" hreflang="de" href="https://aah.education/de/programs/short" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://aah.education/fr/programs/short" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://aah.education/es/programs/short" />
+    <xhtml:link rel="alternate" hreflang="it" href="https://aah.education/it/programs/short" />
+  </url>
+  <url>
+    <loc>https://aah.education/fr/programs/short</loc>
+    <lastmod>2026-04-30</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://aah.education/en/programs/short" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://aah.education/de/programs/short" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://aah.education/fr/programs/short" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://aah.education/es/programs/short" />
+    <xhtml:link rel="alternate" hreflang="it" href="https://aah.education/it/programs/short" />
+  </url>
+  <url>
+    <loc>https://aah.education/es/programs/short</loc>
+    <lastmod>2026-04-30</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://aah.education/en/programs/short" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://aah.education/de/programs/short" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://aah.education/fr/programs/short" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://aah.education/es/programs/short" />
+    <xhtml:link rel="alternate" hreflang="it" href="https://aah.education/it/programs/short" />
+  </url>
+  <url>
+    <loc>https://aah.education/it/programs/short</loc>
+    <lastmod>2026-04-30</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://aah.education/en/programs/short" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://aah.education/de/programs/short" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://aah.education/fr/programs/short" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://aah.education/es/programs/short" />
+    <xhtml:link rel="alternate" hreflang="it" href="https://aah.education/it/programs/short" />
   </url>
   <url>
     <loc>https://aah.education/en/programs/long</loc>
-    <lastmod>2025-11-30</lastmod>
+    <lastmod>2026-04-30</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://aah.education/en/programs/long" />
     <xhtml:link rel="alternate" hreflang="de" href="https://aah.education/de/programs/long" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://aah.education/fr/programs/long" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://aah.education/es/programs/long" />
+    <xhtml:link rel="alternate" hreflang="it" href="https://aah.education/it/programs/long" />
   </url>
   <url>
     <loc>https://aah.education/de/programs/long</loc>
-    <lastmod>2025-11-30</lastmod>
+    <lastmod>2026-04-30</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://aah.education/en/programs/long" />
     <xhtml:link rel="alternate" hreflang="de" href="https://aah.education/de/programs/long" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://aah.education/fr/programs/long" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://aah.education/es/programs/long" />
+    <xhtml:link rel="alternate" hreflang="it" href="https://aah.education/it/programs/long" />
+  </url>
+  <url>
+    <loc>https://aah.education/fr/programs/long</loc>
+    <lastmod>2026-04-30</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://aah.education/en/programs/long" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://aah.education/de/programs/long" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://aah.education/fr/programs/long" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://aah.education/es/programs/long" />
+    <xhtml:link rel="alternate" hreflang="it" href="https://aah.education/it/programs/long" />
+  </url>
+  <url>
+    <loc>https://aah.education/es/programs/long</loc>
+    <lastmod>2026-04-30</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://aah.education/en/programs/long" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://aah.education/de/programs/long" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://aah.education/fr/programs/long" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://aah.education/es/programs/long" />
+    <xhtml:link rel="alternate" hreflang="it" href="https://aah.education/it/programs/long" />
+  </url>
+  <url>
+    <loc>https://aah.education/it/programs/long</loc>
+    <lastmod>2026-04-30</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://aah.education/en/programs/long" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://aah.education/de/programs/long" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://aah.education/fr/programs/long" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://aah.education/es/programs/long" />
+    <xhtml:link rel="alternate" hreflang="it" href="https://aah.education/it/programs/long" />
   </url>
 </urlset>

@@ -3,32 +3,37 @@
 import i18n from 'i18next';
 import { initReactI18next } from 'react-i18next';
 
-// 번역 파일을 직접 import 합니다.
 import enTranslation from '../../public/locales/en/translation.json';
 import deTranslation from '../../public/locales/de/translation.json';
+import frTranslation from '../../public/locales/fr/translation.json';
+import esTranslation from '../../public/locales/es/translation.json';
+import itTranslation from '../../public/locales/it/translation.json';
 
-// URL에서 언어 감지
+import {
+  SUPPORTED_LOCALES,
+  DEFAULT_LOCALE,
+  LOCALE_PATH_REGEX,
+} from './locales';
+
 const getLanguageFromURL = () => {
-  if (typeof window === 'undefined') return 'en';
-  const pathname = window.location.pathname;
-  const match = pathname.match(/^\/(en|de)/);
-  return match ? match[1] : 'en';
+  if (typeof window === 'undefined') return DEFAULT_LOCALE;
+  const match = window.location.pathname.match(LOCALE_PATH_REGEX);
+  return match ? match[1] : DEFAULT_LOCALE;
 };
 
 const i18nPromise = !i18n.isInitialized
   ? i18n
       .use(initReactI18next)
       .init({
-        fallbackLng: 'en',
-        supportedLngs: ['en', 'de'],
+        fallbackLng: DEFAULT_LOCALE,
+        supportedLngs: SUPPORTED_LOCALES as unknown as string[],
         lng: getLanguageFromURL(),
         resources: {
-          en: {
-            translation: enTranslation,
-          },
-          de: {
-            translation: deTranslation,
-          },
+          en: { translation: enTranslation },
+          de: { translation: deTranslation },
+          fr: { translation: frTranslation },
+          es: { translation: esTranslation },
+          it: { translation: itTranslation },
         },
         react: {
           useSuspense: false,

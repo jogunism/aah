@@ -5,6 +5,7 @@ import { getCookie, setCookie } from '@/lib/cookie';
 import { trackCurrencyChange } from '@/lib/gtag';
 import { useCurrencyStore, type Currency } from '@/store/currencyStore';
 import { FaDollarSign, FaEuroSign } from 'react-icons/fa';
+import { LOCALE_META, isSupportedLocale } from '@/lib/locales';
 
 interface CurrencySelectorProps {
   lang: string;
@@ -52,7 +53,9 @@ export default function CurrencySelector({ lang }: CurrencySelectorProps) {
     if (isCurrency(storedCurrency)) {
       setCurrency(storedCurrency);
     } else {
-      const defaultCurrency: Currency = lang === 'de' ? 'EUR' : 'USD';
+      const defaultCurrency: Currency = isSupportedLocale(lang)
+        ? LOCALE_META[lang].currency
+        : 'USD';
       setCurrency(defaultCurrency);
       setCookie('currency', defaultCurrency);
     }

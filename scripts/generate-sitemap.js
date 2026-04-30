@@ -8,8 +8,8 @@ const sitemapPath = path.join(__dirname, '../public/sitemap.xml');
 // Site configuration
 const SITE_URL = 'https://aah.education';
 
-// Supported languages
-const languages = ['en', 'de'];
+// Supported languages — keep in sync with src/lib/locales.ts
+const languages = ['en', 'de', 'fr', 'es', 'it'];
 const defaultLang = 'en';
 
 // Define your site structure (paths without language prefix)
