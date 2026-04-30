@@ -210,7 +210,7 @@ export default function Contactus() {
           <div className="text-lg text-gray-800 ">
             {/* body */}
 
-            <div className="border-b border-gray-900/10 pb-12">
+            <div className="pb-12">
               <p
                 className="mt-1 text-md/6 text-gray-600 text-center"
                 style={{ whiteSpace: "pre-line" }}
@@ -365,10 +365,10 @@ export default function Contactus() {
               </div>
             </div>
 
-            <div className="mt-6 flex items-center justify-end gap-x-6">
+            <div className="mt-6 flex items-center justify-center">
               <button
                 disabled={pending}
-                className="bg-aah-red hover:bg-aah-red text-white py-2 px-4 rounded-lg shadow-md transition duration-200 min-w-[80px] h-13 flex items-center justify-center disabled:opacity-50 whitespace-nowrap"
+                className="bg-aah-red text-white font-semibold py-3 px-16 rounded-lg shadow-md hover:opacity-90 transition-opacity disabled:opacity-50 whitespace-nowrap"
                 onClick={handleSendButtonClick}
               >
                 {pending ? t('CONTACTUS_SENDING') : t('CONTACTUS_SEND')}
