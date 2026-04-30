@@ -5,13 +5,13 @@ import type { Version, University, Prices, Contactus } from '@/types/constants';
 /**
  * Get the app version
  */
-export const retrieveAppVersion: () => Promise<string> = async () => {
+export const retrieveAppVersion = async (): Promise<string | null> => {
   try {
     const response = await http.get<Version>('/version');
     return response.data.rate;
   } catch (error) {
     console.error('Error fetching app version:', error);
-    throw error;
+    return null;
   }
 };
 
