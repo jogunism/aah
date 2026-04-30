@@ -2,6 +2,14 @@ import Link from 'next/link';
 import ProgramContentLong from '@/components/programs/ProgramContentLong';
 import { getTranslation } from '@/lib/i18n.server';
 import { Metadata } from 'next';
+import {
+  SITE_URL,
+  LOCALE_META,
+  SUPPORTED_LOCALES,
+  buildHreflangMap,
+  isSupportedLocale,
+  DEFAULT_LOCALE,
+} from '@/lib/locales';
 
 export const dynamic = 'force-dynamic';
 
@@ -10,12 +18,29 @@ interface PageProps {
 }
 
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
-  const { lang } = await params;
+  const { lang: langParam } = await params;
+  const lang = isSupportedLocale(langParam) ? langParam : DEFAULT_LOCALE;
   const { t } = await getTranslation(lang);
+  const path = '/programs/long';
 
   return {
     title: t('PROGRAM_MODAL_LONG_TERM'),
     description: t('PROGRAM_MODAL_LONG_TERM_TITLE'),
+    alternates: {
+      canonical: `${SITE_URL}/${lang}${path}`,
+      languages: buildHreflangMap(path),
+    },
+    openGraph: {
+      title: t('PROGRAM_MODAL_LONG_TERM'),
+      description: t('PROGRAM_MODAL_LONG_TERM_TITLE'),
+      url: `${SITE_URL}/${lang}${path}`,
+      siteName: 'aah! education',
+      type: 'article',
+      locale: LOCALE_META[lang].ogLocale,
+      alternateLocale: SUPPORTED_LOCALES
+        .filter((l) => l !== lang)
+        .map((l) => LOCALE_META[l].ogLocale),
+    },
   };
 }
 

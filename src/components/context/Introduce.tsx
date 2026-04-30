@@ -1,5 +1,6 @@
 import Image from 'next/image';
 import { getTranslation } from '@/lib/i18n.server';
+import SmoothScrollLink from './SmoothScrollLink';
 
 export default async function Introduce() {
   const { t } = await getTranslation();
@@ -41,12 +42,12 @@ export default async function Introduce() {
             </ul>
 
             <div className="mt-10 text-center">
-              <a
+              <SmoothScrollLink
                 href="#contactus"
-                className="inline-block bg-aah-red text-white font-semibold px-8 py-3 rounded-full shadow-md hover:opacity-90 transition-opacity"
+                className="inline-block bg-aah-red text-white font-semibold px-8 py-3 rounded-lg shadow-md hover:opacity-90 transition-opacity"
               >
                 {t('MAIN_CTA')}
-              </a>
+              </SmoothScrollLink>
             </div>
             {/* ./body */}
           </div>

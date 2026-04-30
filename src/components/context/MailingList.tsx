@@ -90,13 +90,15 @@ export default function MailingList() {
                     required
                   />
                 </div>
-                <button
-                  type="submit"
-                  disabled={isSubmitting}
-                  className="w-full bg-aah-red text-white font-semibold py-3 rounded-lg hover:opacity-90 transition-opacity disabled:opacity-50"
-                >
-                  {isSubmitting ? t('MAILING_MODAL_SUBMITTING') : t('MAILING_MODAL_SUBMIT')}
-                </button>
+                <div className="flex items-center justify-center">
+                  <button
+                    type="submit"
+                    disabled={isSubmitting}
+                    className="bg-aah-red text-white font-semibold py-3 px-16 rounded-lg shadow-md hover:opacity-90 transition-opacity disabled:opacity-50 whitespace-nowrap"
+                  >
+                    {isSubmitting ? t('MAILING_MODAL_SUBMITTING') : t('MAILING_MODAL_SUBMIT')}
+                  </button>
+                </div>
                 {errorMessage && (
                   <p className="text-red-600 text-sm mt-3 text-center">{errorMessage}</p>
                 )}

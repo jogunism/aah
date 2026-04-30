@@ -6,6 +6,14 @@ import { trackLanguageChange, trackCurrencyChange } from '@/lib/gtag';
 import { useCurrencyStore } from '@/store/currencyStore';
 import { setCookie, getCookie } from '@/lib/cookie';
 import i18n from '@/lib/i18n.client';
+import {
+  SUPPORTED_LOCALES,
+  LOCALE_META,
+  LOCALE_PATH_REGEX,
+  DEFAULT_LOCALE,
+  isSupportedLocale,
+  type Locale,
+} from '@/lib/locales';
 
 interface LanguageSelectorProps {
   currentLang: string;
@@ -14,20 +22,21 @@ interface LanguageSelectorProps {
 export default function LanguageSelector({ currentLang }: LanguageSelectorProps) {
   const { setCurrency } = useCurrencyStore();
   const [isOpen, setIsOpen] = useState(false);
-  const [activeLang, setActiveLang] = useState(currentLang);
+  const [activeLang, setActiveLang] = useState<Locale>(
+    isSupportedLocale(currentLang) ? currentLang : DEFAULT_LOCALE,
+  );
   const pathname = usePathname();
   const router = useRouter();
   const dropdownRef = useRef<HTMLDivElement>(null);
 
-  const languages = [
-    { code: 'en', label: '🇺🇸 EN' },
-    { code: 'de', label: '🇩🇪 DE' },
-  ];
+  const languages = SUPPORTED_LOCALES.map((code) => ({
+    code,
+    label: LOCALE_META[code].label,
+  }));
 
-  // pathname이 바뀌면 activeLang도 동기화
   useEffect(() => {
-    const langFromPath = pathname.match(/^\/(en|de)/)?.[1];
-    if (langFromPath && langFromPath !== activeLang) {
+    const langFromPath = pathname.match(LOCALE_PATH_REGEX)?.[1];
+    if (langFromPath && isSupportedLocale(langFromPath) && langFromPath !== activeLang) {
       setActiveLang(langFromPath);
     }
   }, [pathname, activeLang]);
@@ -37,7 +46,7 @@ export default function LanguageSelector({ currentLang }: LanguageSelectorProps)
   /*******************************************************
    * methods
    */
-  const handleLanguageChange = (selectedLang: string) => {
+  const handleLanguageChange = (selectedLang: Locale) => {
     if (selectedLang === activeLang) {
       setIsOpen(false);
       return;
@@ -47,34 +56,19 @@ export default function LanguageSelector({ currentLang }: LanguageSelectorProps)
 
     setIsOpen(false);
 
-    // Track language change
     trackLanguageChange(selectedLang, activeLang);
 
-    // Handle currency change based on language
-    let newCurrency = '';
-    if (selectedLang === 'en') {
-      newCurrency = 'USD';
-      setCurrency('USD');
-      setCookie('currency', 'USD');
-    } else if (selectedLang === 'de') {
-      newCurrency = 'EUR';
-      setCurrency('EUR');
-      setCookie('currency', 'EUR');
-    }
+    const newCurrency = LOCALE_META[selectedLang].currency;
+    setCurrency(newCurrency);
+    setCookie('currency', newCurrency);
 
-    // Track currency change if it actually changed
-    if (newCurrency && currentCurrency !== newCurrency) {
+    if (currentCurrency !== newCurrency) {
       trackCurrencyChange(newCurrency, currentCurrency || undefined);
     }
 
     // 모달이 열린 상태(예: /en/programs/long)에서도 URL의 [lang] 세그먼트만 바뀌므로
     // Next.js soft navigation으로 처리되어 모달은 그대로 유지되고 콘텐츠만 새 언어로 다시 렌더됨.
-    // - 서버 컴포넌트: router.replace 가 [lang] 변경을 감지해 RSC 재요청 → 새 언어로 렌더
-    // - 클라이언트 컴포넌트(useTranslation 사용): 아래 i18n.changeLanguage 로 즉시 갱신
-    //   (네비게이션 완료 전 깜빡임 방지. ClientWrapper 의 lang prop 동기화도 백업으로 동작)
-    // - 클라이언트 상태 모달: 컴포넌트가 트리 동일 위치에
-    //   유지되므로 isOpen 등 state 가 보존됨
-    const newPathname = pathname.replace(/^\/(en|de)/, `/${selectedLang}`);
+    const newPathname = pathname.replace(LOCALE_PATH_REGEX, `/${selectedLang}`);
     setActiveLang(selectedLang);
     i18n.changeLanguage(selectedLang);
     router.replace(newPathname, { scroll: false });

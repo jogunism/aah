@@ -7,18 +7,22 @@ import GoogleAnalytics from '@/components/common/GoogleAnalytics';
 import ToastProvider from '@common/ToastProvider';
 import GDPRPopup from '@/components/common/GDPRPopup';
 
+import {
+  SUPPORTED_LOCALES,
+  DEFAULT_LOCALE,
+  LOCALE_META,
+  SITE_URL,
+  buildHreflangMap,
+  isSupportedLocale,
+  type Locale,
+} from '@/lib/locales';
+
 import '../globals.css';
 
-// 지원하는 언어 목록
-const supportedLocales = ['en', 'de'] as const;
-type Locale = (typeof supportedLocales)[number];
-
-// 정적 경로 생성
 export async function generateStaticParams() {
-  return supportedLocales.map((lang) => ({ lang }));
+  return SUPPORTED_LOCALES.map((lang) => ({ lang }));
 }
 
-// i18n 서버 함수 - lang 파라미터 사용
 async function getTranslation(lang: Locale) {
   const { createI18nInstance } = await import('@/lib/i18n.server');
   const i18n = await createI18nInstance(lang);
@@ -30,11 +34,11 @@ async function getTranslation(lang: Locale) {
 
 export async function generateMetadata({ params }: { params: Promise<{ lang: string }> }): Promise<Metadata> {
   const { lang: langParam } = await params;
-  const lang = supportedLocales.includes(langParam as Locale) ? (langParam as Locale) : 'en';
+  const lang: Locale = isSupportedLocale(langParam) ? langParam : DEFAULT_LOCALE;
   const { t } = await getTranslation(lang);
 
   return {
-    metadataBase: new URL('https://aah.education'),
+    metadataBase: new URL(SITE_URL),
     title: t('METADATA_TITLE'),
     description: t('METADATA_DESCRIPTION'),
     keywords: 'study in Korea, Korean language, study abroad Korea, Korean university, Seoul study, Korea education, Korean course, visa support Korea, study visa Korea, Korean language school',
@@ -46,33 +50,33 @@ export async function generateMetadata({ params }: { params: Promise<{ lang: str
       google: process.env.NEXT_PUBLIC_GSC_VERIFICATION,
     },
     alternates: {
-      canonical: `https://aah.education/${lang}`,
-      languages: {
-        'en': 'https://aah.education/en',
-        'de': 'https://aah.education/de',
-      },
+      canonical: `${SITE_URL}/${lang}`,
+      languages: buildHreflangMap(),
     },
     openGraph: {
       title: t('METADATA_TITLE'),
       description: t('METADATA_DESCRIPTION'),
       images: [
         {
-          url: 'https://aah.education/assets/main.jpg',
+          url: `${SITE_URL}/assets/main.jpg`,
           width: 800,
           height: 600,
           alt: 'Study in Korea with aah! education',
         },
       ],
-      url: `https://aah.education/${lang}`,
+      url: `${SITE_URL}/${lang}`,
       siteName: 'aah! education',
       type: 'website',
-      locale: lang === 'en' ? 'en_US' : 'de_DE',
+      locale: LOCALE_META[lang].ogLocale,
+      alternateLocale: SUPPORTED_LOCALES
+        .filter((l) => l !== lang)
+        .map((l) => LOCALE_META[l].ogLocale),
     },
     twitter: {
       card: 'summary_large_image',
       title: t('METADATA_TITLE'),
       description: t('METADATA_DESCRIPTION'),
-      images: ['https://aah.education/assets/main.jpg'],
+      images: [`${SITE_URL}/assets/main.jpg`],
     },
   };
 }
@@ -88,24 +92,23 @@ export default async function LangLayout({
 }) {
   const { lang } = await params;
 
-  // 지원하지 않는 언어면 404
-  if (!supportedLocales.includes(lang as Locale)) {
+  if (!isSupportedLocale(lang)) {
     notFound();
   }
 
-  const { t } = await getTranslation(lang as Locale);
+  const { t } = await getTranslation(lang);
 
   const jsonLd = {
     '@context': 'https://schema.org',
     '@type': 'EducationalOrganization',
     name: 'aah! education',
     alternateName: 'aah! education Europe',
-    url: 'https://aah.education',
-    logo: 'https://aah.education/assets/logo.png',
-    image: 'https://aah.education/assets/main.jpg',
+    url: SITE_URL,
+    logo: `${SITE_URL}/assets/logo.png`,
+    image: `${SITE_URL}/assets/main.jpg`,
     description: t('METADATA_DESCRIPTION'),
     sameAs: ['https://www.instagram.com/aah_korea'],
-    inLanguage: ['en', 'de'],
+    inLanguage: SUPPORTED_LOCALES as unknown as string[],
   };
 
   return (
