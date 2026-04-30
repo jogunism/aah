@@ -1,7 +1,7 @@
 'use client';
 
 import { useState, useRef, useEffect } from 'react';
-import { usePathname } from 'next/navigation';
+import { usePathname, useRouter } from 'next/navigation';
 import { trackLanguageChange, trackCurrencyChange } from '@/lib/gtag';
 import { useCurrencyStore } from '@/store/currencyStore';
 import { setCookie, getCookie } from '@/lib/cookie';
@@ -16,6 +16,7 @@ export default function LanguageSelector({ currentLang }: LanguageSelectorProps)
   const [isOpen, setIsOpen] = useState(false);
   const [activeLang, setActiveLang] = useState(currentLang);
   const pathname = usePathname();
+  const router = useRouter();
   const dropdownRef = useRef<HTMLDivElement>(null);
 
   const languages = [
@@ -66,16 +67,17 @@ export default function LanguageSelector({ currentLang }: LanguageSelectorProps)
       trackCurrencyChange(newCurrency, currentCurrency || undefined);
     }
 
-    // URL 경로 변경 (예: /en/about → /de/about)
-    // 현재 브라우저 URL에서 직접 가져옴 (history API 사용 시 pathname이 업데이트되지 않으므로)
-    const currentPath = window.location.pathname;
-    const newPathname = currentPath.replace(/^\/(en|de)/, `/${selectedLang}`);
-
-    // history.replaceState + i18n.changeLanguage로 언어 변경 (페이지 리렌더 없이)
-    // 이렇게 하면 뉴스레터 모달 등 현재 상태가 유지됨
-    window.history.replaceState(null, '', newPathname);
-    i18n.changeLanguage(selectedLang);
+    // 모달이 열린 상태(예: /en/programs/long)에서도 URL의 [lang] 세그먼트만 바뀌므로
+    // Next.js soft navigation으로 처리되어 모달은 그대로 유지되고 콘텐츠만 새 언어로 다시 렌더됨.
+    // - 서버 컴포넌트: router.replace 가 [lang] 변경을 감지해 RSC 재요청 → 새 언어로 렌더
+    // - 클라이언트 컴포넌트(useTranslation 사용): 아래 i18n.changeLanguage 로 즉시 갱신
+    //   (네비게이션 완료 전 깜빡임 방지. ClientWrapper 의 lang prop 동기화도 백업으로 동작)
+    // - TuitionCalculation 등 클라이언트 상태 모달: 컴포넌트가 트리 동일 위치에
+    //   유지되므로 isOpen 등 state 가 보존됨
+    const newPathname = pathname.replace(/^\/(en|de)/, `/${selectedLang}`);
     setActiveLang(selectedLang);
+    i18n.changeLanguage(selectedLang);
+    router.replace(newPathname, { scroll: false });
   };
 
   /*******************************************************

@@ -31,6 +31,28 @@
   "PROGRAMS_LONG_BUTTON": "Long-Term (3 months)",
   "PROGRAMS_LONG_DESCRIPTION": "Designed for those who want to immerse themselves in a structured academic setting. Attend regular university classes alongside Korean students to build strong language skills and adapt to the culture over time.",
 
+  "***** PROCESS *****": "",
+
+  "PROCESS_TITLE": "Your Journey with <span class=\"italic font-black text-aah-red\">aah</span>",
+  "PROCESS_DESCRIPTION": "From your first inquiry to your arrival in Korea — we're with you every step of the way.",
+  "PROCESS_STEP_1_TITLE": "Free Consultation",
+  "PROCESS_STEP_1_DESC": "Tell us about your goals, current Korean level, preferred duration, and budget. We'll discuss your options together — no commitment required.",
+  "PROCESS_STEP_2_TITLE": "School & Program Selection",
+  "PROCESS_STEP_2_DESC": "Based on your profile, we recommend the universities and language programs that best match your needs and timeline.",
+  "PROCESS_STEP_3_TITLE": "Application & Documents",
+  "PROCESS_STEP_3_DESC": "We guide you through every form, certificate, and translation needed for your application — and submit it on your behalf.",
+  "PROCESS_STEP_4_TITLE": "Visa Support",
+  "PROCESS_STEP_4_DESC": "Once you receive your acceptance letter, we walk you through the D-2 or D-4 student visa application step by step.",
+  "PROCESS_STEP_5_TITLE": "Pre-Departure Preparation",
+  "PROCESS_STEP_5_DESC": "Dormitory or housing booking, flight planning, insurance, and local SIM cards — we set everything up before you leave.",
+  "PROCESS_STEP_6_TITLE": "Arrival & Ongoing Support",
+  "PROCESS_STEP_6_DESC": "Airport guidance, settling in, and continuous support throughout your stay in Korea — we're with you the whole way.",
+
+  "***** INSTAGRAM *****": "",
+
+  "INSTAGRAM_TITLE": "Follow us on Instagram",
+  "INSTAGRAM_DESCRIPTION": "See what our students are up to in Korea — campus life, cultural trips, and more.",
+
   "----------- PROGRAM MODAL SHORT -----------": "",
 
   "PROGRAM_MODAL_SHORT_TERM": "Short-Term program",
@@ -188,6 +210,19 @@
   "MAILING_MODAL_SUBMITTING": "Registering...",
   "MAILING_MODAL_SUCCESS": "Thank you for registering!",
   "MAILING_MODAL_DONT_SHOW_24H": "Don't show this again for 24 hours",
+
+  "MAILING_SECTION_TOPICS_TITLE": "What we'll cover",
+  "MAILING_SECTION_TOPICS_1": "Choosing the right Korean university or language program",
+  "MAILING_SECTION_TOPICS_2": "Application process and required documents",
+  "MAILING_SECTION_TOPICS_3": "Korean student visa (D-2 / D-4) guidance",
+  "MAILING_SECTION_TOPICS_4": "Accommodation: dormitories, share houses, and apartments",
+  "MAILING_SECTION_TOPICS_5": "Tuition, scholarships, and cost of living in Korea",
+  "MAILING_SECTION_TOPICS_6": "Live Q&A with our experienced counselors",
+
+  "MAILING_SECTION_HOW_TITLE": "How it works",
+  "MAILING_SECTION_HOW_1": "Register with your email below",
+  "MAILING_SECTION_HOW_2": "Receive the session link and schedule by email",
+  "MAILING_SECTION_HOW_3": "Join live and ask anything you want to know",
 
   "***** UNSUBSCRIBE *****": "",
 

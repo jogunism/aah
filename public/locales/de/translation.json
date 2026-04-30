@@ -31,6 +31,28 @@
   "PROGRAMS_LONG_BUTTON": "Langzeit (3 Monate)",
   "PROGRAMS_LONG_DESCRIPTION": "Dieses Programm bietet eine tolle Möglichkeit, Korea zu bereisen, dabei Koreanisch zu lernen und die Kultur hautnah zu erleben. Ideal für Erstbesucher*innen oder alle, die ihre Ferien sinnvoll und spannend gestalten möchten.",
 
+  "***** PROCESS *****": "",
+
+  "PROCESS_TITLE": "Ihr Weg mit <span class=\"italic font-black text-aah-red\">aah</span>",
+  "PROCESS_DESCRIPTION": "Von Ihrer ersten Anfrage bis zur Ankunft in Korea — wir begleiten Sie auf jedem Schritt.",
+  "PROCESS_STEP_1_TITLE": "Kostenlose Beratung",
+  "PROCESS_STEP_1_DESC": "Erzählen Sie uns von Ihren Zielen, Ihrem aktuellen Koreanisch-Niveau, der gewünschten Dauer und Ihrem Budget. Wir besprechen gemeinsam Ihre Möglichkeiten — unverbindlich.",
+  "PROCESS_STEP_2_TITLE": "Schul- & Programmauswahl",
+  "PROCESS_STEP_2_DESC": "Basierend auf Ihrem Profil empfehlen wir die Universitäten und Sprachprogramme, die am besten zu Ihren Bedürfnissen und Ihrem Zeitplan passen.",
+  "PROCESS_STEP_3_TITLE": "Bewerbung & Unterlagen",
+  "PROCESS_STEP_3_DESC": "Wir führen Sie durch jedes Formular, Zertifikat und jede Übersetzung, die für Ihre Bewerbung benötigt werden — und reichen sie für Sie ein.",
+  "PROCESS_STEP_4_TITLE": "Visa-Unterstützung",
+  "PROCESS_STEP_4_DESC": "Sobald Sie Ihren Zulassungsbescheid erhalten haben, begleiten wir Sie Schritt für Schritt durch die Beantragung des D-2- oder D-4-Studentenvisums.",
+  "PROCESS_STEP_5_TITLE": "Vorbereitung vor der Abreise",
+  "PROCESS_STEP_5_DESC": "Wohnheim oder Unterkunft, Flugplanung, Versicherung und lokale SIM-Karten — wir bereiten alles vor, bevor Sie abreisen.",
+  "PROCESS_STEP_6_TITLE": "Ankunft & laufende Betreuung",
+  "PROCESS_STEP_6_DESC": "Begleitung am Flughafen, Eingewöhnung und laufende Unterstützung während Ihres gesamten Aufenthalts in Korea — wir sind die ganze Zeit für Sie da.",
+
+  "***** INSTAGRAM *****": "",
+
+  "INSTAGRAM_TITLE": "Folgen Sie uns auf Instagram",
+  "INSTAGRAM_DESCRIPTION": "Erleben Sie, was unsere Studenten in Korea machen — Campusleben, Ausflüge und mehr.",
+
   "----------- PROGRAM MODAL SHORT -----------": "",
 
   "PROGRAM_MODAL_SHORT_TERM": "Kurzfristig Programm",
@@ -187,6 +209,19 @@
   "MAILING_MODAL_SUBMITTING": "Wird registriert...",
   "MAILING_MODAL_SUCCESS": "Vielen Dank für Ihre Registrierung!",
   "MAILING_MODAL_DONT_SHOW_24H": "24 Stunden lang nicht mehr anzeigen",
+
+  "MAILING_SECTION_TOPICS_TITLE": "Themen der Session",
+  "MAILING_SECTION_TOPICS_1": "Auswahl der passenden koreanischen Universität oder Sprachprogramms",
+  "MAILING_SECTION_TOPICS_2": "Bewerbungsablauf und erforderliche Unterlagen",
+  "MAILING_SECTION_TOPICS_3": "Koreanisches Studentenvisum (D-2 / D-4) – Beratung",
+  "MAILING_SECTION_TOPICS_4": "Unterkunft: Wohnheime, Share-Houses und Apartments",
+  "MAILING_SECTION_TOPICS_5": "Studiengebühren, Stipendien und Lebenshaltungskosten in Korea",
+  "MAILING_SECTION_TOPICS_6": "Live-Fragerunde mit unseren erfahrenen Beratern",
+
+  "MAILING_SECTION_HOW_TITLE": "So funktioniert's",
+  "MAILING_SECTION_HOW_1": "Registrieren Sie sich unten mit Ihrer E-Mail",
+  "MAILING_SECTION_HOW_2": "Erhalten Sie Termin und Sitzungslink per E-Mail",
+  "MAILING_SECTION_HOW_3": "Nehmen Sie live teil und stellen Sie Ihre Fragen",
 
   "***** UNSUBSCRIBE *****": "",
 

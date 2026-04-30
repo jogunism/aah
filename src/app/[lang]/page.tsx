@@ -4,6 +4,9 @@ import Footer from '@/components/context/Footer';
 import Introduce from '@/components/context/Introduce';
 import Universities from '@/components/context/Universities';
 import Programes from '@/components/context/Programes';
+import Process from '@/components/context/Process';
+import Instagram from '@/components/context/Instagram';
+import MailingList from '@/components/context/MailingList';
 import Contactus from '@/components/context/Contactus';
 // API
 import { updateCurrency } from '@/api';
@@ -26,6 +29,9 @@ export default async function Home({ params }: { params: Promise<{ lang: string 
         <Introduce />
         <Universities />
         <Programes />
+        <Process />
+        <Instagram />
+        <MailingList />
         <Contactus />
       </main>
 

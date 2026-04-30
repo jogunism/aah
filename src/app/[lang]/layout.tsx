@@ -6,7 +6,6 @@ import GoogleAnalytics from '@/components/common/GoogleAnalytics';
 
 import ToastProvider from '@common/ToastProvider';
 import GDPRPopup from '@/components/common/GDPRPopup';
-import MailingListModal from '@/components/common/MailingListModal';
 
 import '../globals.css';
 
@@ -105,7 +104,7 @@ export default async function LangLayout({
     logo: 'https://aah.education/assets/logo.png',
     image: 'https://aah.education/assets/main.jpg',
     description: t('METADATA_DESCRIPTION'),
-    sameAs: ['https://www.instagram.com/cloverleaf0827'],
+    sameAs: ['https://www.instagram.com/aah_korea'],
     inLanguage: ['en', 'de'],
   };
 
@@ -124,7 +123,6 @@ export default async function LangLayout({
         <ClientWrapper lang={lang}>
           {children}
           {modal}
-          <MailingListModal />
         </ClientWrapper>
         <ToastProvider />
         <GDPRPopup />
