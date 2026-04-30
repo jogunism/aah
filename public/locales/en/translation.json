@@ -190,7 +190,7 @@
   "CONTACTUS_CONTENT": "Content",
   "CONTACTUS_CONTENT_PLACEHOLDER": "Please feel free to share any questions or information that would help us assist you better. \nFor example: \n- Which program are you interested in? \n- When would you like to start? \n- Do you have any specific questions? etc.",
   "CONTACTUS_CONTENT_REQUIRED": "Content required.",
-  "CONTACTUS_GDPR": "The inquiry content will not be stored separately.",
+  "CONTACTUS_GDPR": "Your message is sent to us by email and is not stored in our database.",
   "CONTACTUS_SEND": "Send",
   "CONTACTUS_SENDING": "Sending...",
   "CONTACTUS_SUCCESS_TITLE": "Message Sent",

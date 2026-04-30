@@ -189,7 +189,7 @@
   "CONTACTUS_CONTENT": "Inhalt",
   "CONTACTUS_CONTENT_PLACEHOLDER": "Teilen Sie gerne alle Fragen oder Informationen mit, die uns helfen könnten, Sie besser zu unterstützen. \nZum Beispiel: \n- Für welches Programm interessieren Sie sich? \n- Wann möchten Sie anfangen? \n- Haben Sie spezielle Fragen? usw.",
   "CONTACTUS_CONTENT_REQUIRED": "Inhalt erforderlich.",
-  "CONTACTUS_GDPR": "Die Inhalte der Anfrage werden nicht separat gespeichert.",
+  "CONTACTUS_GDPR": "Ihre Nachricht wird uns per E-Mail zugestellt und nicht in unserer Datenbank gespeichert.",
   "CONTACTUS_SEND": "Senden",
   "CONTACTUS_SENDING": "Wird gesendet...",
   "CONTACTUS_SUCCESS_TITLE": "Nachricht gesendet",
