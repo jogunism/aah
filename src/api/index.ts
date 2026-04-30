@@ -30,13 +30,13 @@ export const updateCurrency = async () => {
  * Get Uninversity List
  * @returns
  */
-export const retrieveUniversityList: () => Promise<University[]> = async () => {
+export const retrieveUniversityList = async (): Promise<University[]> => {
   try {
     const response = await http.get<University[]>('/university/list');
     return response.data;
   } catch (error) {
     console.error('Error fetching university list:', error);
-    throw error;
+    return [];
   }
 };
 
@@ -44,13 +44,13 @@ export const retrieveUniversityList: () => Promise<University[]> = async () => {
  * Get prices
  * @returns
  */
-export const retrievePrices: () => Promise<Prices> = async () => {
+export const retrievePrices = async (): Promise<Prices | null> => {
   try {
     const response = await http.get<Prices>('/university/prices');
     return response.data;
   } catch (error) {
     console.error('Error fetching prices:', error);
-    throw error;
+    return null;
   }
 };
 
