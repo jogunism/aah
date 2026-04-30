@@ -104,7 +104,7 @@ export default function Contactus() {
 
 
   const getInputClass = (hasError: boolean, isPending: boolean) =>
-    `block w-full px-4 py-3 border rounded-lg bg-white text-gray-700 placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-aah-red focus:border-transparent ${
+    `block w-full px-4 py-2.5 border rounded-lg bg-white text-gray-700 placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-aah-red focus:border-transparent ${
       hasError ? 'border-red-700' : 'border-gray-300'
     } ${isPending ? 'opacity-50 cursor-not-allowed bg-gray-100' : ''}`;
 
@@ -297,7 +297,7 @@ export default function Contactus() {
                       type="button"
                       disabled={pending}
                       onClick={() => setIsProgramOpen(!isProgramOpen)}
-                      className={`flex items-center justify-between w-full px-4 py-3 text-gray-700 bg-white border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-aah-red focus:border-transparent ${
+                      className={`flex items-center justify-between w-full px-4 py-2.5 text-gray-700 bg-white border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-aah-red focus:border-transparent ${
                         pending ? 'opacity-50 cursor-not-allowed bg-gray-100' : ''
                       }`}
                     >

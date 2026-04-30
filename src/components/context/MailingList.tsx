@@ -86,7 +86,7 @@ export default function MailingList() {
                     value={email}
                     onChange={e => setEmail(e.target.value)}
                     placeholder={t('MAILING_MODAL_EMAIL_PLACEHOLDER')}
-                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-aah-red focus:border-transparent text-gray-700 placeholder:text-gray-400 bg-white"
+                    className="w-full px-4 py-2.5 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-aah-red focus:border-transparent text-gray-700 placeholder:text-gray-400 bg-white"
                     required
                   />
                 </div>
