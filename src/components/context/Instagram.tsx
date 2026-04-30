@@ -8,15 +8,17 @@ import ParallaxImage from '@common/parallaxImage';
 const INSTAGRAM_GRADIENT =
   'linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%)';
 
+const BeholdWidget = 'behold-widget' as unknown as React.FC<{ 'feed-id': string }>;
+
 /**
- * Instagram feed (LightWidget embed)
- * Set NEXT_PUBLIC_LIGHTWIDGET_ID in .env to enable.
+ * Instagram feed (Behold.so embed)
+ * Set NEXT_PUBLIC_BEHOLD_FEED_ID in .env to enable.
  */
 export default function Instagram() {
   const { t } = useTranslation();
-  const widgetId = process.env.NEXT_PUBLIC_LIGHTWIDGET_ID;
+  const feedId = process.env.NEXT_PUBLIC_BEHOLD_FEED_ID;
 
-  if (!widgetId) return null;
+  if (!feedId) return null;
 
   return (
     <div className="relative w-full bg-white mb-30">
@@ -36,12 +38,7 @@ export default function Instagram() {
             <p className="mb-8 text-center">{t('INSTAGRAM_DESCRIPTION')}</p>
 
             <div className="max-w-5xl mx-auto">
-              <iframe
-                src={`//lightwidget.com/widgets/${widgetId}.html`}
-                className="lightwidget-widget"
-                style={{ width: '100%', border: 0, overflow: 'hidden', background: 'transparent' }}
-                title="Instagram feed"
-              />
+              <BeholdWidget feed-id={feedId} />
             </div>
 
             <div className="text-center mt-8">
@@ -62,8 +59,9 @@ export default function Instagram() {
       </div>
 
       <Script
-        src="https://cdn.lightwidget.com/widgets/lightwidget.js"
-        strategy="lazyOnload"
+        type="module"
+        src="https://w.behold.so/widget.js"
+        strategy="afterInteractive"
       />
     </div>
   );
