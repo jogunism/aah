@@ -184,7 +184,7 @@
   "CONTACTUS_EMAIL_REQUIRED": "Email address required.",
   "CONTACTUS_EMAIL_INVALID": "Does not conform to email format.",
   "CONTACTUS_PROGRAMS": "Programs",
-  "CONTACTUS_PROGRAMS_SELECT": "Select",
+  "CONTACTUS_PROGRAMS_SELECT": "Program select",
   "CONTACTUS_PROGRAMS_SHORT_TERMS": "Short terms (3 weeks)",
   "CONTACTUS_PROGRAMS_LONG_TERMS": "Long terms (3 months)",
   "CONTACTUS_CONTENT": "Content",

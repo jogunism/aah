@@ -291,7 +291,11 @@ export default function Contactus() {
                         pending ? 'opacity-50 cursor-not-allowed bg-gray-100' : ''
                       }`}
                     >
-                      <span className="block truncate">{selectedProgram?.label}</span>
+                      <span
+                        className={`block truncate ${formValues.semester === -1 ? 'text-gray-400' : ''}`}
+                      >
+                        {selectedProgram?.label}
+                      </span>
                       <span className="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-2">
                         <svg
                           className={`w-4 h-4 ml-2 transition-transform duration-200 ${isProgramOpen ? 'transform rotate-180' : ''}`}
