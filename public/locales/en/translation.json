@@ -5,13 +5,13 @@
   "BACK_TO_MAIN": "Back to Main",
 
   "MAIN_SLOGAN": "Your journey to study in Korea starts with us!",
-  "MAIN_DESCRIPTION": "If you are thinking about studying abroad in Korea, our experienced staff will personally help you with all the procedures for studying abroad, including school selection, planning, applications, accommodation in Korea, local procedures, and student life support.",
+  "MAIN_DESCRIPTION": "If you're considering studying in Korea, our experienced team will personally guide you through every step — from school selection and planning to applications, accommodation, on-site procedures, and ongoing student life support.",
 
   "MAIN_WE_ARE": "We are",
   "MAIN_WE_ARE_DESCRIPTION_1": "a trusted company with <strong>15 years of experience</strong>, specializing in study abroad programs in Korea.",
   "MAIN_WE_ARE_DESCRIPTION_2": "<strong>officially authorized and registered</strong> as an education-related organization in <strong>both Japan and Korea</strong> — a rare and reliable distinction in the industry.",
-  "MAIN_WE_ARE_DESCRIPTION_3": "a regular member of the NPO Study Abroad Association and designated as part of the Korean Secretariat.",
-  "MAIN_WE_ARE_DESCRIPTION_4": "one of the largest study abroad agency, sending <strong>700 students from Japan to Korea every year</strong>.",
+  "MAIN_WE_ARE_DESCRIPTION_3": "an active member of the NPO Study Abroad Association, serving as its Korean office.",
+  "MAIN_WE_ARE_DESCRIPTION_4": "one of the largest study abroad agencies, sending <strong>700 students from Japan to Korea every year</strong>.",
   "MAIN_WE_ARE_DESCRIPTION_5": "partnered with <strong>numerous university training institutions</strong> across Korea, building strong and lasting collaborations.",
   "MAIN_WE_ARE_DESCRIPTION_6": "capable of providing a wide range of study abroad options, including 3-week short-term programs, 10-week regular programs, full undergraduate and graduate degrees, and cyber university programs.",
   "MAIN_WE_ARE_DESCRIPTION_7": "fully equipped to support students with school and dormitory arrangements, documentation and visa guidance, local SIM card setup, insurance, and other on-site preparations.",
@@ -21,21 +21,21 @@
   "***** UNIVERSITIES *****": "",
 
   "UNI_TITLE": "Partner Universities",
-  "UNI_DESCRIPTION": "This is a list of our partner universities in Seoul, South Korea. In fact, each semester dozens of students study abroad with aah! education to study abroad for long or short term.",
+  "UNI_DESCRIPTION": "This is a list of our partner universities in Seoul, South Korea. Each semester, dozens of students join aah! education for long-term or short-term programs.",
 
   "***** PROGRAM *****": "",
 
   "PROGRAMS_TITLE": "Programs",
   "PROGRAMS_SUB_TITLE": "Signature Korean Language Programs at aah! education - Short-Term (3 Weeks) & Long-Term (3 months)",
-  "PROGRAMS_DESCRIPTION": "Among the many programs offered by aah! education, our two most popular Korean language courses stand out :",
-  "PROGRAMS_SHORT_BUTTON": "Short-Term (3 Weeks)",
+  "PROGRAMS_DESCRIPTION": "Among the many programs offered by aah! education, our two most popular Korean language courses stand out:",
+  "PROGRAMS_SHORT_BUTTON": "Short-Term (3 weeks)",
   "PROGRAMS_SHORT_DESCRIPTION": "This program offers a unique opportunity to travel in Korea while learning the language and experiencing local culture firsthand. Ideal for first-time visitors or those looking to make the most of their school break with a meaningful and fun experience.",
   "PROGRAMS_LONG_BUTTON": "Long-Term (3 months)",
   "PROGRAMS_LONG_DESCRIPTION": "Designed for those who want to immerse themselves in a structured academic setting. Attend regular university classes alongside Korean students to build strong language skills and adapt to the culture over time.",
 
   "***** PROCESS *****": "",
 
-  "PROCESS_TITLE": "Your Journey with <span class=\"italic font-black text-aah-red\">aah</span>",
+  "PROCESS_TITLE": "Your Journey with <span class=\"italic font-black text-aah-red text-shadow-sm\">aah</span>",
   "PROCESS_DESCRIPTION": "From your first inquiry to your arrival in Korea — we're with you every step of the way.",
   "PROCESS_STEP_1_TITLE": "Free Consultation",
   "PROCESS_STEP_1_DESC": "Tell us about your goals, current Korean level, preferred duration, and budget. We'll discuss your options together — no commitment required.",
@@ -58,7 +58,7 @@
 
   "----------- PROGRAM MODAL SHORT -----------": "",
 
-  "PROGRAM_MODAL_SHORT_TERM": "Short-Term program",
+  "PROGRAM_MODAL_SHORT_TERM": "Short-Term Program",
 
   "PROGRAM_MODAL_SHORT_TERM_TITLE": "Start Your Korean Journey with a Short-Term Study Abroad Program",
   "PROGRAM_MODAL_SHORT_TERM_SUBTITLE_1": "📌 Benefits of a Short-Term Language Program",
@@ -74,7 +74,7 @@
 
   "PROGRAM_MODAL_SHORT_TERM_SUBTITLE_4": "📅 Course Availability & Duration",
   "PROGRAM_MODAL_SHORT_TERM_CONTENT_4": "Short-term programs are not available year-round. They are generally scheduled during vacation seasons:",
-  "PROGRAM_MODAL_SHORT_TERM_CONTENT_4_1": "Main intake periods: Summer break, spring/winter holidays, year-end/New Year, Golden Week",
+  "PROGRAM_MODAL_SHORT_TERM_CONTENT_4_1": "Main intake periods: Summer break, spring/winter holidays, year-end/New Year",
   "PROGRAM_MODAL_SHORT_TERM_CONTENT_4_2": "Typical duration: 2-3 weeks",
   "PROGRAM_MODAL_SHORT_TERM_CONTENT_4_3": "Extended short-term options: 4 to 6 weeks",
   "PROGRAM_MODAL_SHORT_TERM_CONTENT_4_4": "Ultra-short courses: 1 week, 3 days, or 5 days (offered occasionally)",
@@ -90,7 +90,7 @@
   "PROGRAM_MODAL_TABLE_SECTION_7": "Average Class Size",
   "PROGRAM_MODAL_TABLE_SECTION_8": "Visa Issuance",
 
-  "PROGRAM_MODAL_SHORT_TERM_TABLE_VALUE_1_1": "Spring break, GW, summer vacation, year-end and New Year holidays, etc.",
+  "PROGRAM_MODAL_SHORT_TERM_TABLE_VALUE_1_1": "Spring break, summer vacation, year-end and New Year holidays, etc.",
   "PROGRAM_MODAL_SHORT_TERM_TABLE_VALUE_1_2": "Levels 1-6",
   "PROGRAM_MODAL_SHORT_TERM_TABLE_VALUE_1_3": "3 weeks",
   "PROGRAM_MODAL_SHORT_TERM_TABLE_VALUE_1_4": "1 semester",
@@ -99,7 +99,7 @@
   "PROGRAM_MODAL_SHORT_TERM_TABLE_VALUE_1_7": "Approx. 10-15 students",
   "PROGRAM_MODAL_SHORT_TERM_TABLE_VALUE_1_8": "None",
 
-  "PROGRAM_MODAL_SHORT_TERM_TABLE_VALUE_2_1": "Spring break, GW, summer vacation, autumn, year-end and New Year holidays, etc.",
+  "PROGRAM_MODAL_SHORT_TERM_TABLE_VALUE_2_1": "Spring break, summer vacation, autumn, year-end and New Year holidays, etc.",
   "PROGRAM_MODAL_SHORT_TERM_TABLE_VALUE_2_2": "Levels 1-6",
   "PROGRAM_MODAL_SHORT_TERM_TABLE_VALUE_2_3": "1-2 weeks",
   "PROGRAM_MODAL_SHORT_TERM_TABLE_VALUE_2_4": "1 semester",
@@ -151,10 +151,10 @@
   "***** TUITION *****": "",
 
   "TUITION_TITLE": "Tuition fee",
-  "TUITION_DESCRIPTION": "Here is the cost information for the courses provided by aah! education.\nThe amounts shown are the minimum to maximum fees by school and program, and actual costs are typically lower than these in most cases. \nPlease contact us directly for more detailed information.",
-  "TUITION_SHORT_TERM_TITLE": "Short-term Program",
+  "TUITION_DESCRIPTION": "Here are the costs for the programs offered by aah! education.\nThe figures below show the minimum to maximum fees by school and program. Actual costs are often lower than the maximum shown.\nPlease contact us directly for more detailed information.",
+  "TUITION_SHORT_TERM_TITLE": "Short-Term Program",
   "TUITION_SHORT_TERM_DESCRIPTION": "A short but intensive experience that fits well into your vacation. Great for those who want to explore studying abroad before committing longer.",
-  "TUITION_LONG_TERM_TITLE": "Long-term Program",
+  "TUITION_LONG_TERM_TITLE": "Long-Term Program",
   "TUITION_LONG_TERM_DESCRIPTION": "A full-semester academic experience with deeper immersion. Ideal for those pursuing credits or long-term cultural integration.",
   "TUITION_COMMENT": "Includes VAT",
   "TUITION_WHATS_INCLUDE_TITLE": "What's Included?",
@@ -163,7 +163,7 @@
   "TUITION_WHATS_INCLUDE_ELEMENT_3": "🏠 Accommodation",
   "TUITION_WHATS_INCLUDE_ELEMENT_4": "📶 Local SIM card (Mobile data)",
   "TUITION_WHATS_INCLUDE_ELEMENT_5": "🛡️ Travel insurance",
-  "TUITION_WHATS_INCLUDE_ELEMENT_6": "📘 VISA Support: D-4-1 (general training for Korean), or H-1 (working holiday - Long terms only)",
+  "TUITION_WHATS_INCLUDE_ELEMENT_6": "📘 Visa support: D-4-1 (general training for Korean) or H-1 (working holiday — long-term only)",
   "TUITION_WHATS_INCLUDE_ELEMENT_7": "📞 Emergency support",
   "TUITION_WHATS_INCLUDE_COMMENT_1": "※ Program contents and pricing may vary depending on university and curriculum.",
   "TUITION_WHATS_INCLUDE_COMMENT_2": "※ Flight not included",
@@ -176,17 +176,17 @@
   "***** CONTACTUS *****": "",
 
   "CONTACTUS_TITLE": "Contact Us",
-  "CONTACTUS_DESCRIPTION": "If you have any questions, feel free to contact us. You can send an inquiry using the form below or send an email directly by clicking <a href=\"mailto:hyunwoo@aah-e.net\" class=\"text-aah-red font-bold italic underline\">here</a>.\nWe going to answer your question as soon as possible.",
+  "CONTACTUS_DESCRIPTION": "If you have any questions, feel free to contact us. You can send an inquiry using the form below or email us directly by clicking <a href=\"mailto:hyunwoo@aah-e.net\" class=\"text-aah-red font-bold italic underline\">here</a>.\nWe will respond as soon as possible.",
   "CONTACTUS_FIRST_NAME": "First name",
   "CONTACTUS_LAST_NAME": "Last name",
   "CONTACTUS_NAME_REQUIRED": "Name required.",
   "CONTACTUS_EMAIL_ADDRESS": "Email address",
   "CONTACTUS_EMAIL_REQUIRED": "Email address required.",
-  "CONTACTUS_EMAIL_INVALID": "Does not conform to email format.",
+  "CONTACTUS_EMAIL_INVALID": "Please enter a valid email address.",
   "CONTACTUS_PROGRAMS": "Programs",
   "CONTACTUS_PROGRAMS_SELECT": "Program select",
-  "CONTACTUS_PROGRAMS_SHORT_TERMS": "Short terms (3 weeks)",
-  "CONTACTUS_PROGRAMS_LONG_TERMS": "Long terms (3 months)",
+  "CONTACTUS_PROGRAMS_SHORT_TERMS": "Short-Term (3 weeks)",
+  "CONTACTUS_PROGRAMS_LONG_TERMS": "Long-Term (3 months)",
   "CONTACTUS_CONTENT": "Content",
   "CONTACTUS_CONTENT_PLACEHOLDER": "Please feel free to share any questions or information that would help us assist you better. \nFor example: \n- Which program are you interested in? \n- When would you like to start? \n- Do you have any specific questions? etc.",
   "CONTACTUS_CONTENT_REQUIRED": "Content required.",

@@ -5,12 +5,12 @@
   "BACK_TO_MAIN": "Zurück zur Hauptseite",
 
   "MAIN_SLOGAN": "Ihre Reise zum Studium in Korea beginnt mit uns!",
-  "MAIN_DESCRIPTION": "Wenn Sie mit dem Gedanken spielen, ein Auslandsstudium in Korea zu absolvieren, helfen Ihnen unsere erfahrenen Mitarbeiter persönlich bei allen Prozeduren des Auslandsstudiums, einschließlich Schulauswahl, Planung, Bewerbungen, Unterkunft in Korea, örtlichen Abläufen und Studentenbetreuung.",
+  "MAIN_DESCRIPTION": "Wenn Sie über ein Studium in Korea nachdenken, begleiten Sie unsere erfahrenen Mitarbeitenden persönlich durch jeden Schritt — von der Schulauswahl und Planung über Bewerbung, Unterkunft und Vor-Ort-Abläufe bis hin zur laufenden Betreuung.",
 
   "MAIN_WE_ARE": "Wir sind",
   "MAIN_WE_ARE_DESCRIPTION_1": "ein vertrauenswürdiges Unternehmen mit <strong>15 Jahren Erfahrung</strong>, das sich auf Auslandsstudienprogramme in Korea spezialisiert hat.",
   "MAIN_WE_ARE_DESCRIPTION_2": "<strong>sowohl in Japan als auch in Korea offiziell</strong> als bildungsbezogene Organisation <strong>zugelassen und registriert</strong> - eine seltene und zuverlässige Auszeichnung in der Branche.",
-  "MAIN_WE_ARE_DESCRIPTION_3": "ein ordentliches Mitglied der NPO Study Abroad Association und als Teil des koreanischen Sekretariats benannt.",
+  "MAIN_WE_ARE_DESCRIPTION_3": "ein aktives Mitglied der NPO Study Abroad Association und betreuen deren koreanisches Büro.",
   "MAIN_WE_ARE_DESCRIPTION_4": "eine der größten Auslandsstudienagenturen, die jedes Jahr <strong>700 Studenten aus Japan nach Korea</strong> schickt.",
   "MAIN_WE_ARE_DESCRIPTION_5": "Partnerschaften mit <strong>zahlreichen universitären Ausbildungseinrichtungen</strong> in ganz Korea, um eine starke und dauerhafte Zusammenarbeit aufzubauen.",
   "MAIN_WE_ARE_DESCRIPTION_6": "die eine breite Palette von Studienmöglichkeiten im Ausland anbieten können, darunter 3-wöchige Kurzzeitprogramme, 10-wöchige reguläre Programme, vollständige Studienabschlüsse und Cyber-Universitätsprogramme.",
@@ -21,21 +21,21 @@
   "***** UNIVERSITIES *****": "",
 
   "UNI_TITLE": "Partneruniversitäten",
-  "UNI_DESCRIPTION": "Dies ist eine Liste unserer Partneruniversitäten in Seoul, Südkorea. Tatsächlich studieren jedes Semester Dutzende von Studenten mit aah! education im Ausland für kurze oder lange Zeit.",
+  "UNI_DESCRIPTION": "Dies ist eine Liste unserer Partneruniversitäten in Seoul, Südkorea. Jedes Semester nehmen Dutzende Studierende über aah! education an Kurz- oder Langzeitprogrammen teil.",
 
   "***** PROGRAM *****": "",
 
   "PROGRAMS_TITLE": "Programme",
   "PROGRAMS_SUB_TITLE": "Die beliebtesten Koreanisch-Programme bei aah! education – Kurzzeit (3 Wochen) & Langzeit (3 Monate)",
-  "PROGRAMS_DESCRIPTION": "Unter den vielen Programmen von aah! education sind besonders zwei Koreanischkurse bei unseren Teilnehmer*innen sehr beliebt :",
-  "PROGRAMS_SHORT_BUTTON": "Kurzfristig (3 Wochen)",
+  "PROGRAMS_DESCRIPTION": "Unter den vielen Programmen von aah! education sind besonders zwei Koreanischkurse bei unseren Teilnehmer*innen sehr beliebt:",
+  "PROGRAMS_SHORT_BUTTON": "Kurzzeit (3 Wochen)",
   "PROGRAMS_SHORT_DESCRIPTION": "Dieses Programm bietet eine tolle Möglichkeit, Korea zu bereisen, dabei Koreanisch zu lernen und die Kultur hautnah zu erleben. Ideal für Erstbesucher*innen oder alle, die ihre Ferien sinnvoll und spannend gestalten möchten.",
   "PROGRAMS_LONG_BUTTON": "Langzeit (3 Monate)",
   "PROGRAMS_LONG_DESCRIPTION": "Konzipiert für alle, die in eine strukturierte akademische Umgebung eintauchen möchten. Besuchen Sie reguläre Universitätskurse zusammen mit koreanischen Studenten, um fundierte Sprachkenntnisse aufzubauen und sich Schritt für Schritt an die Kultur anzupassen.",
 
   "***** PROCESS *****": "",
 
-  "PROCESS_TITLE": "Ihr Weg mit <span class=\"italic font-black text-aah-red\">aah</span>",
+  "PROCESS_TITLE": "Ihr Weg mit <span class=\"italic font-black text-aah-red text-shadow-sm\">aah</span>",
   "PROCESS_DESCRIPTION": "Von Ihrer ersten Anfrage bis zur Ankunft in Korea — wir begleiten Sie auf jedem Schritt.",
   "PROCESS_STEP_1_TITLE": "Kostenlose Beratung",
   "PROCESS_STEP_1_DESC": "Erzählen Sie uns von Ihren Zielen, Ihrem aktuellen Koreanisch-Niveau, der gewünschten Dauer und Ihrem Budget. Wir besprechen gemeinsam Ihre Möglichkeiten — unverbindlich.",
@@ -58,7 +58,7 @@
 
   "----------- PROGRAM MODAL SHORT -----------": "",
 
-  "PROGRAM_MODAL_SHORT_TERM": "Kurzfristig Programm",
+  "PROGRAM_MODAL_SHORT_TERM": "Kurzzeit-Programm",
   "PROGRAM_MODAL_SHORT_TERM_TITLE": "Beginnen Sie Ihre Korea-Reise mit einem Kurzzeit-Auslandsstudienprogramm",
   "PROGRAM_MODAL_SHORT_TERM_SUBTITLE_1": "📌 Vorteile eines Kurzzeit-Sprachprogramms",
   "PROGRAM_MODAL_SHORT_TERM_CONTENT_1_1": "Reguläre Sprachkurse an universitären Einrichtungen dauern in der Regel etwa 10 Wochen (3 Monate), und selbst an Privatschulen ist oft eine Mindestdauer von einem Monat erforderlich. Dies macht es für Berufstätige oder Studierende schwierig, sich zu einem längeren Auslandsaufenthalt zu verpflichten.",
@@ -68,12 +68,12 @@
   "PROGRAM_MODAL_SHORT_TERM_SUBTITLE_2": "👶 Besonders ideal für Anfänger",
   "PROGRAM_MODAL_SHORT_TERM_CONTENT_2": "Koreanisch erfordert eine solide Grundlage, und das frühe Lernen sollte präzise, zielgerichtet und gut strukturiert sein. Für Anfänger, denen langfristige Programme möglicherweise zu viel sind, ist ein Kurzzeitkurs der perfekte Einstieg.",
 
-  "PROGRAM_MODAL_SHORT_TERM_SUBTITLE_3": "🧑‍🎓 Valuable for Upper-Beginners and Intermediate Learners",
+  "PROGRAM_MODAL_SHORT_TERM_SUBTITLE_3": "🧑‍🎓 Wertvoll für fortgeschrittene Anfänger und Mittelstufe",
   "PROGRAM_MODAL_SHORT_TERM_CONTENT_3": "Wenn Sie die Anfängerphase hinter sich haben, können Sie schon nach wenigen Wochen Aufenthalt in Korea beobachten, wie die Einheimischen denken, sprechen und sich verhalten - eine Erfahrung, die sowohl Ihre Sprachkenntnisse als auch Ihr kulturelles Verständnis verbessert.",
 
   "PROGRAM_MODAL_SHORT_TERM_SUBTITLE_4": "📅 Kursverfügbarkeit und Dauer",
   "PROGRAM_MODAL_SHORT_TERM_CONTENT_4": "Kurzzeitprogramme werden nicht das ganze Jahr über angeboten. Sie finden in der Regel während der Ferienzeiten statt:",
-  "PROGRAM_MODAL_SHORT_TERM_CONTENT_4_1": "Hauptanmeldezeiträume: Sommerferien, Frühjahrs-/Winterferien, Jahresende/Neujahr, Golden Week",
+  "PROGRAM_MODAL_SHORT_TERM_CONTENT_4_1": "Hauptanmeldezeiträume: Sommerferien, Frühjahrs-/Winterferien, Jahresende/Neujahr",
   "PROGRAM_MODAL_SHORT_TERM_CONTENT_4_2": "Typische Dauer: 2-3 Wochen",
   "PROGRAM_MODAL_SHORT_TERM_CONTENT_4_3": "Verlängerte kurzfristige Optionen: 4 bis 6 Wochen",
   "PROGRAM_MODAL_SHORT_TERM_CONTENT_4_4": "Ultrakurze Kurse: 1 Woche, 3 Tage oder 5 Tage (werden gelegentlich angeboten)",
@@ -89,7 +89,7 @@
   "PROGRAM_MODAL_TABLE_SECTION_7": "Durchschnittliche Klassengröße",
   "PROGRAM_MODAL_TABLE_SECTION_8": "Visaausstellung",
 
-  "PROGRAM_MODAL_SHORT_TERM_TABLE_VALUE_1_1": "Frühjahrsferien, Golden Week, Sommerferien, Jahresende und Neujahrsferien usw.",
+  "PROGRAM_MODAL_SHORT_TERM_TABLE_VALUE_1_1": "Frühjahrsferien, Sommerferien, Jahresende und Neujahrsferien usw.",
   "PROGRAM_MODAL_SHORT_TERM_TABLE_VALUE_1_2": "Stufen 1-6",
   "PROGRAM_MODAL_SHORT_TERM_TABLE_VALUE_1_3": "3 Wochen",
   "PROGRAM_MODAL_SHORT_TERM_TABLE_VALUE_1_4": "1 Semester",
@@ -98,7 +98,7 @@
   "PROGRAM_MODAL_SHORT_TERM_TABLE_VALUE_1_7": "Ca. 10-15 Teilnehmer",
   "PROGRAM_MODAL_SHORT_TERM_TABLE_VALUE_1_8": "Nicht erforderlich",
 
-  "PROGRAM_MODAL_SHORT_TERM_TABLE_VALUE_2_1": "Frühjahrsferien, Golden Week, Sommerferien, Herbst, Jahresende und Neujahrsferien usw.",
+  "PROGRAM_MODAL_SHORT_TERM_TABLE_VALUE_2_1": "Frühjahrsferien, Sommerferien, Herbst, Jahresende und Neujahrsferien usw.",
   "PROGRAM_MODAL_SHORT_TERM_TABLE_VALUE_2_2": "Stufen 1-6",
   "PROGRAM_MODAL_SHORT_TERM_TABLE_VALUE_2_3": "1-2 Wochen",
   "PROGRAM_MODAL_SHORT_TERM_TABLE_VALUE_2_4": "1 Semester",
@@ -109,7 +109,7 @@
 
   "----------- PROGRAM MODAL LONG -----------": "",
 
-  "PROGRAM_MODAL_LONG_TERM": "Langzeit Programm",
+  "PROGRAM_MODAL_LONG_TERM": "Langzeit-Programm",
 
   "PROGRAM_MODAL_LONG_TERM_TITLE": "Bauen Sie eine starke Grundlage mit unserem langfristigen Sprachprogramm auf",
   "PROGRAM_MODAL_LONG_TERM_SUBTITLE_1": "⏳ Was ist ein langfristiges Auslandsstudium?",
@@ -150,7 +150,7 @@
   "***** TUITION *****": "",
 
   "TUITION_TITLE": "Studiengebühren",
-  "TUITION_DESCRIPTION": "Hier finden Sie die Kosteninformationen zu den Kursen von aah! education.\nDie angezeigten Beträge sind die Mindest- bis Höchstgebühren je Schule und Programm, und die tatsächlichen Kosten sind in den meisten Fällen niedriger als diese. \nBitte kontaktieren Sie uns direkt für detailliertere Informationen.",
+  "TUITION_DESCRIPTION": "Hier finden Sie die Kosten für die Programme von aah! education.\nDie angezeigten Beträge sind die Mindest- bis Höchstgebühren je Schule und Programm. Die tatsächlichen Kosten liegen häufig unter dem angezeigten Höchstbetrag.\nBitte kontaktieren Sie uns direkt für detailliertere Informationen.",
   "TUITION_SHORT_TERM_TITLE": "Kurzzeitprogramm",
   "TUITION_SHORT_TERM_DESCRIPTION": "Eine kurze, aber intensive Erfahrung, die sich gut in Ihren Urlaub einfügt. Ideal für alle, die das Studium im Ausland ausprobieren möchten, bevor sie sich für einen längeren Aufenthalt entscheiden.",
   "TUITION_LONG_TERM_TITLE": "Langzeitprogramm",
@@ -162,7 +162,7 @@
   "TUITION_WHATS_INCLUDE_ELEMENT_3": "🏠 Unterkunft",
   "TUITION_WHATS_INCLUDE_ELEMENT_4": "📶 Lokale SIM-Karte (Mobile Daten)",
   "TUITION_WHATS_INCLUDE_ELEMENT_5": "🛡️ Reiseversicherung",
-  "TUITION_WHATS_INCLUDE_ELEMENT_6": "📘 VISA-Unterstützung: D-4-1 (allgemeine Ausbildung für Koreaner) oder H-1 (Working Holiday - nur für Langzeitaufenthalte)",
+  "TUITION_WHATS_INCLUDE_ELEMENT_6": "📘 Visa-Unterstützung: D-4-1 (allgemeine Ausbildung für Koreaner) oder H-1 (Working Holiday — nur Langzeit)",
   "TUITION_WHATS_INCLUDE_ELEMENT_7": "📞 Notfallhilfe",
   "TUITION_WHATS_INCLUDE_COMMENT_1": "※ Der Inhalt des Programms und die Preise können je nach Universität und Lehrplan variieren.",
   "TUITION_WHATS_INCLUDE_COMMENT_2": "※ Flug nicht inbegriffen.",
@@ -181,11 +181,11 @@
   "CONTACTUS_NAME_REQUIRED": "Name erforderlich.",
   "CONTACTUS_EMAIL_ADDRESS": "E-Mail-Adresse",
   "CONTACTUS_EMAIL_REQUIRED": "E-Mail-Adresse erforderlich.",
-  "CONTACTUS_EMAIL_INVALID": "Entspricht nicht dem E-Mail-Format.",
+  "CONTACTUS_EMAIL_INVALID": "Bitte geben Sie eine gültige E-Mail-Adresse ein.",
   "CONTACTUS_PROGRAMS": "Programme",
   "CONTACTUS_PROGRAMS_SELECT": "Programm auswählen",
-  "CONTACTUS_PROGRAMS_SHORT_TERMS": "Kurzzeitaufenthalte (3 Wochen)",
-  "CONTACTUS_PROGRAMS_LONG_TERMS": "Langzeitaufenthalte (3 Monate)",
+  "CONTACTUS_PROGRAMS_SHORT_TERMS": "Kurzzeit (3 Wochen)",
+  "CONTACTUS_PROGRAMS_LONG_TERMS": "Langzeit (3 Monate)",
   "CONTACTUS_CONTENT": "Inhalt",
   "CONTACTUS_CONTENT_PLACEHOLDER": "Teilen Sie gerne alle Fragen oder Informationen mit, die uns helfen könnten, Sie besser zu unterstützen. \nZum Beispiel: \n- Für welches Programm interessieren Sie sich? \n- Wann möchten Sie anfangen? \n- Haben Sie spezielle Fragen? usw.",
   "CONTACTUS_CONTENT_REQUIRED": "Inhalt erforderlich.",
