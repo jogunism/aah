@@ -104,7 +104,7 @@ export default function Contactus() {
 
 
   const getInputClass = (hasError: boolean, isPending: boolean) =>
-    `mt-1 block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 border focus:ring-2 focus:ring-indigo-600 sm:text-sm ${
+    `block w-full px-4 py-3 border rounded-lg bg-white text-gray-700 placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-aah-red focus:border-transparent ${
       hasError ? 'border-red-700' : 'border-gray-300'
     } ${isPending ? 'opacity-50 cursor-not-allowed bg-gray-100' : ''}`;
 
@@ -297,7 +297,7 @@ export default function Contactus() {
                       type="button"
                       disabled={pending}
                       onClick={() => setIsProgramOpen(!isProgramOpen)}
-                      className={`flex items-center justify-between w-full px-3 py-2 text-gray-700 bg-white border border-gray-300 rounded leading-tight focus:outline-none focus:ring-2 focus:ring-blue-500 text-sm ${
+                      className={`flex items-center justify-between w-full px-4 py-3 text-gray-700 bg-white border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-aah-red focus:border-transparent ${
                         pending ? 'opacity-50 cursor-not-allowed bg-gray-100' : ''
                       }`}
                     >
@@ -320,7 +320,7 @@ export default function Contactus() {
                       </span>
                     </button>
                     {isProgramOpen && (
-                      <div className="absolute z-10 mt-2 w-full origin-top-right bg-white border border-gray-200 rounded-md shadow-lg">
+                      <div className="absolute z-10 mt-2 w-full origin-top-right bg-white border border-gray-200 rounded-lg shadow-lg">
                         <ul tabIndex={-1} role="listbox" className="py-1 text-sm">
                           {programs.map(program => (
                             <li
