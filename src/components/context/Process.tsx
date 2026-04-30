@@ -11,7 +11,11 @@ export default async function Process() {
 
   return (
     <div className="relative w-full bg-white mb-30">
-      <ParallaxImage section="process" imagePath="/assets/image6.jpg" />
+      <ParallaxImage
+        section="process"
+        imagePath="/assets/image6.jpg"
+        alt="Step-by-step study abroad journey to Korea"
+      />
 
       <div className="relative z-10 bg-gradient-to-b from-[#f3e1eb] to-[#fff] w-full px-6 py-12">
         <div className="max-w-7xl mx-auto">

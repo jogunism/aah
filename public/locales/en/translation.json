@@ -16,6 +16,8 @@
   "MAIN_WE_ARE_DESCRIPTION_6": "capable of providing a wide range of study abroad options, including 3-week short-term programs, 10-week regular programs, full undergraduate and graduate degrees, and cyber university programs.",
   "MAIN_WE_ARE_DESCRIPTION_7": "fully equipped to support students with school and dormitory arrangements, documentation and visa guidance, local SIM card setup, insurance, and other on-site preparations.",
 
+  "MAIN_CTA": "Get a Free Consultation",
+
   "***** UNIVERSITIES *****": "",
 
   "UNI_TITLE": "Partner Universities",
@@ -52,6 +54,7 @@
 
   "INSTAGRAM_TITLE": "Follow us on Instagram",
   "INSTAGRAM_DESCRIPTION": "See what our students are up to in Korea — campus life, cultural trips, and more.",
+  "INSTAGRAM_FOLLOW_CTA": "Follow @aah_korea",
 
   "----------- PROGRAM MODAL SHORT -----------": "",
 
@@ -145,11 +148,6 @@
   "PROGRAM_MODAL_LONG_TERM_TABLE_VALUE_2_7": "Approx. 5-10 students",
   "PROGRAM_MODAL_LONG_TERM_TABLE_VALUE_2_8": "No visa or H-1 (Working Holiday)",
 
-  "***** CURRICULUM *****": "",
-
-  "CURRICULUM_TITLE": "Curriculum",
-  "CURRICULUM_DESCRIPTION": "",
-
   "***** TUITION *****": "",
 
   "TUITION_TITLE": "Tuition fee",
@@ -195,21 +193,20 @@
   "CONTACTUS_GDPR": "The inquiry content will not be stored separately.",
   "CONTACTUS_SEND": "Send",
   "CONTACTUS_SENDING": "Sending...",
+  "CONTACTUS_SUCCESS_TITLE": "Message Sent",
   "CONTACTUS_SUCCESS": "Your message has been sent successfully!",
   "CONTACTUS_FORM_INVALID": "Please check the form values.",
-  "CONTACTUS_SEND_SUCCESS": "Sent succesfully.",
+  "CONTACTUS_SEND_ERROR": "Sending failed. Please try again later.",
 
   "***** MAILING LIST MODAL *****": "",
 
-  "MAILING_TOAST_MESSAGE": "Join our FREE online information session!",
-  "MAILING_TOAST_CLICK": "View more",
   "MAILING_MODAL_TITLE": "Register for FREE Online Info Sessions",
   "MAILING_MODAL_DESCRIPTION": "Join our regular FREE online information sessions! By registering your email, you'll receive links to our free online sessions.<br/>You can unsubscribe at any time.",
   "MAILING_MODAL_EMAIL_PLACEHOLDER": "Enter your email address",
   "MAILING_MODAL_SUBMIT": "Register",
   "MAILING_MODAL_SUBMITTING": "Registering...",
   "MAILING_MODAL_SUCCESS": "Thank you for registering!",
-  "MAILING_MODAL_DONT_SHOW_24H": "Don't show this again for 24 hours",
+  "MAILING_MODAL_ERROR": "Something went wrong. Please try again.",
 
   "MAILING_SECTION_TOPICS_TITLE": "What we'll cover",
   "MAILING_SECTION_TOPICS_1": "Choosing the right Korean university or language program",
@@ -218,11 +215,6 @@
   "MAILING_SECTION_TOPICS_4": "Accommodation: dormitories, share houses, and apartments",
   "MAILING_SECTION_TOPICS_5": "Tuition, scholarships, and cost of living in Korea",
   "MAILING_SECTION_TOPICS_6": "Live Q&A with our experienced counselors",
-
-  "MAILING_SECTION_HOW_TITLE": "How it works",
-  "MAILING_SECTION_HOW_1": "Register with your email below",
-  "MAILING_SECTION_HOW_2": "Receive the session link and schedule by email",
-  "MAILING_SECTION_HOW_3": "Join live and ask anything you want to know",
 
   "***** UNSUBSCRIBE *****": "",
 

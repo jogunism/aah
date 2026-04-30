@@ -3,15 +3,22 @@
 import { useEffect, useState, useRef, useCallback } from 'react';
 import { getCookie, setCookie } from '@/lib/cookie';
 import { trackCurrencyChange } from '@/lib/gtag';
-import { useCurrencyStore } from '@/store/currencyStore';
+import { useCurrencyStore, type Currency } from '@/store/currencyStore';
 import { FaDollarSign, FaEuroSign } from 'react-icons/fa';
 
-export default function CurrencySelector() {
+interface CurrencySelectorProps {
+  lang: string;
+}
+
+const isCurrency = (value: string | undefined): value is Currency =>
+  value === 'EUR' || value === 'USD';
+
+export default function CurrencySelector({ lang }: CurrencySelectorProps) {
   const { currency, setCurrency } = useCurrencyStore();
   const [isOpen, setIsOpen] = useState(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
 
-  const currencies = [
+  const currencies: { code: Currency; label: React.ReactNode }[] = [
     { code: 'USD', label: <FaDollarSign /> },
     { code: 'EUR', label: <FaEuroSign /> },
   ];
@@ -27,7 +34,7 @@ export default function CurrencySelector() {
     }
   }, []);
 
-  const handleCurrencySelect = (selectedCurrency: string) => {
+  const handleCurrencySelect = (selectedCurrency: Currency) => {
     const previousCurrency = currency;
     setCurrency(selectedCurrency);
     setIsOpen(false);
@@ -42,14 +49,14 @@ export default function CurrencySelector() {
    */
   useEffect(() => {
     const storedCurrency = getCookie('currency');
-    if (storedCurrency) {
+    if (isCurrency(storedCurrency)) {
       setCurrency(storedCurrency);
     } else {
-      const defaultCurrency = 'USD';
+      const defaultCurrency: Currency = lang === 'de' ? 'EUR' : 'USD';
       setCurrency(defaultCurrency);
       setCookie('currency', defaultCurrency);
     }
-  }, [setCurrency]);
+  }, [setCurrency, lang]);
 
   useEffect(() => {
     document.addEventListener('mousedown', handleClickOutside);

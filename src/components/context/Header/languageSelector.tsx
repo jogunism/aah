@@ -72,7 +72,7 @@ export default function LanguageSelector({ currentLang }: LanguageSelectorProps)
     // - 서버 컴포넌트: router.replace 가 [lang] 변경을 감지해 RSC 재요청 → 새 언어로 렌더
     // - 클라이언트 컴포넌트(useTranslation 사용): 아래 i18n.changeLanguage 로 즉시 갱신
     //   (네비게이션 완료 전 깜빡임 방지. ClientWrapper 의 lang prop 동기화도 백업으로 동작)
-    // - TuitionCalculation 등 클라이언트 상태 모달: 컴포넌트가 트리 동일 위치에
+    // - 클라이언트 상태 모달: 컴포넌트가 트리 동일 위치에
     //   유지되므로 isOpen 등 state 가 보존됨
     const newPathname = pathname.replace(/^\/(en|de)/, `/${selectedLang}`);
     setActiveLang(selectedLang);

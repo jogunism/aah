@@ -39,6 +39,15 @@ export default async function Introduce() {
               <li dangerouslySetInnerHTML={{ __html: t('MAIN_WE_ARE_DESCRIPTION_6') }} />
               <li dangerouslySetInnerHTML={{ __html: t('MAIN_WE_ARE_DESCRIPTION_7') }} />
             </ul>
+
+            <div className="mt-10 text-center">
+              <a
+                href="#contactus"
+                className="inline-block bg-aah-red text-white font-semibold px-8 py-3 rounded-full shadow-md hover:opacity-90 transition-opacity"
+              >
+                {t('MAIN_CTA')}
+              </a>
+            </div>
             {/* ./body */}
           </div>
         </div>

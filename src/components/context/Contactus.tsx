@@ -163,6 +163,10 @@ export default function Contactus() {
       }, 3000);
       return () => clearTimeout(timer);
     }
+    if (isSuccess === false) {
+      toast.error(t('CONTACTUS_SEND_ERROR'));
+      resetSendStatus();
+    }
   }, [isSuccess]);
 
   useEffect(() => {
@@ -191,8 +195,12 @@ export default function Contactus() {
   const selectedProgram = programs.find(p => p.value === formValues.semester);
 
   return (
-    <div className="relative w-full bg-white">
-      <ParallaxImage section="contactus" imagePath="/assets/image5.jpg" />
+    <div id="contactus" className="relative w-full bg-white scroll-mt-[60px]">
+      <ParallaxImage
+        section="contactus"
+        imagePath="/assets/image5.jpg"
+        alt="Contact aah education for Korean study abroad"
+      />
 
       <div className="relative bg-[#f3e1eb] w-full px-6 py-12">
         <div className="max-w-7xl mx-auto">
@@ -384,7 +392,7 @@ export default function Contactus() {
               <div className="fixed inset-0 z-[999] flex items-center justify-center bg-black/50 backdrop-blur-sm">
                 <div className="relative bg-white rounded-2xl shadow-2xl max-w-md w-full mx-4 overflow-hidden">
                   <div className="bg-aah-red px-6 py-4 text-white text-center">
-                    <h2 className="text-xl font-bold">{t('CONTACTUS_TITLE')}</h2>
+                    <h2 className="text-xl font-bold">{t('CONTACTUS_SUCCESS_TITLE')}</h2>
                   </div>
                   <button
                     onClick={handleCloseSuccessModal}

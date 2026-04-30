@@ -4,6 +4,7 @@ import Footer from '@/components/context/Footer';
 import Introduce from '@/components/context/Introduce';
 import Universities from '@/components/context/Universities';
 import Programes from '@/components/context/Programes';
+import Tuition from '@/components/context/Tuition';
 import Process from '@/components/context/Process';
 import Instagram from '@/components/context/Instagram';
 import MailingList from '@/components/context/MailingList';
@@ -29,6 +30,7 @@ export default async function Home({ params }: { params: Promise<{ lang: string 
         <Introduce />
         <Universities />
         <Programes />
+        <Tuition />
         <Process />
         <Instagram />
         <MailingList />

@@ -1,8 +1,10 @@
 import { create } from 'zustand';
 
+export type Currency = 'EUR' | 'USD';
+
 interface CurrencyState {
-  currency: string;
-  setCurrency: (currency: string) => void;
+  currency: Currency;
+  setCurrency: (currency: Currency) => void;
 }
 
 export const useCurrencyStore = create<CurrencyState>(set => ({

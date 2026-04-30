@@ -16,6 +16,8 @@
   "MAIN_WE_ARE_DESCRIPTION_6": "die eine breite Palette von Studienmöglichkeiten im Ausland anbieten können, darunter 3-wöchige Kurzzeitprogramme, 10-wöchige reguläre Programme, vollständige Studienabschlüsse und Cyber-Universitätsprogramme.",
   "MAIN_WE_ARE_DESCRIPTION_7": "bestens ausgerüstet, um Studenten bei der Organisation von Schulen und Wohnheimen, der Erstellung von Dokumenten und Visa, der Einrichtung lokaler SIM-Karten, Versicherungen und anderen Vorbereitungen vor Ort zu unterstützen.",
 
+  "MAIN_CTA": "Kostenlose Beratung anfordern",
+
   "***** UNIVERSITIES *****": "",
 
   "UNI_TITLE": "Partneruniversitäten",
@@ -29,7 +31,7 @@
   "PROGRAMS_SHORT_BUTTON": "Kurzfristig (3 Wochen)",
   "PROGRAMS_SHORT_DESCRIPTION": "Dieses Programm bietet eine tolle Möglichkeit, Korea zu bereisen, dabei Koreanisch zu lernen und die Kultur hautnah zu erleben. Ideal für Erstbesucher*innen oder alle, die ihre Ferien sinnvoll und spannend gestalten möchten.",
   "PROGRAMS_LONG_BUTTON": "Langzeit (3 Monate)",
-  "PROGRAMS_LONG_DESCRIPTION": "Dieses Programm bietet eine tolle Möglichkeit, Korea zu bereisen, dabei Koreanisch zu lernen und die Kultur hautnah zu erleben. Ideal für Erstbesucher*innen oder alle, die ihre Ferien sinnvoll und spannend gestalten möchten.",
+  "PROGRAMS_LONG_DESCRIPTION": "Konzipiert für alle, die in eine strukturierte akademische Umgebung eintauchen möchten. Besuchen Sie reguläre Universitätskurse zusammen mit koreanischen Studenten, um fundierte Sprachkenntnisse aufzubauen und sich Schritt für Schritt an die Kultur anzupassen.",
 
   "***** PROCESS *****": "",
 
@@ -52,6 +54,7 @@
 
   "INSTAGRAM_TITLE": "Folgen Sie uns auf Instagram",
   "INSTAGRAM_DESCRIPTION": "Erleben Sie, was unsere Studenten in Korea machen — Campusleben, Ausflüge und mehr.",
+  "INSTAGRAM_FOLLOW_CTA": "@aah_korea folgen",
 
   "----------- PROGRAM MODAL SHORT -----------": "",
 
@@ -144,11 +147,6 @@
   "PROGRAM_MODAL_LONG_TERM_TABLE_VALUE_2_7": "Ca. 5-10 Teilnehmer",
   "PROGRAM_MODAL_LONG_TERM_TABLE_VALUE_2_8": "Kein Visum oder H-1 (Working Holiday)",
 
-  "***** CURRICULUM *****": "",
-
-  "CURRICULUM_TITLE": "Lehrplan",
-  "CURRICULUM_DESCRIPTION": "",
-
   "***** TUITION *****": "",
 
   "TUITION_TITLE": "Studiengebühren",
@@ -194,21 +192,20 @@
   "CONTACTUS_GDPR": "Die Inhalte der Anfrage werden nicht separat gespeichert.",
   "CONTACTUS_SEND": "Senden",
   "CONTACTUS_SENDING": "Wird gesendet...",
+  "CONTACTUS_SUCCESS_TITLE": "Nachricht gesendet",
   "CONTACTUS_SUCCESS": "Ihre Nachricht wurde erfolgreich gesendet!",
   "CONTACTUS_FORM_INVALID": "Bitte überprüfen Sie die Werte im Formular.",
-  "CONTACTUS_SEND_SUCCESS": "Erfolgreich gesendet.",
+  "CONTACTUS_SEND_ERROR": "Senden fehlgeschlagen. Bitte versuchen Sie es später erneut.",
 
   "***** MAILING LIST MODAL *****": "",
 
-  "MAILING_TOAST_MESSAGE": "Nehmen Sie an unserer KOSTENLOSEN Online-Infoveranstaltung teil!",
-  "MAILING_TOAST_CLICK": "Mehr erfahren",
   "MAILING_MODAL_TITLE": "Registrierung für KOSTENLOSE Online-Infoveranstaltungen",
   "MAILING_MODAL_DESCRIPTION": "Nehmen Sie an unseren regelmäßigen KOSTENLOSEN Online-Infoveranstaltungen teil! Mit Ihrer E-Mail-Registrierung erhalten Sie Links zu unseren kostenlosen Online-Sessions.<br/>Sie können sich jederzeit abmelden.",
   "MAILING_MODAL_EMAIL_PLACEHOLDER": "Geben Sie Ihre E-Mail-Adresse ein",
   "MAILING_MODAL_SUBMIT": "Registrieren",
   "MAILING_MODAL_SUBMITTING": "Wird registriert...",
   "MAILING_MODAL_SUCCESS": "Vielen Dank für Ihre Registrierung!",
-  "MAILING_MODAL_DONT_SHOW_24H": "24 Stunden lang nicht mehr anzeigen",
+  "MAILING_MODAL_ERROR": "Etwas ist schiefgelaufen. Bitte versuchen Sie es erneut.",
 
   "MAILING_SECTION_TOPICS_TITLE": "Themen der Session",
   "MAILING_SECTION_TOPICS_1": "Auswahl der passenden koreanischen Universität oder Sprachprogramms",
@@ -217,11 +214,6 @@
   "MAILING_SECTION_TOPICS_4": "Unterkunft: Wohnheime, Share-Houses und Apartments",
   "MAILING_SECTION_TOPICS_5": "Studiengebühren, Stipendien und Lebenshaltungskosten in Korea",
   "MAILING_SECTION_TOPICS_6": "Live-Fragerunde mit unseren erfahrenen Beratern",
-
-  "MAILING_SECTION_HOW_TITLE": "So funktioniert's",
-  "MAILING_SECTION_HOW_1": "Registrieren Sie sich unten mit Ihrer E-Mail",
-  "MAILING_SECTION_HOW_2": "Erhalten Sie Termin und Sitzungslink per E-Mail",
-  "MAILING_SECTION_HOW_3": "Nehmen Sie live teil und stellen Sie Ihre Fragen",
 
   "***** UNSUBSCRIBE *****": "",
 

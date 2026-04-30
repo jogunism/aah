@@ -10,7 +10,7 @@ import { ProgramType, University } from '@/types/constants';
 // Store
 import { useCurrencyStore } from '@/store/currencyStore';
 // API
-import { retrieveCurrencyRate, retrieveUniversityList } from '@/api';
+import { retrieveUniversityList } from '@/api';
 // Utils
 import { formatPrice } from '@/utils';
 // Analytics
@@ -25,7 +25,6 @@ const TuitionCalculation: React.FC<TuitionCalculationProps> = ({ isOpen, onClose
   const { t, i18n } = useTranslation();
   const { currency } = useCurrencyStore();
 
-  const [currencyRate, setCurrencyRate] = useState<number>(0.0);
   const [universityList, setUniversityList] = useState<University[]>([]);
   const [selectedUniversityList, setSelectedUniversityList] = useState<University[]>([]);
   const [selectedUniversity, setSelectedUniversity] = useState<University | null>(null);
@@ -33,27 +32,16 @@ const TuitionCalculation: React.FC<TuitionCalculationProps> = ({ isOpen, onClose
   const [programType, setProgramType] = useState<ProgramType>(ProgramType.SHORT);
   const [calculatedPrice, setCalculatedPrice] = useState<number | null>(null);
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
-  const [initialDataLoaded, setInitialDataLoaded] = useState(false);
 
   const dropdownRef = useRef<HTMLDivElement>(null);
 
   /*******************************************************
    * methods
    */
-  const fetchCurrencyRate = async () => {
-    try {
-      const rate = await retrieveCurrencyRate();
-      setCurrencyRate(Number(rate));
-    } catch (error) {
-      console.error('Failed to fetch currency rate', error);
-    }
-  };
-
   const fetchUniversityList = async () => {
     try {
       const universities = await retrieveUniversityList();
       setUniversityList(universities);
-      setInitialDataLoaded(true);
     } catch (error) {
       console.error('Failed to fetch university list:', error);
     }
@@ -111,50 +99,43 @@ const TuitionCalculation: React.FC<TuitionCalculationProps> = ({ isOpen, onClose
   /*******************************************************
    * lifecycle hooks
    */
+  // Refetch on open and on currency change — prices are returned in user currency
   useEffect(() => {
-    if (isOpen && !initialDataLoaded) {
-      fetchCurrencyRate();
+    if (isOpen) {
       fetchUniversityList();
     }
-  }, [isOpen, initialDataLoaded]);
+  }, [isOpen, currency]);
 
   useEffect(() => {
-    handleSelectProgramType(ProgramType.SHORT);
-  }, [universityList, handleSelectProgramType]);
+    handleSelectProgramType(programType);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [universityList]);
 
   useEffect(() => {
-    fetchCurrencyRate();
-  }, [currency]);
+    if (!selectedUniversity) {
+      setCalculatedPrice(null);
+      return;
+    }
 
-  useEffect(() => {
-    if (selectedUniversity && currencyRate > 0) {
-      const price =
-        programType === ProgramType.SHORT
-          ? selectedUniversity.priceShort
-          : selectedUniversity.priceLong;
+    // Look up fresh data — list may have been refetched (currency change)
+    const fresh = universityList.find(u => u.id === selectedUniversity.id) ?? selectedUniversity;
+    const price =
+      programType === ProgramType.SHORT ? fresh.priceShort : fresh.priceLong;
 
-      if (price) {
-        const calculated = Math.ceil(price / currencyRate + 70000 / currencyRate);
-        const finalPrice = Math.ceil(calculated / 10) * 10;
-        setCalculatedPrice(finalPrice);
+    if (price > 0) {
+      setCalculatedPrice(price);
 
-        // Track tuition calculation completion
-        trackTuitionCalculationSubmit({
-          university_id: selectedUniversity.id,
-          university_name: selectedUniversity.title,
-          program_type: programType,
-          currency: currency,
-          calculated_price: finalPrice,
-          original_price_krw: price,
-          currency_rate: currencyRate,
-        });
-      } else {
-        setCalculatedPrice(null);
-      }
+      trackTuitionCalculationSubmit({
+        university_id: fresh.id,
+        university_name: fresh.title,
+        program_type: programType,
+        currency: currency,
+        calculated_price: price,
+      });
     } else {
       setCalculatedPrice(null);
     }
-  }, [selectedUniversity, currencyRate, programType, currency]);
+  }, [selectedUniversity, programType, universityList, currency]);
 
   /*******************************************************
    * render

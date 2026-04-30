@@ -28,9 +28,18 @@ export default async function Footer() {
         >
           aah-e.net
         </a>
+        <span className="mx-2 text-white">|</span>
+        <a
+          href="/sitemap.xml"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="p-2 text-white hover:text-gray-200 text-sm"
+        >
+          Sitemap
+        </a>
       </div>
       <p className="text-gray-800 text-sm text-white">
-        © 2025 aah! education Europe. All rights reserved.
+        © {new Date().getFullYear()} aah! education Europe. All rights reserved.
       </p>
       {appVersion && (
         <p className="absolute bottom-4 right-6 text-xs text-gray-300">v{appVersion}</p>
