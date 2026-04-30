@@ -16,6 +16,7 @@ import {
   isSupportedLocale,
   type Locale,
 } from '@/lib/locales';
+import { buildOrganizationSchema } from '@/lib/schema';
 
 import '../globals.css';
 
@@ -98,18 +99,10 @@ export default async function LangLayout({
 
   const { t } = await getTranslation(lang);
 
-  const jsonLd = {
-    '@context': 'https://schema.org',
-    '@type': 'EducationalOrganization',
-    name: 'aah! education',
-    alternateName: 'aah! education Europe',
-    url: SITE_URL,
-    logo: `${SITE_URL}/assets/logo.png`,
-    image: `${SITE_URL}/assets/main.jpg`,
+  const jsonLd = buildOrganizationSchema({
     description: t('METADATA_DESCRIPTION'),
-    sameAs: ['https://www.instagram.com/aah_korea'],
-    inLanguage: SUPPORTED_LOCALES as unknown as string[],
-  };
+    slogan: t('MAIN_SLOGAN'),
+  });
 
   return (
     <html lang={lang}>

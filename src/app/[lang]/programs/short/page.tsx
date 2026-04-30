@@ -10,6 +10,7 @@ import {
   isSupportedLocale,
   DEFAULT_LOCALE,
 } from '@/lib/locales';
+import { buildCourseSchema, buildBreadcrumbSchema } from '@/lib/schema';
 
 export const dynamic = 'force-dynamic';
 
@@ -45,11 +46,33 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
 }
 
 export default async function ShortProgramPage({ params }: PageProps) {
-  const { lang } = await params;
+  const { lang: langParam } = await params;
+  const lang = isSupportedLocale(langParam) ? langParam : DEFAULT_LOCALE;
   const { t } = await getTranslation(lang);
+
+  const courseSchema = buildCourseSchema({
+    lang,
+    path: '/programs/short',
+    name: t('PROGRAM_MODAL_SHORT_TERM'),
+    description: t('PROGRAM_MODAL_SHORT_TERM_TITLE'),
+    durationISO: 'P3W',
+  });
+
+  const breadcrumbSchema = buildBreadcrumbSchema(lang, [
+    { name: 'Home', path: '' },
+    { name: t('PROGRAM_MODAL_SHORT_TERM'), path: '/programs/short' },
+  ]);
 
   return (
     <main className="min-h-screen bg-gray-50 py-12">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(courseSchema) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
+      />
       <div className="max-w-5xl mx-auto">
         <Link
           href={`/${lang}`}
