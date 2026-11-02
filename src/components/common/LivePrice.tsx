@@ -24,12 +24,14 @@ export default function LivePrice({
   template,
   initial,
   initialCurrency,
+  amountClassName = 'text-[22px] font-bold text-ink',
 }: {
   field: keyof Prices;
   lang: string;
   template: string; // e.g. "From {{price}}"
   initial: Prices | null;
   initialCurrency: Currency;
+  amountClassName?: string;
 }) {
   const currency = useCurrencyStore((s) => s.currency) as Currency;
   const [state, setState] = useState({ prices: initial, currency: initialCurrency });
@@ -51,7 +53,7 @@ export default function LivePrice({
   return (
     <>
       {before}
-      <b className="text-[22px] font-bold text-ink">
+      <b className={amountClassName}>
         {SYMBOL[state.currency]}
         {formatPrice(amount, lang)}
       </b>

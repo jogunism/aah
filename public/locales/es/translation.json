@@ -337,5 +337,26 @@
   "PRICE_FROM": "Desde {{price}}",
   "PRICE_PER_SEMESTER": "por semestre",
   "TILE_PLAN": "Planificar",
-  "TILE_LEARN": "Más información"
+  "TILE_LEARN": "Más información",
+
+  "***** COMPARE *****": "",
+  "COMPARE_TITLE": "¿Qué programa es para ti?",
+  "COMPARE_ROW_LENGTH": "Duración",
+  "COMPARE_SHORT_LENGTH": "3 semanas en universidades, 1–2 semanas en academias de idiomas",
+  "COMPARE_LONG_LENGTH": "10 semanas por semestre, tantos semestres como quieras",
+  "COMPARE_ROW_START": "Inicio",
+  "COMPARE_SHORT_START": "Vacaciones de primavera, verano, invierno/fin de año",
+  "COMPARE_LONG_START": "Cuatro veces al año (primavera, verano, otoño, invierno)",
+  "COMPARE_ROW_CLASSES": "Clases",
+  "COMPARE_SHORT_CLASSES": "De lunes a viernes, 9:00–13:00, más actividades culturales por la tarde",
+  "COMPARE_LONG_CLASSES": "De lunes a viernes, 9:00–13:00, unas 200 horas por semestre",
+  "COMPARE_ROW_SIZE": "Tamaño de clase",
+  "COMPARE_SIZE": "Unos 10–15 estudiantes",
+  "COMPARE_ROW_VISA": "Visado",
+  "COMPARE_LONG_VISA": "1 semestre: a menudo sin visado · 2 o más: D-4-1",
+  "COMPARE_ROW_BEST": "Ideal para",
+  "COMPARE_SHORT_BEST": "Primera visita, principiantes, estudiar en vacaciones",
+  "COMPARE_LONG_BEST": "Fluidez, objetivos profesionales, preparación para la universidad coreana",
+  "COMPARE_ROW_PRICE": "Precio",
+  "COMPARE_PRICE_NOTE": "Precios con IVA incluido; varían según el centro y el programa. Vuelos no incluidos."
 }

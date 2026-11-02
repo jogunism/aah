@@ -336,5 +336,26 @@
   "PRICE_FROM": "Ab {{price}}",
   "PRICE_PER_SEMESTER": "pro Semester",
   "TILE_PLAN": "Planen",
-  "TILE_LEARN": "Mehr erfahren"
+  "TILE_LEARN": "Mehr erfahren",
+
+  "***** COMPARE *****": "",
+  "COMPARE_TITLE": "Welches Programm passt zu Ihnen?",
+  "COMPARE_ROW_LENGTH": "Dauer",
+  "COMPARE_SHORT_LENGTH": "3 Wochen an Universitäten, 1–2 Wochen an Sprachschulen",
+  "COMPARE_LONG_LENGTH": "10 Wochen pro Semester – beliebig viele Semester möglich",
+  "COMPARE_ROW_START": "Beginn",
+  "COMPARE_SHORT_START": "Frühjahrsferien, Sommer, Winter/Jahreswechsel",
+  "COMPARE_LONG_START": "Viermal im Jahr (Frühling, Sommer, Herbst, Winter)",
+  "COMPARE_ROW_CLASSES": "Unterricht",
+  "COMPARE_SHORT_CLASSES": "Mo–Fr 9:00–13:00 Uhr, dazu Kulturprogramm am Nachmittag",
+  "COMPARE_LONG_CLASSES": "Mo–Fr 9:00–13:00 Uhr, rund 200 Stunden pro Semester",
+  "COMPARE_ROW_SIZE": "Klassengröße",
+  "COMPARE_SIZE": "Etwa 10–15 Teilnehmende",
+  "COMPARE_ROW_VISA": "Visum",
+  "COMPARE_LONG_VISA": "1 Semester: oft visumfrei · ab 2 Semestern: D-4-1",
+  "COMPARE_ROW_BEST": "Ideal für",
+  "COMPARE_SHORT_BEST": "Erstbesucher, Anfänger, Lernen in den Ferien",
+  "COMPARE_LONG_BEST": "Fließend sprechen, Berufsziele, Vorbereitung auf ein Studium in Korea",
+  "COMPARE_ROW_PRICE": "Preis",
+  "COMPARE_PRICE_NOTE": "Preise inkl. MwSt., je nach Schule und Programm unterschiedlich. Flüge nicht inklusive."
 }

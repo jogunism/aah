@@ -337,5 +337,26 @@
   "PRICE_FROM": "From {{price}}",
   "PRICE_PER_SEMESTER": "per semester",
   "TILE_PLAN": "Plan it",
-  "TILE_LEARN": "Learn more"
+  "TILE_LEARN": "Learn more",
+
+  "***** COMPARE *****": "",
+  "COMPARE_TITLE": "Which program is right for you?",
+  "COMPARE_ROW_LENGTH": "Length",
+  "COMPARE_SHORT_LENGTH": "3 weeks at universities, 1–2 weeks at language schools",
+  "COMPARE_LONG_LENGTH": "10 weeks per semester — stay as many semesters as you like",
+  "COMPARE_ROW_START": "Starts",
+  "COMPARE_SHORT_START": "Spring break, summer, winter / New Year",
+  "COMPARE_LONG_START": "Four times a year (spring, summer, autumn, winter)",
+  "COMPARE_ROW_CLASSES": "Classes",
+  "COMPARE_SHORT_CLASSES": "Mon–Fri 9:00–13:00, plus afternoon culture program",
+  "COMPARE_LONG_CLASSES": "Mon–Fri 9:00–13:00, about 200 hours per semester",
+  "COMPARE_ROW_SIZE": "Class size",
+  "COMPARE_SIZE": "About 10–15 students",
+  "COMPARE_ROW_VISA": "Visa",
+  "COMPARE_LONG_VISA": "1 semester: often visa-free · 2+ semesters: D-4-1",
+  "COMPARE_ROW_BEST": "Best for",
+  "COMPARE_SHORT_BEST": "First-timers, beginners, holiday learners",
+  "COMPARE_LONG_BEST": "Fluency, career goals, Korean university prep",
+  "COMPARE_ROW_PRICE": "Price",
+  "COMPARE_PRICE_NOTE": "Prices include VAT and vary by school and program. Flights not included."
 }
