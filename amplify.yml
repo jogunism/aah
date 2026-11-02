@@ -3,6 +3,7 @@ frontend:
   phases:
     preBuild:
       commands:
+        - dnf install -y libatomic || yum install -y libatomic
         - nvm install 26
         - nvm use 26
         - node -v
