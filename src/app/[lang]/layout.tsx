@@ -88,11 +88,9 @@ export async function generateMetadata({ params }: { params: Promise<{ lang: str
 
 export default async function LangLayout({
   children,
-  modal,
   params,
 }: {
   children: ReactNode;
-  modal: ReactNode;
   params: Promise<{ lang: string }>;
 }) {
   const { lang } = await params;
@@ -122,7 +120,6 @@ export default async function LangLayout({
         )}
         <ClientWrapper lang={lang}>
           {children}
-          {modal}
         </ClientWrapper>
         <ToastProvider />
         <GDPRPopup />
