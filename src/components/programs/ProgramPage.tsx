@@ -1,4 +1,4 @@
-// 단기/장기 프로그램 상세 페이지 공통 레이아웃(서브 메뉴·히어로·핵심 스펙·본문·학교별 가격·하단 고정 바)
+// 단기/장기 프로그램 상세 페이지 공통 레이아웃(서브 메뉴·히어로·핵심 스펙·본문·학교별 가격·문의 폼·하단 고정 바)
 import Image from 'next/image';
 import Link from 'next/link';
 import type { ReactNode } from 'react';
@@ -7,6 +7,7 @@ import { getServerCurrency } from '@/lib/currency.server';
 import { getPrices, getSchools } from '@/api/server';
 import Header from '@/components/context/Header';
 import Footer from '@/components/context/Footer';
+import Contactus from '@/components/context/Contactus';
 import ScrollLink from '@/components/common/ScrollLink';
 import LivePrice from '@/components/common/LivePrice';
 import { buttonClass } from '@/components/ui/Button';
@@ -151,6 +152,9 @@ export default async function ProgramPage({
             <p className="mt-6 text-[13px] text-muted">{t('COMPARE_PRICE_NOTE')}</p>
           </div>
         </section>
+
+        {/* "Talk to an advisor" scrolls here instead of leaving for the home page */}
+        <Contactus />
 
         {/* Sticky buy bar */}
         <div className="sticky bottom-0 z-[800] bg-white/95 backdrop-blur border-t border-line">
