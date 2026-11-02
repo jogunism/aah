@@ -1,25 +1,7 @@
 'use client';
 
 import { MouseEvent, ReactNode } from 'react';
-
-const DURATION = 1200;
-
-const easeInOutCubic = (t: number) => (t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2);
-
-const smoothScrollTo = (targetY: number, duration = DURATION) => {
-  const startY = window.scrollY;
-  const distance = targetY - startY;
-  const startTime = performance.now();
-
-  const step = (now: number) => {
-    const elapsed = now - startTime;
-    const progress = Math.min(elapsed / duration, 1);
-    window.scrollTo(0, startY + distance * easeInOutCubic(progress));
-    if (progress < 1) requestAnimationFrame(step);
-  };
-
-  requestAnimationFrame(step);
-};
+import { smoothScrollTo } from '@/lib/smoothScroll';
 
 type Props = {
   href: string;

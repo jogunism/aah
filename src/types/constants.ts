@@ -14,6 +14,59 @@ export interface University {
 
   priceShort: number;
   priceLong: number;
+
+  // 'language_school' items only come with retrieveUniversityList('all')
+  schoolType?: 'university' | 'language_school';
+
+  // Detailed breakdown computed by the API (same number for USD and EUR).
+  // null until the school has been synced from aah-e.net.
+  pricing: UniversityPricing | null;
+}
+
+export interface PriceRange {
+  min: number;
+  max: number;
+}
+
+export interface PriceBreakdown {
+  entrance: number;
+  tuition: number;
+  accommodation: PriceRange | null; // null = accommodation not included
+  aahFee: number;
+  total: PriceRange;
+}
+
+export type DormRoomType = 'single' | 'double' | 'triple' | 'quad' | 'unspecified';
+
+export interface DormitoryOption {
+  roomType: DormRoomType;
+  name: string;
+  femaleOnly: boolean;
+  maleOnly: boolean;
+  lottery: boolean;
+  price: PriceBreakdown;
+}
+
+export interface TermDuration {
+  unit: 'semester' | 'month' | 'week' | 'day';
+  value: number;
+}
+
+export interface TermPricing {
+  period: number; // 1-based option position on aah-e.net
+  duration: TermDuration;
+  schoolOnly: PriceBreakdown;
+  dormitories: DormitoryOption[];
+}
+
+export interface ProgramPricing {
+  terms: TermPricing[];
+}
+
+export interface UniversityPricing {
+  long: ProgramPricing | null;
+  short: ProgramPricing | null;
+  syncedAt: string;
 }
 
 export interface Prices {

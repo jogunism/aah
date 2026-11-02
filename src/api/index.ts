@@ -28,11 +28,15 @@ export const updateCurrency = async () => {
 
 /**
  * Get Uninversity List
+ * @param schoolType - 'all' also returns language schools (tuition calculator);
+ *                     omitted returns universities only (partner list)
  * @returns
  */
-export const retrieveUniversityList = async (): Promise<University[]> => {
+export const retrieveUniversityList = async (schoolType?: 'all'): Promise<University[]> => {
   try {
-    const response = await http.get<University[]>('/university/list');
+    const response = await http.get<University[]>('/university/list', {
+      params: schoolType ? { schoolType } : undefined,
+    });
     return response.data;
   } catch (error) {
     console.error('Error fetching university list:', error);

@@ -14,13 +14,15 @@ import { toast } from '@lib/toast';
 import type { ContactusValidation, Contactus } from '@/types/constants';
 // Analytics
 import { trackContactFormSubmit } from '@/lib/gtag';
+// Utils
+import { smoothScrollToElement } from '@/lib/smoothScroll';
 
 /**
  * Contact Us
  */
 export default function Contactus() {
   const { t, i18n } = useTranslation();
-  const { send, resetSendStatus, pending, isSuccess } = useContactUsStore();
+  const { send, resetSendStatus, pending, isSuccess, prefill } = useContactUsStore();
 
   const [ready, setReady] = useState(false);
   const [formValues, setFormValues] = useState({
@@ -39,6 +41,12 @@ export default function Contactus() {
 
   const [isProgramOpen, setIsProgramOpen] = useState(false);
   const programDropdownRef = useRef<HTMLDivElement>(null);
+
+  // Prefill from the tuition calculator
+  const contentRef = useRef<HTMLTextAreaElement>(null);
+  const appliedPrefillId = useRef<number | null>(null);
+  const lastPrefillContent = useRef('');
+  const [showPrefillGuide, setShowPrefillGuide] = useState(false);
 
   const programs = [
     { value: -1, label: t('CONTACTUS_PROGRAMS_SELECT') },
@@ -140,6 +148,8 @@ export default function Contactus() {
       email: false,
       content: false,
     });
+    setShowPrefillGuide(false);
+    lastPrefillContent.current = '';
   };
 
   /*******************************************************
@@ -168,6 +178,37 @@ export default function Contactus() {
       resetSendStatus();
     }
   }, [isSuccess]);
+
+  // Apply an estimate sent from the tuition calculator, then glide down to the message box
+  useEffect(() => {
+    if (!ready || !prefill || appliedPrefillId.current === prefill.id) return;
+    appliedPrefillId.current = prefill.id;
+
+    setFormValues(prev => {
+      // Replace a previous estimate but keep anything the user already typed
+      const previous = lastPrefillContent.current;
+      const userText =
+        previous && prev.content.startsWith(previous)
+          ? prev.content.slice(previous.length)
+          : prev.content.trim()
+            ? `\n\n${prev.content}`
+            : '';
+      lastPrefillContent.current = prefill.content;
+      return { ...prev, semester: prefill.semester, content: `${prefill.content}${userText}` };
+    });
+    setErrors(prev => ({ ...prev, content: false }));
+    setShowPrefillGuide(true);
+
+    // Let the calculator modal close and release the body scroll lock first
+    const timer = setTimeout(async () => {
+      const target = contentRef.current;
+      if (!target) return;
+      await smoothScrollToElement(target, window.innerHeight * 0.2);
+      target.focus({ preventScroll: true });
+      target.setSelectionRange(target.value.length, target.value.length);
+    }, 50);
+    return () => clearTimeout(timer);
+  }, [prefill, ready]);
 
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
@@ -341,7 +382,8 @@ export default function Contactus() {
                   </label>
                   <textarea
                     id="content"
-                    rows={6}
+                    ref={contentRef}
+                    rows={showPrefillGuide ? 14 : 6}
                     disabled={pending}
                     value={formValues.content}
                     onChange={e => setFormValues({ ...formValues, content: e.target.value })}
@@ -353,6 +395,15 @@ export default function Contactus() {
                   />
                   {errors.content && (
                     <p className="text-red-600 text-sm mt-1">{t('CONTACTUS_CONTENT_REQUIRED')}</p>
+                  )}
+
+                  {showPrefillGuide && (
+                    <div className="mt-3 rounded-lg border border-aah-blue/30 bg-white/70 px-4 py-3 text-sm text-gray-700">
+                      <p className="font-semibold text-aah-blue mb-1">
+                        {t('CONTACTUS_PREFILL_GUIDE_TITLE')}
+                      </p>
+                      <p style={{ whiteSpace: 'pre-line' }}>{t('CONTACTUS_PREFILL_GUIDE')}</p>
+                    </div>
                   )}
 
                   <div className="mt-3 text-sm text-gray-500">
