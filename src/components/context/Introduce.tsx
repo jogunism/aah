@@ -1,45 +1,31 @@
 import { getTranslation } from '@/lib/i18n.server';
 import SmoothScrollLink from './SmoothScrollLink';
+import { Section, SectionHeading } from '@/components/ui/Section';
+import { buttonClass } from '@/components/ui/Button';
+
+const WE_ARE = [1, 2, 3, 4, 5, 6, 7] as const;
 
 export default async function Introduce() {
   const { t } = await getTranslation();
 
   return (
-    <div className="relative w-full bg-white mb-30">
-      <div className="relative bg-gradient-to-b from-[#f3e1eb] to-[#fff] w-full px-6 py-12">
-        <div className="max-w-7xl mx-auto">
-          <h2 className="text-3xl font-bold text-gray-800 mb-4 text-center">{t('MAIN_SLOGAN')}</h2>
-          {/* <h3 className="text-xl font-bold text-gray-900 mb-3 text-left">
-            {t('INTRODUCE_SEO_TITLE')}
-          </h3> */}
-          <div className="text-lg text-gray-800 ">
-            {/* body */}
-            <p className="mb-5">{t('MAIN_DESCRIPTION')}</p>
-            <p>
-              <strong>{t('MAIN_WE_ARE')}</strong>
-            </p>
-            <ul className="list-disc pl-12 ml-0">
-              <li dangerouslySetInnerHTML={{ __html: t('MAIN_WE_ARE_DESCRIPTION_1') }} />
-              <li dangerouslySetInnerHTML={{ __html: t('MAIN_WE_ARE_DESCRIPTION_2') }} />
-              <li dangerouslySetInnerHTML={{ __html: t('MAIN_WE_ARE_DESCRIPTION_3') }} />
-              <li dangerouslySetInnerHTML={{ __html: t('MAIN_WE_ARE_DESCRIPTION_4') }} />
-              <li dangerouslySetInnerHTML={{ __html: t('MAIN_WE_ARE_DESCRIPTION_5') }} />
-              <li dangerouslySetInnerHTML={{ __html: t('MAIN_WE_ARE_DESCRIPTION_6') }} />
-              <li dangerouslySetInnerHTML={{ __html: t('MAIN_WE_ARE_DESCRIPTION_7') }} />
-            </ul>
+    <Section className="bg-soft">
+      <SectionHeading title={t('MAIN_SLOGAN')} lead={t('MAIN_DESCRIPTION')} />
+      <p className="mb-4 text-lg font-bold text-ink">{t('MAIN_WE_ARE')}</p>
+      <ul className="grid md:grid-cols-2 gap-2.5 md:gap-3">
+        {WE_ARE.map((n) => (
+          <li key={n} className="flex gap-3 rounded-2xl bg-white p-4 md:p-5 text-[15px] leading-relaxed text-ink-2">
+            <span className="mt-0.5 shrink-0 text-aah-red font-bold" aria-hidden="true">✓</span>
+            <span dangerouslySetInnerHTML={{ __html: t(`MAIN_WE_ARE_DESCRIPTION_${n}`) }} />
+          </li>
+        ))}
+      </ul>
 
-            <div className="mt-10 text-center">
-              <SmoothScrollLink
-                href="#contactus"
-                className="inline-block bg-aah-red text-white font-semibold px-8 py-3 rounded-lg shadow-md hover:opacity-90 transition-opacity"
-              >
-                {t('MAIN_CTA')}
-              </SmoothScrollLink>
-            </div>
-            {/* ./body */}
-          </div>
-        </div>
+      <div className="mt-10 text-center">
+        <SmoothScrollLink href="#contactus" className={buttonClass('primary')}>
+          {t('MAIN_CTA')}
+        </SmoothScrollLink>
       </div>
-    </div>
+    </Section>
   );
 }
