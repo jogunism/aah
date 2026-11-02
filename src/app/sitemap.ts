@@ -20,7 +20,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
       url: `${SITE_URL}/${lang}${path}`,
       lastModified,
       changeFrequency: 'monthly' as const,
-      priority: lang === DEFAULT_LOCALE ? priority : priority - 0.1,
+      priority: lang === DEFAULT_LOCALE ? priority : Math.round((priority - 0.1) * 10) / 10,
       alternates: {
         languages: buildHreflangMap(path),
       },

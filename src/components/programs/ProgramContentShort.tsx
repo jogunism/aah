@@ -9,7 +9,11 @@ interface ProgramContentShortProps {
 }
 
 export default function ProgramContentShort({ lang }: ProgramContentShortProps) {
-  const { t, i18n } = useTranslation();
+  const { t: tHook, i18n } = useTranslation();
+  // With an explicit lang (standalone page), translate with a fixed language so the
+  // content is server-rendered and crawlable. Resources are bundled, so server and
+  // client output match.
+  const t = lang ? i18n.getFixedT(lang) : tHook;
   const [mounted, setMounted] = useState(false);
 
   // 서버에서 전달된 lang이 있으면 동기화
@@ -20,8 +24,8 @@ export default function ProgramContentShort({ lang }: ProgramContentShortProps) 
     setMounted(true);
   }, [lang, i18n]);
 
-  // hydration mismatch 방지: 마운트 전에는 빈 화면 표시
-  if (!mounted) {
+  // hydration mismatch 방지: lang이 없는 모달에서는 마운트 전 빈 화면 표시
+  if (!mounted && !lang) {
     return <div className="p-2 space-y-12 min-h-[500px]" />;
   }
 

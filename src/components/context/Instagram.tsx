@@ -43,7 +43,7 @@ export default function Instagram() {
 
             <div className="text-center mt-8">
               <a
-                href="https://www.instagram.com/aah_korea/"
+                href="https://www.instagram.com/aah_education.korea"
                 target="_blank"
                 rel="noopener noreferrer"
                 style={{ background: INSTAGRAM_GRADIENT }}

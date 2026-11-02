@@ -12,6 +12,7 @@ import {
   DEFAULT_LOCALE,
   LOCALE_META,
   SITE_URL,
+  OG_IMAGE,
   buildHreflangMap,
   isSupportedLocale,
   type Locale,
@@ -40,7 +41,10 @@ export async function generateMetadata({ params }: { params: Promise<{ lang: str
 
   return {
     metadataBase: new URL(SITE_URL),
-    title: t('METADATA_TITLE'),
+    title: {
+      default: t('METADATA_TITLE'),
+      template: '%s | aah! education',
+    },
     description: t('METADATA_DESCRIPTION'),
     keywords: 'study in Korea, Korean language, study abroad Korea, Korean university, Seoul study, Korea education, Korean course, visa support Korea, study visa Korea, Korean language school',
     authors: [{ name: 'aah! education' }],
@@ -57,14 +61,7 @@ export async function generateMetadata({ params }: { params: Promise<{ lang: str
     openGraph: {
       title: t('METADATA_TITLE'),
       description: t('METADATA_DESCRIPTION'),
-      images: [
-        {
-          url: `${SITE_URL}/assets/main.jpg`,
-          width: 800,
-          height: 600,
-          alt: 'Study in Korea with aah! education',
-        },
-      ],
+      images: [OG_IMAGE],
       url: `${SITE_URL}/${lang}`,
       siteName: 'aah! education',
       type: 'website',
@@ -77,7 +74,7 @@ export async function generateMetadata({ params }: { params: Promise<{ lang: str
       card: 'summary_large_image',
       title: t('METADATA_TITLE'),
       description: t('METADATA_DESCRIPTION'),
-      images: [`${SITE_URL}/assets/main.jpg`],
+      images: [OG_IMAGE.url],
     },
   };
 }

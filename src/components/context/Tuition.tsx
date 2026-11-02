@@ -104,7 +104,8 @@ export default function Price() {
                 <li>{t('TUITION_WHATS_INCLUDE_ELEMENT_2')}</li>
                 <li>{t('TUITION_WHATS_INCLUDE_ELEMENT_3')}</li>
                 <li>{t('TUITION_WHATS_INCLUDE_ELEMENT_4')}</li>
-                <li>{t('TUITION_WHATS_INCLUDE_ELEMENT_5')}</li>
+                {/* Travel insurance — hidden for now */}
+                {/* <li>{t('TUITION_WHATS_INCLUDE_ELEMENT_5')}</li> */}
                 <li>{t('TUITION_WHATS_INCLUDE_ELEMENT_6')}</li>
                 <li>{t('TUITION_WHATS_INCLUDE_ELEMENT_7')}</li>
               </ul>

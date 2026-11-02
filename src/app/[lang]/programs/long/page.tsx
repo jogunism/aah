@@ -4,6 +4,7 @@ import { getTranslation } from '@/lib/i18n.server';
 import { Metadata } from 'next';
 import {
   SITE_URL,
+  OG_IMAGE,
   LOCALE_META,
   SUPPORTED_LOCALES,
   buildHreflangMap,
@@ -37,10 +38,17 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
       url: `${SITE_URL}/${lang}${path}`,
       siteName: 'aah! education',
       type: 'article',
+      images: [OG_IMAGE],
       locale: LOCALE_META[lang].ogLocale,
       alternateLocale: SUPPORTED_LOCALES
         .filter((l) => l !== lang)
         .map((l) => LOCALE_META[l].ogLocale),
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title: t('PROGRAM_MODAL_LONG_TERM'),
+      description: t('PROGRAM_MODAL_LONG_TERM_TITLE'),
+      images: [OG_IMAGE.url],
     },
   };
 }
@@ -84,9 +92,9 @@ export default async function LongProgramPage({ params }: PageProps) {
           {t('BACK_TO_MAIN') || 'Back to Main'}
         </Link>
         <div className="bg-white rounded-lg shadow-lg">
-          <h1 className="text-xl font-bold text-gray-700 py-6 px-6 border-b">
+          <div className="text-xl font-bold text-gray-700 py-6 px-6 border-b">
             {t('PROGRAM_MODAL_LONG_TERM')}
-          </h1>
+          </div>
           <div className="p-6">
             <ProgramContentLong lang={lang} />
           </div>

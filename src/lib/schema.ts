@@ -8,7 +8,9 @@ const KNOWS_LANGUAGES = [...SUPPORTED_LOCALES, 'ko', 'ja'];
 // Markets aah! education Europe targets. ISO 3166-1 alpha-2.
 const AREA_SERVED = ['DE', 'AT', 'CH', 'FR', 'BE', 'LU', 'NL', 'ES', 'IT', 'PT', 'KR'];
 
-const SOCIAL_LINKS = ['https://www.instagram.com/aah_korea', 'https://aah-e.net'];
+const countryName = new Intl.DisplayNames(['en'], { type: 'region' });
+
+const SOCIAL_LINKS = ['https://www.instagram.com/aah_education.korea', 'https://aah-e.net'];
 
 export const buildOrganizationSchema = ({
   description,
@@ -31,10 +33,21 @@ export const buildOrganizationSchema = ({
   description,
   slogan,
   email: 'contact@aah.education',
+  contactPoint: {
+    '@type': 'ContactPoint',
+    contactType: 'customer support',
+    email: 'contact@aah.education',
+    availableLanguage: [...SUPPORTED_LOCALES],
+    areaServed: AREA_SERVED,
+  },
   sameAs: SOCIAL_LINKS,
   inLanguage: SUPPORTED_LOCALES as unknown as string[],
   knowsLanguage: KNOWS_LANGUAGES,
-  areaServed: AREA_SERVED.map((code) => ({ '@type': 'Country', name: code })),
+  areaServed: AREA_SERVED.map((code) => ({
+    '@type': 'Country',
+    name: countryName.of(code) ?? code,
+    identifier: code,
+  })),
   parentOrganization: {
     '@type': 'Organization',
     name: 'aah! education (Japan/Korea)',

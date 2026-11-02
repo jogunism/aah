@@ -21,7 +21,7 @@ export default async function Introduce() {
 
       <div className="relative bg-gradient-to-b from-[#f3e1eb] to-[#fff] w-full px-6 py-12">
         <div className="max-w-7xl mx-auto">
-          <h2 className="text-3xl font-bold text-gray-800 mb-4 text-center">{t('MAIN_SLOGAN')}</h2>
+          <h1 className="text-3xl font-bold text-gray-800 mb-4 text-center">{t('MAIN_SLOGAN')}</h1>
           {/* <h3 className="text-xl font-bold text-gray-900 mb-3 text-left">
             {t('INTRODUCE_SEO_TITLE')}
           </h3> */}

@@ -22,6 +22,14 @@ export const LOCALE_META: Record<
 
 export const SITE_URL = 'https://aah.education';
 
+// Default social share image (actual file size: 1920x843).
+export const OG_IMAGE = {
+  url: `${SITE_URL}/assets/main.jpg`,
+  width: 1920,
+  height: 843,
+  alt: 'Study in Korea with aah! education',
+};
+
 export const isSupportedLocale = (lang: string): lang is Locale =>
   (SUPPORTED_LOCALES as readonly string[]).includes(lang);
 

@@ -8,6 +8,16 @@ const defaultLocale = DEFAULT_LOCALE;
 export function proxy(request: NextRequest) {
   const { pathname } = request.nextUrl;
 
+  // Canonical host: redirect www.aah.education → aah.education (308)
+  const host = request.headers.get('host') ?? '';
+  if (host.startsWith('www.')) {
+    const url = request.nextUrl.clone();
+    url.host = host.slice(4);
+    url.port = '';
+    url.protocol = 'https:';
+    return NextResponse.redirect(url, 308);
+  }
+
   // public 파일, api, _next 등은 제외
   if (
     pathname.startsWith('/_next') ||

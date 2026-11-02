@@ -8,8 +8,6 @@ frontend:
         - node -v
         - echo "Installing dependencies..."
         - npm ci
-        - echo "Generating sitemap with current date..."
-        - npm run sitemap:generate
     build:
       commands:
         - echo "Building Next.js application..."
