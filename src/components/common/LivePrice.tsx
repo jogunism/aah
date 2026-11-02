@@ -12,7 +12,11 @@ const SYMBOL: Record<Currency, string> = { USD: '$', EUR: '€' };
 
 // One shared request per currency for all LivePrice instances on the page
 const inflight: Partial<Record<Currency, Promise<Prices | null>>> = {};
-const loadPrices = (c: Currency) => (inflight[c] ??= retrievePrices());
+const loadPrices = (c: Currency) =>
+  (inflight[c] ??= retrievePrices().then((p) => {
+    if (!p) delete inflight[c]; // retry next time instead of caching the failure
+    return p;
+  }));
 
 /**
  * "From $X" text. Server-rendered with the locale's default currency,
@@ -33,11 +37,11 @@ export default function LivePrice({
   initialCurrency: Currency;
   amountClassName?: string;
 }) {
-  const currency = useCurrencyStore((s) => s.currency) as Currency;
+  const currency = useCurrencyStore((s) => (s.ready ? s.currency : null)) as Currency | null;
   const [state, setState] = useState({ prices: initial, currency: initialCurrency });
 
   useEffect(() => {
-    if (currency === state.currency) return;
+    if (!currency || currency === state.currency) return;
     let alive = true;
     // retrievePrices sends the `currency` cookie, which the selector has already updated
     loadPrices(currency).then((p) => alive && p && setState({ prices: p, currency }));

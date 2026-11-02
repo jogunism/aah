@@ -28,11 +28,11 @@ export default function SchoolPrices({
   initialCurrency: Currency;
   labels: { university: string; languageSchool: string; select: string; from: string; perSemester: string };
 }) {
-  const currency = useCurrencyStore((s) => s.currency) as Currency;
+  const currency = useCurrencyStore((s) => (s.ready ? s.currency : null)) as Currency | null;
   const [state, setState] = useState({ schools: initial, currency: initialCurrency });
 
   useEffect(() => {
-    if (currency === state.currency) return;
+    if (!currency || currency === state.currency) return;
     let alive = true;
     retrieveUniversityList('all').then((list) => alive && list.length && setState({ schools: list, currency }));
     return () => {

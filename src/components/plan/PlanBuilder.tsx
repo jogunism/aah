@@ -56,7 +56,7 @@ export default function PlanBuilder({
 }: PlanBuilderProps) {
   const { i18n } = useTranslation();
   const t = i18n.getFixedT(lang);
-  const currency = useCurrencyStore(s => s.currency) as Currency;
+  const currency = useCurrencyStore((s) => (s.ready ? s.currency : null)) as Currency | null;
   const { requestPrefill } = useContactUsStore();
 
   const startType = initialProgram === 'long' ? ProgramType.LONG : ProgramType.SHORT;
@@ -244,7 +244,7 @@ export default function PlanBuilder({
 
   // Refetch when the visitor switches currency
   useEffect(() => {
-    if (currency === list.currency) return;
+    if (!currency || currency === list.currency) return;
     let alive = true;
     retrieveUniversityList('all').then(
       schools => alive && schools.length && setList({ schools, currency }),
