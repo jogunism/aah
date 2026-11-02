@@ -358,5 +358,21 @@
   "COMPARE_SHORT_BEST": "First-timers, beginners, holiday learners",
   "COMPARE_LONG_BEST": "Fluency, career goals, Korean university prep",
   "COMPARE_ROW_PRICE": "Price",
-  "COMPARE_PRICE_NOTE": "Prices include VAT and vary by school and program. Flights not included."
+  "COMPARE_PRICE_NOTE": "Prices include VAT and vary by school and program. Flights not included.",
+
+  "***** INCLUDED *****": "",
+  "INCLUDED_TITLE": "Everything taken care of.",
+  "INCLUDED_LEAD": "One price covers the things that usually make studying abroad stressful.",
+  "INC_1_TITLE": "Airport pickup",
+  "INC_1_DESC": "We meet you at Incheon International Airport (ICN).",
+  "INC_2_TITLE": "School application",
+  "INC_2_DESC": "Forms, documents and tuition payment handled for you.",
+  "INC_3_TITLE": "Accommodation",
+  "INC_3_DESC": "Goshitel, dormitory or share house — arranged before you fly.",
+  "INC_4_TITLE": "Local SIM card",
+  "INC_4_DESC": "Mobile data from the moment you land.",
+  "INC_5_TITLE": "Visa support",
+  "INC_5_DESC": "Guidance for the D-4-1 student visa or the H-1 working holiday visa.",
+  "INC_6_TITLE": "Emergency support",
+  "INC_6_DESC": "Someone to call throughout your stay in Korea."
 }

@@ -6,6 +6,7 @@ import { useClientTranslation } from '@/lib/useClientTranslation';
 import { trackTuitionCalculationOpen, trackTuitionCalculationClose } from '@/lib/gtag';
 
 import TuitionCalculation from '@/components/modal/TuitionCalculation';
+import { buttonClass } from '@/components/ui/Button';
 
 const TuitionCalculationButton: React.FC = () => {
   const { t, ready } = useClientTranslation();
@@ -34,7 +35,7 @@ const TuitionCalculationButton: React.FC = () => {
   return (
     <>
       <button
-        className="bg-aah-blue hover:bg-aah-blue text-white font-semibold py-3 px-5 rounded-lg"
+        className={buttonClass('blue')}
         onClick={openModal}
       >
         {t('TUITION_CALCULATOR')}

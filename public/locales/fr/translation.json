@@ -358,5 +358,21 @@
   "COMPARE_SHORT_BEST": "Premier séjour, débutants, vacances studieuses",
   "COMPARE_LONG_BEST": "Aisance, objectifs professionnels, préparation à l'université coréenne",
   "COMPARE_ROW_PRICE": "Prix",
-  "COMPARE_PRICE_NOTE": "Prix TTC, variables selon l'école et le programme. Vols non compris."
+  "COMPARE_PRICE_NOTE": "Prix TTC, variables selon l'école et le programme. Vols non compris.",
+
+  "***** INCLUDED *****": "",
+  "INCLUDED_TITLE": "On s'occupe de tout.",
+  "INCLUDED_LEAD": "Un seul prix couvre tout ce qui rend habituellement les études à l'étranger stressantes.",
+  "INC_1_TITLE": "Accueil à l'aéroport",
+  "INC_1_DESC": "Nous vous accueillons à l'aéroport international d'Incheon (ICN).",
+  "INC_2_TITLE": "Inscription à l'école",
+  "INC_2_DESC": "Formulaires, documents et paiement des frais de scolarité pris en charge.",
+  "INC_3_TITLE": "Logement",
+  "INC_3_DESC": "Goshitel, résidence ou colocation — réservé avant votre départ.",
+  "INC_4_TITLE": "Carte SIM locale",
+  "INC_4_DESC": "Des données mobiles dès l'atterrissage.",
+  "INC_5_TITLE": "Aide au visa",
+  "INC_5_DESC": "Accompagnement pour le visa étudiant D-4-1 ou le visa vacances-travail H-1.",
+  "INC_6_TITLE": "Assistance d'urgence",
+  "INC_6_DESC": "Un contact joignable pendant tout votre séjour en Corée."
 }

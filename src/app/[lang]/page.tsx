@@ -6,7 +6,7 @@ import Introduce from '@/components/context/Introduce';
 import Universities from '@/components/context/Universities';
 import Programs from '@/components/context/Programs';
 import Compare from '@/components/context/Compare';
-import Tuition from '@/components/context/Tuition';
+import Included from '@/components/context/Included';
 import Process from '@/components/context/Process';
 import Instagram from '@/components/context/Instagram';
 import MailingList from '@/components/context/MailingList';
@@ -36,9 +36,9 @@ export default async function Home({ params }: { params: Promise<{ lang: string 
         <Hero lang={lang} />
         <Programs lang={lang} />
         <Compare lang={lang} />
+        <Included lang={lang} />
         <Introduce />
         <Universities />
-        <Tuition />
         <Process />
         <Instagram />
         <MailingList />

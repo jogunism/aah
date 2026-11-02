@@ -357,5 +357,21 @@
   "COMPARE_SHORT_BEST": "Erstbesucher, Anfänger, Lernen in den Ferien",
   "COMPARE_LONG_BEST": "Fließend sprechen, Berufsziele, Vorbereitung auf ein Studium in Korea",
   "COMPARE_ROW_PRICE": "Preis",
-  "COMPARE_PRICE_NOTE": "Preise inkl. MwSt., je nach Schule und Programm unterschiedlich. Flüge nicht inklusive."
+  "COMPARE_PRICE_NOTE": "Preise inkl. MwSt., je nach Schule und Programm unterschiedlich. Flüge nicht inklusive.",
+
+  "***** INCLUDED *****": "",
+  "INCLUDED_TITLE": "Um alles ist gesorgt.",
+  "INCLUDED_LEAD": "Ein Preis deckt alles ab, was ein Auslandsstudium sonst stressig macht.",
+  "INC_1_TITLE": "Abholung am Flughafen",
+  "INC_1_DESC": "Wir holen Sie am Incheon International Airport (ICN) ab.",
+  "INC_2_TITLE": "Bewerbung an der Schule",
+  "INC_2_DESC": "Formulare, Unterlagen und Zahlung der Studiengebühren übernehmen wir.",
+  "INC_3_TITLE": "Unterkunft",
+  "INC_3_DESC": "Goshitel, Wohnheim oder WG – organisiert, bevor Sie abfliegen.",
+  "INC_4_TITLE": "Lokale SIM-Karte",
+  "INC_4_DESC": "Mobile Daten ab dem Moment der Landung.",
+  "INC_5_TITLE": "Visumberatung",
+  "INC_5_DESC": "Unterstützung beim D-4-1-Studentenvisum oder beim H-1-Working-Holiday-Visum.",
+  "INC_6_TITLE": "Notfallhilfe",
+  "INC_6_DESC": "Ein Ansprechpartner während Ihres gesamten Aufenthalts in Korea."
 }

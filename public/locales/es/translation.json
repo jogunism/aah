@@ -358,5 +358,21 @@
   "COMPARE_SHORT_BEST": "Primera visita, principiantes, estudiar en vacaciones",
   "COMPARE_LONG_BEST": "Fluidez, objetivos profesionales, preparación para la universidad coreana",
   "COMPARE_ROW_PRICE": "Precio",
-  "COMPARE_PRICE_NOTE": "Precios con IVA incluido; varían según el centro y el programa. Vuelos no incluidos."
+  "COMPARE_PRICE_NOTE": "Precios con IVA incluido; varían según el centro y el programa. Vuelos no incluidos.",
+
+  "***** INCLUDED *****": "",
+  "INCLUDED_TITLE": "Nos encargamos de todo.",
+  "INCLUDED_LEAD": "Un solo precio cubre todo lo que suele hacer estresante estudiar en el extranjero.",
+  "INC_1_TITLE": "Recogida en el aeropuerto",
+  "INC_1_DESC": "Te recibimos en el Aeropuerto Internacional de Incheon (ICN).",
+  "INC_2_TITLE": "Solicitud al centro",
+  "INC_2_DESC": "Formularios, documentos y pago de la matrícula, gestionados por nosotros.",
+  "INC_3_TITLE": "Alojamiento",
+  "INC_3_DESC": "Goshitel, residencia o piso compartido, reservado antes de tu viaje.",
+  "INC_4_TITLE": "Tarjeta SIM local",
+  "INC_4_DESC": "Datos móviles desde que aterrizas.",
+  "INC_5_TITLE": "Ayuda con el visado",
+  "INC_5_DESC": "Orientación para el visado de estudiante D-4-1 o el visado H-1 de vacaciones y trabajo.",
+  "INC_6_TITLE": "Asistencia de emergencia",
+  "INC_6_DESC": "Alguien a quien llamar durante toda tu estancia en Corea."
 }
