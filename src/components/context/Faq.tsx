@@ -18,23 +18,23 @@ export default async function Faq() {
   }));
 
   return (
-    <section id="faq" className="relative w-full bg-white mb-30 scroll-mt-[60px]">
+    <section id="faq" className="w-full py-16 md:py-24 scroll-mt-16">
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(buildFaqSchema(items)) }}
       />
-      <div className="relative bg-gradient-to-b from-[#f3e1eb] to-[#fff] w-full px-6 py-12">
+      <div className="w-full px-5 md:px-6">
         <div className="max-w-4xl mx-auto">
-          <h2 className="text-3xl font-bold text-gray-800 mb-4 text-center">{t('FAQ_TITLE')}</h2>
-          <p className="text-lg text-gray-800 mb-10 text-center">{t('FAQ_DESCRIPTION')}</p>
+          <h2 className="text-[30px] md:text-[44px] leading-[1.1] font-extrabold tracking-[-0.025em] text-ink mb-3 text-center">{t('FAQ_TITLE')}</h2>
+          <p className="text-[17px] md:text-xl text-ink-2 mb-10 text-center">{t('FAQ_DESCRIPTION')}</p>
 
           <div className="space-y-3">
             {items.map(({ question, answer }, i) => (
               <details
                 key={i}
-                className="group bg-white rounded-2xl border border-gray-200 shadow-sm"
+                className="group bg-white rounded-2xl border border-line"
               >
-                <summary className="flex items-center justify-between gap-4 cursor-pointer list-none px-6 py-4 text-lg font-semibold text-gray-800 [&::-webkit-details-marker]:hidden">
+                <summary className="flex items-center justify-between gap-4 cursor-pointer list-none px-5 md:px-6 py-4 text-base md:text-lg font-semibold text-ink [&::-webkit-details-marker]:hidden">
                   <h3>{question}</h3>
                   <span
                     aria-hidden="true"
