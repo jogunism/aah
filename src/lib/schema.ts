@@ -30,7 +30,7 @@ export const buildOrganizationSchema = ({
   image: `${SITE_URL}/assets/main.jpg`,
   description,
   slogan,
-  email: 'hyunwoo@aah-e.net',
+  email: 'contact@aah.education',
   sameAs: SOCIAL_LINKS,
   inLanguage: SUPPORTED_LOCALES as unknown as string[],
   knowsLanguage: KNOWS_LANGUAGES,

@@ -3,6 +3,9 @@ frontend:
   phases:
     preBuild:
       commands:
+        - nvm install 26
+        - nvm use 26
+        - node -v
         - echo "Installing dependencies..."
         - npm ci
         - echo "Generating sitemap with current date..."

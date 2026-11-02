@@ -176,7 +176,7 @@
   "***** CONTACTUS *****": "",
 
   "CONTACTUS_TITLE": "Contáctanos",
-  "CONTACTUS_DESCRIPTION": "Si tienes cualquier pregunta, no dudes en contactarnos. Puedes enviarnos una consulta usando el formulario o escribirnos directamente por correo haciendo clic <a href=\"mailto:hyunwoo@aah-e.net\" class=\"text-aah-red font-bold italic underline\">aquí</a>.\nTe responderemos lo antes posible.",
+  "CONTACTUS_DESCRIPTION": "Si tienes cualquier pregunta, no dudes en contactarnos. Puedes enviarnos una consulta usando el formulario o escribirnos directamente por correo haciendo clic <a href=\"mailto:contact@aah.education\" class=\"text-aah-red font-bold italic underline\">aquí</a>.\nTe responderemos lo antes posible.",
   "CONTACTUS_FIRST_NAME": "Nombre",
   "CONTACTUS_LAST_NAME": "Apellido",
   "CONTACTUS_NAME_REQUIRED": "Nombre obligatorio.",
