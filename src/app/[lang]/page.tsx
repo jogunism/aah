@@ -37,12 +37,12 @@ export default async function Home({ params }: { params: Promise<{ lang: string 
         <Programs lang={lang} />
         <Compare lang={lang} />
         <Included lang={lang} />
-        <Introduce />
         <Universities />
+        <Introduce />
         <Process />
         <Instagram />
-        <MailingList />
         <Faq />
+        <MailingList />
         <Contactus />
       </main>
 
