@@ -41,3 +41,10 @@
 - 견적 문의는 같은 페이지에 넣은 Contactus로 prefill을 보내고, 폼이 스스로 스크롤한다.
 - 학교 선택은 드롭다운 대신 카드 목록으로 바꿨다(페이지라서 공간이 충분하다). 단계 번호는 기간 옵션이 1개면 숙소가 3번이 된다.
 - 프로그램 카드 설명은 새 키 대신 기존 `TILE_SHORT_SUB/TILE_LONG_SUB`를 재사용했다. 새 키는 PLAN_META_TITLE, PLAN_TITLE, PLAN_LEAD 세 개다.
+
+## 8단계 QA
+- 번역 키 점검. 코드가 쓰는 키는 5개 언어 모두에 있고 키 집합도 같다. 리뉴얼로 고아가 된 키 19개(옛 Programs·Tuition 섹션, 계산기 모달 제목·설명)는 master에서 쓰던 곳을 확인한 뒤 삭제했다.
+- SEO 점검. 모든 페이지에 h1이 1개이고, title·description·canonical·hreflang(6개)이 있다. 홈은 FAQPage·Organization, 상세는 Course·BreadcrumbList 구조화 데이터가 유지된다. `/plan`은 sitemap과 llms.txt에 추가했다.
+- 접근성 점검(360px·1280px). 가로 넘침, alt 누락, 중복 id, 라벨 없는 입력, 제목 단계 건너뜀이 모두 없다. 이름 없는 버튼은 아이콘뿐인 통화 선택 하나였고, aria-label(통화 코드)을 달았다.
+- 남은 접근성 이슈(기존 코드라 미수정). 언어·통화 드롭다운 항목이 `<li onClick>`이라 키보드로 고를 수 없다.
+- 전체 페이지 캡처에서 대학 로고가 비어 보이는 건 next/image 지연 로딩 때문이다(이미지 URL은 200).
