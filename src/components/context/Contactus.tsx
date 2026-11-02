@@ -7,7 +7,7 @@ import { i18nPromise } from '@/lib/i18n.client';
 // store
 import useContactUsStore from '@store/contactusStore';
 // UI Component
-import ParallaxImage from '@common/parallaxImage';
+import { buttonClass } from '@/components/ui/Button';
 import { FaCheck } from 'react-icons/fa';
 import { toast } from '@lib/toast';
 // constants
@@ -237,15 +237,9 @@ export default function Contactus() {
 
   return (
     <div id="contactus" className="relative w-full bg-white scroll-mt-[60px]">
-      <ParallaxImage
-        section="contactus"
-        imagePath="/assets/image5.jpg"
-        alt="Contact aah education for Korean study abroad"
-      />
-
-      <div className="relative bg-[#f3e1eb] w-full px-6 py-12">
-        <div className="max-w-7xl mx-auto">
-          <h2 className="text-3xl font-bold text-gray-800 mb-4 text-center">
+      <div className="relative bg-soft w-full px-5 md:px-6 py-16 md:py-24">
+        <div className="max-w-3xl mx-auto">
+          <h2 className="text-[30px] md:text-[44px] leading-[1.1] font-extrabold tracking-[-0.025em] text-ink mb-4 text-center">
             {t('CONTACTUS_TITLE')}
           </h2>
           <div className="text-lg text-gray-800 ">
@@ -419,7 +413,7 @@ export default function Contactus() {
             <div className="mt-6 flex items-center justify-center">
               <button
                 disabled={pending}
-                className="bg-aah-red text-white font-semibold py-3 px-16 rounded-lg shadow-md hover:opacity-90 transition-opacity disabled:opacity-50 whitespace-nowrap"
+                className={buttonClass('primary', 'md', 'px-16')}
                 onClick={handleSendButtonClick}
               >
                 {pending ? t('CONTACTUS_SENDING') : t('CONTACTUS_SEND')}
