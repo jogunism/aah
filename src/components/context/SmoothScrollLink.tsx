@@ -1,7 +1,7 @@
 'use client';
 
 import { MouseEvent, ReactNode } from 'react';
-import { smoothScrollTo } from '@/lib/smoothScroll';
+import { smoothScrollToElement } from '@/lib/smoothScroll';
 
 type Props = {
   href: string;
@@ -15,8 +15,8 @@ export default function SmoothScrollLink({ href, className, children }: Props) {
     const target = document.getElementById(href.slice(1));
     if (!target) return;
     e.preventDefault();
-    const targetY = document.documentElement.scrollHeight - window.innerHeight;
-    smoothScrollTo(targetY);
+    // Scroll to the target itself (below the 60px header); the page no longer ends at the form
+    smoothScrollToElement(target, 60);
     if (history.replaceState) history.replaceState(null, '', href);
   };
 
