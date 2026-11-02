@@ -8,6 +8,7 @@ import Tuition from '@/components/context/Tuition';
 import Process from '@/components/context/Process';
 import Instagram from '@/components/context/Instagram';
 import MailingList from '@/components/context/MailingList';
+import Faq from '@/components/context/Faq';
 import Contactus from '@/components/context/Contactus';
 // API
 import { updateCurrency } from '@/api';
@@ -34,6 +35,7 @@ export default async function Home({ params }: { params: Promise<{ lang: string 
         <Process />
         <Instagram />
         <MailingList />
+        <Faq />
         <Contactus />
       </main>
 

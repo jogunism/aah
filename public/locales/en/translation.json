@@ -114,7 +114,7 @@
 
   "PROGRAM_MODAL_LONG_TERM_TITLE": "Build a Strong Foundation with Our Long-Term Language Program",
   "PROGRAM_MODAL_LONG_TERM_SUBTITLE_1": "⏳ What is Long-Term Study Abroad?",
-  "PROGRAM_MODAL_LONG_TERM_CONTENT_1_1": "A long-term language study program typically refers to studying in Korea for six months or more, enrolled in an official university-affiliated language center.",
+  "PROGRAM_MODAL_LONG_TERM_CONTENT_1_1": "A long-term language program means studying at an official university-affiliated language institute in Korea for one or more semesters. Each semester lasts about 10 weeks (around 3 months), and you can continue for as many semesters as you like.",
   "PROGRAM_MODAL_LONG_TERM_CONTENT_1_2": "After a placement test, you will join a structured curriculum focused on grammar, listening, speaking, and writing, using standardized textbooks and balanced learning methods.",
 
   "PROGRAM_MODAL_LONG_TERM_SUBTITLE_2": "📚 Academic Curriculum",
@@ -220,5 +220,29 @@
 
   "UNSUBSCRIBE_LOADING": "Processing...",
   "UNSUBSCRIBE_SUCCESS": "You have been unregistered successfully.",
-  "UNSUBSCRIBE_ERROR": "An error occurred while unsubscribing."
+  "UNSUBSCRIBE_ERROR": "An error occurred while unsubscribing.",
+
+  "***** FAQ *****": "",
+  "FAQ_TITLE": "Frequently Asked Questions",
+  "FAQ_DESCRIPTION": "Answers to the questions we hear most often about studying Korean in Korea.",
+  "FAQ_Q1": "Do I need to speak Korean before I join?",
+  "FAQ_A1": "No. University language institutes teach Levels 1 to 6, so complete beginners start at Level 1. If you can already read Hangul, starting in Korea early is often more effective than spending more time on self-study at home. Students who have studied before take a placement test (written, speaking and listening) to find the right class.",
+  "FAQ_Q2": "What is the difference between the short-term and long-term programs?",
+  "FAQ_A2": "Short-term programs run during school holidays (spring, summer and winter/year-end). University courses usually last 3 weeks and language-school courses 1–2 weeks, often with cultural activities in the afternoons. The long-term program is the regular course at a university language institute: one semester lasts 10 weeks (about 3 months, around 200 class hours), with four intakes a year in spring, summer, autumn and winter. You can enroll for one semester or several.",
+  "FAQ_Q3": "Do I need a visa?",
+  "FAQ_A3": "Short-term programs do not require a student visa. For the long-term program, a single semester can usually be done without a visa if your nationality allows a visa-free stay of that length. For two or more semesters you need a D-4-1 (general training) visa, which you apply for at a Korean embassy or consulate using the admission letter. If your country has a working holiday agreement with Korea, an H-1 visa is another option for language schools, but it can only be issued once. Visa-free rules differ by nationality, so please check yours or ask us.",
+  "FAQ_Q4": "How does the application work, and what documents do I need?",
+  "FAQ_A4": "Once your plan is set, we send you a guide listing the exact documents and deadlines for your school. Typically this includes a photo, a certificate of graduation or enrollment, a copy of your passport and, for some schools, an essay. More and more schools also ask for proof of your highest level of education. We submit the application and pay the tuition to the school on your behalf, and the admission letter usually arrives 3–4 weeks later.",
+  "FAQ_Q5": "Where will I live in Korea?",
+  "FAQ_A5": "Most students live in a goshitel (also called goshiwon): a small, furnished private room with a shared kitchen, free Wi-Fi and utilities included, usually on monthly contracts. The rooms we arrange have their own toilet and shower. Other options include university dormitories (affordable and close to campus, but limited in Seoul and often only for one or two semesters), share houses, guesthouses for short stays, and studios or officetels for longer stays. We usually arrange accommodation one semester at a time.",
+  "FAQ_Q6": "What does a typical class schedule look like?",
+  "FAQ_A6": "At university language institutes, classes run Monday to Friday, usually from 9:00 to 13:00, with about 10–15 students per class. With homework and review, you study Korean every day, around 200 class hours per semester. Language schools typically have smaller classes of about 5–10 students.",
+  "FAQ_Q7": "Can I work part-time while studying?",
+  "FAQ_A7": "With a D-4-1 visa, you can apply for permission to work part-time after six months of stay in Korea. This is not possible if you entered Korea without a visa.",
+  "FAQ_Q8": "I want to study at a Korean university. Should I attend a language institute first?",
+  "FAQ_A8": "Yes, we recommend it. University lectures, presentations and reports are all in Korean, and even with TOPIK Level 3 or 4 many students find it hard to keep up. Studying at a language institute first helps you get used to real-life Korean. Reaching an advanced TOPIK level before enrolling can also qualify you for larger scholarships, which can lower your overall costs.",
+  "FAQ_Q9": "Can I get a refund if I cancel?",
+  "FAQ_A9": "If you cancel before a semester starts, most schools refund almost the full tuition for that semester, depending on each school's rules. This makes enrolling for several semesters from the start a low-risk choice.",
+  "FAQ_Q10": "How do I get started?",
+  "FAQ_A10": "Book a free consultation using the contact form or email us at contact@aah.education. We will talk about your goals, current Korean level, preferred dates and budget, then recommend schools and accommodation. Once you are happy with the plan, we take care of the application, tuition payment, accommodation booking and visa guidance."
 }

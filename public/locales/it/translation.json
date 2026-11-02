@@ -114,7 +114,7 @@
 
   "PROGRAM_MODAL_LONG_TERM_TITLE": "Costruisci basi solide con il nostro programma linguistico a lungo termine",
   "PROGRAM_MODAL_LONG_TERM_SUBTITLE_1": "⏳ Cos'è un soggiorno a lungo termine?",
-  "PROGRAM_MODAL_LONG_TERM_CONTENT_1_1": "Un programma linguistico a lungo termine si riferisce in genere a un soggiorno in Corea di sei mesi o più, presso un centro linguistico ufficiale collegato a un'università.",
+  "PROGRAM_MODAL_LONG_TERM_CONTENT_1_1": "Un programma linguistico a lungo termine significa studiare uno o più semestri presso un istituto di lingua ufficiale collegato a un'università in Corea. Ogni semestre dura circa 10 settimane (circa 3 mesi) e puoi proseguire per tutti i semestri che desideri.",
   "PROGRAM_MODAL_LONG_TERM_CONTENT_1_2": "Dopo un test di livello, seguirai un percorso strutturato incentrato su grammatica, ascolto, espressione orale e scrittura, con manuali standardizzati e un metodo bilanciato.",
 
   "PROGRAM_MODAL_LONG_TERM_SUBTITLE_2": "📚 Programma accademico",
@@ -220,5 +220,29 @@
 
   "UNSUBSCRIBE_LOADING": "Elaborazione in corso...",
   "UNSUBSCRIBE_SUCCESS": "Iscrizione annullata con successo.",
-  "UNSUBSCRIBE_ERROR": "Si è verificato un errore durante la cancellazione."
+  "UNSUBSCRIBE_ERROR": "Si è verificato un errore durante la cancellazione.",
+
+  "***** FAQ *****": "",
+  "FAQ_TITLE": "Domande frequenti",
+  "FAQ_DESCRIPTION": "Le risposte alle domande che ci fanno più spesso sullo studio del coreano in Corea.",
+  "FAQ_Q1": "Devo già parlare coreano prima di iscrivermi?",
+  "FAQ_A1": "No. Gli istituti di lingua universitari insegnano i livelli da 1 a 6, quindi se parti da zero inizierai dal livello 1. Se sai già leggere l'hangul, iniziare presto in Corea è spesso più efficace che continuare a studiare da solo a casa. Se hai già studiato, farai un test di piazzamento (scritto, orale e di ascolto) per trovare la classe giusta.",
+  "FAQ_Q2": "Qual è la differenza tra il programma a breve e a lungo termine?",
+  "FAQ_A2": "I programmi a breve termine si svolgono durante le vacanze scolastiche (primavera, estate e inverno/fine anno). I corsi universitari durano di solito 3 settimane e quelli delle scuole di lingua 1–2 settimane, spesso con attività culturali al pomeriggio. Il programma a lungo termine è il corso regolare di un istituto di lingua universitario: un semestre dura 10 settimane (circa 3 mesi, intorno alle 200 ore di lezione), con quattro inizi all'anno in primavera, estate, autunno e inverno. Puoi iscriverti per uno o più semestri.",
+  "FAQ_Q3": "Mi serve un visto?",
+  "FAQ_A3": "I programmi a breve termine non richiedono un visto per studenti. Per il programma a lungo termine, un singolo semestre si può di solito frequentare senza visto, se la tua nazionalità consente un soggiorno senza visto di quella durata. Da due semestri in su serve un visto D-4-1 (formazione generale), da richiedere presso un'ambasciata o un consolato coreano con la lettera di ammissione. Se il tuo paese ha un accordo working holiday con la Corea, il visto H-1 è un'altra opzione per le scuole di lingua, ma viene rilasciato una sola volta. Le regole sull'esenzione dal visto variano in base alla nazionalità: verifica la tua o chiedici.",
+  "FAQ_Q4": "Come funziona l'iscrizione e quali documenti servono?",
+  "FAQ_A4": "Una volta definito il tuo piano, ti inviamo una guida con l'elenco esatto dei documenti e delle scadenze della tua scuola. Di solito servono una foto, un certificato di diploma o di iscrizione, una copia del passaporto e, per alcune scuole, un saggio. Sempre più scuole chiedono anche un attestato del tuo titolo di studio più alto. Presentiamo la domanda e paghiamo le tasse scolastiche alla scuola per tuo conto; la lettera di ammissione arriva di solito dopo 3–4 settimane.",
+  "FAQ_Q5": "Dove vivrò in Corea?",
+  "FAQ_A5": "La maggior parte degli studenti vive in un goshitel (chiamato anche goshiwon): una piccola camera singola arredata, con cucina in comune, Wi-Fi gratuito e utenze incluse, di solito con contratto mensile. Le camere che prenotiamo hanno bagno e doccia privati. Altre opzioni sono i dormitori universitari (economici e vicini al campus, ma limitati a Seoul e spesso solo per uno o due semestri), le case condivise, le guesthouse per soggiorni brevi e i monolocali o officetel per soggiorni lunghi. Di solito organizziamo l'alloggio un semestre alla volta.",
+  "FAQ_Q6": "Com'è un orario di lezione tipico?",
+  "FAQ_A6": "Negli istituti di lingua universitari le lezioni si tengono dal lunedì al venerdì, di solito dalle 9:00 alle 13:00, con circa 10–15 studenti per classe. Tra compiti e ripasso studierai coreano ogni giorno, circa 200 ore di lezione a semestre. Le scuole di lingua hanno di solito classi più piccole, di circa 5–10 studenti.",
+  "FAQ_Q7": "Posso lavorare part-time mentre studio?",
+  "FAQ_A7": "Con un visto D-4-1 puoi richiedere il permesso di lavorare part-time dopo sei mesi di soggiorno in Corea. Non è possibile se sei entrato in Corea senza visto.",
+  "FAQ_Q8": "Voglio studiare in un'università coreana. Devo frequentare prima un istituto di lingua?",
+  "FAQ_A8": "Sì, lo consigliamo. Lezioni, presentazioni e relazioni universitarie sono interamente in coreano, e anche con un TOPIK di livello 3 o 4 molti studenti fanno fatica a seguire. Studiare prima in un istituto di lingua ti aiuta ad abituarti al coreano reale. Raggiungere un livello TOPIK avanzato prima dell'iscrizione può anche darti accesso a borse di studio più consistenti, riducendo i costi complessivi.",
+  "FAQ_Q9": "Posso avere un rimborso se annullo?",
+  "FAQ_A9": "Se annulli prima dell'inizio di un semestre, la maggior parte delle scuole rimborsa quasi interamente le tasse di quel semestre, secondo le regole di ciascuna scuola. Per questo iscriversi fin dall'inizio a più semestri è una scelta a basso rischio.",
+  "FAQ_Q10": "Come posso iniziare?",
+  "FAQ_A10": "Prenota una consulenza gratuita tramite il modulo di contatto o scrivici a contact@aah.education. Parleremo dei tuoi obiettivi, del tuo livello di coreano, delle date che preferisci e del tuo budget, poi ti consiglieremo scuole e alloggi. Quando il piano ti convince, ci occupiamo noi della domanda, del pagamento delle tasse scolastiche, della prenotazione dell'alloggio e dell'assistenza per il visto."
 }

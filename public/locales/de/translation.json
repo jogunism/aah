@@ -113,7 +113,7 @@
 
   "PROGRAM_MODAL_LONG_TERM_TITLE": "Bauen Sie eine starke Grundlage mit unserem langfristigen Sprachprogramm auf",
   "PROGRAM_MODAL_LONG_TERM_SUBTITLE_1": "⏳ Was ist ein langfristiges Auslandsstudium?",
-  "PROGRAM_MODAL_LONG_TERM_CONTENT_1_1": "Ein langfristiges Sprachstudium bezieht sich in der Regel auf ein Studium in Korea von sechs Monaten oder länger an einem offiziellen, universitätsgebundenen Sprachzentrum.",
+  "PROGRAM_MODAL_LONG_TERM_CONTENT_1_1": "Ein langfristiges Sprachprogramm bedeutet, ein oder mehrere Semester an einem offiziellen, universitätsgebundenen Sprachinstitut in Korea zu studieren. Jedes Semester dauert etwa 10 Wochen (rund 3 Monate), und Sie können beliebig viele Semester anschließen.",
   "PROGRAM_MODAL_LONG_TERM_CONTENT_1_2": "Nach einem Einstufungstest nehmen Sie an einem strukturierten Lehrplan teil, der Grammatik, Hörverständnis, Sprechen und Schreiben umfasst und standardisierte Lehrbücher sowie ausgewogene Lernmethoden verwendet.",
 
   "PROGRAM_MODAL_LONG_TERM_SUBTITLE_2": "📚 Akademischer Lehrplan",
@@ -219,5 +219,29 @@
 
   "UNSUBSCRIBE_LOADING": "Wird verarbeitet...",
   "UNSUBSCRIBE_SUCCESS": "Sie wurden erfolgreich abgemeldet.",
-  "UNSUBSCRIBE_ERROR": "Beim Abmelden ist ein Fehler aufgetreten."
+  "UNSUBSCRIBE_ERROR": "Beim Abmelden ist ein Fehler aufgetreten.",
+
+  "***** FAQ *****": "",
+  "FAQ_TITLE": "Häufig gestellte Fragen",
+  "FAQ_DESCRIPTION": "Antworten auf die Fragen, die uns zum Koreanischlernen in Korea am häufigsten gestellt werden.",
+  "FAQ_Q1": "Muss ich vor der Teilnahme Koreanisch sprechen?",
+  "FAQ_A1": "Nein. Die Sprachinstitute der Universitäten unterrichten die Stufen 1 bis 6, sodass absolute Anfänger mit Stufe 1 beginnen. Wenn Sie Hangul bereits lesen können, ist ein früher Start in Korea oft effektiver als weiteres Selbststudium zu Hause. Wer schon Vorkenntnisse hat, legt einen Einstufungstest (schriftlich, Sprechen und Hörverstehen) ab, um die passende Klasse zu finden.",
+  "FAQ_Q2": "Was ist der Unterschied zwischen dem Kurzzeit- und dem Langzeit-Programm?",
+  "FAQ_A2": "Kurzzeit-Programme finden in den Schulferien statt (Frühling, Sommer sowie Winter/Jahreswechsel). Universitätskurse dauern meist 3 Wochen, Kurse an Sprachschulen 1–2 Wochen, oft mit Kulturprogramm am Nachmittag. Das Langzeit-Programm ist der reguläre Kurs an einem universitären Sprachinstitut: Ein Semester dauert 10 Wochen (etwa 3 Monate, rund 200 Unterrichtsstunden), mit vier Starterminen pro Jahr im Frühling, Sommer, Herbst und Winter. Sie können sich für ein oder mehrere Semester anmelden.",
+  "FAQ_Q3": "Brauche ich ein Visum?",
+  "FAQ_A3": "Für Kurzzeit-Programme ist kein Studentenvisum nötig. Beim Langzeit-Programm ist ein einzelnes Semester meist ohne Visum möglich, sofern Ihre Staatsangehörigkeit einen visumfreien Aufenthalt dieser Länge erlaubt. Ab zwei Semestern benötigen Sie ein D-4-1-Visum (allgemeine Ausbildung), das Sie mit dem Zulassungsbescheid bei einer koreanischen Botschaft oder einem Konsulat beantragen. Hat Ihr Land ein Working-Holiday-Abkommen mit Korea, ist ein H-1-Visum eine weitere Option für Sprachschulen – es wird allerdings nur einmal erteilt. Die visumfreien Regeln unterscheiden sich je nach Staatsangehörigkeit; bitte prüfen Sie Ihre oder fragen Sie uns.",
+  "FAQ_Q4": "Wie läuft die Bewerbung ab und welche Unterlagen brauche ich?",
+  "FAQ_A4": "Sobald Ihr Plan steht, senden wir Ihnen eine Übersicht mit den genauen Unterlagen und Fristen Ihrer Schule. Üblich sind ein Foto, eine Abschluss- oder Immatrikulationsbescheinigung, eine Passkopie und bei manchen Schulen ein Essay. Immer mehr Schulen verlangen außerdem einen Nachweis Ihres höchsten Bildungsabschlusses. Wir reichen die Bewerbung ein und zahlen die Studiengebühren in Ihrem Namen an die Schule; der Zulassungsbescheid kommt in der Regel nach 3–4 Wochen.",
+  "FAQ_Q5": "Wo werde ich in Korea wohnen?",
+  "FAQ_A5": "Die meisten Studierenden wohnen in einem Goshitel (auch Goshiwon genannt): ein kleines, möbliertes Einzelzimmer mit Gemeinschaftsküche, kostenlosem WLAN und inklusive Nebenkosten, meist mit Monatsverträgen. Die Zimmer, die wir vermitteln, haben eigene Toilette und Dusche. Weitere Optionen sind Studentenwohnheime der Universitäten (günstig und nah am Campus, in Seoul aber begrenzt und oft nur für ein bis zwei Semester), Wohngemeinschaften, Gästehäuser für kurze Aufenthalte sowie Studios oder Officetels für längere Aufenthalte. In der Regel organisieren wir die Unterkunft jeweils für ein Semester.",
+  "FAQ_Q6": "Wie sieht ein typischer Stundenplan aus?",
+  "FAQ_A6": "An universitären Sprachinstituten findet der Unterricht von Montag bis Freitag statt, meist von 9:00 bis 13:00 Uhr, mit etwa 10–15 Teilnehmenden pro Klasse. Mit Hausaufgaben und Wiederholung lernen Sie jeden Tag Koreanisch, rund 200 Unterrichtsstunden pro Semester. Sprachschulen haben meist kleinere Klassen mit etwa 5–10 Teilnehmenden.",
+  "FAQ_Q7": "Kann ich neben dem Studium jobben?",
+  "FAQ_A7": "Mit einem D-4-1-Visum können Sie nach sechs Monaten Aufenthalt in Korea eine Erlaubnis für einen Nebenjob beantragen. Bei einer visumfreien Einreise ist das nicht möglich.",
+  "FAQ_Q8": "Ich möchte an einer koreanischen Universität studieren. Sollte ich zuerst ein Sprachinstitut besuchen?",
+  "FAQ_A8": "Ja, das empfehlen wir. Vorlesungen, Präsentationen und Hausarbeiten sind komplett auf Koreanisch, und selbst mit TOPIK-Stufe 3 oder 4 fällt es vielen schwer mitzuhalten. Ein Sprachinstitut hilft Ihnen, sich an das echte Koreanisch im Alltag zu gewöhnen. Mit einer fortgeschrittenen TOPIK-Stufe vor dem Studienbeginn haben Sie zudem Chancen auf höhere Stipendien, was die Gesamtkosten senken kann.",
+  "FAQ_Q9": "Bekomme ich Geld zurück, wenn ich storniere?",
+  "FAQ_A9": "Wenn Sie vor Semesterbeginn stornieren, erstatten die meisten Schulen die Studiengebühren für dieses Semester fast vollständig – je nach den Regeln der jeweiligen Schule. Deshalb ist es wenig riskant, sich von Anfang an für mehrere Semester anzumelden.",
+  "FAQ_Q10": "Wie fange ich an?",
+  "FAQ_A10": "Vereinbaren Sie eine kostenlose Beratung über das Kontaktformular oder per E-Mail an contact@aah.education. Wir sprechen über Ihre Ziele, Ihr aktuelles Koreanisch-Niveau, Ihre Wunschtermine und Ihr Budget und empfehlen Ihnen passende Schulen und Unterkünfte. Sobald Sie mit dem Plan zufrieden sind, kümmern wir uns um Bewerbung, Zahlung der Studiengebühren, Unterkunftsbuchung und Visumberatung."
 }

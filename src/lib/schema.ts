@@ -122,3 +122,13 @@ export const buildBreadcrumbSchema = (
     item: `${SITE_URL}/${lang}${item.path}`,
   })),
 });
+
+export const buildFaqSchema = (items: { question: string; answer: string }[]) => ({
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: items.map(({ question, answer }) => ({
+    '@type': 'Question',
+    name: question,
+    acceptedAnswer: { '@type': 'Answer', text: answer },
+  })),
+});

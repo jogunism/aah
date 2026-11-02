@@ -3,6 +3,7 @@
 // translations so it stays in sync with the site copy.
 import en from '../../../public/locales/en/translation.json';
 import { SITE_URL, SUPPORTED_LOCALES } from '@/lib/locales';
+import { FAQ_ITEMS } from '@/lib/faq';
 
 export const dynamic = 'force-static';
 
@@ -32,6 +33,10 @@ export function GET() {
       `${n}. **${t(`PROCESS_STEP_${n}_TITLE`)}**: ${t(`PROCESS_STEP_${n}_DESC`)}`,
   );
 
+  const faq = FAQ_ITEMS.map(
+    (n) => `### ${t(`FAQ_Q${n}`)}\n\n${t(`FAQ_A${n}`)}`,
+  );
+
   const languages = SUPPORTED_LOCALES.map(
     (lc) => `- [${LANGUAGE_NAMES.of(lc)}](${SITE_URL}/${lc})`,
   );
@@ -58,6 +63,10 @@ ${t('PROGRAMS_SUB_TITLE')}
 ${t('PROCESS_DESCRIPTION')}
 
 ${steps.join('\n')}
+
+## ${t('FAQ_TITLE')}
+
+${faq.join('\n\n')}
 
 ## Contact
 

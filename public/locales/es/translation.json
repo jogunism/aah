@@ -114,7 +114,7 @@
 
   "PROGRAM_MODAL_LONG_TERM_TITLE": "Construye unas bases sólidas con nuestro programa lingüístico de largo plazo",
   "PROGRAM_MODAL_LONG_TERM_SUBTITLE_1": "⏳ ¿Qué es una estancia de largo plazo?",
-  "PROGRAM_MODAL_LONG_TERM_CONTENT_1_1": "Una estancia lingüística de largo plazo se refiere generalmente a un periodo de seis meses o más en un centro de idiomas oficial vinculado a una universidad coreana.",
+  "PROGRAM_MODAL_LONG_TERM_CONTENT_1_1": "Un programa de idiomas de larga duración consiste en estudiar uno o varios semestres en un instituto de idiomas oficial vinculado a una universidad en Corea. Cada semestre dura unas 10 semanas (alrededor de 3 meses) y puedes continuar tantos semestres como quieras.",
   "PROGRAM_MODAL_LONG_TERM_CONTENT_1_2": "Tras una prueba de nivel, seguirás un plan de estudios estructurado centrado en gramática, comprensión auditiva, expresión oral y escritura, con manuales estandarizados y una metodología equilibrada.",
 
   "PROGRAM_MODAL_LONG_TERM_SUBTITLE_2": "📚 Plan académico",
@@ -220,5 +220,29 @@
 
   "UNSUBSCRIBE_LOADING": "Procesando...",
   "UNSUBSCRIBE_SUCCESS": "Te has dado de baja correctamente.",
-  "UNSUBSCRIBE_ERROR": "Se ha producido un error al darte de baja."
+  "UNSUBSCRIBE_ERROR": "Se ha producido un error al darte de baja.",
+
+  "***** FAQ *****": "",
+  "FAQ_TITLE": "Preguntas frecuentes",
+  "FAQ_DESCRIPTION": "Respuestas a las preguntas que más nos hacen sobre estudiar coreano en Corea.",
+  "FAQ_Q1": "¿Necesito hablar coreano antes de inscribirme?",
+  "FAQ_A1": "No. Los institutos de idiomas universitarios enseñan los niveles 1 a 6, así que si empiezas desde cero comenzarás en el nivel 1. Si ya sabes leer hangul, empezar pronto en Corea suele ser más eficaz que seguir estudiando por tu cuenta en casa. Si ya has estudiado antes, harás una prueba de nivel (escrita, oral y de comprensión auditiva) para encontrar la clase adecuada.",
+  "FAQ_Q2": "¿Qué diferencia hay entre el programa de corta y de larga duración?",
+  "FAQ_A2": "Los programas de corta duración se celebran durante las vacaciones escolares (primavera, verano e invierno/fin de año). Los cursos universitarios suelen durar 3 semanas y los de las academias de idiomas 1–2 semanas, a menudo con actividades culturales por la tarde. El programa de larga duración es el curso regular de un instituto de idiomas universitario: un semestre dura 10 semanas (unos 3 meses, alrededor de 200 horas de clase), con cuatro inicios al año en primavera, verano, otoño e invierno. Puedes inscribirte para uno o varios semestres.",
+  "FAQ_Q3": "¿Necesito visado?",
+  "FAQ_A3": "Los programas de corta duración no requieren visado de estudiante. En el programa de larga duración, un solo semestre suele poder hacerse sin visado si tu nacionalidad permite una estancia sin visado de esa duración. A partir de dos semestres necesitas un visado D-4-1 (formación general), que se solicita en una embajada o consulado de Corea con la carta de admisión. Si tu país tiene un acuerdo de vacaciones y trabajo con Corea, el visado H-1 es otra opción para las academias de idiomas, aunque solo se concede una vez. Las normas de exención de visado varían según la nacionalidad; consulta la tuya o pregúntanos.",
+  "FAQ_Q4": "¿Cómo funciona la solicitud y qué documentos necesito?",
+  "FAQ_A4": "Una vez definido tu plan, te enviamos una guía con los documentos exactos y los plazos de tu centro. Normalmente: una foto, un certificado de graduación o de matrícula, una copia del pasaporte y, en algunos centros, una redacción. Cada vez más centros piden también un justificante de tu nivel de estudios más alto. Presentamos la solicitud y pagamos la matrícula al centro en tu nombre; la carta de admisión suele llegar entre 3 y 4 semanas después.",
+  "FAQ_Q5": "¿Dónde viviré en Corea?",
+  "FAQ_A5": "La mayoría de estudiantes vive en un goshitel (también llamado goshiwon): una habitación individual pequeña y amueblada, con cocina compartida, Wi-Fi gratis y gastos incluidos, normalmente con contratos mensuales. Las habitaciones que reservamos tienen baño y ducha propios. Otras opciones son las residencias universitarias (económicas y cerca del campus, pero limitadas en Seúl y a menudo solo para uno o dos semestres), pisos compartidos, guesthouses para estancias cortas y estudios u officetels para estancias largas. Normalmente organizamos el alojamiento semestre a semestre.",
+  "FAQ_Q6": "¿Cómo es un horario de clases típico?",
+  "FAQ_A6": "En los institutos de idiomas universitarios, las clases son de lunes a viernes, normalmente de 9:00 a 13:00, con unos 10–15 estudiantes por clase. Con los deberes y el repaso, estudiarás coreano todos los días, unas 200 horas de clase por semestre. Las academias de idiomas suelen tener grupos más pequeños, de unos 5–10 estudiantes.",
+  "FAQ_Q7": "¿Puedo trabajar a tiempo parcial mientras estudio?",
+  "FAQ_A7": "Con un visado D-4-1 puedes solicitar permiso para trabajar a tiempo parcial tras seis meses de estancia en Corea. No es posible si entraste en Corea sin visado.",
+  "FAQ_Q8": "Quiero estudiar en una universidad coreana. ¿Debo ir antes a un instituto de idiomas?",
+  "FAQ_A8": "Sí, lo recomendamos. Las clases, presentaciones y trabajos universitarios son íntegramente en coreano, e incluso con un TOPIK de nivel 3 o 4 a muchos estudiantes les cuesta seguir el ritmo. Estudiar primero en un instituto de idiomas te ayuda a acostumbrarte al coreano real. Alcanzar un nivel TOPIK avanzado antes de matricularte también puede darte acceso a becas mayores y reducir el coste total.",
+  "FAQ_Q9": "¿Me devuelven el dinero si cancelo?",
+  "FAQ_A9": "Si cancelas antes de que empiece un semestre, la mayoría de los centros devuelven casi toda la matrícula de ese semestre, según las normas de cada centro. Por eso inscribirse desde el principio para varios semestres es una opción de bajo riesgo.",
+  "FAQ_Q10": "¿Cómo empiezo?",
+  "FAQ_A10": "Reserva una consulta gratuita con el formulario de contacto o escríbenos a contact@aah.education. Hablaremos de tus objetivos, tu nivel actual de coreano, tus fechas y tu presupuesto, y te recomendaremos centros y alojamiento. Cuando estés conforme con el plan, nos encargamos de la solicitud, el pago de la matrícula, la reserva del alojamiento y la orientación sobre el visado."
 }
