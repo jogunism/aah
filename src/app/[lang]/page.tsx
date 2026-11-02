@@ -10,11 +10,14 @@ import Instagram from '@/components/context/Instagram';
 import MailingList from '@/components/context/MailingList';
 import Faq from '@/components/context/Faq';
 import Contactus from '@/components/context/Contactus';
+import MobileCtaBar from '@/components/common/MobileCtaBar';
+import { getTranslation } from '@/lib/i18n.server';
 // API
 import { updateCurrency } from '@/api';
 
 export default async function Home({ params }: { params: Promise<{ lang: string }> }) {
   const { lang } = await params;
+  const { t } = await getTranslation(lang);
 
   // currency
   updateCurrency();
@@ -40,6 +43,7 @@ export default async function Home({ params }: { params: Promise<{ lang: string 
       </main>
 
       <Footer />
+      <MobileCtaBar lang={lang} programsLabel={t('NAV_PROGRAMS')} ctaLabel={t('NAV_CTA')} />
     </div>
   );
 }

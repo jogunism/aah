@@ -280,5 +280,19 @@
   "FAQ_Q9": "Bekomme ich Geld zurück, wenn ich storniere?",
   "FAQ_A9": "Wenn Sie vor Semesterbeginn stornieren, erstatten die meisten Schulen die Studiengebühren für dieses Semester fast vollständig – je nach den Regeln der jeweiligen Schule. Deshalb ist es wenig riskant, sich von Anfang an für mehrere Semester anzumelden.",
   "FAQ_Q10": "Wie fange ich an?",
-  "FAQ_A10": "Vereinbaren Sie eine kostenlose Beratung über das Kontaktformular oder per E-Mail an contact@aah.education. Wir sprechen über Ihre Ziele, Ihr aktuelles Koreanisch-Niveau, Ihre Wunschtermine und Ihr Budget und empfehlen Ihnen passende Schulen und Unterkünfte. Sobald Sie mit dem Plan zufrieden sind, kümmern wir uns um Bewerbung, Zahlung der Studiengebühren, Unterkunftsbuchung und Visumberatung."
+  "FAQ_A10": "Vereinbaren Sie eine kostenlose Beratung über das Kontaktformular oder per E-Mail an contact@aah.education. Wir sprechen über Ihre Ziele, Ihr aktuelles Koreanisch-Niveau, Ihre Wunschtermine und Ihr Budget und empfehlen Ihnen passende Schulen und Unterkünfte. Sobald Sie mit dem Plan zufrieden sind, kümmern wir uns um Bewerbung, Zahlung der Studiengebühren, Unterkunftsbuchung und Visumberatung.",
+
+  "***** NAVIGATION *****": "",
+  "NAV_PROGRAMS": "Programme",
+  "NAV_TUITION": "Kosten",
+  "NAV_UNIVERSITIES": "Universitäten",
+  "NAV_PROCESS": "So funktioniert's",
+  "NAV_FAQ": "FAQ",
+  "NAV_CTA": "Kostenlose Beratung",
+  "NAV_MENU_OPEN": "Menü öffnen",
+  "NAV_MENU_CLOSE": "Menü schließen",
+  "NAV_LANGUAGE": "Sprache",
+  "NAV_CURRENCY": "Währung",
+  "COOKIE_TEXT": "Wir verwenden Cookies, um Ihr Erlebnis zu verbessern. Wenn Sie die Website weiter nutzen, stimmen Sie der Verwendung von Cookies zu.",
+  "COOKIE_ACCEPT": "Akzeptieren"
 }

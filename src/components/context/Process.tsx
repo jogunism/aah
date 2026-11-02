@@ -10,7 +10,7 @@ export default async function Process() {
   const { t } = await getTranslation();
 
   return (
-    <div className="relative w-full bg-white mb-30">
+    <div id="process" className="relative w-full bg-white mb-30 scroll-mt-16">
       <ParallaxImage
         section="process"
         imagePath="/assets/image6.jpg"

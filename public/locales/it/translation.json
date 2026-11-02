@@ -281,5 +281,19 @@
   "FAQ_Q9": "Posso avere un rimborso se annullo?",
   "FAQ_A9": "Se annulli prima dell'inizio di un semestre, la maggior parte delle scuole rimborsa quasi interamente le tasse di quel semestre, secondo le regole di ciascuna scuola. Per questo iscriversi fin dall'inizio a più semestri è una scelta a basso rischio.",
   "FAQ_Q10": "Come posso iniziare?",
-  "FAQ_A10": "Prenota una consulenza gratuita tramite il modulo di contatto o scrivici a contact@aah.education. Parleremo dei tuoi obiettivi, del tuo livello di coreano, delle date che preferisci e del tuo budget, poi ti consiglieremo scuole e alloggi. Quando il piano ti convince, ci occupiamo noi della domanda, del pagamento delle tasse scolastiche, della prenotazione dell'alloggio e dell'assistenza per il visto."
+  "FAQ_A10": "Prenota una consulenza gratuita tramite il modulo di contatto o scrivici a contact@aah.education. Parleremo dei tuoi obiettivi, del tuo livello di coreano, delle date che preferisci e del tuo budget, poi ti consiglieremo scuole e alloggi. Quando il piano ti convince, ci occupiamo noi della domanda, del pagamento delle tasse scolastiche, della prenotazione dell'alloggio e dell'assistenza per il visto.",
+
+  "***** NAVIGATION *****": "",
+  "NAV_PROGRAMS": "Programmi",
+  "NAV_TUITION": "Costi",
+  "NAV_UNIVERSITIES": "Università",
+  "NAV_PROCESS": "Come funziona",
+  "NAV_FAQ": "FAQ",
+  "NAV_CTA": "Consulenza gratuita",
+  "NAV_MENU_OPEN": "Apri menu",
+  "NAV_MENU_CLOSE": "Chiudi menu",
+  "NAV_LANGUAGE": "Lingua",
+  "NAV_CURRENCY": "Valuta",
+  "COOKIE_TEXT": "Utilizziamo i cookie per migliorare la tua esperienza. Continuando a usare questo sito, accetti l'uso dei cookie.",
+  "COOKIE_ACCEPT": "Accetta"
 }

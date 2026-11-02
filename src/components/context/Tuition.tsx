@@ -34,7 +34,7 @@ export default function Price() {
    * render
    */
   return (
-    <div className="relative w-full bg-white mb-30">
+    <div id="tuition" className="relative w-full bg-white mb-30 scroll-mt-16">
       <ParallaxImage section="tuition" imagePath="/assets/image4.jpg" />
 
       <div className="relative bg-gradient-to-b from-[#f3e1eb] to-[#fff] w-full px-6 py-12">

@@ -97,7 +97,7 @@ export default function LanguageSelector({ currentLang }: LanguageSelectorProps)
     <div className="relative" ref={dropdownRef}>
       <button
         onClick={() => setIsOpen(!isOpen)}
-        className="flex items-center justify-between w-full px-3 py-2 text-gray-700 bg-white border border-gray-300 rounded leading-tight focus:outline-none focus:ring-2 focus:ring-blue-500 text-sm"
+        className="flex items-center justify-between w-full h-9 px-3 text-ink-2 bg-white border border-line rounded-full leading-tight hover:bg-soft focus:outline-none focus-visible:ring-2 focus-visible:ring-aah-red/40 text-sm"
       >
         <span>{selectedLanguage?.label}</span>
         <svg

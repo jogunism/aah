@@ -281,5 +281,19 @@
   "FAQ_Q9": "Can I get a refund if I cancel?",
   "FAQ_A9": "If you cancel before a semester starts, most schools refund almost the full tuition for that semester, depending on each school's rules. This makes enrolling for several semesters from the start a low-risk choice.",
   "FAQ_Q10": "How do I get started?",
-  "FAQ_A10": "Book a free consultation using the contact form or email us at contact@aah.education. We will talk about your goals, current Korean level, preferred dates and budget, then recommend schools and accommodation. Once you are happy with the plan, we take care of the application, tuition payment, accommodation booking and visa guidance."
+  "FAQ_A10": "Book a free consultation using the contact form or email us at contact@aah.education. We will talk about your goals, current Korean level, preferred dates and budget, then recommend schools and accommodation. Once you are happy with the plan, we take care of the application, tuition payment, accommodation booking and visa guidance.",
+
+  "***** NAVIGATION *****": "",
+  "NAV_PROGRAMS": "Programs",
+  "NAV_TUITION": "Tuition",
+  "NAV_UNIVERSITIES": "Universities",
+  "NAV_PROCESS": "How it works",
+  "NAV_FAQ": "FAQ",
+  "NAV_CTA": "Free consultation",
+  "NAV_MENU_OPEN": "Open menu",
+  "NAV_MENU_CLOSE": "Close menu",
+  "NAV_LANGUAGE": "Language",
+  "NAV_CURRENCY": "Currency",
+  "COOKIE_TEXT": "We use cookies to improve your experience. By continuing to use this site, you agree to our use of cookies.",
+  "COOKIE_ACCEPT": "Accept"
 }

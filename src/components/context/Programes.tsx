@@ -12,7 +12,7 @@ export default async function Programes() {
   const { t } = await getTranslation();
 
   return (
-    <div className="relative w-full bg-white mb-30">
+    <div id="programs" className="relative w-full bg-white mb-30 scroll-mt-16">
       <ParallaxImage
         section="semesters"
         imagePath="/assets/image3.jpg"

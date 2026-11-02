@@ -2,16 +2,18 @@
 
 import { useEffect, useState } from 'react';
 import { getCookie, setCookie } from '@/lib/cookie';
-import Modal from './Modal';
+import { useClientTranslation } from '@/lib/useClientTranslation';
 
+/**
+ * Compact cookie notice: a small card in the bottom-left on desktop, a slim bar on mobile.
+ * Does not block the page or dim the background.
+ */
 export default function GDPRPopup() {
+  const { t, ready } = useClientTranslation();
   const [isVisible, setIsVisible] = useState(false);
 
   useEffect(() => {
-    const consent = getCookie('gdpr_consent');
-    if (!consent) {
-      setIsVisible(true);
-    }
+    if (!getCookie('gdpr_consent')) setIsVisible(true);
   }, []);
 
   const handleAccept = () => {
@@ -19,26 +21,22 @@ export default function GDPRPopup() {
     setIsVisible(false);
   };
 
+  if (!isVisible || !ready) return null;
+
   return (
-    <Modal
-      isOpen={isVisible}
-      isParentBlur={false}
-      isScrollAllowed={true}
-      position="bottom"
-      size="full"
+    <div
+      role="region"
+      aria-label="Cookie notice"
+      className="fixed z-[1100] inset-x-3 bottom-3 sm:inset-x-auto sm:left-5 sm:bottom-5 sm:max-w-sm bg-ink/95 text-white rounded-2xl shadow-xl px-4 py-3 flex items-center gap-4"
     >
-      <div className="bg-gray-800 text-white text-center rounded-md p-6">
-        <p className="mb-2">
-          We use cookies to enhance your experience. By continuing to visit this site you agree to
-          our use of cookies.
-        </p>
-        <button
-          onClick={handleAccept}
-          className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
-        >
-          Accept
-        </button>
-      </div>
-    </Modal>
+      <p className="text-xs leading-relaxed text-white/85">{t('COOKIE_TEXT')}</p>
+      <button
+        type="button"
+        onClick={handleAccept}
+        className="shrink-0 h-9 px-4 rounded-full bg-white text-ink text-sm font-semibold hover:bg-soft"
+      >
+        {t('COOKIE_ACCEPT')}
+      </button>
+    </div>
   );
 }

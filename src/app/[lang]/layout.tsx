@@ -1,4 +1,5 @@
 import { Metadata } from 'next';
+import { Inter } from 'next/font/google';
 import { ReactNode, Suspense } from 'react';
 import { notFound } from 'next/navigation';
 import ClientWrapper from '../layoutClientWrapper';
@@ -20,6 +21,12 @@ import {
 import { buildOrganizationSchema } from '@/lib/schema';
 
 import '../globals.css';
+
+const inter = Inter({
+  subsets: ['latin', 'latin-ext'],
+  variable: '--font-inter',
+  display: 'swap',
+});
 
 export async function generateStaticParams() {
   return SUPPORTED_LOCALES.map((lang) => ({ lang }));
@@ -102,7 +109,7 @@ export default async function LangLayout({
   });
 
   return (
-    <html lang={lang}>
+    <html lang={lang} className={inter.variable}>
       <body>
         <script
           type="application/ld+json"

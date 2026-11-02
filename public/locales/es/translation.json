@@ -281,5 +281,19 @@
   "FAQ_Q9": "¿Me devuelven el dinero si cancelo?",
   "FAQ_A9": "Si cancelas antes de que empiece un semestre, la mayoría de los centros devuelven casi toda la matrícula de ese semestre, según las normas de cada centro. Por eso inscribirse desde el principio para varios semestres es una opción de bajo riesgo.",
   "FAQ_Q10": "¿Cómo empiezo?",
-  "FAQ_A10": "Reserva una consulta gratuita con el formulario de contacto o escríbenos a contact@aah.education. Hablaremos de tus objetivos, tu nivel actual de coreano, tus fechas y tu presupuesto, y te recomendaremos centros y alojamiento. Cuando estés conforme con el plan, nos encargamos de la solicitud, el pago de la matrícula, la reserva del alojamiento y la orientación sobre el visado."
+  "FAQ_A10": "Reserva una consulta gratuita con el formulario de contacto o escríbenos a contact@aah.education. Hablaremos de tus objetivos, tu nivel actual de coreano, tus fechas y tu presupuesto, y te recomendaremos centros y alojamiento. Cuando estés conforme con el plan, nos encargamos de la solicitud, el pago de la matrícula, la reserva del alojamiento y la orientación sobre el visado.",
+
+  "***** NAVIGATION *****": "",
+  "NAV_PROGRAMS": "Programas",
+  "NAV_TUITION": "Precios",
+  "NAV_UNIVERSITIES": "Universidades",
+  "NAV_PROCESS": "Cómo funciona",
+  "NAV_FAQ": "FAQ",
+  "NAV_CTA": "Consulta gratuita",
+  "NAV_MENU_OPEN": "Abrir menú",
+  "NAV_MENU_CLOSE": "Cerrar menú",
+  "NAV_LANGUAGE": "Idioma",
+  "NAV_CURRENCY": "Moneda",
+  "COOKIE_TEXT": "Usamos cookies para mejorar tu experiencia. Si sigues usando este sitio, aceptas el uso de cookies.",
+  "COOKIE_ACCEPT": "Aceptar"
 }

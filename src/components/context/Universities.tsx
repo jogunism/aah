@@ -18,7 +18,7 @@ export default async function Univercities() {
    * render
    */
   return (
-    <div className="relative w-full bg-white mb-30">
+    <div id="universities" className="relative w-full bg-white mb-30 scroll-mt-16">
       <ParallaxImage
         section="univercities"
         imagePath="/assets/image2.jpg"

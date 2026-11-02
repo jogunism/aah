@@ -281,5 +281,19 @@
   "FAQ_Q9": "Puis-je être remboursé si j'annule ?",
   "FAQ_A9": "Si vous annulez avant le début d'un semestre, la plupart des écoles remboursent la quasi-totalité des frais de scolarité de ce semestre, selon leurs propres règles. S'inscrire pour plusieurs semestres dès le départ est donc un choix peu risqué.",
   "FAQ_Q10": "Comment commencer ?",
-  "FAQ_A10": "Réservez une consultation gratuite via le formulaire de contact ou écrivez-nous à contact@aah.education. Nous parlerons de vos objectifs, de votre niveau de coréen, de vos dates et de votre budget, puis nous vous recommanderons des écoles et des logements. Une fois le projet validé, nous nous occupons de la candidature, du paiement des frais de scolarité, de la réservation du logement et de l'accompagnement pour le visa."
+  "FAQ_A10": "Réservez une consultation gratuite via le formulaire de contact ou écrivez-nous à contact@aah.education. Nous parlerons de vos objectifs, de votre niveau de coréen, de vos dates et de votre budget, puis nous vous recommanderons des écoles et des logements. Une fois le projet validé, nous nous occupons de la candidature, du paiement des frais de scolarité, de la réservation du logement et de l'accompagnement pour le visa.",
+
+  "***** NAVIGATION *****": "",
+  "NAV_PROGRAMS": "Programmes",
+  "NAV_TUITION": "Tarifs",
+  "NAV_UNIVERSITIES": "Universités",
+  "NAV_PROCESS": "Comment ça marche",
+  "NAV_FAQ": "FAQ",
+  "NAV_CTA": "Consultation gratuite",
+  "NAV_MENU_OPEN": "Ouvrir le menu",
+  "NAV_MENU_CLOSE": "Fermer le menu",
+  "NAV_LANGUAGE": "Langue",
+  "NAV_CURRENCY": "Devise",
+  "COOKIE_TEXT": "Nous utilisons des cookies pour améliorer votre expérience. En continuant à utiliser ce site, vous acceptez leur utilisation.",
+  "COOKIE_ACCEPT": "Accepter"
 }
