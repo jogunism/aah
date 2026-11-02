@@ -75,6 +75,8 @@ export default function CurrencySelector({ lang }: CurrencySelectorProps) {
     <div className="relative" ref={dropdownRef}>
       <button
         onClick={() => setIsOpen(!isOpen)}
+        aria-label={currency}
+        aria-expanded={isOpen}
         className="flex items-center justify-between w-full h-9 px-3 text-ink-2 bg-white border border-line rounded-full leading-tight hover:bg-soft focus:outline-none focus-visible:ring-2 focus-visible:ring-aah-red/40 text-sm"
       >
         <span>{selectedCurrency?.label}</span>
