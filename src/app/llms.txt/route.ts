@@ -58,6 +58,7 @@ ${t('PROGRAMS_SUB_TITLE')}
 
 - [${t('PROGRAMS_SHORT_BUTTON')}](${SITE_URL}/en/programs/short): ${t('PROGRAMS_SHORT_DESCRIPTION')}
 - [${t('PROGRAMS_LONG_BUTTON')}](${SITE_URL}/en/programs/long): ${t('PROGRAMS_LONG_DESCRIPTION')}
+- [${t('PLAN_META_TITLE')}](${SITE_URL}/en/plan): ${t('PLAN_LEAD')}
 
 ## How it works
 
