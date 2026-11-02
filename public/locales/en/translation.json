@@ -378,5 +378,12 @@
 
   "***** FINAL CTA *****": "",
   "FINAL_LEAD": "Talk to an advisor for free. We'll help you choose a program, school and housing that fit your goals and budget.",
-  "FINAL_TITLE": "Not sure where to start?"
+  "FINAL_TITLE": "Not sure where to start?",
+
+  "***** FOOTER *****": "",
+  "FOOTER_ABOUT": "About",
+  "FOOTER_FOLLOW": "Follow",
+  "FOOTER_PARENT": "aah! education (Japan / Korea)",
+  "FOOTER_PROGRAMS": "Programs",
+  "FOOTER_TAGLINE": "Specializing in study in Korea for 15 years."
 }

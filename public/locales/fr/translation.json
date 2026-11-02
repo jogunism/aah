@@ -378,5 +378,12 @@
 
   "***** FINAL CTA *****": "",
   "FINAL_LEAD": "Parlez gratuitement à un conseiller. Nous vous aidons à choisir le programme, l'école et le logement adaptés à vos objectifs et à votre budget.",
-  "FINAL_TITLE": "Vous ne savez pas par où commencer ?"
+  "FINAL_TITLE": "Vous ne savez pas par où commencer ?",
+
+  "***** FOOTER *****": "",
+  "FOOTER_ABOUT": "À propos",
+  "FOOTER_FOLLOW": "Suivez-nous",
+  "FOOTER_PARENT": "aah! education (Japon / Corée)",
+  "FOOTER_PROGRAMS": "Programmes",
+  "FOOTER_TAGLINE": "Spécialistes des études en Corée depuis 15 ans."
 }

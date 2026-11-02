@@ -378,5 +378,12 @@
 
   "***** FINAL CTA *****": "",
   "FINAL_LEAD": "Habla gratis con un asesor. Te ayudamos a elegir el programa, el centro y el alojamiento que se ajustan a tus objetivos y a tu presupuesto.",
-  "FINAL_TITLE": "¿No sabes por dónde empezar?"
+  "FINAL_TITLE": "¿No sabes por dónde empezar?",
+
+  "***** FOOTER *****": "",
+  "FOOTER_ABOUT": "Sobre nosotros",
+  "FOOTER_FOLLOW": "Síguenos",
+  "FOOTER_PARENT": "aah! education (Japón / Corea)",
+  "FOOTER_PROGRAMS": "Programas",
+  "FOOTER_TAGLINE": "Especializados en estudiar en Corea desde hace 15 años."
 }
