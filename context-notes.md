@@ -18,3 +18,9 @@
 - **수업료 섹션 대체**: 기존 수업료 섹션의 최소~최대 가격은 비교표 "가격" 행으로 옮기고, 포함 항목은 제목+설명 카드로 바꿨다. 사용자가 숨긴 "여행자 보험"은 포함 항목에서도 뺐다. 단, 소개("We are") 문단에는 아직 보험 언급이 남아 있다(5단계에서 확인).
 - **가격 숫자 표기**: 이탈리아어·스페인어 로캘은 4자리 숫자에 천 단위 구분자를 넣지 않는다(€1700). CLDR 규칙에 따른 정상 동작.
 - **같은 브랜치에서 다른 세션이 동시에 작업 중**: 두 세션이 git index를 공유해서, 한쪽이 stage한 변경이 다른 쪽 커밋에 섞일 수 있다(실제로 Tuition.tsx 삭제가 비교표 커밋 eabe133에 들어감). 커밋 직전에 `git status`로 staged 목록을 확인하고, 내 파일만 경로를 지정해 커밋한다.
+- **ParallaxProvider는 남김**: 장식 사진 컴포넌트(parallaxImage)는 삭제했지만 `layoutClientWrapper.tsx`의 ParallaxProvider와 react-scroll-parallax 의존성은 기존 코드라 그대로 두었다. 이제 쓰는 곳이 없으므로 정리 여부는 사용자 확인 후 결정.
+- **로컬 인스타그램 확인**: Instagram 섹션은 `NEXT_PUBLIC_BEHOLD_FEED_ID`가 없으면 렌더링되지 않는다. 로컬 `.env.local`에 운영과 같은 피드 ID를 넣어 확인한다.
+- **화면 캡처의 빈 로고/사진**: next/image 지연 로딩 때문에 전체 페이지 캡처에서 아래쪽 이미지가 비어 보일 수 있다. 실제 이미지 응답(200)으로 확인한다.
+- **모바일 세로 flex에서 `flex-1` 금지**: flex-col 안의 input에 flex-1을 주면 높이가 0으로 줄어든다. `sm:flex-1`로 가로 배치일 때만 적용한다.
+- **새 학교 추가(aah-a1 세션, feature/new-schools)**: API 응답 형태는 그대로이고 데이터만 늘어난다. kookmin(대학), sungkyunkwan(대학), sangmyung(대학), tla(language_school) 추가, 엠블럼은 `public/assets/emblem/{id}.png`. kookmin은 pricing이 `{ long: null, short: null }`이고 priceShort/priceLong이 0 → 대학 목록에는 나오고 계산기·플랜 빌더 대상에서는 빠져야 한다(기존 offersProgram 로직 유지). 성균관대·TLA는 기간 단위가 month(2·4개월, 1·2개월), 상명대는 semester. 머지 후 장기 최저가가 1,700 → 1,400 정도로 내려간다.
+- **USD/EUR 같은 숫자**: aah-a1에 따르면 가격은 요청마다 USD_JPY로 환산되고 USD/EUR에 같은 숫자를 쓰는 것이 현재 구현이다. EUR 페이지에 €900처럼 표시되므로 의도인지 사용자 확인 필요.
