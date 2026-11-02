@@ -1,6 +1,6 @@
 import { getTranslation } from '@/lib/i18n.server';
-import ParallaxImage from '@common/parallaxImage';
 import Image from 'next/image';
+import { Section, SectionHeading } from '@/components/ui/Section';
 // API
 import { getUniversities } from '@/api/server';
 // Types
@@ -18,51 +18,34 @@ export default async function Univercities() {
    * render
    */
   return (
-    <div id="universities" className="relative w-full bg-white mb-30 scroll-mt-16">
-      <ParallaxImage
-        section="univercities"
-        imagePath="/assets/image2.jpg"
-        alt="Korean partner university campus"
-      />
-
-      <div className="relative bg-gradient-to-b from-[#f3e1eb] to-[#fff] w-full px-6 py-12">
-        <div className="max-w-7xl mx-auto">
-          <h2 className="text-3xl font-bold text-gray-800 mb-4 text-center">{t('UNI_TITLE')}</h2>
-
-          <div className="text-lg text-gray-800 ">
-            {/* body */}
-            <p className="mb-5">{t('UNI_DESCRIPTION')}</p>
-
-            <div className="mt-10">
-              <ul className="list-none grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-4 w-fit mx-auto">
-                {universityList.map((item: University, index) => {
-                  return (
-                    <li key={index} className="flex justify-start items-center gap-4 py-3">
-                      <Image
-                        src={`/assets/emblem/${item.id}.png`}
-                        alt={item.id}
-                        width={item.width ? item.width * 4 : 48}
-                        height={item.height ? item.height * 4 : 48}
-                        style={{
-                          width: item.width ? item.width * 4 : 48,
-                          height: item.height ? item.height * 4 : 48,
-                        }}
-                        className={`${item.margin ? 'ml-1.5 mr-1.5' : ''}`}
-                      />
-                      <strong className="flex flex-col">
-                        {item.title}
-                        <span className="text-sm text-gray-500 font-normal">{item.subTitle}</span>
-                      </strong>
-                    </li>
-                  );
-                })}
-              </ul>
-            </div>
-
-            {/* ./body */}
-          </div>
-        </div>
-      </div>
-    </div>
+    <Section id="universities">
+      <SectionHeading title={t('UNI_TITLE')} lead={t('UNI_DESCRIPTION')} />
+      <ul className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-2.5 md:gap-3">
+        {universityList.map((item: University, index) => {
+          return (
+            <li
+              key={index}
+              className="flex items-center gap-3 rounded-2xl border border-line bg-white px-3 py-3 md:px-4 md:py-4"
+            >
+              <Image
+                src={`/assets/emblem/${item.id}.png`}
+                alt={item.title}
+                width={item.width ? item.width * 4 : 40}
+                height={item.height ? item.height * 4 : 40}
+                style={{
+                  width: item.width ? item.width * 4 : 40,
+                  height: item.height ? item.height * 4 : 40,
+                }}
+                className={`shrink-0 object-contain ${item.margin ? 'mx-1' : ''}`}
+              />
+              <p className="min-w-0 flex flex-col text-[13px] md:text-sm font-semibold leading-tight text-ink">
+                {item.title}
+                <span className="mt-0.5 text-xs font-normal text-muted">{item.subTitle}</span>
+              </p>
+            </li>
+          );
+        })}
+      </ul>
+    </Section>
   );
 }
