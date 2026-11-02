@@ -10,7 +10,6 @@
 - **API 호출 최소화**: Lambda 동시 실행 한도가 10이라(증가 신청 중) 빌드·캡처 시 요청이 몰리면 throttling → 500이 나고 운영에도 영향이 간다. 서버 컴포넌트는 `src/api/server.ts`의 React `cache` 래퍼로 한 요청당 1회만 호출한다.
 - **헤더 문구는 서버에서 번역**: 메뉴가 HTML에 포함되어 검색엔진·AI 크롤러가 읽을 수 있게 하기 위함. 메뉴 열기/닫기만 클라이언트 컴포넌트(HeaderNav).
 - **가격은 서버 렌더링 + 클라이언트 갱신**: 크롤러가 시작가를 읽을 수 있도록 언어 기본 통화(EN=USD, 그 외 EUR)로 서버에서 그리고, 방문자가 통화를 바꾸면 LivePrice가 다시 가져온다. API는 `currency` 쿠키로 통화를 정하므로 서버 요청에는 Cookie 헤더를 직접 넣는다.
-- **확인 필요**: `/university/prices`가 USD와 EUR에 같은 숫자를 돌려준다(타입 주석에도 "same number for USD and EUR"). 의도된 동작인지 사용자 확인 대기.
 - **단기 프로그램 문구**: 목업의 "from 3 weeks"는 어학원 1–2주 과정과 맞지 않아 "short holiday courses / 1–3 weeks"로 표현했다.
 - **학생 후기 대신 인스타그램**: 실제 후기 자료가 없어 가짜 후기를 만들지 않는다. 인스타그램 섹션은 사용자 요청으로 반드시 유지한다.
 - **히어로 이미지**: 현재는 캠퍼스 사진(`/assets/image5.jpg`). 학생이 나오는 사진이 생기면 `Hero.tsx`의 `HERO_IMAGE`만 바꾸면 된다.
@@ -23,4 +22,4 @@
 - **화면 캡처의 빈 로고/사진**: next/image 지연 로딩 때문에 전체 페이지 캡처에서 아래쪽 이미지가 비어 보일 수 있다. 실제 이미지 응답(200)으로 확인한다.
 - **모바일 세로 flex에서 `flex-1` 금지**: flex-col 안의 input에 flex-1을 주면 높이가 0으로 줄어든다. `sm:flex-1`로 가로 배치일 때만 적용한다.
 - **새 학교 추가(aah-a1 세션, feature/new-schools)**: API 응답 형태는 그대로이고 데이터만 늘어난다. kookmin(대학), sungkyunkwan(대학), sangmyung(대학), tla(language_school) 추가, 엠블럼은 `public/assets/emblem/{id}.png`. kookmin은 pricing이 `{ long: null, short: null }`이고 priceShort/priceLong이 0 → 대학 목록에는 나오고 계산기·플랜 빌더 대상에서는 빠져야 한다(기존 offersProgram 로직 유지). 성균관대·TLA는 기간 단위가 month(2·4개월, 1·2개월), 상명대는 semester. 머지 후 장기 최저가가 1,700 → 1,400 정도로 내려간다.
-- **USD/EUR 같은 숫자**: aah-a1에 따르면 가격은 요청마다 USD_JPY로 환산되고 USD/EUR에 같은 숫자를 쓰는 것이 현재 구현이다. EUR 페이지에 €900처럼 표시되므로 의도인지 사용자 확인 필요.
+- **USD/EUR 같은 숫자(의도된 비즈니스 규칙)**: 엔화를 USD_JPY 환율로 환산해 USD와 EUR에 같은 숫자를 쓴다(1 EUR > 1 USD라 EUR 고객에게 손해가 없음). EUR 페이지의 €900은 의도한 표시이고 기호만 통화에 맞게 바뀐다. 근거는 aah.api `context-notes.md`의 "가격 규칙". 학교 항목은 10단위, 합계는 100단위 올림이며 차액은 aah! 수수료에 포함된다.
