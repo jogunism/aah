@@ -10,6 +10,7 @@ const ROUTES = [
   { path: '', priority: 1.0 },
   { path: '/programs/short', priority: 0.8 },
   { path: '/programs/long', priority: 0.8 },
+  { path: '/plan', priority: 0.7 },
 ];
 
 export default function sitemap(): MetadataRoute.Sitemap {
