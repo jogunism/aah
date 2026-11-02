@@ -84,7 +84,7 @@ export default function MailingList() {
                 onChange={e => setEmail(e.target.value)}
                 placeholder={t('MAILING_MODAL_EMAIL_PLACEHOLDER')}
                 aria-label={t('MAILING_MODAL_EMAIL_PLACEHOLDER')}
-                className="min-w-0 flex-1 h-11 px-4 rounded-full bg-white text-ink placeholder:text-muted focus:outline-none focus-visible:ring-2 focus-visible:ring-white/70"
+                className="min-w-0 w-full sm:w-auto sm:flex-1 h-11 px-4 rounded-full bg-white text-ink placeholder:text-muted focus:outline-none focus-visible:ring-2 focus-visible:ring-white/70"
                 required
               />
               <button type="submit" disabled={isSubmitting} className={buttonClass('dark')}>
