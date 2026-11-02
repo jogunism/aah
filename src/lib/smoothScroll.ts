@@ -1,4 +1,4 @@
-// S-curve (ease-in-out) scrolling shared by in-page links and programmatic jumps
+// S자(ease-in-out) 속도로 창을 스크롤하는 공용 유틸
 
 const DEFAULT_DURATION = 1200;
 
