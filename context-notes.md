@@ -31,3 +31,13 @@
 - **`.next/dev` 잔여 타입 파일**: `next dev`가 만든 `.next/dev/types`가 tsconfig include에 걸려 삭제된 라우트를 참조하면 빌드가 실패한다. dev 서버가 없을 때 `.next/dev`를 지우고 다시 빌드한다.
 - **상세 페이지 핵심 스펙**: 대학 어학당 열의 표 값(기간·레벨·수업 시간·인원·비자)을 그대로 쓴다. 새 문구를 만들지 않기 위함.
 - **시작가 범위(확인 필요)**: `/university/prices`는 대학만 집계한다(어학원 제외, API 설계). 그래서 단기 "Ab €900"과 학교 목록의 어학원 €600·€700이 다르게 보인다. 어학원을 시작가에 포함할지 사용자 확인 대기.
+
+## 7단계 플랜 빌더 (`/plan`)
+- master 병합(9df66af)으로 새 학교 엠블럼(국민대·성균관대·상명대·TLA)이 들어왔다. 운영 API는 통화별 환산으로 바뀌어 EUR이 USD보다 낮게 나온다(예: 단기 $900 / €800, 장기 $1,400 / €1,300).
+- 계산기 모달(`modal/TuitionCalculation.tsx`)은 `git mv`로 `plan/PlanBuilder.tsx`로 옮겨 다시 썼다. 이력이 이어지게 해서 a1이 master에서 계산기를 고쳐도 병합할 때 이름 변경으로 추적되게 하려는 것이다.
+- 가격 로직(offersProgram, pricing 우선·legacy 대체, 기간·기숙사 분해, 문의 문구)과 GA 이벤트는 그대로 유지했다. 진입 추적은 `trackTuitionCalculationOpen('plan_page')`, 닫기 추적은 쓸 곳이 없어 삭제했다.
+- 첫 화면은 서버에서 `getSchools(currency)`로 렌더한다. 클라이언트는 통화가 바뀔 때만 다시 불러온다(Lambda 호출 최소화).
+- 쿼리 `program`, `school`로 초기 선택한다. 학교가 그 프로그램을 제공하지 않으면 무시한다. 프로그램을 바꿀 때 학교가 다른 프로그램도 제공하면 선택을 유지한다(모달은 항상 초기화했다).
+- 견적 문의는 같은 페이지에 넣은 Contactus로 prefill을 보내고, 폼이 스스로 스크롤한다.
+- 학교 선택은 드롭다운 대신 카드 목록으로 바꿨다(페이지라서 공간이 충분하다). 단계 번호는 기간 옵션이 1개면 숙소가 3번이 된다.
+- 프로그램 카드 설명은 새 키 대신 기존 `TILE_SHORT_SUB/TILE_LONG_SUB`를 재사용했다. 새 키는 PLAN_META_TITLE, PLAN_TITLE, PLAN_LEAD 세 개다.
