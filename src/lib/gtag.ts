@@ -105,17 +105,6 @@ export const trackTuitionCalculationSubmit = (formData: Record<string, string | 
   });
 };
 
-export const trackTuitionCalculationClose = (method: 'close_button' | 'backdrop' | 'escape') => {
-  event({
-    action: 'tuition_popup_close',
-    category: 'engagement',
-    label: method,
-    custom_parameters: {
-      close_method: method,
-    },
-  });
-};
-
 // Program interactions
 export const trackProgramView = (programName: string, programType?: string) => {
   event({

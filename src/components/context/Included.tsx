@@ -1,7 +1,8 @@
-// 홈 "포함 항목" 섹션(픽업·지원·숙소·SIM·비자·긴급 지원)과 수업료 계산기 진입점
+// 홈 "포함 항목" 섹션(픽업·지원·숙소·SIM·비자·긴급 지원)과 플랜 빌더(/plan) 진입점
 import { getTranslation } from '@/lib/i18n.server';
 import { Section, SectionHeading } from '@/components/ui/Section';
-import TuitionCalculationButton from './TuitionCalculationButton';
+import Link from 'next/link';
+import { buttonClass } from '@/components/ui/Button';
 
 const ITEMS = [
   { n: 1, icon: '✈️' },
@@ -28,7 +29,9 @@ export default async function Included({ lang }: { lang: string }) {
         ))}
       </ul>
       <div className="mt-8 flex justify-center">
-        <TuitionCalculationButton />
+        <Link href={`/${lang}/plan`} className={buttonClass('blue')}>
+          {t('TUITION_CALCULATOR')}
+        </Link>
       </div>
     </Section>
   );

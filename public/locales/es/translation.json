@@ -396,5 +396,10 @@
   "PROGRAM_SCHOOLS_TITLE": "Elige tu universidad.",
   "PROGRAM_SCHOOLS_LEAD": "Precios por centro, sin alojamiento.",
   "PROGRAM_SCHOOL_SELECT": "Elegir",
-  "PROGRAM_BAR_NOTE": "Solicitud, recogida, SIM y ayuda con el visado incluidos"
+  "PROGRAM_BAR_NOTE": "Solicitud, recogida, SIM y ayuda con el visado incluidos",
+
+  "***** PLAN BUILDER *****": "",
+  "PLAN_META_TITLE": "Planifica tus estudios en Corea",
+  "PLAN_TITLE": "Planifica tus estudios en Corea.",
+  "PLAN_LEAD": "Elige programa, centro, duración y alojamiento para ver el coste estimado. Envíanoslo y un asesor se pondrá en contacto contigo."
 }

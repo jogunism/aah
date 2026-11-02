@@ -396,5 +396,10 @@
   "PROGRAM_SCHOOLS_TITLE": "Choose your university.",
   "PROGRAM_SCHOOLS_LEAD": "Prices per school, before accommodation.",
   "PROGRAM_SCHOOL_SELECT": "Select",
-  "PROGRAM_BAR_NOTE": "School application, pickup, SIM and visa support included"
+  "PROGRAM_BAR_NOTE": "School application, pickup, SIM and visa support included",
+
+  "***** PLAN BUILDER *****": "",
+  "PLAN_META_TITLE": "Plan your study in Korea",
+  "PLAN_TITLE": "Plan your study in Korea.",
+  "PLAN_LEAD": "Choose a program, school, duration and housing to see your estimated cost. Send it to us and an advisor will get back to you."
 }

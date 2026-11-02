@@ -396,5 +396,10 @@
   "PROGRAM_SCHOOLS_TITLE": "Choisissez votre université.",
   "PROGRAM_SCHOOLS_LEAD": "Prix par école, hors logement.",
   "PROGRAM_SCHOOL_SELECT": "Choisir",
-  "PROGRAM_BAR_NOTE": "Inscription, accueil, SIM et aide au visa inclus"
+  "PROGRAM_BAR_NOTE": "Inscription, accueil, SIM et aide au visa inclus",
+
+  "***** PLAN BUILDER *****": "",
+  "PLAN_META_TITLE": "Planifier vos études en Corée",
+  "PLAN_TITLE": "Planifiez vos études en Corée.",
+  "PLAN_LEAD": "Choisissez le programme, l'école, la durée et le logement pour voir votre coût estimé. Envoyez-le-nous et un conseiller vous répondra."
 }

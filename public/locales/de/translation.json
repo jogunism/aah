@@ -395,5 +395,10 @@
   "PROGRAM_SCHOOLS_TITLE": "Wählen Sie Ihre Universität.",
   "PROGRAM_SCHOOLS_LEAD": "Preise pro Schule, ohne Unterkunft.",
   "PROGRAM_SCHOOL_SELECT": "Auswählen",
-  "PROGRAM_BAR_NOTE": "Bewerbung, Abholung, SIM und Visumberatung inklusive"
+  "PROGRAM_BAR_NOTE": "Bewerbung, Abholung, SIM und Visumberatung inklusive",
+
+  "***** PLAN BUILDER *****": "",
+  "PLAN_META_TITLE": "Studium in Korea planen",
+  "PLAN_TITLE": "Planen Sie Ihr Studium in Korea.",
+  "PLAN_LEAD": "Wählen Sie Programm, Schule, Dauer und Unterkunft und sehen Sie Ihre voraussichtlichen Kosten. Senden Sie uns die Auswahl, und unsere Beratung meldet sich bei Ihnen."
 }
