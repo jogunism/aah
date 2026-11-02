@@ -57,7 +57,7 @@ export default function PlanBuilder({
   const { i18n } = useTranslation();
   const t = i18n.getFixedT(lang);
   const currency = useCurrencyStore((s) => (s.ready ? s.currency : null)) as Currency | null;
-  const { requestPrefill } = useContactUsStore();
+  const { requestPrefill, clearPrefill } = useContactUsStore();
 
   const startType = initialProgram === 'long' ? ProgramType.LONG : ProgramType.SHORT;
   const [list, setList] = useState({ schools: initial, currency: initialCurrency });
@@ -240,7 +240,9 @@ export default function PlanBuilder({
    */
   useEffect(() => {
     trackTuitionCalculationOpen('plan_page');
-  }, []);
+    // The estimate belongs to this page's form; don't re-inject it into the next page's form
+    return () => clearPrefill();
+  }, [clearPrefill]);
 
   // Refetch when the visitor switches currency
   useEffect(() => {
