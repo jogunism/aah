@@ -295,5 +295,20 @@
   "NAV_LANGUAGE": "Langue",
   "NAV_CURRENCY": "Devise",
   "COOKIE_TEXT": "Nous utilisons des cookies pour améliorer votre expérience. En continuant à utiliser ce site, vous acceptez leur utilisation.",
-  "COOKIE_ACCEPT": "Accepter"
+  "COOKIE_ACCEPT": "Accepter",
+
+  "***** HERO *****": "",
+  "HERO_EYEBROW": "Apprendre le coréen à Séoul",
+  "HERO_TITLE": "Apprenez le coréen là où on le parle.",
+  "HERO_LEAD": "Des cours courts pendant les vacances ou des semestres complets de 10 semaines dans les meilleures universités de Séoul — école, visa et logement organisés pour vous.",
+  "HERO_CTA_PRIMARY": "Trouver mon programme",
+  "HERO_CTA_SECONDARY": "Réserver une consultation gratuite",
+  "TRUST_1_VALUE": "15 ans",
+  "TRUST_1_LABEL": "spécialistes des études en Corée",
+  "TRUST_2_VALUE": "700 étudiants",
+  "TRUST_2_LABEL": "envoyés en Corée chaque année",
+  "TRUST_3_VALUE": "{{count}} universités",
+  "TRUST_3_LABEL": "instituts de langue partenaires à Séoul",
+  "TRUST_4_VALUE": "Tout compris",
+  "TRUST_4_LABEL": "accueil · logement · SIM · visa"
 }

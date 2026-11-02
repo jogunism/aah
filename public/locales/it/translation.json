@@ -295,5 +295,20 @@
   "NAV_LANGUAGE": "Lingua",
   "NAV_CURRENCY": "Valuta",
   "COOKIE_TEXT": "Utilizziamo i cookie per migliorare la tua esperienza. Continuando a usare questo sito, accetti l'uso dei cookie.",
-  "COOKIE_ACCEPT": "Accetta"
+  "COOKIE_ACCEPT": "Accetta",
+
+  "***** HERO *****": "",
+  "HERO_EYEBROW": "Studia coreano a Seoul",
+  "HERO_TITLE": "Impara il coreano dove si parla.",
+  "HERO_LEAD": "Corsi brevi durante le vacanze o semestri completi di 10 settimane nelle migliori università di Seoul, con scuola, visto e alloggio organizzati per te.",
+  "HERO_CTA_PRIMARY": "Trova il tuo programma",
+  "HERO_CTA_SECONDARY": "Prenota una consulenza gratuita",
+  "TRUST_1_VALUE": "15 anni",
+  "TRUST_1_LABEL": "specializzati nello studio in Corea",
+  "TRUST_2_VALUE": "700 studenti",
+  "TRUST_2_LABEL": "inviati in Corea ogni anno",
+  "TRUST_3_VALUE": "{{count}} università",
+  "TRUST_3_LABEL": "istituti di lingua partner a Seoul",
+  "TRUST_4_VALUE": "Tutto incluso",
+  "TRUST_4_LABEL": "accoglienza · alloggio · SIM · visto"
 }

@@ -294,5 +294,20 @@
   "NAV_LANGUAGE": "Sprache",
   "NAV_CURRENCY": "Währung",
   "COOKIE_TEXT": "Wir verwenden Cookies, um Ihr Erlebnis zu verbessern. Wenn Sie die Website weiter nutzen, stimmen Sie der Verwendung von Cookies zu.",
-  "COOKIE_ACCEPT": "Akzeptieren"
+  "COOKIE_ACCEPT": "Akzeptieren",
+
+  "***** HERO *****": "",
+  "HERO_EYEBROW": "Koreanisch lernen in Seoul",
+  "HERO_TITLE": "Koreanisch lernen, wo es gesprochen wird.",
+  "HERO_LEAD": "Kurze Ferienkurse oder ganze 10-wöchige Semester an Seouls Top-Universitäten – Schule, Visum und Unterkunft organisieren wir für Sie.",
+  "HERO_CTA_PRIMARY": "Programm finden",
+  "HERO_CTA_SECONDARY": "Kostenlose Beratung buchen",
+  "TRUST_1_VALUE": "15 Jahre",
+  "TRUST_1_LABEL": "spezialisiert auf das Studium in Korea",
+  "TRUST_2_VALUE": "700 Studierende",
+  "TRUST_2_LABEL": "jedes Jahr nach Korea vermittelt",
+  "TRUST_3_VALUE": "{{count}} Universitäten",
+  "TRUST_3_LABEL": "Partner-Sprachinstitute in Seoul",
+  "TRUST_4_VALUE": "Rundum-Service",
+  "TRUST_4_LABEL": "Abholung · Unterkunft · SIM · Visum"
 }

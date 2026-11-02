@@ -295,5 +295,20 @@
   "NAV_LANGUAGE": "Idioma",
   "NAV_CURRENCY": "Moneda",
   "COOKIE_TEXT": "Usamos cookies para mejorar tu experiencia. Si sigues usando este sitio, aceptas el uso de cookies.",
-  "COOKIE_ACCEPT": "Aceptar"
+  "COOKIE_ACCEPT": "Aceptar",
+
+  "***** HERO *****": "",
+  "HERO_EYEBROW": "Estudia coreano en Seúl",
+  "HERO_TITLE": "Aprende coreano donde se habla.",
+  "HERO_LEAD": "Cursos cortos en vacaciones o semestres completos de 10 semanas en las mejores universidades de Seúl, con centro, visado y alojamiento organizados para ti.",
+  "HERO_CTA_PRIMARY": "Encuentra tu programa",
+  "HERO_CTA_SECONDARY": "Reserva una consulta gratuita",
+  "TRUST_1_VALUE": "15 años",
+  "TRUST_1_LABEL": "especializados en estudiar en Corea",
+  "TRUST_2_VALUE": "700 estudiantes",
+  "TRUST_2_LABEL": "enviados a Corea cada año",
+  "TRUST_3_VALUE": "{{count}} universidades",
+  "TRUST_3_LABEL": "institutos de idiomas asociados en Seúl",
+  "TRUST_4_VALUE": "Todo incluido",
+  "TRUST_4_LABEL": "recogida · alojamiento · SIM · visado"
 }

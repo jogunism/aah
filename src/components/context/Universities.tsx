@@ -2,7 +2,7 @@ import { getTranslation } from '@/lib/i18n.server';
 import ParallaxImage from '@common/parallaxImage';
 import Image from 'next/image';
 // API
-import { retrieveUniversityList } from '@/api';
+import { getUniversities } from '@/api/server';
 // Types
 import type { University } from '@/types/constants';
 
@@ -12,7 +12,7 @@ import type { University } from '@/types/constants';
 export default async function Univercities() {
   const { t } = await getTranslation();
 
-  const universityList: University[] = await retrieveUniversityList();
+  const universityList: University[] = await getUniversities();
 
   /*******************************************************
    * render

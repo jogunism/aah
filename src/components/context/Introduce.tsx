@@ -1,4 +1,3 @@
-import Image from 'next/image';
 import { getTranslation } from '@/lib/i18n.server';
 import SmoothScrollLink from './SmoothScrollLink';
 
@@ -7,21 +6,9 @@ export default async function Introduce() {
 
   return (
     <div className="relative w-full bg-white mb-30">
-      <div className="relative w-screen h-[500px] overflow-hidden">
-        <div className="relative w-full h-[100%]">
-          <Image
-            src="/assets/main.jpg"
-            alt={t('MAIN_SLOGAN')}
-            fill
-            className="object-cover"
-            priority
-          />
-        </div>
-      </div>
-
       <div className="relative bg-gradient-to-b from-[#f3e1eb] to-[#fff] w-full px-6 py-12">
         <div className="max-w-7xl mx-auto">
-          <h1 className="text-3xl font-bold text-gray-800 mb-4 text-center">{t('MAIN_SLOGAN')}</h1>
+          <h2 className="text-3xl font-bold text-gray-800 mb-4 text-center">{t('MAIN_SLOGAN')}</h2>
           {/* <h3 className="text-xl font-bold text-gray-900 mb-3 text-left">
             {t('INTRODUCE_SEO_TITLE')}
           </h3> */}

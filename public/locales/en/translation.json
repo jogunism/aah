@@ -295,5 +295,20 @@
   "NAV_LANGUAGE": "Language",
   "NAV_CURRENCY": "Currency",
   "COOKIE_TEXT": "We use cookies to improve your experience. By continuing to use this site, you agree to our use of cookies.",
-  "COOKIE_ACCEPT": "Accept"
+  "COOKIE_ACCEPT": "Accept",
+
+  "***** HERO *****": "",
+  "HERO_EYEBROW": "Study Korean in Seoul",
+  "HERO_TITLE": "Learn Korean where it's spoken.",
+  "HERO_LEAD": "Short holiday courses or full 10-week semesters at Seoul's top universities — with school, visa and housing arranged for you.",
+  "HERO_CTA_PRIMARY": "Find your program",
+  "HERO_CTA_SECONDARY": "Book a free consultation",
+  "TRUST_1_VALUE": "15 years",
+  "TRUST_1_LABEL": "specializing in study in Korea",
+  "TRUST_2_VALUE": "700 students",
+  "TRUST_2_LABEL": "sent to Korea every year",
+  "TRUST_3_VALUE": "{{count}} universities",
+  "TRUST_3_LABEL": "partner language institutes in Seoul",
+  "TRUST_4_VALUE": "All-in-one",
+  "TRUST_4_LABEL": "pickup · housing · SIM · visa support"
 }
