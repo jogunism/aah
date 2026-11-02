@@ -4,7 +4,7 @@ import Footer from '@/components/context/Footer';
 import Hero from '@/components/context/Hero';
 import Introduce from '@/components/context/Introduce';
 import Universities from '@/components/context/Universities';
-import Programes from '@/components/context/Programes';
+import Programs from '@/components/context/Programs';
 import Tuition from '@/components/context/Tuition';
 import Process from '@/components/context/Process';
 import Instagram from '@/components/context/Instagram';
@@ -33,9 +33,9 @@ export default async function Home({ params }: { params: Promise<{ lang: string 
       {/* components */}
       <main className="flex flex-col items-center flex-grow">
         <Hero lang={lang} />
+        <Programs lang={lang} />
         <Introduce />
         <Universities />
-        <Programes />
         <Tuition />
         <Process />
         <Instagram />
