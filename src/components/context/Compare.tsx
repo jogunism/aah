@@ -11,7 +11,8 @@ export default async function Compare({ lang }: { lang: string }) {
   const currency = await getServerCurrency(lang);
   const prices = await getPrices(currency);
 
-  const range = (min: keyof Prices, max: keyof Prices) => (
+  // No price data (API error) → leave the cell empty rather than a bare " – "
+  const range = (min: keyof Prices, max: keyof Prices) => prices && (
     <span className="font-semibold text-ink">
       <LivePrice field={min} lang={lang} template="{{price}}" initial={prices} initialCurrency={currency} amountClassName="" />
       {' – '}
@@ -29,7 +30,7 @@ export default async function Compare({ lang }: { lang: string }) {
     {
       label: t('COMPARE_ROW_PRICE'),
       short: range('shortMin', 'shortMax'),
-      long: (
+      long: prices && (
         <>
           {range('longMin', 'longMax')} {t('PRICE_PER_SEMESTER')}
         </>
