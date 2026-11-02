@@ -3,9 +3,8 @@ frontend:
   phases:
     preBuild:
       commands:
-        - sudo dnf install -y libatomic
-        - nvm install 26
-        - nvm use 26
+        - nvm install 24
+        - nvm use 24
         - node -v
         - echo "Installing dependencies..."
         - npm ci
