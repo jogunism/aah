@@ -385,5 +385,16 @@
   "FOOTER_FOLLOW": "Follow",
   "FOOTER_PARENT": "aah! education (Japan / Korea)",
   "FOOTER_PROGRAMS": "Programs",
-  "FOOTER_TAGLINE": "Specializing in study in Korea for 15 years."
+  "FOOTER_TAGLINE": "Specializing in study in Korea for 15 years.",
+
+  "***** PROGRAM PAGE *****": "",
+  "PROGRAM_NAV_OVERVIEW": "Overview",
+  "PROGRAM_NAV_DETAILS": "Details",
+  "PROGRAM_NAV_SCHOOLS": "Schools & prices",
+  "PROGRAM_PLAN_APPLY": "Plan & apply",
+  "PROGRAM_TALK": "Talk to an advisor",
+  "PROGRAM_SCHOOLS_TITLE": "Choose your university.",
+  "PROGRAM_SCHOOLS_LEAD": "Prices per school, before accommodation.",
+  "PROGRAM_SCHOOL_SELECT": "Select",
+  "PROGRAM_BAR_NOTE": "School application, pickup, SIM and visa support included"
 }

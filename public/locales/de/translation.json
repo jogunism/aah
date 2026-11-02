@@ -384,5 +384,16 @@
   "FOOTER_FOLLOW": "Folgen",
   "FOOTER_PARENT": "aah! education (Japan / Korea)",
   "FOOTER_PROGRAMS": "Programme",
-  "FOOTER_TAGLINE": "Seit 15 Jahren spezialisiert auf das Studium in Korea."
+  "FOOTER_TAGLINE": "Seit 15 Jahren spezialisiert auf das Studium in Korea.",
+
+  "***** PROGRAM PAGE *****": "",
+  "PROGRAM_NAV_OVERVIEW": "Überblick",
+  "PROGRAM_NAV_DETAILS": "Details",
+  "PROGRAM_NAV_SCHOOLS": "Schulen & Preise",
+  "PROGRAM_PLAN_APPLY": "Planen & bewerben",
+  "PROGRAM_TALK": "Beratung anfragen",
+  "PROGRAM_SCHOOLS_TITLE": "Wählen Sie Ihre Universität.",
+  "PROGRAM_SCHOOLS_LEAD": "Preise pro Schule, ohne Unterkunft.",
+  "PROGRAM_SCHOOL_SELECT": "Auswählen",
+  "PROGRAM_BAR_NOTE": "Bewerbung, Abholung, SIM und Visumberatung inklusive"
 }

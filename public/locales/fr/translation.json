@@ -385,5 +385,16 @@
   "FOOTER_FOLLOW": "Suivez-nous",
   "FOOTER_PARENT": "aah! education (Japon / Corée)",
   "FOOTER_PROGRAMS": "Programmes",
-  "FOOTER_TAGLINE": "Spécialistes des études en Corée depuis 15 ans."
+  "FOOTER_TAGLINE": "Spécialistes des études en Corée depuis 15 ans.",
+
+  "***** PROGRAM PAGE *****": "",
+  "PROGRAM_NAV_OVERVIEW": "Aperçu",
+  "PROGRAM_NAV_DETAILS": "Détails",
+  "PROGRAM_NAV_SCHOOLS": "Écoles et prix",
+  "PROGRAM_PLAN_APPLY": "Planifier et s'inscrire",
+  "PROGRAM_TALK": "Parler à un conseiller",
+  "PROGRAM_SCHOOLS_TITLE": "Choisissez votre université.",
+  "PROGRAM_SCHOOLS_LEAD": "Prix par école, hors logement.",
+  "PROGRAM_SCHOOL_SELECT": "Choisir",
+  "PROGRAM_BAR_NOTE": "Inscription, accueil, SIM et aide au visa inclus"
 }
