@@ -22,4 +22,4 @@
 - **화면 캡처의 빈 로고/사진**: next/image 지연 로딩 때문에 전체 페이지 캡처에서 아래쪽 이미지가 비어 보일 수 있다. 실제 이미지 응답(200)으로 확인한다.
 - **모바일 세로 flex에서 `flex-1` 금지**: flex-col 안의 input에 flex-1을 주면 높이가 0으로 줄어든다. `sm:flex-1`로 가로 배치일 때만 적용한다.
 - **새 학교 추가(aah-a1 세션, feature/new-schools)**: API 응답 형태는 그대로이고 데이터만 늘어난다. kookmin(대학), sungkyunkwan(대학), sangmyung(대학), tla(language_school) 추가, 엠블럼은 `public/assets/emblem/{id}.png`. kookmin은 pricing이 `{ long: null, short: null }`이고 priceShort/priceLong이 0 → 대학 목록에는 나오고 계산기·플랜 빌더 대상에서는 빠져야 한다(기존 offersProgram 로직 유지). 성균관대·TLA는 기간 단위가 month(2·4개월, 1·2개월), 상명대는 semester. 머지 후 장기 최저가가 1,700 → 1,400 정도로 내려간다.
-- **USD/EUR 같은 숫자(의도된 비즈니스 규칙)**: 엔화를 USD_JPY 환율로 환산해 USD와 EUR에 같은 숫자를 쓴다(1 EUR > 1 USD라 EUR 고객에게 손해가 없음). EUR 페이지의 €900은 의도한 표시이고 기호만 통화에 맞게 바뀐다. 근거는 aah.api `context-notes.md`의 "가격 규칙". 학교 항목은 10단위, 합계는 100단위 올림이며 차액은 aah! 수수료에 포함된다.
+- **USD/EUR 가격 규칙(사용자 정정)**: "같은 숫자"가 아니라 "환율을 고려한 같은 가치"가 맞다. EUR은 EUR_JPY, USD는 USD_JPY로 각각 환산하므로 EUR 숫자가 USD보다 낮다(예: $900 ≈ €770대). 현재 API(tuition.service.ts)는 두 통화 모두 USD_JPY로 환산해 같은 숫자를 주므로 수정이 필요하고, 해당 파일 작업 중인 aah-a1 세션에 수정 요청을 전달했다. 프론트는 통화별로 API를 다시 부르므로 API만 바뀌면 된다.
