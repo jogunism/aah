@@ -1,3 +1,4 @@
+// 홈 프로그램 섹션: 목적별 진입 카드와 단기/장기 프로그램 타일
 import Image from 'next/image';
 import Link from 'next/link';
 import { getTranslation } from '@/lib/i18n.server';

@@ -1,3 +1,4 @@
+// 홈 첫 화면: 핵심 메시지, CTA 2개, 신뢰 지표 바
 import Image from 'next/image';
 import { getTranslation } from '@/lib/i18n.server';
 import ScrollLink from '@/components/common/ScrollLink';

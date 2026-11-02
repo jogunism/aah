@@ -1,3 +1,4 @@
+// 리뉴얼 섹션 레이아웃(Section)과 섹션 제목(SectionHeading) 컴포넌트
 import type { ReactNode } from 'react';
 
 /** Page section with consistent vertical rhythm and max width. */

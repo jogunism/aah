@@ -1,3 +1,4 @@
+// 홈 FAQ 섹션(서버 렌더링 + FAQPage 구조화 데이터)
 import { getTranslation } from '@/lib/i18n.server';
 import { buildFaqSchema } from '@/lib/schema';
 

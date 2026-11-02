@@ -1,3 +1,4 @@
+// 서버 렌더링용 API 호출(요청 단위 캐시로 중복 호출 방지)
 import { cache } from 'react';
 import { retrieveUniversityList } from '@/api';
 import http from '@/lib/http';

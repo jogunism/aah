@@ -1,3 +1,4 @@
+// 리뉴얼 공통 버튼 스타일과 Button/ButtonLink 컴포넌트
 import Link from 'next/link';
 import type { ComponentProps, ReactNode } from 'react';
 

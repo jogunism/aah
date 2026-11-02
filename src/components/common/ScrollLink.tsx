@@ -1,4 +1,5 @@
 'use client';
+// 홈 섹션 앵커로 부드럽게 스크롤하고, 다른 페이지에서는 홈 앵커로 이동하는 링크
 
 import Link from 'next/link';
 import { MouseEvent, ReactNode } from 'react';

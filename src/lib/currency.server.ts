@@ -1,3 +1,4 @@
+// 서버 렌더링 시 사용할 통화(쿠키 우선, 없으면 언어 기본 통화) 결정
 import { cookies } from 'next/headers';
 import { LOCALE_META, isSupportedLocale } from '@/lib/locales';
 

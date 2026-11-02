@@ -1,4 +1,5 @@
 'use client';
+// 모바일 하단에 고정되는 프로그램/상담 CTA 바
 
 import { useEffect, useState } from 'react';
 import ScrollLink from '@/components/common/ScrollLink';

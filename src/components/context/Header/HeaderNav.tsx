@@ -1,4 +1,5 @@
 'use client';
+// 헤더 메뉴·상담 버튼·모바일 메뉴를 담당하는 클라이언트 컴포넌트
 
 import { useEffect, useState } from 'react';
 import ScrollLink from '@/components/common/ScrollLink';

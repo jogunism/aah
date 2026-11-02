@@ -1,4 +1,5 @@
 'use client';
+// 서버에서 그린 시작가를 통화 변경 시 클라이언트에서 갱신하는 가격 표시
 
 import { useEffect, useState } from 'react';
 import { useCurrencyStore } from '@/store/currencyStore';

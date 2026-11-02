@@ -1,3 +1,4 @@
+// AI 검색용 사이트 요약 /llms.txt를 영어 번역문에서 생성하는 라우트
 // /llms.txt — a plain-Markdown summary of the site for AI assistants and
 // AI search engines (https://llmstxt.org). Built from the English
 // translations so it stays in sync with the site copy.
