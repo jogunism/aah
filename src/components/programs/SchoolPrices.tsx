@@ -40,8 +40,11 @@ export default function SchoolPrices({
     };
   }, [currency, state.currency]);
 
-  // Only schools that offer this program (price 0 = not offered / no price data)
-  const offered = state.schools.filter((s) => priceOf(s, program) > 0);
+  // Same rule as the plan builder (synced pricing first, legacy price otherwise), so every
+  // "Select" link opens /plan with the school preselected
+  const offered = state.schools.filter(
+    (s) => (s.pricing ? !!s.pricing[program] : true) && priceOf(s, program) > 0,
+  );
   const groups = [
     { label: labels.university, items: offered.filter((s) => s.schoolType !== 'language_school') },
     { label: labels.languageSchool, items: offered.filter((s) => s.schoolType === 'language_school') },
