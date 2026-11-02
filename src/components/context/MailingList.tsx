@@ -3,7 +3,9 @@
 import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { FaCheck } from 'react-icons/fa';
-import ParallaxImage from '@common/parallaxImage';
+import { Section } from '@/components/ui/Section';
+import { buttonClass } from '@/components/ui/Button';
+import SmoothScrollLink from './SmoothScrollLink';
 import { subscribeMailingList } from '@/api';
 
 const TOPIC_KEYS = [1, 2, 3, 4, 5, 6] as const;
@@ -36,78 +38,63 @@ export default function MailingList() {
   };
 
   return (
-    <div className="relative w-full bg-white mb-30">
-      <ParallaxImage
-        section="mailing-list"
-        imagePath="/assets/image4.jpg"
-        alt="Free online info session for Korean study abroad"
-      />
-
-      <div className="relative z-10 bg-gradient-to-b from-[#f3e1eb] to-[#fff] w-full px-6 py-12">
-        <div className="max-w-7xl mx-auto">
-          <h2 className="text-3xl font-bold text-gray-800 mb-4 text-center">
-            {t('MAILING_MODAL_TITLE')}
+    <Section>
+      <div className="grid lg:grid-cols-[1.2fr_1fr] gap-8 lg:gap-12 items-center rounded-[28px] md:rounded-[32px] bg-aah-red text-white p-6 sm:p-10 lg:p-16">
+        {/* Consultation */}
+        <div className="min-w-0">
+          <h2 className="text-[28px] md:text-[44px] leading-[1.1] font-extrabold tracking-[-0.025em]">
+            {t('FINAL_TITLE')}
           </h2>
-          <div className="text-lg text-gray-800">
-            {/* body */}
-            <p
-              className="mb-10 text-center"
-              dangerouslySetInnerHTML={{ __html: t('MAILING_MODAL_DESCRIPTION') }}
-            />
+          <p className="mt-4 mb-7 text-[17px] md:text-xl leading-relaxed text-white/90">{t('FINAL_LEAD')}</p>
+          <SmoothScrollLink href="#contactus" className={buttonClass('white')}>
+            {t('HERO_CTA_SECONDARY')}
+          </SmoothScrollLink>
+        </div>
 
-            {/* What we'll cover */}
-            <div className="mb-10 max-w-3xl mx-auto">
-              <h3 className="text-xl font-semibold text-gray-800 mb-4 text-center">
-                {t('MAILING_SECTION_TOPICS_TITLE')}
-              </h3>
-              <ul className="grid sm:grid-cols-2 gap-x-6 gap-y-2 text-base text-gray-700">
-                {TOPIC_KEYS.map(n => (
-                  <li key={n} className="flex items-start gap-2">
-                    <span className="text-aah-red mt-1 text-xl leading-none">•</span>
-                    <span>{t(`MAILING_SECTION_TOPICS_${n}`)}</span>
-                  </li>
-                ))}
-              </ul>
-            </div>
+        {/* Free online info sessions */}
+        <div className="min-w-0 rounded-2xl bg-white/12 p-5 md:p-6">
+          <h3 className="text-lg font-bold">{t('MAILING_MODAL_TITLE')}</h3>
+          <p
+            className="mt-1.5 text-sm leading-relaxed text-white/85"
+            dangerouslySetInnerHTML={{ __html: t('MAILING_MODAL_DESCRIPTION') }}
+          />
 
-            {/* Form */}
-            {isSuccess ? (
-              <div className="text-center py-4 max-w-md mx-auto">
-                <FaCheck className="text-aah-red text-5xl mx-auto mb-4" />
-                <p className="text-gray-700 font-medium">
-                  {t('MAILING_MODAL_SUCCESS')}
-                </p>
-              </div>
-            ) : (
-              <form onSubmit={handleSubmit} className="max-w-md mx-auto">
-                <div className="mb-4">
-                  <input
-                    type="email"
-                    value={email}
-                    onChange={e => setEmail(e.target.value)}
-                    placeholder={t('MAILING_MODAL_EMAIL_PLACEHOLDER')}
-                    className="w-full px-4 py-2.5 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-aah-red focus:border-transparent text-gray-700 placeholder:text-gray-400 bg-white"
-                    required
-                  />
-                </div>
-                <div className="flex items-center justify-center">
-                  <button
-                    type="submit"
-                    disabled={isSubmitting}
-                    className="bg-aah-red text-white font-semibold py-3 px-16 rounded-lg shadow-md hover:opacity-90 transition-opacity disabled:opacity-50 whitespace-nowrap"
-                  >
-                    {isSubmitting ? t('MAILING_MODAL_SUBMITTING') : t('MAILING_MODAL_SUBMIT')}
-                  </button>
-                </div>
-                {errorMessage && (
-                  <p className="text-red-600 text-sm mt-3 text-center">{errorMessage}</p>
-                )}
-              </form>
-            )}
-            {/* ./body */}
-          </div>
+          {/* What we'll cover */}
+          <p className="mt-4 text-sm font-semibold">{t('MAILING_SECTION_TOPICS_TITLE')}</p>
+          <ul className="mt-2 grid sm:grid-cols-2 gap-x-4 gap-y-1 text-[13px] text-white/90">
+            {TOPIC_KEYS.map(n => (
+              <li key={n} className="flex items-start gap-2">
+                <span aria-hidden="true">•</span>
+                <span>{t(`MAILING_SECTION_TOPICS_${n}`)}</span>
+              </li>
+            ))}
+          </ul>
+
+          {/* Form */}
+          {isSuccess ? (
+            <p className="mt-5 flex items-center gap-2 font-medium">
+              <FaCheck aria-hidden="true" />
+              {t('MAILING_MODAL_SUCCESS')}
+            </p>
+          ) : (
+            <form onSubmit={handleSubmit} className="mt-5 flex flex-col sm:flex-row gap-2">
+              <input
+                type="email"
+                value={email}
+                onChange={e => setEmail(e.target.value)}
+                placeholder={t('MAILING_MODAL_EMAIL_PLACEHOLDER')}
+                aria-label={t('MAILING_MODAL_EMAIL_PLACEHOLDER')}
+                className="min-w-0 flex-1 h-11 px-4 rounded-full bg-white text-ink placeholder:text-muted focus:outline-none focus-visible:ring-2 focus-visible:ring-white/70"
+                required
+              />
+              <button type="submit" disabled={isSubmitting} className={buttonClass('dark')}>
+                {isSubmitting ? t('MAILING_MODAL_SUBMITTING') : t('MAILING_MODAL_SUBMIT')}
+              </button>
+            </form>
+          )}
+          {errorMessage && <p className="mt-3 text-sm text-white">{errorMessage}</p>}
         </div>
       </div>
-    </div>
+    </Section>
   );
 }
