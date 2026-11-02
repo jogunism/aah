@@ -4,6 +4,7 @@
 import { useEffect, useState } from 'react';
 import ScrollLink from '@/components/common/ScrollLink';
 import { buttonClass } from '@/components/ui/Button';
+import { lockScroll, unlockScroll } from '@/lib/scrollLock';
 import LanguageSelector from './languageSelector';
 import CurrencySelector from './CurrencySelector';
 
@@ -33,11 +34,10 @@ export default function HeaderNav({
     if (!open) return;
     const onKey = (e: KeyboardEvent) => e.key === 'Escape' && setOpen(false);
     document.addEventListener('keydown', onKey);
-    const prev = document.body.style.overflow;
-    document.body.style.overflow = 'hidden';
+    lockScroll();
     return () => {
       document.removeEventListener('keydown', onKey);
-      document.body.style.overflow = prev;
+      unlockScroll();
     };
   }, [open]);
 
