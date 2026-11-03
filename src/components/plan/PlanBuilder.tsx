@@ -13,6 +13,7 @@ import {
   DormitoryOption,
   ProgramPricing,
   TermDuration,
+  TermPricing,
 } from '@/types/constants';
 // Store
 import { useCurrencyStore } from '@/store/currencyStore';
@@ -161,8 +162,15 @@ export default function PlanBuilder({
     return notes.length ? `${base} (${notes.join(', ')})` : base;
   };
 
-  const durationLabel = (duration: TermDuration) =>
+  const unitLabel = (duration: TermDuration) =>
     t(`TUITION_CALCULATOR_DURATION_${duration.unit.toUpperCase()}`, { count: duration.value });
+
+  // Long-term options read like aah-e.net's 申請期間 tabs: "1学期 (1ヶ月)" → "1 semester (1 month)".
+  // The tab position (period) is the semester number.
+  const durationLabel = (term: TermPricing) =>
+    programType === ProgramType.LONG && term.duration.unit !== 'semester'
+      ? `${t('TUITION_CALCULATOR_DURATION_SEMESTER', { count: term.period })} (${unitLabel(term.duration)})`
+      : unitLabel(term.duration);
 
   /*******************************************************
    * methods
@@ -206,7 +214,7 @@ export default function PlanBuilder({
       `■ ${t('TUITION_CALCULATOR_INQUIRY_HEADER')}`,
       `- ${t('TUITION_CALCULATOR_UNIVERSITY')}: ${university.title} (${university.subTitle})`,
       `- ${t('TUITION_CALCULATOR_PROGRAM')}: ${programTitle}${
-        term ? ` · ${durationLabel(term.duration)}` : ''
+        term ? ` · ${durationLabel(term)}` : ''
       }`,
     ];
 
@@ -438,7 +446,7 @@ export default function PlanBuilder({
                       onClick={() => setPeriod(tm.period)}
                       className={chip(term.period === tm.period)}
                     >
-                      {durationLabel(tm.duration)}
+                      {durationLabel(tm)}
                     </button>
                   ))}
                 </div>
@@ -496,7 +504,7 @@ export default function PlanBuilder({
             <div className="min-w-0">
               <p className="font-bold text-ink leading-tight">{university.title}</p>
               <p className="text-[13px] text-muted">
-                {term ? durationLabel(term.duration) : university.subTitle}
+                {term ? durationLabel(term) : university.subTitle}
               </p>
             </div>
           </div>
