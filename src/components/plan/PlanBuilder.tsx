@@ -554,7 +554,7 @@ export default function PlanBuilder({
                       </ul>
                     </div>
                   ))}
-                  <p>※ {t('FEE_ARRIVAL_NOTE')}</p>
+                  <p className="flex gap-1"><span aria-hidden="true">※</span><span>{t('FEE_ARRIVAL_NOTE')}</span></p>
                 </dd>
               )}
             </div>
@@ -579,10 +579,10 @@ export default function PlanBuilder({
 
         <ul className="mt-4 text-xs text-muted space-y-1">
           {selectedDorm && term && term.duration.unit === 'semester' && term.duration.value > 1 && (
-            <li>※ {t('TUITION_CALCULATOR_DORM_NOTE')}</li>
+            <li className="flex gap-1"><span aria-hidden="true">※</span><span>{t('TUITION_CALCULATOR_DORM_NOTE')}</span></li>
           )}
-          <li>※ {t('PLAN_ESTIMATE_NOTE')}</li>
-          <li>※ {t('TUITION_CALCULATOR_PRICE_NOTE')}</li>
+          <li className="flex gap-1"><span aria-hidden="true">※</span><span>{t('PLAN_ESTIMATE_NOTE')}</span></li>
+          <li className="flex gap-1"><span aria-hidden="true">※</span><span>{t('TUITION_CALCULATOR_PRICE_NOTE')}</span></li>
         </ul>
       </aside>
 
