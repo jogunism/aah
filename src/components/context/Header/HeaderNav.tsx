@@ -2,6 +2,7 @@
 // 헤더 메뉴·상담 버튼·모바일 메뉴를 담당하는 클라이언트 컴포넌트
 
 import { useEffect, useState } from 'react';
+import { createPortal } from 'react-dom';
 import ScrollLink from '@/components/common/ScrollLink';
 import { buttonClass } from '@/components/ui/Button';
 import { lockScroll, unlockScroll } from '@/lib/scrollLock';
@@ -78,9 +79,10 @@ export default function HeaderNav({
         </button>
       </div>
 
-      {/* Mobile menu panel */}
-      {open && (
-        <div id="mobile-menu" className="lg:hidden fixed inset-x-0 top-[60px] bottom-0 bg-white z-[60] overflow-y-auto">
+      {/* Mobile menu panel. Rendered into <body>: the header's backdrop-filter would otherwise
+          become the containing block of this fixed panel and squeeze it to the header's height. */}
+      {open && createPortal(
+        <div id="mobile-menu" className="lg:hidden fixed inset-x-0 top-[60px] bottom-0 bg-white z-[999] overflow-y-auto">
           <nav aria-label="Main" className="px-5 pt-4 pb-10">
             <ul className="divide-y divide-line">
               {items.map((it) => (
@@ -107,7 +109,8 @@ export default function HeaderNav({
               </div>
             </div>
           </nav>
-        </div>
+        </div>,
+        document.body,
       )}
     </>
   );
