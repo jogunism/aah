@@ -1,16 +1,16 @@
-// 홈 "포함 항목" 섹션(픽업·지원·숙소·SIM·비자·긴급 지원)과 플랜 빌더(/plan) 진입점
+// 홈 "포함 항목" 섹션(도착일 안내·지원·숙소·카카오톡·비자·긴급 확인, 베이직 플랜 기준)과 플랜 빌더(/plan) 진입점
 import { getTranslation } from '@/lib/i18n.server';
 import { Section, SectionHeading } from '@/components/ui/Section';
 import Link from 'next/link';
 import { buttonClass } from '@/components/ui/Button';
 
 const ITEMS = [
-  { n: 1, icon: '✈️' },
+  { n: 1, icon: '🚉' },
   { n: 2, icon: '🏫' },
   { n: 3, icon: '🏠' },
-  { n: 4, icon: '📶' },
+  { n: 4, icon: '💬' },
   { n: 5, icon: '📘' },
-  { n: 6, icon: '📞' },
+  { n: 6, icon: '🆘' },
 ] as const;
 
 export default async function Included({ lang }: { lang: string }) {
