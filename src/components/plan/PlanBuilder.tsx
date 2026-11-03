@@ -36,6 +36,24 @@ interface PlanBuilderProps {
 
 const SCHOOL_ONLY = '__school_only__';
 
+// What the aah! fee covers, from the aah-e.net fee tables (regular_fee.html プレミアム plan
+// for long-term, special_fee.html ベーシック plan for short-term). 留学ドクターパス is an
+// extra charge that the shown fee excludes, so it is not listed.
+const FEE_SERVICES: Record<'short' | 'long', { group: string; items: string[] }[]> = {
+  long: [
+    { group: 'BEFORE', items: ['APPLY', 'SUBMIT', 'PAYMENT', 'SCHOOL', 'VISA', 'CONSULT'] },
+    { group: 'ARRIVAL', items: ['DIRECTIONS', 'CHECKIN', 'ROUTE'] },
+    { group: 'STAY', items: ['KAKAO_LONG', 'EMERGENCY'] },
+    { group: 'HOUSING', items: ['DORM', 'GOSHITEL', 'OFFICETEL'] },
+  ],
+  short: [
+    { group: 'BEFORE', items: ['APPLY', 'SUBMIT', 'PAYMENT', 'SCHOOL', 'CONSULT'] },
+    { group: 'ARRIVAL', items: ['DIRECTIONS', 'CHECKIN', 'ROUTE'] },
+    { group: 'STAY', items: ['KAKAO_SHORT', 'EMERGENCY'] },
+    { group: 'HOUSING', items: ['DORM', 'GOSHITEL', 'GUESTHOUSE'] },
+  ],
+};
+
 const programKey = (type: ProgramType) => (type === ProgramType.SHORT ? 'short' : 'long');
 
 const getProgram = (uni: University | null, type: ProgramType): ProgramPricing | null =>
@@ -67,6 +85,7 @@ export default function PlanBuilder({
   );
   const [period, setPeriod] = useState(1); // option position, see TermPricing.period
   const [stayKey, setStayKey] = useState(SCHOOL_ONLY); // SCHOOL_ONLY or a dormitory name
+  const [open, setOpen] = useState({ tuition: false, fee: false }); // expanded summary rows
 
   const symbol = list.currency === 'USD' ? '$' : '€';
   const money = (value: number) => `${symbol}${formatPrice(value, lang)}`;
@@ -287,6 +306,29 @@ export default function PlanBuilder({
     }`;
   const stepTitle = 'text-lg md:text-xl font-bold text-ink';
 
+  // Summary row label that opens its details (chevron rotates when open)
+  const expandButton = (row: 'tuition' | 'fee', label: string) => (
+    <button
+      type="button"
+      aria-expanded={open[row]}
+      aria-controls={`plan-row-${row}`}
+      onClick={() => setOpen(o => ({ ...o, [row]: !o[row] }))}
+      className="inline-flex items-center gap-1 text-left hover:text-ink"
+    >
+      {label}
+      <svg
+        aria-hidden="true"
+        className={`w-4 h-4 shrink-0 transition-transform ${open[row] ? 'rotate-180' : ''}`}
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="2"
+        viewBox="0 0 24 24"
+      >
+        <path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" />
+      </svg>
+    </button>
+  );
+
   const inquiryButton = (extra = '') => (
     <button
       type="button"
@@ -470,10 +512,14 @@ export default function PlanBuilder({
               </div>
             )}
             <div className="grid grid-cols-[1fr_auto] gap-x-4 py-2.5">
-              <dt>{t('TUITION_CALCULATOR_TUITION')}</dt>
+              <dt>
+                {hoursParts.length > 0
+                  ? expandButton('tuition', t('TUITION_CALCULATOR_TUITION'))
+                  : t('TUITION_CALCULATOR_TUITION')}
+              </dt>
               <dd className="font-medium text-ink">{money(breakdown.tuition)}</dd>
-              {hoursParts.length > 0 && (
-                <dd className="col-span-2 mt-0.5 text-[13px] text-muted">
+              {hoursParts.length > 0 && open.tuition && (
+                <dd id="plan-row-tuition" className="col-span-2 mt-1 text-[13px] text-muted">
                   {t('CLASS_HOURS_LABEL')}:{' '}
                   {hoursParts.map((part, i) => (
                     <React.Fragment key={part}>
@@ -490,9 +536,27 @@ export default function PlanBuilder({
                 <dd className="font-medium text-ink">{moneyRange(breakdown.accommodation)}</dd>
               </div>
             )}
-            <div className="flex justify-between gap-4 py-2.5">
-              <dt>{t('TUITION_CALCULATOR_AAH_FEE')}</dt>
+            <div className="grid grid-cols-[1fr_auto] gap-x-4 py-2.5">
+              <dt>{expandButton('fee', t('TUITION_CALCULATOR_AAH_FEE'))}</dt>
               <dd className="font-medium text-ink">{money(breakdown.aahFee)}</dd>
+              {open.fee && (
+                <dd id="plan-row-fee" className="col-span-2 mt-2 space-y-3 text-[13px] text-muted">
+                  {FEE_SERVICES[programKey(programType)].map(({ group, items }) => (
+                    <div key={group}>
+                      <p className="font-semibold text-ink-2">{t(`FEE_GROUP_${group}`)}</p>
+                      <ul className="mt-1 space-y-0.5">
+                        {items.map(item => (
+                          <li key={item} className="flex gap-1.5">
+                            <span aria-hidden="true">✓</span>
+                            {t(`FEE_SVC_${item}`)}
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                  ))}
+                  <p>※ {t('FEE_ARRIVAL_NOTE')}</p>
+                </dd>
+              )}
             </div>
           </dl>
         )}

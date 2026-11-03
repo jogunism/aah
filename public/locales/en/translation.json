@@ -390,5 +390,28 @@
 
   "***** PRICE ESTIMATE *****": "",
   "PRICE_ESTIMATE_NOTE": "Estimate · may vary with exchange rates and local fees",
-  "PLAN_ESTIMATE_NOTE": "Amounts are converted at the current exchange rate and some fees are paid locally in Korea, so the final amount may differ slightly."
+  "PLAN_ESTIMATE_NOTE": "Amounts are converted at the current exchange rate and some fees are paid locally in Korea, so the final amount may differ slightly.",
+
+  "***** AAH FEE SERVICES *****": "",
+  "FEE_GROUP_BEFORE": "Before you leave",
+  "FEE_GROUP_ARRIVAL": "On arrival day",
+  "FEE_GROUP_STAY": "During your stay",
+  "FEE_GROUP_HOUSING": "Accommodation",
+  "FEE_SVC_APPLY": "Document checklist and application form",
+  "FEE_SVC_SUBMIT": "School application on your behalf, with documents sent by FedEx",
+  "FEE_SVC_PAYMENT": "International transfer and tuition payment on your behalf (bank fees included)",
+  "FEE_SVC_SCHOOL": "All communication with the school, including updates after you apply",
+  "FEE_SVC_VISA": "Visa documents mailed to you, with guidance",
+  "FEE_SVC_CONSULT": "Advice by email and phone until departure, plus a final pre-departure briefing",
+  "FEE_SVC_DIRECTIONS": "Directions from the nearest station or bus stop to your accommodation",
+  "FEE_SVC_CHECKIN": "Help with check-in and contracts, and a tour of your room and shared facilities",
+  "FEE_SVC_ROUTE": "Your route to school and a map of the neighborhood",
+  "FEE_SVC_KAKAO_LONG": "Local support via KakaoTalk for your whole first application period",
+  "FEE_SVC_KAKAO_SHORT": "Local support via KakaoTalk during the program",
+  "FEE_SVC_EMERGENCY": "Safety check in emergencies",
+  "FEE_SVC_DORM": "Dormitory application, including result check and fee payment",
+  "FEE_SVC_GOSHITEL": "Goshitel / goshiwon booking, including payment",
+  "FEE_SVC_OFFICETEL": "Officetel / studio search (TOPIK level 2+, 1-year contract, agent fee extra)",
+  "FEE_SVC_GUESTHOUSE": "Guesthouse / hotel booking, including payment",
+  "FEE_ARRIVAL_NOTE": "Arrival-day support may differ by school."
 }

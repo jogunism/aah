@@ -390,5 +390,28 @@
 
   "***** PRICE ESTIMATE *****": "",
   "PRICE_ESTIMATE_NOTE": "Estimación · puede variar según el tipo de cambio y las tasas locales",
-  "PLAN_ESTIMATE_NOTE": "Los importes se convierten al tipo de cambio actual y algunas tasas se pagan en Corea, por lo que el importe final puede diferir ligeramente."
+  "PLAN_ESTIMATE_NOTE": "Los importes se convierten al tipo de cambio actual y algunas tasas se pagan en Corea, por lo que el importe final puede diferir ligeramente.",
+
+  "***** AAH FEE SERVICES *****": "",
+  "FEE_GROUP_BEFORE": "Antes de viajar",
+  "FEE_GROUP_ARRIVAL": "El día de llegada",
+  "FEE_GROUP_STAY": "Durante la estancia",
+  "FEE_GROUP_HOUSING": "Alojamiento",
+  "FEE_SVC_APPLY": "Lista de documentos y formulario de solicitud",
+  "FEE_SVC_SUBMIT": "Solicitud al centro en tu nombre, con envío de documentos por FedEx",
+  "FEE_SVC_PAYMENT": "Transferencia internacional y pago de la matrícula por ti (comisiones bancarias incluidas)",
+  "FEE_SVC_SCHOOL": "Toda la comunicación con el centro, también después de la solicitud",
+  "FEE_SVC_VISA": "Envío de los documentos del visado con instrucciones",
+  "FEE_SVC_CONSULT": "Asesoramiento por correo y teléfono hasta la salida, más una sesión informativa final",
+  "FEE_SVC_DIRECTIONS": "Indicaciones desde la estación o parada de autobús más cercana hasta el alojamiento",
+  "FEE_SVC_CHECKIN": "Ayuda con la entrada y los contratos, y visita de la habitación y zonas comunes",
+  "FEE_SVC_ROUTE": "Tu ruta al centro y un mapa del barrio",
+  "FEE_SVC_KAKAO_LONG": "Asistencia local por KakaoTalk durante todo el primer periodo de inscripción",
+  "FEE_SVC_KAKAO_SHORT": "Asistencia local por KakaoTalk durante el programa",
+  "FEE_SVC_EMERGENCY": "Comprobación de seguridad en emergencias",
+  "FEE_SVC_DORM": "Solicitud de residencia, con comprobación del resultado y pago",
+  "FEE_SVC_GOSHITEL": "Reserva de goshitel / goshiwon, pago incluido",
+  "FEE_SVC_OFFICETEL": "Búsqueda de officetel / estudio (TOPIK 2 o más, contrato de 1 año, comisión de agencia aparte)",
+  "FEE_SVC_GUESTHOUSE": "Reserva de casa de huéspedes / hotel, pago incluido",
+  "FEE_ARRIVAL_NOTE": "La asistencia el día de llegada puede variar según el centro."
 }

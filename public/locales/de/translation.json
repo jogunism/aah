@@ -389,5 +389,28 @@
 
   "***** PRICE ESTIMATE *****": "",
   "PRICE_ESTIMATE_NOTE": "Schätzung · abhängig von Wechselkurs und Gebühren vor Ort",
-  "PLAN_ESTIMATE_NOTE": "Die Beträge werden zum aktuellen Wechselkurs umgerechnet und einige Gebühren werden vor Ort in Korea bezahlt, daher kann der Endbetrag leicht abweichen."
+  "PLAN_ESTIMATE_NOTE": "Die Beträge werden zum aktuellen Wechselkurs umgerechnet und einige Gebühren werden vor Ort in Korea bezahlt, daher kann der Endbetrag leicht abweichen.",
+
+  "***** AAH FEE SERVICES *****": "",
+  "FEE_GROUP_BEFORE": "Vor der Abreise",
+  "FEE_GROUP_ARRIVAL": "Am Ankunftstag",
+  "FEE_GROUP_STAY": "Während des Aufenthalts",
+  "FEE_GROUP_HOUSING": "Unterkunft",
+  "FEE_SVC_APPLY": "Unterlagen-Checkliste und Bewerbungsformular",
+  "FEE_SVC_SUBMIT": "Bewerbung bei der Schule in Ihrem Namen, Versand der Unterlagen per FedEx",
+  "FEE_SVC_PAYMENT": "Auslandsüberweisung und Zahlung der Studiengebühren für Sie (inkl. Bankgebühren)",
+  "FEE_SVC_SCHOOL": "Gesamte Kommunikation mit der Schule, auch nach der Bewerbung",
+  "FEE_SVC_VISA": "Zusendung der Visumsunterlagen mit Erläuterung",
+  "FEE_SVC_CONSULT": "Beratung per E-Mail und Telefon bis zur Abreise, dazu ein abschließendes Briefing",
+  "FEE_SVC_DIRECTIONS": "Wegbeschreibung von der nächsten Station oder Bushaltestelle zur Unterkunft",
+  "FEE_SVC_CHECKIN": "Hilfe beim Einzug und bei Verträgen, Führung durch Zimmer und Gemeinschaftsräume",
+  "FEE_SVC_ROUTE": "Ihr Schulweg und eine Karte der Umgebung",
+  "FEE_SVC_KAKAO_LONG": "Betreuung vor Ort per KakaoTalk während des gesamten ersten Anmeldezeitraums",
+  "FEE_SVC_KAKAO_SHORT": "Betreuung vor Ort per KakaoTalk während des Programms",
+  "FEE_SVC_EMERGENCY": "Kontaktaufnahme im Notfall",
+  "FEE_SVC_DORM": "Wohnheimantrag inkl. Ergebnisprüfung und Zahlung",
+  "FEE_SVC_GOSHITEL": "Buchung von Goshitel / Goshiwon inkl. Zahlung",
+  "FEE_SVC_OFFICETEL": "Suche nach Officetel / Apartment (ab TOPIK 2, 1-Jahres-Vertrag, Maklergebühr extra)",
+  "FEE_SVC_GUESTHOUSE": "Buchung von Gästehaus / Hotel inkl. Zahlung",
+  "FEE_ARRIVAL_NOTE": "Die Unterstützung am Ankunftstag kann je nach Schule abweichen."
 }

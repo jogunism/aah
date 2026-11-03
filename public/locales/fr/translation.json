@@ -390,5 +390,28 @@
 
   "***** PRICE ESTIMATE *****": "",
   "PRICE_ESTIMATE_NOTE": "Estimation · peut varier selon le taux de change et les frais sur place",
-  "PLAN_ESTIMATE_NOTE": "Les montants sont convertis au taux de change actuel et certains frais se règlent sur place en Corée : le montant final peut donc légèrement différer."
+  "PLAN_ESTIMATE_NOTE": "Les montants sont convertis au taux de change actuel et certains frais se règlent sur place en Corée : le montant final peut donc légèrement différer.",
+
+  "***** AAH FEE SERVICES *****": "",
+  "FEE_GROUP_BEFORE": "Avant le départ",
+  "FEE_GROUP_ARRIVAL": "Le jour de l'arrivée",
+  "FEE_GROUP_STAY": "Pendant le séjour",
+  "FEE_GROUP_HOUSING": "Logement",
+  "FEE_SVC_APPLY": "Liste des documents et formulaire de candidature",
+  "FEE_SVC_SUBMIT": "Candidature auprès de l'école en votre nom, documents envoyés par FedEx",
+  "FEE_SVC_PAYMENT": "Virement international et paiement des frais de scolarité pour vous (frais bancaires inclus)",
+  "FEE_SVC_SCHOOL": "Toute la communication avec l'école, y compris après la candidature",
+  "FEE_SVC_VISA": "Envoi des documents de visa avec explications",
+  "FEE_SVC_CONSULT": "Conseils par e-mail et téléphone jusqu'au départ, plus un briefing final",
+  "FEE_SVC_DIRECTIONS": "Itinéraire depuis la gare ou l'arrêt de bus le plus proche jusqu'au logement",
+  "FEE_SVC_CHECKIN": "Aide à l'installation et aux contrats, visite de la chambre et des espaces communs",
+  "FEE_SVC_ROUTE": "Votre trajet jusqu'à l'école et un plan du quartier",
+  "FEE_SVC_KAKAO_LONG": "Assistance sur place via KakaoTalk pendant toute la première période d’inscription",
+  "FEE_SVC_KAKAO_SHORT": "Assistance sur place via KakaoTalk pendant le programme",
+  "FEE_SVC_EMERGENCY": "Prise de nouvelles en cas d'urgence",
+  "FEE_SVC_DORM": "Demande de résidence universitaire, avec suivi du résultat et paiement",
+  "FEE_SVC_GOSHITEL": "Réservation de goshitel / goshiwon, paiement compris",
+  "FEE_SVC_OFFICETEL": "Recherche d'officetel / studio (TOPIK 2 minimum, bail d'un an, frais d'agence en sus)",
+  "FEE_SVC_GUESTHOUSE": "Réservation de maison d'hôtes / hôtel, paiement compris",
+  "FEE_ARRIVAL_NOTE": "L'assistance le jour de l'arrivée peut varier selon l'école."
 }
