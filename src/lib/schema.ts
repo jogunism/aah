@@ -59,12 +59,12 @@ export const buildOrganizationSchema = ({
     itemListElement: [
       {
         '@type': 'OfferCatalog',
-        name: 'Short-Term (3 weeks)',
+        name: 'Short-Term (1–3 weeks during school holidays)',
         url: `${SITE_URL}/en/programs/short`,
       },
       {
         '@type': 'OfferCatalog',
-        name: 'Long-Term (3 months)',
+        name: 'Long-Term (semesters of 10 weeks at universities, 4 weeks at language schools)',
         url: `${SITE_URL}/en/programs/long`,
       },
     ],
