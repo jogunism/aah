@@ -339,7 +339,7 @@
   "COMPARE_SHORT_BEST": "Premier séjour, débutants, vacances studieuses",
   "COMPARE_LONG_BEST": "Aisance, objectifs professionnels, préparation à l'université coréenne",
   "COMPARE_ROW_PRICE": "Prix",
-  "COMPARE_PRICE_NOTE": "Prix estimés TTC, convertis depuis le JPY au taux de change actuel. Les prix varient selon l'école et le programme, et le montant final peut légèrement différer en raison des variations de change et des frais réglés sur place en Corée. Vols non compris.",
+  "COMPARE_PRICE_NOTE": "Prix estimés TTC, convertis depuis le JPY au taux de change actuel. Les prix varient selon l'école et le programme ; en raison des variations de change et des frais réglés sur place en Corée, le montant final peut être légèrement inférieur. Vols non compris.",
 
   "***** INCLUDED *****": "",
   "INCLUDED_TITLE": "On s'occupe de tout.",
@@ -390,7 +390,7 @@
 
   "***** PRICE ESTIMATE *****": "",
   "PRICE_ESTIMATE_NOTE": "Estimation · peut varier selon le taux de change et les frais sur place",
-  "PLAN_ESTIMATE_NOTE": "Les montants sont convertis au taux de change actuel et certains frais se règlent sur place en Corée : le montant final peut donc légèrement différer.",
+  "PLAN_ESTIMATE_NOTE": "Les montants sont convertis au taux de change actuel et certains frais se règlent sur place en Corée : le montant final peut donc être légèrement inférieur.",
 
   "***** AAH FEE SERVICES *****": "",
   "FEE_GROUP_BEFORE": "Avant le départ",
