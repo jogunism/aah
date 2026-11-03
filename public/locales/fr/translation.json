@@ -26,7 +26,7 @@
   "***** PROGRAM *****": "",
 
   "PROGRAMS_SHORT_DESCRIPTION": "Ce programme offre une occasion unique de découvrir la Corée tout en apprenant la langue et en vivant la culture locale au quotidien. Idéal pour une première visite ou pour profiter pleinement de vos vacances scolaires avec une expérience à la fois riche et amusante.",
-  "PROGRAMS_LONG_DESCRIPTION": "Conçu pour celles et ceux qui souhaitent s'immerger dans un cadre académique structuré. Suivez des cours universitaires réguliers aux côtés d'étudiants coréens pour développer de solides compétences linguistiques et vous adapter durablement à la culture.",
+  "PROGRAMS_LONG_DESCRIPTION": "Pour celles et ceux qui veulent apprendre le coréen de façon structurée. Vous suivez le cours régulier de coréen pour étudiants internationaux dans un institut de langue universitaire ou une école de langue, progressez niveau par niveau et développez de solides compétences tout en vivant en Corée.",
 
   "***** PROCESS *****": "",
 
@@ -335,7 +335,7 @@
   "COMPARE_SHORT_BEST": "Premier séjour, débutants, vacances studieuses",
   "COMPARE_LONG_BEST": "Aisance, objectifs professionnels, préparation à l'université coréenne",
   "COMPARE_ROW_PRICE": "Prix",
-  "COMPARE_PRICE_NOTE": "Prix estimés TTC, convertis depuis le JPY au taux de change actuel. Les prix varient selon l'école et le programme ; en raison des variations de change et des frais réglés sur place en Corée, <b>le montant final peut être légèrement inférieur</b>. Vols non compris.",
+  "COMPARE_PRICE_NOTE": "Prix estimés, convertis depuis le JPY au taux de change actuel. Les prix varient selon l'école et le programme ; en raison des variations de change et des frais réglés sur place en Corée, <b>le montant final peut être légèrement inférieur</b>. Vols non compris.",
 
   "***** INCLUDED *****": "",
   "INCLUDED_TITLE": "On s'occupe de tout.",
