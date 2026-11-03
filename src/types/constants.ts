@@ -21,6 +21,14 @@ export interface University {
   // Detailed breakdown computed by the API (same number for USD and EUR).
   // null until the school has been synced from aah-e.net.
   pricing: UniversityPricing | null;
+
+  // 授業時間 synced from aah-e.net per program; missing on older API responses
+  classHours?: { long: ClassHours | null; short: ClassHours | null } | null;
+}
+
+export interface ClassHours {
+  periodsPerDay: number | null; // class hours (periods) per day
+  slots: string[]; // "9:00–13:00"; several = morning / afternoon classes
 }
 
 export interface PriceRange {

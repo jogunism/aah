@@ -381,5 +381,9 @@
   "***** PLAN BUILDER *****": "",
   "PLAN_META_TITLE": "Studium in Korea planen",
   "PLAN_TITLE": "Planen Sie Ihr Studium in Korea.",
-  "PLAN_LEAD": "Wählen Sie Programm, Schule, Dauer und Unterkunft und sehen Sie Ihre voraussichtlichen Kosten. Senden Sie uns die Auswahl, und unsere Beratung meldet sich bei Ihnen."
+  "PLAN_LEAD": "Wählen Sie Programm, Schule, Dauer und Unterkunft und sehen Sie Ihre voraussichtlichen Kosten. Senden Sie uns die Auswahl, und unsere Beratung meldet sich bei Ihnen.",
+
+  "***** CLASS HOURS *****": "",
+  "CLASS_HOURS_LABEL": "Unterricht",
+  "CLASS_HOURS_PER_DAY": "{{count}} Stunden pro Tag"
 }

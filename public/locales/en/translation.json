@@ -382,5 +382,9 @@
   "***** PLAN BUILDER *****": "",
   "PLAN_META_TITLE": "Plan your study in Korea",
   "PLAN_TITLE": "Plan your study in Korea.",
-  "PLAN_LEAD": "Choose a program, school, duration and housing to see your estimated cost. Send it to us and an advisor will get back to you."
+  "PLAN_LEAD": "Choose a program, school, duration and housing to see your estimated cost. Send it to us and an advisor will get back to you.",
+
+  "***** CLASS HOURS *****": "",
+  "CLASS_HOURS_LABEL": "Class hours",
+  "CLASS_HOURS_PER_DAY": "{{count}} hours a day"
 }

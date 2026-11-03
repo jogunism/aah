@@ -102,6 +102,15 @@ export default function PlanBuilder({
   const selectedDorm: DormitoryOption | null = dormitories.find(d => d.name === stayKey) ?? null;
   const breakdown: PriceBreakdown | null = term ? (selectedDorm?.price ?? term.schoolOnly) : null;
 
+  // e.g. "4 class hours a day · 9:00–13:00 / 14:00–17:50"
+  const hours = university?.classHours?.[programKey(programType)];
+  const hoursParts = hours
+    ? [
+        hours.periodsPerDay ? t('CLASS_HOURS_PER_DAY', { count: hours.periodsPerDay }) : '',
+        ...hours.slots,
+      ].filter(Boolean)
+    : [];
+
   // Schools that have not been synced yet only have a single number
   const legacyPrice =
     university && !university.pricing
@@ -460,9 +469,20 @@ export default function PlanBuilder({
                 <dd className="font-medium text-ink">{money(breakdown.entrance)}</dd>
               </div>
             )}
-            <div className="flex justify-between gap-4 py-2.5">
+            <div className="grid grid-cols-[1fr_auto] gap-x-4 py-2.5">
               <dt>{t('TUITION_CALCULATOR_TUITION')}</dt>
               <dd className="font-medium text-ink">{money(breakdown.tuition)}</dd>
+              {hoursParts.length > 0 && (
+                <dd className="col-span-2 mt-0.5 text-[13px] text-muted">
+                  {t('CLASS_HOURS_LABEL')}:{' '}
+                  {hoursParts.map((part, i) => (
+                    <React.Fragment key={part}>
+                      {i > 0 && (i === 1 && hours?.periodsPerDay ? ' · ' : ' / ')}
+                      <span className="whitespace-nowrap">{part}</span>
+                    </React.Fragment>
+                  ))}
+                </dd>
+              )}
             </div>
             {breakdown.accommodation && (
               <div className="flex justify-between gap-4 py-2.5">

@@ -382,5 +382,9 @@
   "***** PLAN BUILDER *****": "",
   "PLAN_META_TITLE": "Planifica tus estudios en Corea",
   "PLAN_TITLE": "Planifica tus estudios en Corea.",
-  "PLAN_LEAD": "Elige programa, centro, duración y alojamiento para ver el coste estimado. Envíanoslo y un asesor se pondrá en contacto contigo."
+  "PLAN_LEAD": "Elige programa, centro, duración y alojamiento para ver el coste estimado. Envíanoslo y un asesor se pondrá en contacto contigo.",
+
+  "***** CLASS HOURS *****": "",
+  "CLASS_HOURS_LABEL": "Horario de clases",
+  "CLASS_HOURS_PER_DAY": "{{count}} horas al día"
 }
