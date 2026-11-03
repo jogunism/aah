@@ -106,3 +106,5 @@
 ## 링크·버튼 반응 속도 (2026-11-03 측정)
 - 가장 큰 원인은 Cloudflare 프록시(주황 구름)다. 독일 → Cloudflare FRA → Amplify CloudFront SEA900(시애틀)으로 연결돼서, 캐시되지 않는 요청(동적 페이지 전부와 정적 파일 첫 요청)이 약 1초 걸린다. Amplify에 직접 접속하면 FRA60을 거쳐 페이지 0.37~0.5초, 정적 파일 0.12~0.3초다. 해결하려면 Cloudflare DNS에서 aah.education과 www 레코드를 DNS only(회색 구름)로 바꿔야 한다(사용자 작업). Amplify 도메인 인증서는 AVAILABLE 상태다.
 - 코드 쪽 개선은 두 가지다. 서버 API 결과를 인스턴스 메모리에 5분 캐시했고(api/server.ts `remember`), 링크를 클릭하면 바로 상단 진행 표시줄이 나오게 했다(NavigationProgress, next/link가 preventDefault를 하기 때문에 capture 단계에서 감지).
+- 2026-11-03 조치 결과. 사용자가 Cloudflare에서 apex의 A 레코드 4개(52.85.129.x, 시애틀 CloudFront 고정 IP)를 지우고 CNAME `du18mefoeahcj.cloudfront.net`(DNS only, flattening)으로 바꿨다. www·api도 DNS only로 바꿨다. MX·TXT는 유지했다. 배포 #110 이후 라이브 측정값은 페이지 0.18~0.3초(이전 0.75~1.7초), 정적 파일 0.1초(이전 약 1초), API 0.08초다.
+- Lambda 동시 실행 한도 상향 요청(45bd…, 케이스 179362638700103)은 2026-11-03 10:25 기준 아직 CASE_OPENED이고 한도는 10이다. 승인되면 `aah`에 예약 동시성 50을 설정할 예정이다.
