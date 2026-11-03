@@ -4,6 +4,7 @@ import { getServerCurrency } from '@/lib/currency.server';
 import { getPrices } from '@/api/server';
 import { Section, SectionHeading } from '@/components/ui/Section';
 import LivePrice from '@/components/common/LivePrice';
+import BoldText from '@/components/common/BoldText';
 import type { Prices } from '@/types/constants';
 
 export default async function Compare({ lang }: { lang: string }) {
@@ -73,7 +74,7 @@ export default async function Compare({ lang }: { lang: string }) {
           </tbody>
         </table>
       </div>
-      <p className="mt-4 text-center text-[13px] text-muted">{t('COMPARE_PRICE_NOTE')}</p>
+      <p className="mt-4 text-center text-[13px] text-muted"><BoldText text={t('COMPARE_PRICE_NOTE')} /></p>
     </Section>
   );
 }

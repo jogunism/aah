@@ -337,7 +337,7 @@
   "COMPARE_SHORT_BEST": "Erstbesucher, Anfänger, Lernen in den Ferien",
   "COMPARE_LONG_BEST": "Fließend sprechen, Berufsziele, Vorbereitung auf ein Studium in Korea",
   "COMPARE_ROW_PRICE": "Preis",
-  "COMPARE_PRICE_NOTE": "Geschätzte Preise inkl. MwSt., zum aktuellen Wechselkurs aus JPY umgerechnet. Die Preise variieren je nach Schule und Programm; wegen Wechselkursschwankungen und vor Ort in Korea gezahlter Gebühren kann der Endbetrag etwas niedriger ausfallen. Flüge nicht inklusive.",
+  "COMPARE_PRICE_NOTE": "Geschätzte Preise inkl. MwSt., zum aktuellen Wechselkurs aus JPY umgerechnet. Die Preise variieren je nach Schule und Programm; wegen Wechselkursschwankungen und vor Ort in Korea gezahlter Gebühren <b>kann der Endbetrag etwas niedriger ausfallen</b>. Flüge nicht inklusive.",
 
   "***** INCLUDED *****": "",
   "INCLUDED_TITLE": "Um alles ist gesorgt.",
@@ -388,7 +388,7 @@
 
   "***** PRICE ESTIMATE *****": "",
   "PRICE_ESTIMATE_NOTE": "Schätzung · abhängig von Wechselkurs und Gebühren vor Ort",
-  "PLAN_ESTIMATE_NOTE": "Die Beträge werden zum aktuellen Wechselkurs umgerechnet und einige Gebühren werden vor Ort in Korea bezahlt, daher kann der Endbetrag etwas niedriger ausfallen.",
+  "PLAN_ESTIMATE_NOTE": "Die Beträge werden zum aktuellen Wechselkurs umgerechnet und einige Gebühren werden vor Ort in Korea bezahlt, daher <b>kann der Endbetrag etwas niedriger ausfallen</b>.",
 
   "***** AAH FEE SERVICES *****": "",
   "FEE_GROUP_BEFORE": "Vor der Abreise",

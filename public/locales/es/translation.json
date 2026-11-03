@@ -338,7 +338,7 @@
   "COMPARE_SHORT_BEST": "Primera visita, principiantes, estudiar en vacaciones",
   "COMPARE_LONG_BEST": "Fluidez, objetivos profesionales, preparación para la universidad coreana",
   "COMPARE_ROW_PRICE": "Precio",
-  "COMPARE_PRICE_NOTE": "Precios estimados con IVA, convertidos desde JPY al tipo de cambio actual. Varían según el centro y el programa y, por los cambios en el tipo de cambio y las tasas que se pagan en Corea, el importe final puede ser ligeramente inferior. Vuelos no incluidos.",
+  "COMPARE_PRICE_NOTE": "Precios estimados con IVA, convertidos desde JPY al tipo de cambio actual. Varían según el centro y el programa y, por los cambios en el tipo de cambio y las tasas que se pagan en Corea, <b>el importe final puede ser ligeramente inferior</b>. Vuelos no incluidos.",
 
   "***** INCLUDED *****": "",
   "INCLUDED_TITLE": "Nos encargamos de todo.",
@@ -389,7 +389,7 @@
 
   "***** PRICE ESTIMATE *****": "",
   "PRICE_ESTIMATE_NOTE": "Estimación · puede variar según el tipo de cambio y las tasas locales",
-  "PLAN_ESTIMATE_NOTE": "Los importes se convierten al tipo de cambio actual y algunas tasas se pagan en Corea, por lo que el importe final puede ser ligeramente inferior.",
+  "PLAN_ESTIMATE_NOTE": "Los importes se convierten al tipo de cambio actual y algunas tasas se pagan en Corea, por lo que <b>el importe final puede ser ligeramente inferior</b>.",
 
   "***** AAH FEE SERVICES *****": "",
   "FEE_GROUP_BEFORE": "Antes de viajar",

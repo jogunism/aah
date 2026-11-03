@@ -10,6 +10,7 @@ import Footer from '@/components/context/Footer';
 import Contactus from '@/components/context/Contactus';
 import ScrollLink from '@/components/common/ScrollLink';
 import LivePrice from '@/components/common/LivePrice';
+import BoldText from '@/components/common/BoldText';
 import { buttonClass } from '@/components/ui/Button';
 import SchoolPrices from './SchoolPrices';
 
@@ -150,7 +151,7 @@ export default async function ProgramPage({
                 perSemester: t('PRICE_PER_SEMESTER'),
               }}
             />
-            <p className="mt-6 text-[13px] text-muted">{t('COMPARE_PRICE_NOTE')}</p>
+            <p className="mt-6 text-[13px] text-muted"><BoldText text={t('COMPARE_PRICE_NOTE')} /></p>
           </div>
         </section>
 

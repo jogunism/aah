@@ -22,6 +22,7 @@ import useContactUsStore from '@/store/contactusStore';
 import { fetchSchools } from '@/api/local';
 // Utils
 import { formatPrice } from '@/utils';
+import BoldText from '@/components/common/BoldText';
 // Analytics
 import { trackTuitionCalculationOpen, trackTuitionCalculationSubmit, event } from '@/lib/gtag';
 
@@ -629,7 +630,7 @@ export default function PlanBuilder({
           {selectedDorm && term && term.duration.unit === 'semester' && term.duration.value > 1 && (
             <li className="flex gap-1"><span aria-hidden="true">※</span><span>{t('TUITION_CALCULATOR_DORM_NOTE')}</span></li>
           )}
-          <li className="flex gap-1"><span aria-hidden="true">※</span><span>{t('PLAN_ESTIMATE_NOTE')}</span></li>
+          <li className="flex gap-1"><span aria-hidden="true">※</span><span><BoldText text={t('PLAN_ESTIMATE_NOTE')} /></span></li>
           <li className="flex gap-1"><span aria-hidden="true">※</span><span>{t('TUITION_CALCULATOR_PRICE_NOTE')}</span></li>
         </ul>
       </aside>
