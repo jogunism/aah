@@ -56,4 +56,5 @@
 - [x] 5개 언어 문구 점검, 사용하지 않는 번역 키 정리 여부 확인(사용자 승인 후)
 - [x] SEO: h1, 구조화 데이터, llms.txt, hreflang 유지 확인
 - [x] 모바일·접근성 점검
-- [ ] master 병합 → Amplify 배포 확인 → Search Console
+- [x] master 병합 → Amplify 배포 확인 (#109 성공, 2026-11-03 09:28, 라이브 200·가격·/plan·사이트맵 확인)
+- [ ] Search Console 사이트맵 재제출·/plan 색인 요청(사용자)
