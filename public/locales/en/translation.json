@@ -246,9 +246,9 @@
   "FAQ_Q1": "Do I need to speak Korean before I join?",
   "FAQ_A1": "No. University language institutes teach Levels 1 to 6, so complete beginners start at Level 1. If you can already read Hangul, starting in Korea early is often more effective than spending more time on self-study at home. Students who have studied before take a placement test (written, speaking and listening) to find the right class.",
   "FAQ_Q2": "What is the difference between the short-term and long-term programs?",
-  "FAQ_A2": "Short-term programs run during school holidays (spring, summer and winter/year-end). University courses usually last 3 weeks and language-school courses 1–2 weeks, often with cultural activities in the afternoons. The long-term program is the regular course at a university language institute: one semester lasts 10 weeks (about 3 months, around 200 class hours), with four intakes a year in spring, summer, autumn and winter. You can enroll for one semester or several.",
+  "FAQ_A2": "Short-term programs run during school holidays (spring, summer and winter/year-end). University courses usually last 3 weeks and language-school courses 1–2 weeks, often with cultural activities in the afternoons. The long-term program is the regular course. At a university language institute one semester lasts 10 weeks (about 3 months, around 200 class hours), with four intakes a year in spring, summer, autumn and winter. At a language school one semester lasts 4 weeks (about 1 month) and classes start every month. You can enroll for one semester or several.",
   "FAQ_Q3": "Do I need a visa?",
-  "FAQ_A3": "Short-term programs do not require a student visa. For the long-term program, a single semester can usually be done without a visa if your nationality allows a visa-free stay of that length. For two or more semesters you need a D-4-1 (general training) visa, which you apply for at a Korean embassy or consulate using the admission letter. If your country has a working holiday agreement with Korea, an H-1 visa is another option for language schools, but it can only be issued once. Visa-free rules differ by nationality, so please check yours or ask us.",
+  "FAQ_A3": "Short-term programs do not require a student visa. For the long-term program at a university language institute, a single semester can usually be done without a visa if your nationality allows a visa-free stay of that length. For two or more semesters you need a D-4-1 (general training) visa, which you apply for at a Korean embassy or consulate using the admission letter. Language schools do not issue D-4-1 visas, so their students come visa-free or, if your country has a working holiday agreement with Korea, on an H-1 visa, which can only be issued once. Visa-free rules differ by nationality, so please check yours or ask us.",
   "FAQ_Q4": "How does the application work, and what documents do I need?",
   "FAQ_A4": "Once your plan is set, we send you a guide listing the exact documents and deadlines for your school. Typically this includes a photo, a certificate of graduation or enrollment, a copy of your passport and, for some schools, an essay. More and more schools also ask for proof of your highest level of education. We submit the application and pay the tuition to the school on your behalf, and the admission letter usually arrives 3–4 weeks later.",
   "FAQ_Q5": "Where will I live in Korea?",
@@ -423,5 +423,8 @@
   "COMPARE_LONG_SIZE": "Universities: about 10–15\nLanguage schools: about 5–10",
 
   "PLAN_DEPOSIT": "Deposit, paid at contract",
-  "PLAN_PAID_IN_KOREA": "Paid in Korea"
+  "PLAN_PAID_IN_KOREA": "Paid in Korea",
+
+  "FAQ_Q11": "How much does it cost, and how do I pay?",
+  "FAQ_A11": "You pay the aah! service & contract fee as a deposit when you sign your contract with us: €450 for the long-term program and €350 for the short-term program, charged once per application. It covers the application, communication with the school, tuition payment, accommodation booking and support in Korea. The school costs (registration fee, tuition and dormitory) are paid in Korea. Tuition depends on the school and the length of your stay. The plan builder shows an estimate for each school: amounts are converted at the current exchange rate, so the final amount may be slightly lower."
 }
