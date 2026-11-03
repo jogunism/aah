@@ -412,5 +412,11 @@
   "FEE_SVC_DORM": "Dormitory application, including result check and fee payment",
   "FEE_SVC_GOSHITEL": "Goshitel / goshiwon booking, including payment",
   "FEE_SVC_GUESTHOUSE": "Guesthouse / hotel booking, including payment",
-  "FEE_ARRIVAL_NOTE": "Arrival-day support may differ by school."
+  "FEE_ARRIVAL_NOTE": "Arrival-day support may differ by school.",
+
+  "CLASS_DAYS_PER_WEEK": "{{count}} days a week",
+  "CLASS_SIZE_LABEL": "Class size",
+  "CLASS_SIZE_RANGE": "{{min}}–{{max}} students",
+  "CLASS_SIZE_UP_TO": "up to {{max}} students",
+  "CLASS_SIZE_ABOUT": "about {{count}} students"
 }

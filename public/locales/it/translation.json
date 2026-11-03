@@ -412,5 +412,11 @@
   "FEE_SVC_DORM": "Domanda per lo studentato, con verifica dell'esito e pagamento",
   "FEE_SVC_GOSHITEL": "Prenotazione di goshitel / goshiwon, pagamento incluso",
   "FEE_SVC_GUESTHOUSE": "Prenotazione di guesthouse / hotel, pagamento incluso",
-  "FEE_ARRIVAL_NOTE": "L'assistenza il giorno dell'arrivo può variare in base alla scuola."
+  "FEE_ARRIVAL_NOTE": "L'assistenza il giorno dell'arrivo può variare in base alla scuola.",
+
+  "CLASS_DAYS_PER_WEEK": "{{count}} giorni a settimana",
+  "CLASS_SIZE_LABEL": "Dimensione della classe",
+  "CLASS_SIZE_RANGE": "{{min}}–{{max}} studenti",
+  "CLASS_SIZE_UP_TO": "fino a {{max}} studenti",
+  "CLASS_SIZE_ABOUT": "circa {{count}} studenti"
 }

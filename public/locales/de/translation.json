@@ -411,5 +411,11 @@
   "FEE_SVC_DORM": "Wohnheimantrag inkl. Ergebnisprüfung und Zahlung",
   "FEE_SVC_GOSHITEL": "Buchung von Goshitel / Goshiwon inkl. Zahlung",
   "FEE_SVC_GUESTHOUSE": "Buchung von Gästehaus / Hotel inkl. Zahlung",
-  "FEE_ARRIVAL_NOTE": "Die Unterstützung am Ankunftstag kann je nach Schule abweichen."
+  "FEE_ARRIVAL_NOTE": "Die Unterstützung am Ankunftstag kann je nach Schule abweichen.",
+
+  "CLASS_DAYS_PER_WEEK": "{{count}} Tage pro Woche",
+  "CLASS_SIZE_LABEL": "Klassengröße",
+  "CLASS_SIZE_RANGE": "{{min}}–{{max}} Teilnehmende",
+  "CLASS_SIZE_UP_TO": "bis zu {{max}} Teilnehmende",
+  "CLASS_SIZE_ABOUT": "etwa {{count}} Teilnehmende"
 }

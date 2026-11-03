@@ -29,6 +29,9 @@ export interface University {
 export interface ClassHours {
   periodsPerDay: number | null; // class hours (periods) per day
   slots: string[]; // "9:00–13:00"; several = morning / afternoon classes
+  weekdays?: number[]; // 0 = Mon … 6 = Sun; [] = not listed
+  daysPerWeek?: number | null;
+  classSize?: { min: number | null; max: number } | null; // min null = "up to max"
 }
 
 export interface PriceRange {

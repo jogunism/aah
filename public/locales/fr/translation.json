@@ -412,5 +412,11 @@
   "FEE_SVC_DORM": "Demande de résidence universitaire, avec suivi du résultat et paiement",
   "FEE_SVC_GOSHITEL": "Réservation de goshitel / goshiwon, paiement compris",
   "FEE_SVC_GUESTHOUSE": "Réservation de maison d'hôtes / hôtel, paiement compris",
-  "FEE_ARRIVAL_NOTE": "L'assistance le jour de l'arrivée peut varier selon l'école."
+  "FEE_ARRIVAL_NOTE": "L'assistance le jour de l'arrivée peut varier selon l'école.",
+
+  "CLASS_DAYS_PER_WEEK": "{{count}} jours par semaine",
+  "CLASS_SIZE_LABEL": "Effectif",
+  "CLASS_SIZE_RANGE": "{{min}} à {{max}} étudiants",
+  "CLASS_SIZE_UP_TO": "jusqu'à {{max}} étudiants",
+  "CLASS_SIZE_ABOUT": "environ {{count}} étudiants"
 }

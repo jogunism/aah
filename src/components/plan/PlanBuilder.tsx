@@ -123,14 +123,37 @@ export default function PlanBuilder({
   const selectedDorm: DormitoryOption | null = dormitories.find(d => d.name === stayKey) ?? null;
   const breakdown: PriceBreakdown | null = term ? (selectedDorm?.price ?? term.schoolOnly) : null;
 
-  // e.g. "4 class hours a day · 9:00–13:00 / 14:00–17:50"
+  // Class schedule from the school's aah-e.net page, e.g.
+  // "Mon–Fri · 4 hours a day · 9:00–13:00 / 14:00–17:50" and "12–14 students"
   const hours = university?.classHours?.[programKey(programType)];
-  const hoursParts = hours
-    ? [
-        hours.periodsPerDay ? t('CLASS_HOURS_PER_DAY', { count: hours.periodsPerDay }) : '',
-        ...hours.slots,
-      ].filter(Boolean)
-    : [];
+  const weekdayName = (day: number) =>
+    // 2024-01-01 was a Monday
+    new Intl.DateTimeFormat(lang, { weekday: 'short', timeZone: 'UTC' }).format(
+      new Date(Date.UTC(2024, 0, 1 + day)),
+    );
+  const days = hours?.weekdays ?? [];
+  const daysText =
+    days.length >= 3 && days.every((d, i) => i === 0 || d === days[i - 1] + 1)
+      ? `${weekdayName(days[0])}–${weekdayName(days[days.length - 1])}`
+      : days.length
+        ? days.map(weekdayName).join(', ')
+        : hours?.daysPerWeek
+          ? t('CLASS_DAYS_PER_WEEK', { count: hours.daysPerWeek })
+          : '';
+  const scheduleParts = [
+    daysText,
+    hours?.periodsPerDay ? t('CLASS_HOURS_PER_DAY', { count: hours.periodsPerDay }) : '',
+  ].filter(Boolean);
+  const slots = hours?.slots ?? [];
+  const size = hours?.classSize;
+  const sizeText = !size
+    ? ''
+    : size.min === null
+      ? t('CLASS_SIZE_UP_TO', { max: size.max })
+      : size.min === size.max
+        ? t('CLASS_SIZE_ABOUT', { count: size.max })
+        : t('CLASS_SIZE_RANGE', { min: size.min, max: size.max });
+  const hasClassInfo = scheduleParts.length > 0 || slots.length > 0 || !!sizeText;
 
   // Schools that have not been synced yet only have a single number
   const legacyPrice =
@@ -522,20 +545,29 @@ export default function PlanBuilder({
             )}
             <div className="grid grid-cols-[1fr_auto] gap-x-4 py-2.5">
               <dt>
-                {hoursParts.length > 0
+                {hasClassInfo
                   ? expandButton('tuition', t('TUITION_CALCULATOR_TUITION'))
                   : t('TUITION_CALCULATOR_TUITION')}
               </dt>
               <dd className="font-medium text-ink">{money(breakdown.tuition)}</dd>
-              {hoursParts.length > 0 && open.tuition && (
-                <dd id="plan-row-tuition" className="col-span-2 mt-1 text-[13px] text-muted">
-                  {t('CLASS_HOURS_LABEL')}:{' '}
-                  {hoursParts.map((part, i) => (
-                    <React.Fragment key={part}>
-                      {i > 0 && (i === 1 && hours?.periodsPerDay ? ' · ' : ' / ')}
-                      <span className="whitespace-nowrap">{part}</span>
-                    </React.Fragment>
-                  ))}
+              {hasClassInfo && open.tuition && (
+                <dd id="plan-row-tuition" className="col-span-2 mt-1 space-y-0.5 text-[13px] text-muted">
+                  {(scheduleParts.length > 0 || slots.length > 0) && (
+                    <p>
+                      {t('CLASS_HOURS_LABEL')}:{' '}
+                      {[...scheduleParts, ...slots].map((part, i) => (
+                        <React.Fragment key={part}>
+                          {i > 0 && (i <= scheduleParts.length ? ' · ' : ' / ')}
+                          <span className="whitespace-nowrap">{part}</span>
+                        </React.Fragment>
+                      ))}
+                    </p>
+                  )}
+                  {sizeText && (
+                    <p>
+                      {t('CLASS_SIZE_LABEL')}: {sizeText}
+                    </p>
+                  )}
                 </dd>
               )}
             </div>
