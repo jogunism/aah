@@ -60,7 +60,7 @@ export default async function PlanPage({ params, searchParams }: PageProps) {
   const schools = await getSchools(currency);
 
   return (
-    <div className="flex flex-col min-h-screen bg-white pb-[68px] lg:pb-0">
+    <div className="flex flex-col min-h-screen bg-white">
       <Header lang={lang} />
       <div className="h-[60px]" />
 

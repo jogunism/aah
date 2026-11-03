@@ -375,9 +375,9 @@ export default function PlanBuilder({
   );
 
   return (
-    <div className="grid lg:grid-cols-[1fr_380px] gap-10 lg:gap-14 items-start">
+    <div className="grid lg:grid-cols-[1fr_380px] lg:gap-14 items-start">
       {/* Choices */}
-      <div className="space-y-10">
+      <div className="space-y-10 mb-10 lg:mb-0">
         {/* 1. Program */}
         <fieldset>
           <legend className={stepTitle}>1. {t('TUITION_CALCULATOR_PROGRAM')}</legend>
@@ -511,14 +511,39 @@ export default function PlanBuilder({
         )}
       </div>
 
+      {/* Mobile: total bar. Sticks to the bottom while scrolling, then docks as the top of the summary below */}
+      <div
+        aria-live="polite"
+        className="lg:hidden sticky bottom-0 z-[800] rounded-t-[24px] bg-soft px-6 md:px-7 py-4 flex items-end justify-between gap-4"
+      >
+        <div className="min-w-0">
+          <p className="text-xs font-bold uppercase tracking-wide text-muted">{programTitle}</p>
+          <p className="mt-1 font-bold text-ink leading-tight">
+            {university?.title ?? t('TUITION_CALCULATOR_MODAL_SELECT_UNIVERSITY')}
+          </p>
+          {university && term && (
+            <p className="text-[13px] text-muted truncate">
+              {durationLabel(term)} ·{' '}
+              {selectedDorm ? dormLabel(selectedDorm) : t('TUITION_CALCULATOR_ACCOMMODATION_SEPARATE')}
+            </p>
+          )}
+        </div>
+        <div className="shrink-0 text-right">
+          <p className={`text-2xl leading-tight font-extrabold tracking-tight ${accentText}`}>{totalText}</p>
+          {breakdown && !breakdown.accommodation && (
+            <p className="text-xs font-semibold text-ink-2">{t('TUITION_CALCULATOR_PLUS_ACCOMMODATION')}</p>
+          )}
+        </div>
+      </div>
+
       {/* Summary */}
       <aside
         aria-live="polite"
-        className="lg:sticky lg:top-[84px] rounded-[24px] bg-soft p-6 md:p-7"
+        className="lg:sticky lg:top-[84px] rounded-b-[24px] lg:rounded-[24px] bg-soft p-6 md:p-7 pt-0 md:pt-0 lg:pt-7"
       >
-        <p className="text-xs font-bold uppercase tracking-wide text-muted">{programTitle}</p>
+        <p className="hidden lg:block text-xs font-bold uppercase tracking-wide text-muted">{programTitle}</p>
         {university ? (
-          <div className="mt-3 flex items-center gap-3">
+          <div className="mt-3 hidden lg:flex items-center gap-3">
             <Image
               src={`/assets/emblem/${university.id}.png`}
               alt=""
@@ -534,11 +559,11 @@ export default function PlanBuilder({
             </div>
           </div>
         ) : (
-          <p className="mt-3 text-ink-2">{t('TUITION_CALCULATOR_MODAL_SELECT_UNIVERSITY')}</p>
+          <p className="mt-3 hidden lg:block text-ink-2">{t('TUITION_CALCULATOR_MODAL_SELECT_UNIVERSITY')}</p>
         )}
 
         {breakdown && (
-          <dl className="mt-5 text-[15px] text-ink-2 divide-y divide-line border-y border-line">
+          <dl className="lg:mt-5 text-[15px] text-ink-2 divide-y divide-line border-y border-line">
             {breakdown.entrance > 0 && (
               <div className="flex justify-between gap-4 py-2.5">
                 <dt>{t('TUITION_CALCULATOR_ENTRANCE_FEE')}</dt>
@@ -610,7 +635,7 @@ export default function PlanBuilder({
           </dl>
         )}
 
-        <div className="mt-5">
+        <div className="mt-5 hidden lg:block">
           <p className="text-sm font-semibold text-ink-2">
             {breakdown ? t('TUITION_CALCULATOR_TOTAL') : t('TUITION_CALCULATOR_MODAL_ESTIMATED_PRICE')}
           </p>
@@ -624,7 +649,7 @@ export default function PlanBuilder({
           )}
         </div>
 
-        {inquiryButton('mt-6 w-full h-12 px-6 hidden lg:inline-flex')}
+        {inquiryButton('mt-6 w-full h-12 px-6 inline-flex')}
 
         <ul className="mt-4 text-xs text-muted space-y-1">
           {selectedDorm && term && term.duration.unit === 'semester' && term.duration.value > 1 && (
@@ -634,17 +659,6 @@ export default function PlanBuilder({
           <li className="flex gap-1"><span aria-hidden="true">※</span><span>{t('TUITION_CALCULATOR_PRICE_NOTE')}</span></li>
         </ul>
       </aside>
-
-      {/* Mobile: sticky total + inquiry */}
-      <div className="lg:hidden fixed inset-x-0 bottom-0 z-[800] bg-white/95 backdrop-blur border-t border-line">
-        <div className="px-5 py-3 flex items-center gap-4">
-          <div className="min-w-0 flex-1">
-            <p className="text-xs text-muted truncate">{university?.title ?? programTitle}</p>
-            <p className={`font-extrabold leading-tight truncate ${accentText}`}>{totalText}</p>
-          </div>
-          {inquiryButton('inline-flex shrink-0 h-11 px-5 text-sm')}
-        </div>
-      </div>
     </div>
   );
 }

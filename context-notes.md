@@ -123,3 +123,9 @@
 - page_view는 gtag config(첫 접속)와 GA4 향상된 측정(히스토리 변경)이 보낸다. 직접 보내던 코드는 중복이라 없앴다.
 - 커스텀 이벤트는 세 가지다. section_engagement(section_id, engagement_seconds)는 섹션이 화면의 절반 이상을 차지한 누적 시간이고, 1초 미만은 무시하며 이탈·이동 시 beacon으로 보낸다. ui_click(click_text, click_section, link_url)은 카드 링크의 경우 제목만 쓴다. info_session_signup은 설명회 신청 성공 시 보낸다. 기존 contact_form_submit, tuition_inquiry_click, traffic_source, time_on_page도 유지한다.
 - GA 관리 화면에서 사용자가 할 일. 맞춤 측정기준(section_id, click_section, click_text)과 측정항목(engagement_seconds)을 등록하고, 주요 이벤트(contact_form_submit, tuition_inquiry_click, info_session_signup)를 지정해야 한다.
+
+## /plan 모바일 요약 바 (2026-11-03)
+- 모바일 하단 바를 `position: fixed`에서 `sticky; bottom: 0`으로 바꿨다. 바를 가격 카드 바로 위(그리드 항목)에 둬서, 스크롤 중에는 하단에 떠 있고 카드 위치에 오면 카드 윗부분으로 붙어 같이 스크롤된다. JS로 스크롤을 감지하지 않는다.
+- 바를 카드(aside) 안에 넣지 않은 이유는 sticky가 부모 범위 안에서만 동작하기 때문이다. 카드 안에 넣으면 카드가 화면에 들어오기 전에는 뜨지 않는다.
+- 카드 전체를 띄우지 않는 이유는 학교를 고르면 카드 높이가 약 456px(390×844 화면의 절반 이상)라 선택지를 가리기 때문이다(사용자 합의).
+- 바에는 학교명, 기간·숙소, 합계만 넣는다. Ask 버튼과 항목별 펼침(v) 버튼은 카드에만 있어서 바가 붙은 뒤에만 보인다(사용자 요청).
