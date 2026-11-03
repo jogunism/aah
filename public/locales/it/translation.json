@@ -420,5 +420,8 @@
   "CLASS_SIZE_ABOUT": "circa {{count}} studenti",
 
   "COMPARE_SHORT_SIZE": "Università: circa 10–15\nScuole di lingua: circa 6–8",
-  "COMPARE_LONG_SIZE": "Università: circa 10–15\nScuole di lingua: circa 5–10"
+  "COMPARE_LONG_SIZE": "Università: circa 10–15\nScuole di lingua: circa 5–10",
+
+  "PLAN_DEPOSIT": "Acconto, alla firma del contratto",
+  "PLAN_PAID_IN_KOREA": "Pagato in Corea"
 }

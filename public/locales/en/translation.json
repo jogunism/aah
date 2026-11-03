@@ -420,5 +420,8 @@
   "CLASS_SIZE_ABOUT": "about {{count}} students",
 
   "COMPARE_SHORT_SIZE": "Universities: about 10–15\nLanguage schools: about 6–8",
-  "COMPARE_LONG_SIZE": "Universities: about 10–15\nLanguage schools: about 5–10"
+  "COMPARE_LONG_SIZE": "Universities: about 10–15\nLanguage schools: about 5–10",
+
+  "PLAN_DEPOSIT": "Deposit, paid at contract",
+  "PLAN_PAID_IN_KOREA": "Paid in Korea"
 }

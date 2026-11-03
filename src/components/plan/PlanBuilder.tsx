@@ -258,7 +258,9 @@ export default function PlanBuilder({
           `- ${t('TUITION_CALCULATOR_DORMITORY_FEE')}: ${moneyRange(breakdown.accommodation)}`,
         );
       }
-      lines.push(`- ${t('TUITION_CALCULATOR_AAH_FEE')}: ${money(breakdown.aahFee)}`);
+      lines.push(
+        `- ${t('TUITION_CALCULATOR_AAH_FEE')}: ${money(breakdown.aahFee)} (${t('PLAN_DEPOSIT')})`,
+      );
       lines.push(
         `- ${t('TUITION_CALCULATOR_TOTAL')}: ${moneyRange(breakdown.total)}${
           breakdown.accommodation ? '' : ` ${t('TUITION_CALCULATOR_PLUS_ACCOMMODATION')}`
@@ -620,6 +622,24 @@ export default function PlanBuilder({
             <p className="text-sm font-semibold text-ink-2">
               {t('TUITION_CALCULATOR_PLUS_ACCOMMODATION')}
             </p>
+          )}
+          {/* The service & contract fee is the deposit paid to aah! Europe; the school costs are paid in Korea */}
+          {breakdown && (
+            <dl className="mt-3 space-y-1 text-[13px] text-ink-2">
+              <div className="flex justify-between gap-4">
+                <dt>{t('PLAN_DEPOSIT')}</dt>
+                <dd className="font-semibold text-ink">{money(breakdown.aahFee)}</dd>
+              </div>
+              <div className="flex justify-between gap-4">
+                <dt>{t('PLAN_PAID_IN_KOREA')}</dt>
+                <dd className="font-semibold text-ink">
+                  {moneyRange({
+                    min: breakdown.total.min - breakdown.aahFee,
+                    max: breakdown.total.max - breakdown.aahFee,
+                  })}
+                </dd>
+              </div>
+            </dl>
           )}
         </div>
 

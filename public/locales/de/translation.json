@@ -419,5 +419,8 @@
   "CLASS_SIZE_ABOUT": "etwa {{count}} Teilnehmende",
 
   "COMPARE_SHORT_SIZE": "Universitäten: etwa 10–15\nSprachschulen: etwa 6–8",
-  "COMPARE_LONG_SIZE": "Universitäten: etwa 10–15\nSprachschulen: etwa 5–10"
+  "COMPARE_LONG_SIZE": "Universitäten: etwa 10–15\nSprachschulen: etwa 5–10",
+
+  "PLAN_DEPOSIT": "Anzahlung bei Vertragsabschluss",
+  "PLAN_PAID_IN_KOREA": "Zahlung in Korea"
 }

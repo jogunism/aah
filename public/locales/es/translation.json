@@ -420,5 +420,8 @@
   "CLASS_SIZE_ABOUT": "unos {{count}} estudiantes",
 
   "COMPARE_SHORT_SIZE": "Universidades: unos 10–15\nAcademias: unos 6–8",
-  "COMPARE_LONG_SIZE": "Universidades: unos 10–15\nAcademias: unos 5–10"
+  "COMPARE_LONG_SIZE": "Universidades: unos 10–15\nAcademias: unos 5–10",
+
+  "PLAN_DEPOSIT": "Depósito, al firmar el contrato",
+  "PLAN_PAID_IN_KOREA": "Pago en Corea"
 }
