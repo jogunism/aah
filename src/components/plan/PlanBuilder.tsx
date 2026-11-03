@@ -38,8 +38,8 @@ interface PlanBuilderProps {
 const SCHOOL_ONLY = '__school_only__';
 
 // What the aah! fee covers: the ベーシック plan of the aah-e.net fee tables
-// (regular_fee.html for long-term, special_fee.html for short-term). The amount stays the
-// higher plan the API uses (long-term プレミアム), so the list shows the baseline services.
+// (regular_fee.html for long-term, special_fee.html for short-term). The amount itself is
+// aah! Europe's fixed fee (API AAH_FEE), which is the deposit paid at contract.
 // 留学ドクターパス is an extra charge that the shown fee excludes, so it is not listed.
 const FEE_SERVICES: Record<'short' | 'long', { group: string; items: string[] }[]> = {
   long: [
