@@ -33,7 +33,7 @@ const cell = (key: keyof typeof en) => String(en[key]).replace(/\n/g, '; ');
 export async function GET() {
   const compare = COMPARE_ROWS.map(
     ([row, short, long]) =>
-      `- **${t(row)}** — Short-term: ${cell(short)}. Long-term: ${cell(long)}.`,
+      `- **${t(row)}**: Short-term: ${cell(short)}. Long-term: ${cell(long)}.`,
   );
 
   const [eur, usd] = await Promise.all([getPrices('EUR'), getPrices('USD')]);

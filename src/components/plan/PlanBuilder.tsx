@@ -93,7 +93,7 @@ export default function PlanBuilder({
   const symbol = list.currency === 'USD' ? '$' : '€';
   const money = (value: number) => `${symbol}${formatPrice(value, lang)}`;
   const moneyRange = (range: PriceRange) =>
-    range.min === range.max ? money(range.max) : `${money(range.min)} – ${money(range.max)}`;
+    range.min === range.max ? money(range.max) : `${money(range.min)} - ${money(range.max)}`;
 
   /*******************************************************
    * derived state
@@ -173,7 +173,7 @@ export default function PlanBuilder({
     ? moneyRange(breakdown.total)
     : legacyPrice && legacyPrice > 0
       ? money(legacyPrice)
-      : '–';
+      : '-';
 
   const dormLabel = (dorm: DormitoryOption) => {
     const notes = [

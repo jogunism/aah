@@ -16,7 +16,7 @@ export default async function Compare({ lang }: { lang: string }) {
   const range = (min: keyof Prices, max: keyof Prices) => prices && (
     <span className="font-semibold text-ink">
       <LivePrice field={min} lang={lang} template="{{price}}" initial={prices} initialCurrency={currency} amountClassName="" />
-      {' – '}
+      {' - '}
       <LivePrice field={max} lang={lang} template="{{price}}" initial={prices} initialCurrency={currency} amountClassName="" />
     </span>
   );
