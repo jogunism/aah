@@ -542,19 +542,26 @@ export default function PlanBuilder({
               <dd className="font-medium text-ink">{money(breakdown.aahFee)}</dd>
               {open.fee && (
                 <dd id="plan-row-fee" className="col-span-2 mt-2 space-y-3 text-[13px] text-muted">
-                  {FEE_SERVICES[programKey(programType)].map(({ group, items }) => (
-                    <div key={group}>
-                      <p className="font-semibold text-ink-2">{t(`FEE_GROUP_${group}`)}</p>
-                      <ul className="mt-1 space-y-0.5">
-                        {items.map(item => (
-                          <li key={item} className="flex gap-1.5">
-                            <span aria-hidden="true">✓</span>
-                            {t(`FEE_SVC_${item}`)}
-                          </li>
-                        ))}
-                      </ul>
-                    </div>
-                  ))}
+                  {FEE_SERVICES[programKey(programType)].map(({ group, items: all }) => {
+                    // Housing help follows the chosen stay: dormitory application, or booking elsewhere
+                    const items =
+                      group === 'HOUSING'
+                        ? all.filter(item => (selectedDorm ? item === 'DORM' : item !== 'DORM'))
+                        : all;
+                    return (
+                      <div key={group}>
+                        <p className="font-semibold text-ink-2">{t(`FEE_GROUP_${group}`)}</p>
+                        <ul className="mt-1 space-y-0.5">
+                          {items.map(item => (
+                            <li key={item} className="flex gap-1.5">
+                              <span aria-hidden="true">✓</span>
+                              {t(`FEE_SVC_${item}`)}
+                            </li>
+                          ))}
+                        </ul>
+                      </div>
+                    );
+                  })}
                   <p className="flex gap-1"><span aria-hidden="true">※</span><span>{t('FEE_ARRIVAL_NOTE')}</span></p>
                 </dd>
               )}
