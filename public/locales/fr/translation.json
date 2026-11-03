@@ -272,7 +272,7 @@
   "NAV_MENU_CLOSE": "Fermer le menu",
   "NAV_LANGUAGE": "Langue",
   "NAV_CURRENCY": "Devise",
-  "COOKIE_TEXT": "Nous utilisons des cookies pour améliorer votre expérience. En continuant à utiliser ce site, vous acceptez leur utilisation.",
+  "COOKIE_TEXT": "Ce site utilise des cookies pour mémoriser votre langue et votre devise, et Google Analytics pour comprendre comment les visiteurs utilisent le site. La navigation sur le site n'enregistre aucune donnée personnelle sur nos serveurs. Les cookies de mesure d'audience ne sont déposés que si vous acceptez.",
   "COOKIE_ACCEPT": "Accepter",
 
   "***** HERO *****": "",
@@ -423,5 +423,8 @@
   "PLAN_PAID_IN_KOREA": "Payé en Corée",
 
   "FAQ_Q11": "Combien ça coûte et comment payer ?",
-  "FAQ_A11": "Vous réglez les frais « aah! service et contrat » sous forme d'acompte à la signature du contrat avec nous : 450 € pour le programme long terme et 350 € pour le programme court terme, une seule fois par inscription. Ils couvrent la candidature, la communication avec l'école, le paiement des frais de scolarité, la réservation du logement et l'assistance en Corée. Les frais de l'école (inscription, scolarité et résidence) se paient en Corée. Les frais de scolarité dépendent de l'école et de la durée du séjour. Le planificateur affiche une estimation pour chaque école : les montants sont convertis au taux de change actuel, le montant final peut donc être légèrement inférieur."
+  "FAQ_A11": "Vous réglez les frais « aah! service et contrat » sous forme d'acompte à la signature du contrat avec nous : 450 € pour le programme long terme et 350 € pour le programme court terme, une seule fois par inscription. Ils couvrent la candidature, la communication avec l'école, le paiement des frais de scolarité, la réservation du logement et l'assistance en Corée. Les frais de l'école (inscription, scolarité et résidence) se paient en Corée. Les frais de scolarité dépendent de l'école et de la durée du séjour. Le planificateur affiche une estimation pour chaque école : les montants sont convertis au taux de change actuel, le montant final peut donc être légèrement inférieur.",
+
+  "***** COOKIE *****": "",
+  "COOKIE_DECLINE": "Refuser"
 }

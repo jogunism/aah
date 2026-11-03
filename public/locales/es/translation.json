@@ -272,7 +272,7 @@
   "NAV_MENU_CLOSE": "Cerrar menú",
   "NAV_LANGUAGE": "Idioma",
   "NAV_CURRENCY": "Moneda",
-  "COOKIE_TEXT": "Usamos cookies para mejorar tu experiencia. Si sigues usando este sitio, aceptas el uso de cookies.",
+  "COOKIE_TEXT": "Este sitio usa cookies para recordar tu idioma y tu moneda, y Google Analytics para entender cómo se usa el sitio. Navegar por el sitio no guarda ningún dato personal en nuestros servidores. Las cookies de análisis solo se activan si las aceptas.",
   "COOKIE_ACCEPT": "Aceptar",
 
   "***** HERO *****": "",
@@ -423,5 +423,8 @@
   "PLAN_PAID_IN_KOREA": "Pago en Corea",
 
   "FAQ_Q11": "¿Cuánto cuesta y cómo se paga?",
-  "FAQ_A11": "La tarifa «aah! servicio y contrato» se paga como depósito al firmar el contrato con nosotros: 450 € para el programa de larga duración y 350 € para el de corta duración, una sola vez por solicitud. Incluye la solicitud, la comunicación con el centro, el pago de la matrícula, la reserva del alojamiento y la asistencia en Corea. Los costes del centro (inscripción, matrícula y residencia) se pagan en Corea. La matrícula depende del centro y de la duración de la estancia. El planificador muestra una estimación para cada centro: los importes se convierten al tipo de cambio actual, por lo que el importe final puede ser ligeramente inferior."
+  "FAQ_A11": "La tarifa «aah! servicio y contrato» se paga como depósito al firmar el contrato con nosotros: 450 € para el programa de larga duración y 350 € para el de corta duración, una sola vez por solicitud. Incluye la solicitud, la comunicación con el centro, el pago de la matrícula, la reserva del alojamiento y la asistencia en Corea. Los costes del centro (inscripción, matrícula y residencia) se pagan en Corea. La matrícula depende del centro y de la duración de la estancia. El planificador muestra una estimación para cada centro: los importes se convierten al tipo de cambio actual, por lo que el importe final puede ser ligeramente inferior.",
+
+  "***** COOKIE *****": "",
+  "COOKIE_DECLINE": "Rechazar"
 }

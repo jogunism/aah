@@ -272,7 +272,7 @@
   "NAV_MENU_CLOSE": "Close menu",
   "NAV_LANGUAGE": "Language",
   "NAV_CURRENCY": "Currency",
-  "COOKIE_TEXT": "We use cookies to improve your experience. By continuing to use this site, you agree to our use of cookies.",
+  "COOKIE_TEXT": "This site uses cookies to remember your language and currency, and Google Analytics to understand how visitors use the site. Browsing the site stores none of your personal information on our servers. Analytics cookies are only set if you accept.",
   "COOKIE_ACCEPT": "Accept",
 
   "***** HERO *****": "",
@@ -423,5 +423,8 @@
   "PLAN_PAID_IN_KOREA": "Paid in Korea",
 
   "FAQ_Q11": "How much does it cost, and how do I pay?",
-  "FAQ_A11": "You pay the aah! service & contract fee as a deposit when you sign your contract with us: €450 for the long-term program and €350 for the short-term program, charged once per application. It covers the application, communication with the school, tuition payment, accommodation booking and support in Korea. The school costs (registration fee, tuition and dormitory) are paid in Korea. Tuition depends on the school and the length of your stay. The plan builder shows an estimate for each school: amounts are converted at the current exchange rate, so the final amount may be slightly lower."
+  "FAQ_A11": "You pay the aah! service & contract fee as a deposit when you sign your contract with us: €450 for the long-term program and €350 for the short-term program, charged once per application. It covers the application, communication with the school, tuition payment, accommodation booking and support in Korea. The school costs (registration fee, tuition and dormitory) are paid in Korea. Tuition depends on the school and the length of your stay. The plan builder shows an estimate for each school: amounts are converted at the current exchange rate, so the final amount may be slightly lower.",
+
+  "***** COOKIE *****": "",
+  "COOKIE_DECLINE": "Decline"
 }

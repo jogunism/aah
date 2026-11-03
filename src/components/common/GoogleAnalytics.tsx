@@ -3,40 +3,34 @@
 import Script from 'next/script';
 import { usePathname, useSearchParams } from 'next/navigation';
 import { useEffect, useRef } from 'react';
-import { GA_TRACKING_ID, pageview, trackReferrer, trackTimeOnPage } from '@/lib/gtag';
+import { GA_TRACKING_ID, trackReferrer, trackTimeOnPage } from '@/lib/gtag';
 
 export default function GoogleAnalytics() {
   const pathname = usePathname();
   const searchParams = useSearchParams();
   const pageStartTime = useRef<number>(Date.now());
   const isFirstLoad = useRef<boolean>(true);
+  const previousPath = useRef<string>(pathname);
 
   useEffect(() => {
     if (GA_TRACKING_ID) {
-      const url = new URL(pathname, window.location.origin);
-      searchParams.forEach((value, key) => {
-        url.searchParams.append(key, value);
-      });
-      pageview(url);
+      // page_view itself is sent by gtag config (first load) and GA4 enhanced
+      // measurement (history changes); sending it here as well counted pages twice.
 
-      // Track referrer and UTM parameters only on first load
       if (isFirstLoad.current) {
+        // Track referrer and UTM parameters only on first load
         trackReferrer();
         isFirstLoad.current = false;
+      } else {
+        // Time spent on the page we just left (not on the first load: nothing was left yet)
+        trackTimeOnPage(Date.now() - pageStartTime.current, previousPath.current);
       }
-
-      // Track time on previous page when navigating
-      const previousPageStartTime = pageStartTime.current;
       pageStartTime.current = Date.now();
-
-      if (previousPageStartTime && !isFirstLoad.current) {
-        const timeSpent = Date.now() - previousPageStartTime;
-        trackTimeOnPage(timeSpent, pathname);
-      }
+      previousPath.current = pathname;
     }
   }, [pathname, searchParams]);
 
-  // Track time on page when component unmounts or window unloads
+  // Track time on page when the window is closed (in-site navigation is handled above)
   useEffect(() => {
     const handleBeforeUnload = () => {
       if (GA_TRACKING_ID && pageStartTime.current) {
@@ -46,10 +40,7 @@ export default function GoogleAnalytics() {
     };
 
     window.addEventListener('beforeunload', handleBeforeUnload);
-    return () => {
-      window.removeEventListener('beforeunload', handleBeforeUnload);
-      handleBeforeUnload();
-    };
+    return () => window.removeEventListener('beforeunload', handleBeforeUnload);
   }, [pathname]);
 
   return (
@@ -65,10 +56,15 @@ export default function GoogleAnalytics() {
           __html: `
             window.dataLayer = window.dataLayer || [];
             function gtag(){dataLayer.push(arguments);}
-            gtag('js', new Date());
-            gtag('config', '${GA_TRACKING_ID}', {
-              page_path: window.location.pathname,
+            // Consent mode: analytics cookies only after the visitor accepts the cookie notice
+            gtag('consent', 'default', {
+              analytics_storage: /(^|; )gdpr_consent=true/.test(document.cookie) ? 'granted' : 'denied',
+              ad_storage: 'denied',
+              ad_user_data: 'denied',
+              ad_personalization: 'denied',
             });
+            gtag('js', new Date());
+            gtag('config', '${GA_TRACKING_ID}');
           `,
         }}
       />

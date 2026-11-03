@@ -271,7 +271,7 @@
   "NAV_MENU_CLOSE": "Menü schließen",
   "NAV_LANGUAGE": "Sprache",
   "NAV_CURRENCY": "Währung",
-  "COOKIE_TEXT": "Wir verwenden Cookies, um Ihr Erlebnis zu verbessern. Wenn Sie die Website weiter nutzen, stimmen Sie der Verwendung von Cookies zu.",
+  "COOKIE_TEXT": "Diese Website verwendet Cookies, um Sprache und Währung zu speichern, sowie Google Analytics, um zu verstehen, wie Besucher die Website nutzen. Beim Besuch der Website werden keine personenbezogenen Daten auf unseren Servern gespeichert. Analyse-Cookies werden nur gesetzt, wenn Sie zustimmen.",
   "COOKIE_ACCEPT": "Akzeptieren",
 
   "***** HERO *****": "",
@@ -422,5 +422,8 @@
   "PLAN_PAID_IN_KOREA": "Zahlung in Korea",
 
   "FAQ_Q11": "Was kostet es und wie bezahle ich?",
-  "FAQ_A11": "Die Gebühr „aah! Service & Vertrag“ zahlen Sie als Anzahlung, wenn Sie den Vertrag mit uns abschließen: 450 € für das Langzeit-Programm und 350 € für das Kurzzeit-Programm, einmal pro Anmeldung. Sie umfasst die Bewerbung, die Kommunikation mit der Schule, die Zahlung der Studiengebühren, die Buchung der Unterkunft und die Betreuung in Korea. Die Kosten der Schule (Anmeldegebühr, Studiengebühr und Wohnheim) zahlen Sie in Korea. Die Studiengebühr hängt von der Schule und der Dauer Ihres Aufenthalts ab. Der Studienplaner zeigt für jede Schule eine Schätzung: Die Beträge werden zum aktuellen Wechselkurs umgerechnet, daher kann der Endbetrag etwas niedriger ausfallen."
+  "FAQ_A11": "Die Gebühr „aah! Service & Vertrag“ zahlen Sie als Anzahlung, wenn Sie den Vertrag mit uns abschließen: 450 € für das Langzeit-Programm und 350 € für das Kurzzeit-Programm, einmal pro Anmeldung. Sie umfasst die Bewerbung, die Kommunikation mit der Schule, die Zahlung der Studiengebühren, die Buchung der Unterkunft und die Betreuung in Korea. Die Kosten der Schule (Anmeldegebühr, Studiengebühr und Wohnheim) zahlen Sie in Korea. Die Studiengebühr hängt von der Schule und der Dauer Ihres Aufenthalts ab. Der Studienplaner zeigt für jede Schule eine Schätzung: Die Beträge werden zum aktuellen Wechselkurs umgerechnet, daher kann der Endbetrag etwas niedriger ausfallen.",
+
+  "***** COOKIE *****": "",
+  "COOKIE_DECLINE": "Ablehnen"
 }
