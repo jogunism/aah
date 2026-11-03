@@ -405,12 +405,11 @@
   "FEE_SVC_DIRECTIONS": "Wegbeschreibung von der nächsten Station oder Bushaltestelle zur Unterkunft",
   "FEE_SVC_CHECKIN": "Hilfe beim Einzug und bei Verträgen, Führung durch Zimmer und Gemeinschaftsräume",
   "FEE_SVC_ROUTE": "Ihr Schulweg und eine Karte der Umgebung",
-  "FEE_SVC_KAKAO_LONG": "Betreuung vor Ort per KakaoTalk während des gesamten ersten Anmeldezeitraums",
+  "FEE_SVC_KAKAO_LONG": "Betreuung vor Ort per KakaoTalk 4 Wochen ab Ankunft (verlängerbar)",
   "FEE_SVC_KAKAO_SHORT": "Betreuung vor Ort per KakaoTalk während des Programms",
   "FEE_SVC_EMERGENCY": "Kontaktaufnahme im Notfall",
   "FEE_SVC_DORM": "Wohnheimantrag inkl. Ergebnisprüfung und Zahlung",
   "FEE_SVC_GOSHITEL": "Buchung von Goshitel / Goshiwon inkl. Zahlung",
-  "FEE_SVC_OFFICETEL": "Suche nach Officetel / Apartment (ab TOPIK 2, 1-Jahres-Vertrag, Maklergebühr extra)",
   "FEE_SVC_GUESTHOUSE": "Buchung von Gästehaus / Hotel inkl. Zahlung",
   "FEE_ARRIVAL_NOTE": "Die Unterstützung am Ankunftstag kann je nach Schule abweichen."
 }

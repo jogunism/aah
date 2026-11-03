@@ -406,12 +406,11 @@
   "FEE_SVC_DIRECTIONS": "Directions from the nearest station or bus stop to your accommodation",
   "FEE_SVC_CHECKIN": "Help with check-in and contracts, and a tour of your room and shared facilities",
   "FEE_SVC_ROUTE": "Your route to school and a map of the neighborhood",
-  "FEE_SVC_KAKAO_LONG": "Local support via KakaoTalk for your whole first application period",
+  "FEE_SVC_KAKAO_LONG": "Local support via KakaoTalk for 4 weeks from your arrival (can be extended)",
   "FEE_SVC_KAKAO_SHORT": "Local support via KakaoTalk during the program",
   "FEE_SVC_EMERGENCY": "Safety check in emergencies",
   "FEE_SVC_DORM": "Dormitory application, including result check and fee payment",
   "FEE_SVC_GOSHITEL": "Goshitel / goshiwon booking, including payment",
-  "FEE_SVC_OFFICETEL": "Officetel / studio search (TOPIK level 2+, 1-year contract, agent fee extra)",
   "FEE_SVC_GUESTHOUSE": "Guesthouse / hotel booking, including payment",
   "FEE_ARRIVAL_NOTE": "Arrival-day support may differ by school."
 }
