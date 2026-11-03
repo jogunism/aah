@@ -53,3 +53,9 @@ button {
 .animate-spin {
   animation: spin 1s linear infinite; /* 1초 동안 선형적으로 무한 반복 */
 }
+
+/* Top progress bar while a page navigation is pending (NavigationProgress) */
+@keyframes nav-progress {
+  0% { transform: translateX(-100%); }
+  100% { transform: translateX(300%); }
+}

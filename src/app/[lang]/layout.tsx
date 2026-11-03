@@ -7,6 +7,7 @@ import GoogleAnalytics from '@/components/common/GoogleAnalytics';
 
 import ToastProvider from '@common/ToastProvider';
 import GDPRPopup from '@/components/common/GDPRPopup';
+import NavigationProgress from '@/components/common/NavigationProgress';
 
 import {
   SUPPORTED_LOCALES,
@@ -118,6 +119,7 @@ export default async function LangLayout({
             <GoogleAnalytics />
           </Suspense>
         )}
+        <NavigationProgress />
         <ClientWrapper lang={lang}>
           {children}
         </ClientWrapper>
