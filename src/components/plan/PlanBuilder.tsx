@@ -153,7 +153,6 @@ export default function PlanBuilder({
       : size.min === size.max
         ? t('CLASS_SIZE_ABOUT', { count: size.max })
         : t('CLASS_SIZE_RANGE', { min: size.min, max: size.max });
-  const hasClassInfo = scheduleParts.length > 0 || slots.length > 0 || !!sizeText;
 
   // Schools that have not been synced yet only have a single number
   const legacyPrice =
@@ -546,14 +545,12 @@ export default function PlanBuilder({
               </div>
             )}
             <div className="grid grid-cols-[1fr_auto] gap-x-4 py-2.5">
-              <dt>
-                {hasClassInfo
-                  ? expandButton('tuition', t('TUITION_CALCULATOR_TUITION'))
-                  : t('TUITION_CALCULATOR_TUITION')}
-              </dt>
+              <dt>{expandButton('tuition', t('TUITION_CALCULATOR_TUITION'))}</dt>
               <dd className="font-medium text-ink">{money(breakdown.tuition)}</dd>
-              {hasClassInfo && open.tuition && (
+              {open.tuition && (
                 <dd id="plan-row-tuition" className="col-span-2 mt-1 space-y-0.5 text-[13px] text-muted">
+                  {/* School costs are paid in Korea; the service & contract fee is the deposit */}
+                  <p className="font-semibold text-ink-2">{t('PLAN_PAID_IN_KOREA')}</p>
                   {(scheduleParts.length > 0 || slots.length > 0) && (
                     <p>
                       {t('CLASS_HOURS_LABEL')}:{' '}
@@ -584,6 +581,7 @@ export default function PlanBuilder({
               <dd className="font-medium text-ink">{money(breakdown.aahFee)}</dd>
               {open.fee && (
                 <dd id="plan-row-fee" className="col-span-2 mt-2 space-y-3 text-[13px] text-muted">
+                  <p className="font-semibold text-ink-2">{t('PLAN_DEPOSIT')}</p>
                   {FEE_SERVICES[programKey(programType)].map(({ group, items: all }) => {
                     // Housing help follows the chosen stay: dormitory application, or booking elsewhere
                     const items =
@@ -622,24 +620,6 @@ export default function PlanBuilder({
             <p className="text-sm font-semibold text-ink-2">
               {t('TUITION_CALCULATOR_PLUS_ACCOMMODATION')}
             </p>
-          )}
-          {/* The service & contract fee is the deposit paid to aah! Europe; the school costs are paid in Korea */}
-          {breakdown && (
-            <dl className="mt-3 space-y-1 text-[13px] text-ink-2">
-              <div className="flex justify-between gap-4">
-                <dt>{t('PLAN_DEPOSIT')}</dt>
-                <dd className="font-semibold text-ink">{money(breakdown.aahFee)}</dd>
-              </div>
-              <div className="flex justify-between gap-4">
-                <dt>{t('PLAN_PAID_IN_KOREA')}</dt>
-                <dd className="font-semibold text-ink">
-                  {moneyRange({
-                    min: breakdown.total.min - breakdown.aahFee,
-                    max: breakdown.total.max - breakdown.aahFee,
-                  })}
-                </dd>
-              </div>
-            </dl>
           )}
         </div>
 
