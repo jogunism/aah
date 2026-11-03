@@ -102,3 +102,7 @@
 - FAQ 2번(장기 어학원 4주 학기·매월 시작)과 3번(어학원은 D-4-1 미발급)을 aah-e.net 기준으로 고쳤다. 비용·결제 FAQ 11번을 새로 만들어 "시작하기"(10번) 앞에 뒀다(FAQ_ITEMS 순서). 11번에는 고정 수수료 금액(€450/€350)이 문장에 들어 있어서, aah.api `AAH_FEE`를 바꾸면 이 FAQ도 같이 고쳐야 한다.
 - Organization 구조화 데이터의 프로그램 이름을 단기 1–3주, 장기 대학 10주·어학원 4주 학기로 바꿨다.
 - llms.txt는 force-dynamic에 CDN 캐시(s-maxage 1일)로 바꿨다. 빌드 시점에는 API가 스로틀될 수 있어서 가격이 빠진 채 캐시되는 걸 막기 위해서다. 단기·장기 비교표와 현재 가격 범위(EUR·USD)를 넣었다.
+
+## 링크·버튼 반응 속도 (2026-11-03 측정)
+- 가장 큰 원인은 Cloudflare 프록시(주황 구름)다. 독일 → Cloudflare FRA → Amplify CloudFront SEA900(시애틀)으로 연결돼서, 캐시되지 않는 요청(동적 페이지 전부와 정적 파일 첫 요청)이 약 1초 걸린다. Amplify에 직접 접속하면 FRA60을 거쳐 페이지 0.37~0.5초, 정적 파일 0.12~0.3초다. 해결하려면 Cloudflare DNS에서 aah.education과 www 레코드를 DNS only(회색 구름)로 바꿔야 한다(사용자 작업). Amplify 도메인 인증서는 AVAILABLE 상태다.
+- 코드 쪽 개선은 두 가지다. 서버 API 결과를 인스턴스 메모리에 5분 캐시했고(api/server.ts `remember`), 링크를 클릭하면 바로 상단 진행 표시줄이 나오게 했다(NavigationProgress, next/link가 preventDefault를 하기 때문에 capture 단계에서 감지).
