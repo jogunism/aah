@@ -119,7 +119,8 @@
 - 붙여 쓰는 숫자·요일 범위(9:00–13:00, Mon–Fri, 10–15, €850–€2,150)는 en dash(–)로 유지한다. 범위를 나타내는 표준 표기이고 요청 대상(—)과 다르다.
 
 ## GA 추적 (2026-11-03)
-- GA4 `G-TTM6P0QM2D`는 Amplify 환경 변수에만 있다. 로컬 `.env.local`에는 비어 있어서 로컬 작업이 운영 통계를 오염시키지 않는다. 로컬에서 확인할 때는 `NEXT_PUBLIC_GA_ID`를 빌드 시에만 넣고, CDP로 GA 요청을 가로채 차단한 채 내용만 본다.
+- GA4 측정 ID는 `G-1B98FZ6L48`이다(studio.jogunism@gmail.com 소유, GA 계정 "AAH Education", 속성 aah.education, 2026-11-03 생성). 예전 `G-TTM6P0QM2D`는 소유 계정(hyunwoo@aah-e.net)이 비활성화돼 접근할 수 없어 교체했고, 기존 데이터는 옮기지 못했다. 관리자를 한 명만 두지 말 것.
+- 측정 ID는 Amplify 앱 단위 환경 변수(`NEXT_PUBLIC_GA_ID`)에만 있다. 로컬 `.env.local`에는 비어 있어서 로컬 작업이 운영 통계를 오염시키지 않는다. 로컬에서 확인할 때는 `NEXT_PUBLIC_GA_ID`를 빌드 시에만 넣고, CDP로 GA 요청을 가로채 차단한 채 내용만 본다.
 - 동의 모드 v2를 쓴다. 기본은 analytics_storage 거부(쿠키 없음, 익명 신호, gcs=G100)이고, 쿠키 안내에서 "동의"를 누르면 허용(G101)한다. "거부"는 `gdpr_consent=false`로 기억한다. 가격 계산 등 기능을 동의에 묶지 않는다(쿠키 월은 EDPB상 유효한 동의가 아니다, 사용자 합의).
 - page_view는 gtag config(첫 접속)와 GA4 향상된 측정(히스토리 변경)이 보낸다. 직접 보내던 코드는 중복이라 없앴다.
 - 커스텀 이벤트는 세 가지다. section_engagement(section_id, engagement_seconds)는 섹션이 화면의 절반 이상을 차지한 누적 시간이고, 1초 미만은 무시하며 이탈·이동 시 beacon으로 보낸다. ui_click(click_text, click_section, link_url)은 카드 링크의 경우 제목만 쓴다. info_session_signup은 설명회 신청 성공 시 보낸다. 기존 contact_form_submit, tuition_inquiry_click, traffic_source, time_on_page도 유지한다.
