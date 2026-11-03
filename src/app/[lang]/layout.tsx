@@ -8,6 +8,7 @@ import GoogleAnalytics from '@/components/common/GoogleAnalytics';
 import ToastProvider from '@common/ToastProvider';
 import GDPRPopup from '@/components/common/GDPRPopup';
 import NavigationProgress from '@/components/common/NavigationProgress';
+import AnalyticsTracker from '@/components/common/AnalyticsTracker';
 
 import {
   SUPPORTED_LOCALES,
@@ -117,6 +118,7 @@ export default async function LangLayout({
         {process.env.NEXT_PUBLIC_GA_ID && (
           <Suspense fallback={null}>
             <GoogleAnalytics />
+            <AnalyticsTracker />
           </Suspense>
         )}
         <NavigationProgress />

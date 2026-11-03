@@ -21,7 +21,7 @@ export default function Instagram() {
   if (!feedId) return null;
 
   return (
-    <Section className="bg-soft">
+    <Section id="instagram" className="bg-soft">
       <SectionHeading title={t('INSTAGRAM_TITLE')} lead={t('INSTAGRAM_DESCRIPTION')} center />
       <div className="max-w-5xl mx-auto">
         <BeholdWidget feed-id={feedId} />

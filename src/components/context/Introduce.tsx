@@ -9,7 +9,7 @@ export default async function Introduce() {
   const { t } = await getTranslation();
 
   return (
-    <Section className="bg-soft">
+    <Section id="about" className="bg-soft">
       <SectionHeading title={t('MAIN_SLOGAN')} lead={t('MAIN_DESCRIPTION')} />
       <p className="mb-4 text-lg font-bold text-ink">{t('MAIN_WE_ARE')}</p>
       <ul className="grid md:grid-cols-2 gap-2.5 md:gap-3">

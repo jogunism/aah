@@ -24,7 +24,7 @@ export default async function Hero({ lang }: { lang: string }) {
   ];
 
   return (
-    <section className="relative w-full h-[calc(100svh-60px)] min-h-[640px] max-h-[860px] overflow-hidden text-white">
+    <section id="hero" className="relative w-full h-[calc(100svh-60px)] min-h-[640px] max-h-[860px] overflow-hidden text-white">
       <Image
         src={HERO_IMAGE}
         alt=""

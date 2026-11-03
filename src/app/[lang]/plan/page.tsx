@@ -65,7 +65,7 @@ export default async function PlanPage({ params, searchParams }: PageProps) {
       <div className="h-[60px]" />
 
       <main className="flex-grow">
-        <section className="max-w-[1180px] mx-auto px-5 md:px-6 pt-12 md:pt-16 pb-16 md:pb-24">
+        <section id="plan" className="max-w-[1180px] mx-auto px-5 md:px-6 pt-12 md:pt-16 pb-16 md:pb-24">
           <h1 className="text-[34px] md:text-[52px] leading-[1.08] font-extrabold tracking-[-0.03em] text-ink">
             {t('PLAN_TITLE')}
           </h1>

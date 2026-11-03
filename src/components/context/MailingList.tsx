@@ -7,6 +7,7 @@ import { Section } from '@/components/ui/Section';
 import { buttonClass } from '@/components/ui/Button';
 import SmoothScrollLink from './SmoothScrollLink';
 import { subscribeMailingList } from '@/api';
+import { trackInfoSessionSignup } from '@/lib/gtag';
 
 const TOPIC_KEYS = [1, 2, 3, 4, 5, 6] as const;
 
@@ -30,6 +31,7 @@ export default function MailingList() {
     try {
       await subscribeMailingList(email, i18n.language);
       setIsSuccess(true);
+      trackInfoSessionSignup(i18n.language);
     } catch (error) {
       console.error('Subscription error:', error);
       setErrorMessage(t('MAILING_MODAL_ERROR'));
@@ -38,7 +40,7 @@ export default function MailingList() {
   };
 
   return (
-    <Section>
+    <Section id="final-cta">
       <div className="grid lg:grid-cols-[1.2fr_1fr] gap-8 lg:gap-12 items-center rounded-[28px] md:rounded-[32px] bg-aah-red text-white p-6 sm:p-10 lg:p-16">
         {/* Consultation */}
         <div className="min-w-0">

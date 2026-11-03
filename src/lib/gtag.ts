@@ -1,14 +1,5 @@
 export const GA_TRACKING_ID = process.env.NEXT_PUBLIC_GA_ID || '';
 
-// https://developers.google.com/analytics/devguides/collection/gtagjs/pages
-export const pageview = (url: URL) => {
-  if (typeof window.gtag === 'function') {
-    window.gtag('config', GA_TRACKING_ID, {
-      page_path: url,
-    });
-  }
-};
-
 type GTagEvent = {
   action: string;
   category: string;
@@ -207,5 +198,41 @@ export const trackTimeOnPage = (timeSpent: number, pagePath: string) => {
       time_spent_ms: timeSpent,
       page_path: pagePath,
     },
+  });
+};
+
+// Section dwell: how long each section of a page was on screen (AnalyticsTracker)
+export const trackSectionEngagement = (sectionId: string, seconds: number, pagePath: string) => {
+  event({
+    action: 'section_engagement',
+    category: 'engagement',
+    label: sectionId,
+    value: seconds,
+    custom_parameters: {
+      section_id: sectionId,
+      engagement_seconds: seconds,
+      page_path: pagePath,
+      transport_type: 'beacon', // still delivered when the page is being closed
+    },
+  });
+};
+
+// Clicks on links and buttons, with the section they were in (AnalyticsTracker)
+export const trackUiClick = (text: string, section: string, linkUrl: string | null, pagePath: string) => {
+  event({
+    action: 'ui_click',
+    category: 'engagement',
+    label: text,
+    custom_parameters: { click_text: text, click_section: section, link_url: linkUrl, page_path: pagePath },
+  });
+};
+
+// Info session / mailing list sign-up (key event)
+export const trackInfoSessionSignup = (lang: string) => {
+  event({
+    action: 'info_session_signup',
+    category: 'conversion',
+    label: lang,
+    custom_parameters: { language: lang },
   });
 };

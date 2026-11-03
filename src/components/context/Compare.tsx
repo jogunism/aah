@@ -40,7 +40,7 @@ export default async function Compare({ lang }: { lang: string }) {
   ];
 
   return (
-    <Section className="!pt-0">
+    <Section id="compare" className="!pt-0">
       <SectionHeading title={t('COMPARE_TITLE')} center />
       <div className="overflow-hidden rounded-[22px] border border-line">
         <table className="w-full text-sm md:text-[15px] text-ink-2">
