@@ -108,3 +108,7 @@
 - 코드 쪽 개선은 두 가지다. 서버 API 결과를 인스턴스 메모리에 5분 캐시했고(api/server.ts `remember`), 링크를 클릭하면 바로 상단 진행 표시줄이 나오게 했다(NavigationProgress, next/link가 preventDefault를 하기 때문에 capture 단계에서 감지).
 - 2026-11-03 조치 결과. 사용자가 Cloudflare에서 apex의 A 레코드 4개(52.85.129.x, 시애틀 CloudFront 고정 IP)를 지우고 CNAME `du18mefoeahcj.cloudfront.net`(DNS only, flattening)으로 바꿨다. www·api도 DNS only로 바꿨다. MX·TXT는 유지했다. 배포 #110 이후 라이브 측정값은 페이지 0.18~0.3초(이전 0.75~1.7초), 정적 파일 0.1초(이전 약 1초), API 0.08초다.
 - Lambda 동시 실행 한도 상향 요청(45bd…, 케이스 179362638700103)은 2026-11-03 10:25 기준 아직 CASE_OPENED이고 한도는 10이다. 승인되면 `aah`에 예약 동시성 50을 설정할 예정이다.
+
+## 포함 서비스 표기 (베이직 기준)
+- 사이트에 표시하는 포함 서비스는 베이직 플랜 기준이다(사용자 원칙). aah-e.net local-service.html을 보면 인천공항 픽업은 13,500엔(aah 수속자 기준, 현지 서비스만 이용하면 15,500엔)이고 김포는 8,500엔이며, 현지 SIM·Wi-Fi와 함께 플랜 밖의 유료 옵션이다. 프리미엄에도 포함되지 않는다. 플랜에 포함된 건 도착일에 가까운 역·정류장에서 숙소까지 안내하는 것이다.
+- 그래서 홈 포함 항목, 신뢰 지표, 상세 하단 바, 진행 절차 5·6단계에서 픽업과 SIM 표현을 뺐다. "We are" 7번(MAIN_WE_ARE_DESCRIPTION_7, 기존 문구)의 "local SIM card setup"은 회사 역량 소개라 유지했다(사용자 확인 대기).
