@@ -324,17 +324,16 @@
   "COMPARE_TITLE": "¿Qué programa es para ti?",
   "COMPARE_ROW_LENGTH": "Duración",
   "COMPARE_SHORT_LENGTH": "3 semanas en universidades, 1–2 semanas en academias de idiomas",
-  "COMPARE_LONG_LENGTH": "Universidades: 10 semanas (unos 3 meses) por semestre · Academias: 4 semanas (alrededor de 1 mes)",
+  "COMPARE_LONG_LENGTH": "Universidades: 10 semanas (unos 3 meses) por semestre\nAcademias: 4 semanas (alrededor de 1 mes)",
   "COMPARE_ROW_START": "Inicio",
   "COMPARE_SHORT_START": "Vacaciones de primavera, verano, invierno/fin de año",
-  "COMPARE_LONG_START": "Universidades: 4 veces al año · Academias: cada mes",
+  "COMPARE_LONG_START": "Universidades: 4 veces al año\nAcademias: cada mes",
   "COMPARE_ROW_CLASSES": "Clases",
-  "COMPARE_SHORT_CLASSES": "4 horas al día (normalmente 9:00–13:00), más programa cultural por la tarde",
-  "COMPARE_LONG_CLASSES": "De lunes a viernes, 4 horas al día (9:00–13:00 o por la tarde), unas 200 horas por semestre",
+  "COMPARE_SHORT_CLASSES": "Universidades: de lunes a viernes, 4 horas al día (normalmente 9:00–13:00)\nAcademias: 6 días a la semana\nPrograma cultural por la tarde",
+  "COMPARE_LONG_CLASSES": "Universidades: de lunes a viernes, 4 horas al día (9:00–13:00 o por la tarde), unas 200 horas por semestre\nAcademias: lunes, martes, jueves y viernes, unas 3 horas al día",
   "COMPARE_ROW_SIZE": "Tamaño de clase",
-  "COMPARE_SIZE": "Unos 10–15 estudiantes",
   "COMPARE_ROW_VISA": "Visado",
-  "COMPARE_LONG_VISA": "Universidades: D-4-1 desde 2 semestres · Academias: sin visado de estudiante (sin visado o working holiday)",
+  "COMPARE_LONG_VISA": "Universidades: D-4-1 desde 2 semestres\nAcademias: sin visado de estudiante (sin visado o working holiday)",
   "COMPARE_ROW_BEST": "Ideal para",
   "COMPARE_SHORT_BEST": "Primera visita, principiantes, estudiar en vacaciones",
   "COMPARE_LONG_BEST": "Fluidez, objetivos profesionales, preparación para la universidad coreana",
@@ -418,5 +417,8 @@
   "CLASS_SIZE_LABEL": "Tamaño de clase",
   "CLASS_SIZE_RANGE": "{{min}}–{{max}} estudiantes",
   "CLASS_SIZE_UP_TO": "hasta {{max}} estudiantes",
-  "CLASS_SIZE_ABOUT": "unos {{count}} estudiantes"
+  "CLASS_SIZE_ABOUT": "unos {{count}} estudiantes",
+
+  "COMPARE_SHORT_SIZE": "Universidades: unos 10–15\nAcademias: unos 6–8",
+  "COMPARE_LONG_SIZE": "Universidades: unos 10–15\nAcademias: unos 5–10"
 }

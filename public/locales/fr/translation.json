@@ -324,17 +324,16 @@
   "COMPARE_TITLE": "Quel programme vous correspond ?",
   "COMPARE_ROW_LENGTH": "Durée",
   "COMPARE_SHORT_LENGTH": "3 semaines en université, 1 à 2 semaines en école de langue",
-  "COMPARE_LONG_LENGTH": "Universités : 10 semaines (environ 3 mois) par semestre · Écoles de langue : 4 semaines (environ 1 mois)",
+  "COMPARE_LONG_LENGTH": "Universités : 10 semaines (environ 3 mois) par semestre\nÉcoles de langue : 4 semaines (environ 1 mois)",
   "COMPARE_ROW_START": "Début",
   "COMPARE_SHORT_START": "Vacances de printemps, été, hiver/fin d'année",
-  "COMPARE_LONG_START": "Universités : 4 fois par an · Écoles de langue : chaque mois",
+  "COMPARE_LONG_START": "Universités : 4 fois par an\nÉcoles de langue : chaque mois",
   "COMPARE_ROW_CLASSES": "Cours",
-  "COMPARE_SHORT_CLASSES": "4 h par jour (le plus souvent 9h00–13h00), plus un programme culturel l'après-midi",
-  "COMPARE_LONG_CLASSES": "Du lundi au vendredi, 4 h par jour (9h00–13h00 ou l'après-midi), environ 200 heures par semestre",
+  "COMPARE_SHORT_CLASSES": "Universités : du lundi au vendredi, 4 h par jour (le plus souvent 9h00–13h00)\nÉcoles de langue : 6 jours par semaine\nProgramme culturel l'après-midi",
+  "COMPARE_LONG_CLASSES": "Universités : du lundi au vendredi, 4 h par jour (9h00–13h00 ou l'après-midi), environ 200 heures par semestre\nÉcoles de langue : lundi, mardi, jeudi, vendredi, environ 3 h par jour",
   "COMPARE_ROW_SIZE": "Taille des classes",
-  "COMPARE_SIZE": "Environ 10 à 15 étudiants",
   "COMPARE_ROW_VISA": "Visa",
-  "COMPARE_LONG_VISA": "Universités : D-4-1 dès 2 semestres · Écoles de langue : pas de visa étudiant (sans visa ou vacances-travail)",
+  "COMPARE_LONG_VISA": "Universités : D-4-1 dès 2 semestres\nÉcoles de langue : pas de visa étudiant (sans visa ou vacances-travail)",
   "COMPARE_ROW_BEST": "Idéal pour",
   "COMPARE_SHORT_BEST": "Premier séjour, débutants, vacances studieuses",
   "COMPARE_LONG_BEST": "Aisance, objectifs professionnels, préparation à l'université coréenne",
@@ -418,5 +417,8 @@
   "CLASS_SIZE_LABEL": "Effectif",
   "CLASS_SIZE_RANGE": "{{min}} à {{max}} étudiants",
   "CLASS_SIZE_UP_TO": "jusqu'à {{max}} étudiants",
-  "CLASS_SIZE_ABOUT": "environ {{count}} étudiants"
+  "CLASS_SIZE_ABOUT": "environ {{count}} étudiants",
+
+  "COMPARE_SHORT_SIZE": "Universités : environ 10 à 15\nÉcoles de langue : environ 6 à 8",
+  "COMPARE_LONG_SIZE": "Universités : environ 10 à 15\nÉcoles de langue : environ 5 à 10"
 }

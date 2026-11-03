@@ -324,17 +324,16 @@
   "COMPARE_TITLE": "Which program is right for you?",
   "COMPARE_ROW_LENGTH": "Length",
   "COMPARE_SHORT_LENGTH": "3 weeks at universities, 1–2 weeks at language schools",
-  "COMPARE_LONG_LENGTH": "Universities: 10 weeks (about 3 months) per semester · Language schools: 4 weeks (about 1 month)",
+  "COMPARE_LONG_LENGTH": "Universities: 10 weeks (about 3 months) per semester\nLanguage schools: 4 weeks (about 1 month)",
   "COMPARE_ROW_START": "Starts",
   "COMPARE_SHORT_START": "Spring break, summer, winter / New Year",
-  "COMPARE_LONG_START": "Universities: 4 times a year · Language schools: every month",
+  "COMPARE_LONG_START": "Universities: 4 times a year\nLanguage schools: every month",
   "COMPARE_ROW_CLASSES": "Classes",
-  "COMPARE_SHORT_CLASSES": "4 hours a day (mostly 9:00–13:00), plus afternoon culture program",
-  "COMPARE_LONG_CLASSES": "Mon–Fri, 4 hours a day (9:00–13:00 or afternoon), about 200 hours per semester",
+  "COMPARE_SHORT_CLASSES": "Universities: Mon–Fri, 4 hours a day (mostly 9:00–13:00)\nLanguage schools: 6 days a week\nAfternoon culture program",
+  "COMPARE_LONG_CLASSES": "Universities: Mon–Fri, 4 hours a day (9:00–13:00 or afternoon), about 200 hours per semester\nLanguage schools: Mon, Tue, Thu, Fri, about 3 hours a day",
   "COMPARE_ROW_SIZE": "Class size",
-  "COMPARE_SIZE": "About 10–15 students",
   "COMPARE_ROW_VISA": "Visa",
-  "COMPARE_LONG_VISA": "Universities: D-4-1 from 2 semesters · Language schools: no student visa (visa-free or working holiday)",
+  "COMPARE_LONG_VISA": "Universities: D-4-1 from 2 semesters\nLanguage schools: no student visa (visa-free or working holiday)",
   "COMPARE_ROW_BEST": "Best for",
   "COMPARE_SHORT_BEST": "First-timers, beginners, holiday learners",
   "COMPARE_LONG_BEST": "Fluency, career goals, Korean university prep",
@@ -418,5 +417,8 @@
   "CLASS_SIZE_LABEL": "Class size",
   "CLASS_SIZE_RANGE": "{{min}}–{{max}} students",
   "CLASS_SIZE_UP_TO": "up to {{max}} students",
-  "CLASS_SIZE_ABOUT": "about {{count}} students"
+  "CLASS_SIZE_ABOUT": "about {{count}} students",
+
+  "COMPARE_SHORT_SIZE": "Universities: about 10–15\nLanguage schools: about 6–8",
+  "COMPARE_LONG_SIZE": "Universities: about 10–15\nLanguage schools: about 5–10"
 }

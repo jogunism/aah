@@ -324,17 +324,16 @@
   "COMPARE_TITLE": "Quale programma fa per te?",
   "COMPARE_ROW_LENGTH": "Durata",
   "COMPARE_SHORT_LENGTH": "3 settimane nelle università, 1–2 settimane nelle scuole di lingua",
-  "COMPARE_LONG_LENGTH": "Università: 10 settimane (circa 3 mesi) a semestre · Scuole di lingua: 4 settimane (circa 1 mese)",
+  "COMPARE_LONG_LENGTH": "Università: 10 settimane (circa 3 mesi) a semestre\nScuole di lingua: 4 settimane (circa 1 mese)",
   "COMPARE_ROW_START": "Inizio",
   "COMPARE_SHORT_START": "Vacanze di primavera, estate, inverno/fine anno",
-  "COMPARE_LONG_START": "Università: 4 volte l’anno · Scuole di lingua: ogni mese",
+  "COMPARE_LONG_START": "Università: 4 volte l’anno\nScuole di lingua: ogni mese",
   "COMPARE_ROW_CLASSES": "Lezioni",
-  "COMPARE_SHORT_CLASSES": "4 ore al giorno (di solito 9:00–13:00), più programma culturale al pomeriggio",
-  "COMPARE_LONG_CLASSES": "Lun–ven, 4 ore al giorno (9:00–13:00 o pomeriggio), circa 200 ore a semestre",
+  "COMPARE_SHORT_CLASSES": "Università: lun–ven, 4 ore al giorno (di solito 9:00–13:00)\nScuole di lingua: 6 giorni a settimana\nProgramma culturale al pomeriggio",
+  "COMPARE_LONG_CLASSES": "Università: lun–ven, 4 ore al giorno (9:00–13:00 o pomeriggio), circa 200 ore a semestre\nScuole di lingua: lun, mar, gio, ven, circa 3 ore al giorno",
   "COMPARE_ROW_SIZE": "Studenti per classe",
-  "COMPARE_SIZE": "Circa 10–15 studenti",
   "COMPARE_ROW_VISA": "Visto",
-  "COMPARE_LONG_VISA": "Università: D-4-1 da 2 semestri · Scuole di lingua: nessun visto per studenti (senza visto o working holiday)",
+  "COMPARE_LONG_VISA": "Università: D-4-1 da 2 semestri\nScuole di lingua: nessun visto per studenti (senza visto o working holiday)",
   "COMPARE_ROW_BEST": "Ideale per",
   "COMPARE_SHORT_BEST": "Prima esperienza, principianti, chi studia in vacanza",
   "COMPARE_LONG_BEST": "Fluenza, obiettivi professionali, preparazione all'università coreana",
@@ -418,5 +417,8 @@
   "CLASS_SIZE_LABEL": "Dimensione della classe",
   "CLASS_SIZE_RANGE": "{{min}}–{{max}} studenti",
   "CLASS_SIZE_UP_TO": "fino a {{max}} studenti",
-  "CLASS_SIZE_ABOUT": "circa {{count}} studenti"
+  "CLASS_SIZE_ABOUT": "circa {{count}} studenti",
+
+  "COMPARE_SHORT_SIZE": "Università: circa 10–15\nScuole di lingua: circa 6–8",
+  "COMPARE_LONG_SIZE": "Università: circa 10–15\nScuole di lingua: circa 5–10"
 }

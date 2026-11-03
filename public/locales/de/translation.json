@@ -323,17 +323,16 @@
   "COMPARE_TITLE": "Welches Programm passt zu Ihnen?",
   "COMPARE_ROW_LENGTH": "Dauer",
   "COMPARE_SHORT_LENGTH": "3 Wochen an Universitäten, 1–2 Wochen an Sprachschulen",
-  "COMPARE_LONG_LENGTH": "Universitäten: 10 Wochen (ca. 3 Monate) pro Semester · Sprachschulen: 4 Wochen (ca. 1 Monat)",
+  "COMPARE_LONG_LENGTH": "Universitäten: 10 Wochen (ca. 3 Monate) pro Semester\nSprachschulen: 4 Wochen (ca. 1 Monat)",
   "COMPARE_ROW_START": "Beginn",
   "COMPARE_SHORT_START": "Frühjahrsferien, Sommer, Winter/Jahreswechsel",
-  "COMPARE_LONG_START": "Universitäten: 4-mal im Jahr · Sprachschulen: jeden Monat",
+  "COMPARE_LONG_START": "Universitäten: 4-mal im Jahr\nSprachschulen: jeden Monat",
   "COMPARE_ROW_CLASSES": "Unterricht",
-  "COMPARE_SHORT_CLASSES": "4 Stunden pro Tag (meist 9:00–13:00 Uhr), dazu Kulturprogramm am Nachmittag",
-  "COMPARE_LONG_CLASSES": "Mo–Fr, 4 Stunden pro Tag (9:00–13:00 Uhr oder nachmittags), rund 200 Stunden pro Semester",
+  "COMPARE_SHORT_CLASSES": "Universitäten: Mo–Fr, 4 Stunden pro Tag (meist 9:00–13:00 Uhr)\nSprachschulen: 6 Tage pro Woche\nKulturprogramm am Nachmittag",
+  "COMPARE_LONG_CLASSES": "Universitäten: Mo–Fr, 4 Stunden pro Tag (9:00–13:00 Uhr oder nachmittags), rund 200 Stunden pro Semester\nSprachschulen: Mo, Di, Do, Fr, etwa 3 Stunden pro Tag",
   "COMPARE_ROW_SIZE": "Klassengröße",
-  "COMPARE_SIZE": "Etwa 10–15 Teilnehmende",
   "COMPARE_ROW_VISA": "Visum",
-  "COMPARE_LONG_VISA": "Universitäten: D-4-1 ab 2 Semestern · Sprachschulen: kein Studentenvisum (visumfrei oder Working Holiday)",
+  "COMPARE_LONG_VISA": "Universitäten: D-4-1 ab 2 Semestern\nSprachschulen: kein Studentenvisum (visumfrei oder Working Holiday)",
   "COMPARE_ROW_BEST": "Ideal für",
   "COMPARE_SHORT_BEST": "Erstbesucher, Anfänger, Lernen in den Ferien",
   "COMPARE_LONG_BEST": "Fließend sprechen, Berufsziele, Vorbereitung auf ein Studium in Korea",
@@ -417,5 +416,8 @@
   "CLASS_SIZE_LABEL": "Klassengröße",
   "CLASS_SIZE_RANGE": "{{min}}–{{max}} Teilnehmende",
   "CLASS_SIZE_UP_TO": "bis zu {{max}} Teilnehmende",
-  "CLASS_SIZE_ABOUT": "etwa {{count}} Teilnehmende"
+  "CLASS_SIZE_ABOUT": "etwa {{count}} Teilnehmende",
+
+  "COMPARE_SHORT_SIZE": "Universitäten: etwa 10–15\nSprachschulen: etwa 6–8",
+  "COMPARE_LONG_SIZE": "Universitäten: etwa 10–15\nSprachschulen: etwa 5–10"
 }

@@ -24,7 +24,7 @@ export default async function Compare({ lang }: { lang: string }) {
     { label: t('COMPARE_ROW_LENGTH'), short: t('COMPARE_SHORT_LENGTH'), long: t('COMPARE_LONG_LENGTH') },
     { label: t('COMPARE_ROW_START'), short: t('COMPARE_SHORT_START'), long: t('COMPARE_LONG_START') },
     { label: t('COMPARE_ROW_CLASSES'), short: t('COMPARE_SHORT_CLASSES'), long: t('COMPARE_LONG_CLASSES') },
-    { label: t('COMPARE_ROW_SIZE'), short: t('COMPARE_SIZE'), long: t('COMPARE_SIZE') },
+    { label: t('COMPARE_ROW_SIZE'), short: t('COMPARE_SHORT_SIZE'), long: t('COMPARE_LONG_SIZE') },
     { label: t('COMPARE_ROW_VISA'), short: t('TILE_SHORT_META_2'), long: t('COMPARE_LONG_VISA') },
     { label: t('COMPARE_ROW_BEST'), short: t('COMPARE_SHORT_BEST'), long: t('COMPARE_LONG_BEST') },
     {
@@ -66,8 +66,8 @@ export default async function Compare({ lang }: { lang: string }) {
                 >
                   {r.label}
                 </th>
-                <td className="px-4 py-2.5 md:px-6 md:py-4 align-top">{r.short}</td>
-                <td className="px-4 py-2.5 md:px-6 md:py-4 align-top">{r.long}</td>
+                <td className="px-4 py-2.5 md:px-6 md:py-4 align-top whitespace-pre-line">{r.short}</td>
+                <td className="px-4 py-2.5 md:px-6 md:py-4 align-top whitespace-pre-line">{r.long}</td>
               </tr>
             ))}
           </tbody>
