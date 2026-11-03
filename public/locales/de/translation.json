@@ -338,7 +338,7 @@
   "COMPARE_SHORT_BEST": "Erstbesucher, Anfänger, Lernen in den Ferien",
   "COMPARE_LONG_BEST": "Fließend sprechen, Berufsziele, Vorbereitung auf ein Studium in Korea",
   "COMPARE_ROW_PRICE": "Preis",
-  "COMPARE_PRICE_NOTE": "Preise inkl. MwSt., je nach Schule und Programm unterschiedlich. Flüge nicht inklusive.",
+  "COMPARE_PRICE_NOTE": "Geschätzte Preise inkl. MwSt., zum aktuellen Wechselkurs aus JPY umgerechnet. Die Preise variieren je nach Schule und Programm; der Endbetrag kann wegen Wechselkursschwankungen und vor Ort in Korea gezahlter Gebühren leicht abweichen. Flüge nicht inklusive.",
 
   "***** INCLUDED *****": "",
   "INCLUDED_TITLE": "Um alles ist gesorgt.",
@@ -385,5 +385,9 @@
 
   "***** CLASS HOURS *****": "",
   "CLASS_HOURS_LABEL": "Unterricht",
-  "CLASS_HOURS_PER_DAY": "{{count}} Stunden pro Tag"
+  "CLASS_HOURS_PER_DAY": "{{count}} Stunden pro Tag",
+
+  "***** PRICE ESTIMATE *****": "",
+  "PRICE_ESTIMATE_NOTE": "Schätzung · abhängig von Wechselkurs und Gebühren vor Ort",
+  "PLAN_ESTIMATE_NOTE": "Die Beträge werden zum aktuellen Wechselkurs umgerechnet und einige Gebühren werden vor Ort in Korea bezahlt, daher kann der Endbetrag leicht abweichen."
 }

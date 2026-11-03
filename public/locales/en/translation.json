@@ -339,7 +339,7 @@
   "COMPARE_SHORT_BEST": "First-timers, beginners, holiday learners",
   "COMPARE_LONG_BEST": "Fluency, career goals, Korean university prep",
   "COMPARE_ROW_PRICE": "Price",
-  "COMPARE_PRICE_NOTE": "Prices include VAT and vary by school and program. Flights not included.",
+  "COMPARE_PRICE_NOTE": "Estimated prices including VAT, converted from JPY at the current exchange rate. Prices vary by school and program, and the final amount may differ slightly due to exchange-rate changes and fees paid locally in Korea. Flights not included.",
 
   "***** INCLUDED *****": "",
   "INCLUDED_TITLE": "Everything taken care of.",
@@ -386,5 +386,9 @@
 
   "***** CLASS HOURS *****": "",
   "CLASS_HOURS_LABEL": "Class hours",
-  "CLASS_HOURS_PER_DAY": "{{count}} hours a day"
+  "CLASS_HOURS_PER_DAY": "{{count}} hours a day",
+
+  "***** PRICE ESTIMATE *****": "",
+  "PRICE_ESTIMATE_NOTE": "Estimate · may vary with exchange rates and local fees",
+  "PLAN_ESTIMATE_NOTE": "Amounts are converted at the current exchange rate and some fees are paid locally in Korea, so the final amount may differ slightly."
 }

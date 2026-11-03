@@ -108,6 +108,7 @@ export default async function ProgramPage({
                 amountClassName="font-semibold text-ink"
               />
             </p>
+            {prices && <p className="mt-1 text-xs text-muted">{t('PRICE_ESTIMATE_NOTE')}</p>}
             <div className="relative mt-10 md:mt-14 h-[240px] md:h-[480px] overflow-hidden rounded-[24px] md:rounded-[28px]">
               <Image src={c.image} alt="" fill priority sizes="(min-width: 1180px) 1132px, 100vw" className="object-cover" />
             </div>

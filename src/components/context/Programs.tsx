@@ -108,6 +108,7 @@ export default async function Programs({ lang }: { lang: string }) {
                     initialCurrency={currency}
                   />
                 </p>
+                {prices && <p className="mt-1 text-xs text-muted">{t('PRICE_ESTIMATE_NOTE')}</p>}
                 <div className="mt-6 flex justify-center gap-3">
                   <Link href={`/${lang}/plan?program=${tile.program}`} className={buttonClass(tile.plan)}>
                     {t('TILE_PLAN')}

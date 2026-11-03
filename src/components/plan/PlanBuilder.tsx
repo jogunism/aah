@@ -517,6 +517,7 @@ export default function PlanBuilder({
           {selectedDorm && term && term.duration.unit === 'semester' && term.duration.value > 1 && (
             <li>※ {t('TUITION_CALCULATOR_DORM_NOTE')}</li>
           )}
+          <li>※ {t('PLAN_ESTIMATE_NOTE')}</li>
           <li>※ {t('TUITION_CALCULATOR_PRICE_NOTE')}</li>
         </ul>
       </aside>
