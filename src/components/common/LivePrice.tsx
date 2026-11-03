@@ -3,7 +3,7 @@
 
 import { useEffect, useState } from 'react';
 import { useCurrencyStore } from '@/store/currencyStore';
-import { retrievePrices } from '@/api';
+import { fetchPrices } from '@/api/local';
 import { formatPrice } from '@/utils';
 import type { Prices } from '@/types/constants';
 
@@ -13,7 +13,7 @@ const SYMBOL: Record<Currency, string> = { USD: '$', EUR: '€' };
 // One shared request per currency for all LivePrice instances on the page
 const inflight: Partial<Record<Currency, Promise<Prices | null>>> = {};
 const loadPrices = (c: Currency) =>
-  (inflight[c] ??= retrievePrices().then((p) => {
+  (inflight[c] ??= fetchPrices(c).then((p) => {
     if (!p) delete inflight[c]; // retry next time instead of caching the failure
     return p;
   }));
@@ -43,7 +43,6 @@ export default function LivePrice({
   useEffect(() => {
     if (!currency || currency === state.currency) return;
     let alive = true;
-    // retrievePrices sends the `currency` cookie, which the selector has already updated
     loadPrices(currency).then((p) => alive && p && setState({ prices: p, currency }));
     return () => {
       alive = false;

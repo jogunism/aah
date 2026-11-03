@@ -18,7 +18,7 @@ import {
 import { useCurrencyStore } from '@/store/currencyStore';
 import useContactUsStore from '@/store/contactusStore';
 // API
-import { retrieveUniversityList } from '@/api';
+import { fetchSchools } from '@/api/local';
 // Utils
 import { formatPrice } from '@/utils';
 // Analytics
@@ -248,7 +248,7 @@ export default function PlanBuilder({
   useEffect(() => {
     if (!currency || currency === list.currency) return;
     let alive = true;
-    retrieveUniversityList('all').then(
+    fetchSchools(currency).then(
       schools => alive && schools.length && setList({ schools, currency }),
     );
     return () => {

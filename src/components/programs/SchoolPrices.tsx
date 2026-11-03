@@ -5,7 +5,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { useEffect, useState } from 'react';
 import { useCurrencyStore } from '@/store/currencyStore';
-import { retrieveUniversityList } from '@/api';
+import { fetchSchools } from '@/api/local';
 import { formatPrice } from '@/utils';
 import type { University } from '@/types/constants';
 
@@ -34,7 +34,7 @@ export default function SchoolPrices({
   useEffect(() => {
     if (!currency || currency === state.currency) return;
     let alive = true;
-    retrieveUniversityList('all').then((list) => alive && list.length && setState({ schools: list, currency }));
+    fetchSchools(currency).then((list) => alive && list.length && setState({ schools: list, currency }));
     return () => {
       alive = false;
     };
