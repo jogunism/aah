@@ -116,3 +116,10 @@
 ## 대시 표기
 - 사이트 문구에 "—"(em dash)를 쓰지 않는다(사용자 원칙). 독일어의 띄어 쓴 " – "(문장부호 역할)도 같이 뺐다. 문장은 쉼표, 콜론, 마침표, "and"로 다듬는다. 꼭 필요한 구분자(가격 범위 사이 등)는 "-"를 쓴다.
 - 붙여 쓰는 숫자·요일 범위(9:00–13:00, Mon–Fri, 10–15, €850–€2,150)는 en dash(–)로 유지한다. 범위를 나타내는 표준 표기이고 요청 대상(—)과 다르다.
+
+## GA 추적 (2026-11-03)
+- GA4 `G-TTM6P0QM2D`는 Amplify 환경 변수에만 있다. 로컬 `.env.local`에는 비어 있어서 로컬 작업이 운영 통계를 오염시키지 않는다. 로컬에서 확인할 때는 `NEXT_PUBLIC_GA_ID`를 빌드 시에만 넣고, CDP로 GA 요청을 가로채 차단한 채 내용만 본다.
+- 동의 모드 v2를 쓴다. 기본은 analytics_storage 거부(쿠키 없음, 익명 신호, gcs=G100)이고, 쿠키 안내에서 "동의"를 누르면 허용(G101)한다. "거부"는 `gdpr_consent=false`로 기억한다. 가격 계산 등 기능을 동의에 묶지 않는다(쿠키 월은 EDPB상 유효한 동의가 아니다, 사용자 합의).
+- page_view는 gtag config(첫 접속)와 GA4 향상된 측정(히스토리 변경)이 보낸다. 직접 보내던 코드는 중복이라 없앴다.
+- 커스텀 이벤트는 세 가지다. section_engagement(section_id, engagement_seconds)는 섹션이 화면의 절반 이상을 차지한 누적 시간이고, 1초 미만은 무시하며 이탈·이동 시 beacon으로 보낸다. ui_click(click_text, click_section, link_url)은 카드 링크의 경우 제목만 쓴다. info_session_signup은 설명회 신청 성공 시 보낸다. 기존 contact_form_submit, tuition_inquiry_click, traffic_source, time_on_page도 유지한다.
+- GA 관리 화면에서 사용자가 할 일. 맞춤 측정기준(section_id, click_section, click_text)과 측정항목(engagement_seconds)을 등록하고, 주요 이벤트(contact_form_submit, tuition_inquiry_click, info_session_signup)를 지정해야 한다.
