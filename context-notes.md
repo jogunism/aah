@@ -56,3 +56,9 @@
 - 상세 페이지에도 Contactus를 넣었다. 상담 버튼을 눌러도 홈으로 이동하지 않는다.
 - 상세 페이지 학교 목록의 제공 여부는 플랜 빌더의 offersProgram과 같은 규칙으로 판단한다.
 - 미반영. smoothScroll.ts 헤더 주석을 한국어로 바꾼 커밋(884e696)은 a1 세션 작업이다. faq.ts와 llms.txt 라우트 헤더는 이번 대화에서 새로 만든 파일이라 §6 범위로 판단했다.
+
+## 통화 전환 가격 갱신
+- 클라이언트에서 API(api.aah.education)를 직접 부르면 통화가 `currency` 쿠키로만 전달된다. 로컬(localhost:3100)은 CORS 허용 목록에 없어서 요청이 막히고, 쿠키도 도메인이 달라 전달되지 않는다.
+- 그래서 같은 출처의 `/api/prices?currency=`, `/api/schools?currency=` 라우트를 두고, 서버에서 `Cookie: currency=X`로 API를 부른다. 로컬과 운영이 똑같이 동작하고 쿠키 설정 타이밍에도 의존하지 않는다.
+- 가격이 나오는 모든 모듈(홈 라인업 타일·비교표, 상세 히어로·학교 목록, 플랜 합계)이 헤더 통화 전환에 맞춰 바뀌는 것을 확인했다. 번역문에는 하드코딩된 금액이 없다.
+- 리뉴얼 문구의 "Seoul"은 "Korea"로 바꿨다(지방 대학 포함). 기존 문구인 UNI_DESCRIPTION("partner universities in Seoul")은 사용자 확인 대기 중이다.
