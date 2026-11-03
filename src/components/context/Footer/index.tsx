@@ -4,14 +4,14 @@ import { FaInstagram } from 'react-icons/fa';
 import { getTranslation } from '@/lib/i18n.server';
 import ScrollLink from '@/components/common/ScrollLink';
 // API
-import { retrieveAppVersion } from '@/api';
+import { getAppVersion } from '@/api/server';
 
 /**
  * Footer
  */
 export default async function Footer() {
   const { t, lang } = await getTranslation();
-  const appVersion = await retrieveAppVersion();
+  const appVersion = await getAppVersion();
 
   const linkClass = 'hover:text-ink transition-colors';
 

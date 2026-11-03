@@ -1,43 +1,77 @@
-// 서버 렌더링용 API 호출(요청 단위 캐시로 중복 호출 방지)
+// 서버 렌더링용 API 호출(요청 단위 중복 제거 + 서버 인스턴스에서 몇 분간 결과 재사용)
 import { cache } from 'react';
-import { retrieveUniversityList } from '@/api';
+import { retrieveUniversityList, retrieveAppVersion } from '@/api';
 import http from '@/lib/http';
 import type { Prices, University } from '@/types/constants';
 
 /**
- * Server-side data helpers, de-duplicated per request with React `cache`,
- * so several sections of one page share a single API call.
+ * Server-side data helpers.
+ * - React `cache` de-duplicates calls within one request, so several sections
+ *   of a page share a single API call.
+ * - `remember` keeps a successful result in the server instance for a few
+ *   minutes, so page navigations don't wait for the API (Lambda) every time.
+ *   Prices follow exchange rates refreshed every few hours, so a short delay is fine.
+ *   Empty / failed results are not kept.
  */
-export const getUniversities = cache(() => retrieveUniversityList());
+const TTL_MS = 5 * 60 * 1000;
+const memo = new Map<string, { at: number; value: unknown }>();
+
+const remember = async <T>(key: string, load: () => Promise<T>, ok: (v: T) => boolean): Promise<T> => {
+  const hit = memo.get(key);
+  if (hit && Date.now() - hit.at < TTL_MS) return hit.value as T;
+  const value = await load();
+  if (ok(value)) memo.set(key, { at: Date.now(), value });
+  return value;
+};
+
+export const getUniversities = cache(() =>
+  remember('universities', () => retrieveUniversityList(), (list) => list.length > 0),
+);
+
+export const getAppVersion = cache(() =>
+  remember('version', () => retrieveAppVersion(), (v) => !!v),
+);
 
 /**
  * Min/max program prices in the given currency. The API reads the `currency`
  * cookie, so pass it explicitly on server requests.
  */
-export const getPrices = cache(async (currency: 'USD' | 'EUR'): Promise<Prices | null> => {
-  try {
-    const res = await http.get<Prices>('/university/prices', {
-      headers: { Cookie: `currency=${currency}` },
-    });
-    return res.data;
-  } catch (error) {
-    console.error('Error fetching prices:', error);
-    return null;
-  }
-});
+export const getPrices = cache((currency: 'USD' | 'EUR') =>
+  remember(
+    `prices:${currency}`,
+    async (): Promise<Prices | null> => {
+      try {
+        const res = await http.get<Prices>('/university/prices', {
+          headers: { Cookie: `currency=${currency}` },
+        });
+        return res.data;
+      } catch (error) {
+        console.error('Error fetching prices:', error);
+        return null;
+      }
+    },
+    (p) => !!p,
+  ),
+);
 
 /**
  * All schools (universities + language schools) with prices in the given currency.
  */
-export const getSchools = cache(async (currency: 'USD' | 'EUR'): Promise<University[]> => {
-  try {
-    const res = await http.get<University[]>('/university/list', {
-      params: { schoolType: 'all' },
-      headers: { Cookie: `currency=${currency}` },
-    });
-    return res.data;
-  } catch (error) {
-    console.error('Error fetching school list:', error);
-    return [];
-  }
-});
+export const getSchools = cache((currency: 'USD' | 'EUR') =>
+  remember(
+    `schools:${currency}`,
+    async (): Promise<University[]> => {
+      try {
+        const res = await http.get<University[]>('/university/list', {
+          params: { schoolType: 'all' },
+          headers: { Cookie: `currency=${currency}` },
+        });
+        return res.data;
+      } catch (error) {
+        console.error('Error fetching school list:', error);
+        return [];
+      }
+    },
+    (list) => list.length > 0,
+  ),
+);
