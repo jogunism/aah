@@ -140,8 +140,8 @@
 - API Gateway `aah-API`(REST, stage `default`)에 초당 30·순간 100 제한을 걸었다(이전엔 계정 기본 10,000). API 토큰이 `NEXT_PUBLIC_`이라 누구나 호출할 수 있고, Lambda 예약 동시성과 별개로 API Gateway는 요청마다 과금되기 때문이다. 실측 1분 최대는 337건(평균 약 6rps)이고, 빌드 시 순간 폭주를 고려해 처음 생각한 20/50보다 넉넉히 잡았다. 빌드에서 429가 나면 이 값을 먼저 의심한다.
 - `aah` Lambda 제한 시간은 90초에서 30초로 줄였다. REST API 통합 제한이 29초라 그 이상은 결과 없이 비용만 나가고, 실측 최장은 11.4초다(주간 수업료 동기화 포함).
 - Amplify 로그 그룹 보관 기간을 무제한에서 30일로 바꿨다.
-- 도메인 aah.education은 Route 53 Domains에 등록돼 있다(자동 갱신, 2027-07-03 만료, .education 갱신비 $39). 네임서버는 Cloudflare이고, Route 53 호스팅 영역(Z05422553G73APLA9CYQO, 월 $0.50)은 쓰이지 않는다.
-- ACM 인증서 검증 CNAME이 Route 53 영역에만 있고 Cloudflare에는 없어서 `api.aah.education` 인증서(2026-12-17 만료) 갱신이 PENDING_VALIDATION에 멈춰 있었다. 사이트 인증서(Amplify 관리형, 2027-01-01 만료)도 같은 상태다. 두 CNAME을 Cloudflare에 DNS only로 넣어야 한다.
+- 도메인 aah.education은 Route 53 Domains에 등록돼 있다(자동 갱신, 2027-07-03 만료, .education 갱신비 $39). 네임서버는 Cloudflare이고, Route 53 호스팅 영역(Z05422553G73APLA9CYQO, 월 $0.50)은 쓰이지 않아 2026-11-06에 삭제했다. 모든 DNS 레코드는 Cloudflare에서만 관리한다.
+- ACM 인증서 검증 CNAME이 Route 53 영역에만 있고 Cloudflare에는 없어서 `api.aah.education` 인증서(2026-12-17 만료) 갱신이 PENDING_VALIDATION에 멈춰 있었다. 사이트 인증서(Amplify 관리형, 2027-01-01 만료)도 같은 상태다. 2026-11-06 두 CNAME을 Cloudflare에 DNS only로 넣었다(프록시하거나 "모든 CNAME 평탄화"를 켜면 검증이 실패한다). 지우면 인증서 갱신이 멈추니 남겨 둔다.
   - `_8f7810505e810d03b9184c16da638884` → `_8eba74fddbb637f355da9b51ff0d2ba4.xlfgrmvvlj.acm-validations.aws` (API, ACM eu-central-1)
   - `_07d797fdbbb4539792ceab6556341b5e` → `_2e1af2d86ebdb4a5f4d9b8a9756ef26e.xlfgrmvvlj.acm-validations.aws` (사이트, Amplify)
 
