@@ -36,17 +36,21 @@ export async function GET() {
       `- **${t(row)}**: Short-term: ${cell(short)}. Long-term: ${cell(long)}.`,
   );
 
-  const [eur, usd] = await Promise.all([getPrices('EUR'), getPrices('USD')]);
+  const [eur, usd, gbp] = await Promise.all([getPrices('EUR'), getPrices('USD'), getPrices('GBP')]);
   const range = (min: number, max: number, sym: string) =>
     `${sym}${min.toLocaleString('en-US')}–${sym}${max.toLocaleString('en-US')}`;
+  const other = (field: 'short' | 'long') =>
+    [usd && range(usd[`${field}Min`], usd[`${field}Max`], '$'), gbp && range(gbp[`${field}Min`], gbp[`${field}Max`], '£')]
+      .filter(Boolean)
+      .join(', ');
   const prices =
     eur && usd
       ? `## Prices
 
 Estimated totals for the first option at each school (registration fee, tuition and the aah! service & contract fee; the upper end includes a dormitory). ${t('COMPARE_PRICE_NOTE').replace(/<\/?b>/g, '')}
 
-- Short-term: ${range(eur.shortMin, eur.shortMax, '€')} (${range(usd.shortMin, usd.shortMax, '$')})
-- Long-term, per semester: ${range(eur.longMin, eur.longMax, '€')} (${range(usd.longMin, usd.longMax, '$')})
+- Short-term: ${range(eur.shortMin, eur.shortMax, '€')} (${other('short')})
+- Long-term, per semester: ${range(eur.longMin, eur.longMax, '€')} (${other('long')})
 - Estimate for a specific school, duration and housing: ${SITE_URL}/en/plan
 
 `

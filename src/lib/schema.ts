@@ -6,7 +6,7 @@ const ORG_ID = `${SITE_URL}/#organization`;
 const KNOWS_LANGUAGES = [...SUPPORTED_LOCALES, 'ko', 'ja'];
 
 // Markets aah! education Europe targets. ISO 3166-1 alpha-2.
-const AREA_SERVED = ['DE', 'AT', 'CH', 'FR', 'BE', 'LU', 'NL', 'ES', 'IT', 'PT', 'KR'];
+const AREA_SERVED = ['DE', 'AT', 'CH', 'FR', 'BE', 'LU', 'NL', 'ES', 'IT', 'PT', 'GB', 'KR'];
 
 const countryName = new Intl.DisplayNames(['en'], { type: 'region' });
 
