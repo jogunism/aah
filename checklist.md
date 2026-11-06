@@ -65,4 +65,4 @@
 - [x] 통화 선택기에 £, 서버 렌더링·`/api/prices`·`/api/schools`가 GBP 쿠키/쿼리 처리
 - [x] 언어별 기본 통화는 그대로(EN=USD, 그 외 EUR)
 - [x] tsc·eslint·빌드, 로컬에서 GBP 쿠키로 £ 표시 확인
-- [ ] aah.api 7차 배포 후 master 병합 → Amplify 배포, 라이브 GBP 금액 확인
+- [x] aah.api 7차 배포 후 master 병합(709f18e) → Amplify 배포, 라이브 GBP 시작가 £700(단기)·£1,080(장기) 확인
