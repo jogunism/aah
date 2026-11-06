@@ -174,3 +174,7 @@
 - 네 페이지가 동적이던 이유는 통화 쿠키(`cookies()`), 언어 헤더(`headers()`로 `x-locale` 읽기), `force-dynamic`, plan의 쿼리 파라미터였다.
 - 서버는 언어 기본 통화(EN=USD, 그 외 EUR)로만 그리고, 방문자가 고른 통화는 브라우저에서 다시 불러온다. 쿠키 통화가 기본과 다르면 틀린 숫자가 보였다 바뀌지 않도록 맞는 가격을 받을 때까지 가격 자리를 비워 둔다(사용자 결정). plan의 `program`, `school` 쿼리도 브라우저에서 읽고, 쿼리가 있으면 읽을 때까지 계산기 자리를 비워 둔다.
 - 재생성 주기는 1시간(`revalidate = 3600`, 사용자 결정). 환율은 원래 3시간마다, 학비는 주 1회 바뀌어서 표시 지연은 작다. 홈의 `refreshCurrency()`는 재생성할 때만 실행된다.
+- 깜빡임 처리 방식. 레이아웃 `<head>`의 인라인 스크립트가 첫 화면 전에 쿠키 통화를 `html[data-cur]`에, `/plan`에 `program`·`school` 쿼리가 있으면 `html[data-plan-query]`에 표시한다. 가격 요소는 자기 통화를 `data-price-cur`(계산기는 `data-price-block`)로 갖고, globals.css가 둘이 다를 때 자리 표시를 한다. 4초 뒤에는 그대로 보여서, 가격을 못 받아와도 영원히 숨지 않는다. 통화를 바꾸면 `currencyStore.setCurrency`가 `data-cur`도 바꾼다.
+- `/plan`은 Suspense 대체 화면에 기본값 계산기(`trackOpen={false}`)를 두고, 실제 계산기는 `PlanBuilderFromQuery`가 `useSearchParams`로 쿼리를 읽는다. 정적 HTML에 계산기가 그대로 들어가고, 학교 데이터는 두 번 실리지 않는다(HTML 크기가 전과 같음).
+- 배포 결과(2026-11-06). 네 페이지와 가격 라우트가 CloudFront 캐시로 응답하고, 첫 바이트가 0.15~0.48초에서 약 0.05초로 줄었다. 빌드할 때 Lambda 동시 실행이 최대 25까지 올라간다(예약 50).
+- 이 Chrome에서 운영·로컬 모두 React hydration 에러 #418이 난다. 이번 변경 전부터 있었고, 메시지에 보이는 `bis_skin_checked` 속성은 브라우저 확장 프로그램이 넣은 것이다. 확장 프로그램이 없는 브라우저에서 확인이 필요하다.
