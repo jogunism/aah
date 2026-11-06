@@ -161,3 +161,7 @@
 - 2026-11-06에 `JWT_SECRET`을 교체했다. 교체 순서는 이렇다. 새 시크릿으로 `{ username: "hyunwoo_cho" }` 토큰을 만든다. Amplify 앱 환경 변수 `NEXT_PUBLIC_API_TOKEN`을 바꾸고 master RELEASE 빌드를 돌린다. 빌드가 SUCCEED 되는 즉시 Lambda `JWT_SECRET`을 바꾼다. 이 순서면 끊기는 시간이 몇 초다(이번엔 6초). 토큰은 빌드할 때 서버 번들에 들어가므로 Amplify 변수만 바꾸고 빌드를 안 하면 반영되지 않는다.
 - 두 환경 변수 모두 `update-app`/`update-function-configuration`이 전체를 덮어쓰므로, 기존 값을 받아 한 키만 바꾼 JSON으로 넣는다. 시크릿 원문은 어디에도 따로 보관하지 않는다. 잃어버리면 같은 방법으로 다시 교체한다. 로컬 `aah/.env.local`의 토큰도 새 값으로 바꿔 두었다.
 - 홈 페이지가 렌더링될 때마다 `PUT /currency`를 불러서 5분 캐시를 거치지 않았다. 봇이 홈을 긁으면 API Gateway 초당 30 제한을 이 호출이 다 써서 가격 조회가 429로 실패할 수 있다. 서버 인스턴스당 5분에 한 번만 부르게 했다. API는 환율이 3시간 넘었을 때만 실제로 갱신한다.
+
+## 메일 발송과 DMARC (2026-11-06)
+- API(aah.api `email.service.ts`)는 Gmail SMTP(studio.jogunism@gmail.com 계정)로 `from: contact@aah.education` 메일을 보낸다(문의 알림, 구독 등). 이 메일은 SPF(Cloudflare 라우팅만 포함)도, DKIM(gmail.com 서명)도 aah.education과 정렬되지 않아 DMARC를 통과하지 못한다.
+- 그래서 DMARC는 `p=none`(보고만)으로만 둔다. `quarantine`/`reject`로 올리면 고객에게 가는 메일이 스팸함으로 가거나 차단된다. 올리려면 먼저 aah.education 도메인으로 DKIM 서명하는 발송 경로(Google Workspace, SES 등)로 바꿔야 한다.
