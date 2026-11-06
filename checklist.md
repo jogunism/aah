@@ -94,5 +94,5 @@
 - [x] 색 대비 WCAG AA: 브랜드 빨강 #D8484D → #C73E43, 상담 박스 정보 칸 bg-white/12 → bg-black/10·글자 불투명, 문의 폼 회색·안내 문구 한 단계 진하게(홈·plan·long·de 접근성 100, 대비 실패 0)
 - [x] 공유 이미지 1200×630 `og.jpg`(main.jpg 가운데를 1.91:1로 잘라 축소)
 - [x] 서비스 지역에 GB, llms.txt 가격에 £ 추가
-- [ ] master 병합·배포 후 라이브 확인
+- [x] master 병합·배포(5aa2aaf, Amplify #124) 후 라이브 확인: 프로그램 10개 페이지 새 title·description·Course(offers·PT60H/PT200H·South Korea), og.jpg, GB, £, #c73e43, 홈 SEO 100·접근성 100
 - [ ] Bing Webmaster Tools 등록(사용자 계정, GSC에서 가져오기)
