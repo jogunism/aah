@@ -4,6 +4,8 @@
 // entry below. Sitemap, hreflang, OG locale, language switcher, and route
 // regex all derive from SUPPORTED_LOCALES.
 
+import type { Currency } from '@/lib/currency';
+
 export const SUPPORTED_LOCALES = ['en', 'de', 'fr', 'es', 'it'] as const;
 export type Locale = (typeof SUPPORTED_LOCALES)[number];
 
@@ -11,7 +13,7 @@ export const DEFAULT_LOCALE: Locale = 'en';
 
 export const LOCALE_META: Record<
   Locale,
-  { label: string; ogLocale: string; currency: 'USD' | 'EUR' }
+  { label: string; ogLocale: string; currency: Currency }
 > = {
   en: { label: '🇺🇸 EN', ogLocale: 'en_US', currency: 'USD' },
   de: { label: '🇩🇪 DE', ogLocale: 'de_DE', currency: 'EUR' },

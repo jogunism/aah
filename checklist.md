@@ -59,3 +59,10 @@
 - [x] 모바일·접근성 점검
 - [x] master 병합 → Amplify 배포 확인 (#109 성공, 2026-11-03 09:28, 라이브 200·가격·/plan·사이트맵 확인)
 - [x] Search Console 사이트맵 재제출·/plan 색인 요청(사용자, 2026-11-03)
+
+## 9. 영국 파운드(GBP) 추가
+- [x] 통화 목록·기호를 `src/lib/currency.ts` 한 곳으로 모으고 GBP(£) 추가
+- [x] 통화 선택기에 £, 서버 렌더링·`/api/prices`·`/api/schools`가 GBP 쿠키/쿼리 처리
+- [x] 언어별 기본 통화는 그대로(EN=USD, 그 외 EUR)
+- [x] tsc·eslint·빌드, 로컬에서 GBP 쿠키로 £ 표시 확인
+- [ ] aah.api 7차 배포 후 master 병합 → Amplify 배포, 라이브 GBP 금액 확인

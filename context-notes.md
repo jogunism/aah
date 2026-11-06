@@ -144,3 +144,11 @@
 - ACM 인증서 검증 CNAME이 Route 53 영역에만 있고 Cloudflare에는 없어서 `api.aah.education` 인증서(2026-12-17 만료) 갱신이 PENDING_VALIDATION에 멈춰 있었다. 사이트 인증서(Amplify 관리형, 2027-01-01 만료)도 같은 상태다. 두 CNAME을 Cloudflare에 DNS only로 넣어야 한다.
   - `_8f7810505e810d03b9184c16da638884` → `_8eba74fddbb637f355da9b51ff0d2ba4.xlfgrmvvlj.acm-validations.aws` (API, ACM eu-central-1)
   - `_07d797fdbbb4539792ceab6556341b5e` → `_2e1af2d86ebdb4a5f4d9b8a9756ef26e.xlfgrmvvlj.acm-validations.aws` (사이트, Amplify)
+
+## 영국 파운드(GBP)
+
+- GBP를 통화 선택지로만 추가했다. 언어별 기본 통화는 바꾸지 않는다(사용자 결정 2026-11-06). 영국 접속자 자동 감지는 하지 않는다.
+- 금액은 API가 유로 기준으로 계산한다(aah.api 7차). 엔화 → 유로(10 단위 올림) → USD/GBP(10 단위 반올림)이고, 수수료도 €450/€350을 환산한다. 그래서 통화를 바꿔도 같은 가치에서 몇 유로 안쪽으로만 차이 난다.
+- 통화 목록이 7개 파일에 `'USD' | 'EUR'`로 따로 적혀 있어서 `src/lib/currency.ts`(목록, 기호, `isCurrency`)로 모았다. 통화를 또 추가할 때는 여기와 통화 선택기 아이콘, aah.api만 고치면 된다.
+- 반드시 aah.api를 먼저 배포한다. API가 GBP를 모르면 USD 숫자에 £가 붙는다.
+- FAQ 11번의 €450/€350 문구는 그대로 둔다. 유로가 기준 통화라서 맞는 설명이다.

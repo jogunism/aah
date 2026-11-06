@@ -1,6 +1,7 @@
 import { create } from 'zustand';
+import type { Currency } from '@/lib/currency';
 
-export type Currency = 'EUR' | 'USD';
+export type { Currency };
 
 interface CurrencyState {
   currency: Currency;

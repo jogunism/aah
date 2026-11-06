@@ -22,11 +22,10 @@ import useContactUsStore from '@/store/contactusStore';
 import { fetchSchools } from '@/api/local';
 // Utils
 import { formatPrice } from '@/utils';
+import { CURRENCY_SYMBOL, type Currency } from '@/lib/currency';
 import BoldText from '@/components/common/BoldText';
 // Analytics
 import { trackTuitionCalculationOpen, trackTuitionCalculationSubmit, event } from '@/lib/gtag';
-
-type Currency = 'USD' | 'EUR';
 
 interface PlanBuilderProps {
   lang: string;
@@ -90,7 +89,7 @@ export default function PlanBuilder({
   const [stayKey, setStayKey] = useState(SCHOOL_ONLY); // SCHOOL_ONLY or a dormitory name
   const [open, setOpen] = useState({ tuition: false, fee: false }); // expanded summary rows
 
-  const symbol = list.currency === 'USD' ? '$' : '€';
+  const symbol = CURRENCY_SYMBOL[list.currency];
   const money = (value: number) => `${symbol}${formatPrice(value, lang)}`;
   const moneyRange = (range: PriceRange) =>
     range.min === range.max ? money(range.max) : `${money(range.min)} - ${money(range.max)}`;

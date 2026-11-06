@@ -8,10 +8,9 @@ import { useCurrencyStore } from '@/store/currencyStore';
 import { fetchSchools } from '@/api/local';
 import { formatPrice } from '@/utils';
 import type { University } from '@/types/constants';
+import { CURRENCY_SYMBOL as SYMBOL, type Currency } from '@/lib/currency';
 
-type Currency = 'USD' | 'EUR';
 type Program = 'short' | 'long';
-const SYMBOL: Record<Currency, string> = { USD: '$', EUR: '€' };
 
 const priceOf = (s: University, program: Program) => (program === 'short' ? s.priceShort : s.priceLong);
 

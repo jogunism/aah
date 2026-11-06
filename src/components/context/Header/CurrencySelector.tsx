@@ -4,15 +4,13 @@ import { useEffect, useState, useRef, useCallback } from 'react';
 import { getCookie, setCookie } from '@/lib/cookie';
 import { trackCurrencyChange } from '@/lib/gtag';
 import { useCurrencyStore, type Currency } from '@/store/currencyStore';
-import { FaDollarSign, FaEuroSign } from 'react-icons/fa';
+import { FaDollarSign, FaEuroSign, FaPoundSign } from 'react-icons/fa';
+import { isCurrency } from '@/lib/currency';
 import { LOCALE_META, isSupportedLocale } from '@/lib/locales';
 
 interface CurrencySelectorProps {
   lang: string;
 }
-
-const isCurrency = (value: string | undefined): value is Currency =>
-  value === 'EUR' || value === 'USD';
 
 export default function CurrencySelector({ lang }: CurrencySelectorProps) {
   const { currency, setCurrency } = useCurrencyStore();
@@ -22,6 +20,7 @@ export default function CurrencySelector({ lang }: CurrencySelectorProps) {
   const currencies: { code: Currency; label: React.ReactNode }[] = [
     { code: 'USD', label: <FaDollarSign /> },
     { code: 'EUR', label: <FaEuroSign /> },
+    { code: 'GBP', label: <FaPoundSign /> },
   ];
 
   const selectedCurrency = currencies.find(c => c.code === currency);

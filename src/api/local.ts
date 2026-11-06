@@ -1,7 +1,6 @@
 // 브라우저에서 같은 출처의 /api 프록시로 통화별 가격·학교 목록을 불러오는 함수
 import type { Prices, University } from '@/types/constants';
-
-type Currency = 'USD' | 'EUR';
+import type { Currency } from '@/lib/currency';
 
 export const fetchPrices = async (currency: Currency): Promise<Prices | null> => {
   try {

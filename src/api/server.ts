@@ -3,6 +3,7 @@ import { cache } from 'react';
 import { retrieveUniversityList, retrieveAppVersion } from '@/api';
 import http from '@/lib/http';
 import type { Prices, University } from '@/types/constants';
+import type { Currency } from '@/lib/currency';
 
 /**
  * Server-side data helpers.
@@ -36,7 +37,7 @@ export const getAppVersion = cache(() =>
  * Min/max program prices in the given currency. The API reads the `currency`
  * cookie, so pass it explicitly on server requests.
  */
-export const getPrices = cache((currency: 'USD' | 'EUR') =>
+export const getPrices = cache((currency: Currency) =>
   remember(
     `prices:${currency}`,
     async (): Promise<Prices | null> => {
@@ -57,7 +58,7 @@ export const getPrices = cache((currency: 'USD' | 'EUR') =>
 /**
  * All schools (universities + language schools) with prices in the given currency.
  */
-export const getSchools = cache((currency: 'USD' | 'EUR') =>
+export const getSchools = cache((currency: Currency) =>
   remember(
     `schools:${currency}`,
     async (): Promise<University[]> => {

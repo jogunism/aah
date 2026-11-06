@@ -6,9 +6,7 @@ import { useCurrencyStore } from '@/store/currencyStore';
 import { fetchPrices } from '@/api/local';
 import { formatPrice } from '@/utils';
 import type { Prices } from '@/types/constants';
-
-type Currency = 'USD' | 'EUR';
-const SYMBOL: Record<Currency, string> = { USD: '$', EUR: '€' };
+import { CURRENCY_SYMBOL as SYMBOL, type Currency } from '@/lib/currency';
 
 // One shared request per currency for all LivePrice instances on the page
 const inflight: Partial<Record<Currency, Promise<Prices | null>>> = {};
