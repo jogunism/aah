@@ -74,3 +74,13 @@
 - [x] 로컬에서 세 라우트가 잘못된 입력에 400을 돌려주는지 확인(실제 메일 발송 없이)
 - [x] aah.api 8차 배포 후 master 병합(efa2dd1) → Amplify 배포, 라이브 세 라우트 400, 홈 JS 청크 15개에 API 주소 0건
 - [x] `JWT_SECRET` 교체, 새 토큰을 Amplify 환경 변수에 설정(2026-11-06 13:13 UTC, Amplify #122). 예전 토큰 403, 새 토큰 200, 라이브 가격·구독 라우트 정상
+
+## 11. 페이지 정적 캐시(ISR) 전환
+목표: 홈, `/plan`, `/programs/long`, `/programs/short`를 요청마다 렌더링하지 않고 1시간마다 다시 만드는 정적 페이지로 바꿔 CloudFront 캐시로 응답한다(봇 트래픽 비용 상한, 응답 속도).
+- [ ] 언어를 `headers()` 대신 props로 전달(Footer, Introduce, Universities, Process, Faq), `getLanguageFromHeaders` 제거
+- [ ] 서버 렌더링 통화는 언어 기본 통화로 고정(`cookies()` 제거)
+- [ ] 쿠키 통화가 기본과 다르면 맞는 가격을 불러올 때까지 가격 자리 표시(LivePrice, SchoolPrices, PlanBuilder)
+- [ ] `/plan`의 `program`, `school` 쿼리를 브라우저에서 읽고, 쿼리가 있으면 읽기 전까지 계산기 자리 표시
+- [ ] 네 페이지 `force-dynamic` 제거, `revalidate = 3600`
+- [ ] tsc·eslint·빌드(네 페이지가 ●), 로컬에서 통화 전환·plan 링크·5개 언어 확인
+- [ ] 배포 후 두 번째 요청 `x-cache: Hit`, 응답 시간 비교, 빌드·재생성 때 API 429 없는지 확인

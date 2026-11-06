@@ -166,3 +166,11 @@
 - API(aah.api `email.service.ts`)는 Gmail SMTP(studio.jogunism@gmail.com 계정)로 `from: contact@aah.education` 메일을 보낸다(문의 알림, 구독 등). 이 메일은 SPF(Cloudflare 라우팅만 포함)도, DKIM(gmail.com 서명)도 aah.education과 정렬되지 않아 DMARC를 통과하지 못한다.
 - 2026-11-06 Cloudflare에 `_dmarc` TXT `v=DMARC1; p=none; rua=mailto:contact@aah.education`을 넣었다. 받는 메일(Cloudflare 이메일 라우팅 → 개인 Gmail)에는 영향이 없다.
 - 그래서 DMARC는 `p=none`(보고만)으로만 둔다. `quarantine`/`reject`로 올리면 고객에게 가는 메일이 스팸함으로 가거나 차단된다. 올리려면 먼저 aah.education 도메인으로 DKIM 서명하는 발송 경로(Google Workspace, SES 등)로 바꿔야 한다.
+
+## 페이지 정적 캐시(ISR) 전환 (2026-11-06)
+
+- Cloudflare 프록시는 11-03의 지연(Cloudflare FRA → CloudFront 시애틀, 요청마다 약 1초) 때문에 다시 켜지 않는다. Amplify WAF는 월 약 $21 이상(연동비 $15 + Web ACL $5 + 규칙)이라 지금 월 비용(약 $2)에 비해 크다. 대신 페이지를 정적 캐시로 바꿔, 봇이 몰려도 CloudFront가 응답하게 한다.
+- 근거: 11-03 실측으로 SSR 요청 1건이 약 0.25 GB-초다. 초당 50건이 하루 이어지면 Amplify 비용이 약 $60이고, 예산 알림은 비용 데이터가 늦게 들어와 그보다 늦다.
+- 네 페이지가 동적이던 이유는 통화 쿠키(`cookies()`), 언어 헤더(`headers()`로 `x-locale` 읽기), `force-dynamic`, plan의 쿼리 파라미터였다.
+- 서버는 언어 기본 통화(EN=USD, 그 외 EUR)로만 그리고, 방문자가 고른 통화는 브라우저에서 다시 불러온다. 쿠키 통화가 기본과 다르면 틀린 숫자가 보였다 바뀌지 않도록 맞는 가격을 받을 때까지 가격 자리를 비워 둔다(사용자 결정). plan의 `program`, `school` 쿼리도 브라우저에서 읽고, 쿼리가 있으면 읽을 때까지 계산기 자리를 비워 둔다.
+- 재생성 주기는 1시간(`revalidate = 3600`, 사용자 결정). 환율은 원래 3시간마다, 학비는 주 1회 바뀌어서 표시 지연은 작다. 홈의 `refreshCurrency()`는 재생성할 때만 실행된다.
