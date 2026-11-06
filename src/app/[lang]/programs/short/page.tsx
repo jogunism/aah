@@ -12,6 +12,7 @@ import {
   DEFAULT_LOCALE,
 } from '@/lib/locales';
 import { buildCourseSchema, buildBreadcrumbSchema } from '@/lib/schema';
+import { getPrices } from '@/api/server';
 
 export const revalidate = 3600; // static, rebuilt hourly (prices follow exchange rates)
 
@@ -24,17 +25,19 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   const lang = isSupportedLocale(langParam) ? langParam : DEFAULT_LOCALE;
   const { t } = await getTranslation(lang);
   const path = '/programs/short';
+  const title = t('PROGRAM_SHORT_META_TITLE');
+  const description = t('PROGRAM_SHORT_META_DESC');
 
   return {
-    title: t('PROGRAM_MODAL_SHORT_TERM'),
-    description: t('PROGRAM_MODAL_SHORT_TERM_TITLE'),
+    title,
+    description,
     alternates: {
       canonical: `${SITE_URL}/${lang}${path}`,
       languages: buildHreflangMap(path),
     },
     openGraph: {
-      title: t('PROGRAM_MODAL_SHORT_TERM'),
-      description: t('PROGRAM_MODAL_SHORT_TERM_TITLE'),
+      title,
+      description,
       url: `${SITE_URL}/${lang}${path}`,
       siteName: 'aah! education',
       type: 'article',
@@ -46,8 +49,8 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
     },
     twitter: {
       card: 'summary_large_image',
-      title: t('PROGRAM_MODAL_SHORT_TERM'),
-      description: t('PROGRAM_MODAL_SHORT_TERM_TITLE'),
+      title,
+      description,
       images: [OG_IMAGE.url],
     },
   };
@@ -56,14 +59,15 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
 export default async function ShortProgramPage({ params }: PageProps) {
   const { lang: langParam } = await params;
   const lang = isSupportedLocale(langParam) ? langParam : DEFAULT_LOCALE;
-  const { t } = await getTranslation(lang);
+  const [{ t }, eur] = await Promise.all([getTranslation(lang), getPrices('EUR')]);
 
   const courseSchema = buildCourseSchema({
     lang,
     path: '/programs/short',
     name: t('PROGRAM_MODAL_SHORT_TERM'),
-    description: t('PROGRAM_MODAL_SHORT_TERM_TITLE'),
-    durationISO: 'P3W',
+    description: t('PROGRAM_SHORT_META_DESC'),
+    workloadISO: 'PT60H', // university course: 3 weeks, Mon–Fri, 4 hours a day
+    priceFromEur: eur?.shortMin ?? null,
   });
 
   const breadcrumbSchema = buildBreadcrumbSchema(lang, [

@@ -76,13 +76,15 @@ export const buildCourseSchema = ({
   path,
   name,
   description,
-  durationISO,
+  workloadISO,
+  priceFromEur,
 }: {
   lang: Locale;
   path: string;
   name: string;
   description: string;
-  durationISO: string; // ISO 8601 duration, e.g. "P3W"
+  workloadISO: string; // class hours, ISO 8601 duration, e.g. "PT60H"
+  priceFromEur: number | null; // lowest estimated total; omitted when the API has no price
 }) => ({
   '@context': 'https://schema.org',
   '@type': 'Course',
@@ -92,19 +94,18 @@ export const buildCourseSchema = ({
   inLanguage: lang,
   educationalLevel: 'Beginner to Advanced',
   teaches: 'Korean language and culture',
-  provider: { '@id': ORG_ID },
+  provider: { '@type': 'Organization', '@id': ORG_ID, name: 'aah! education', sameAs: SITE_URL },
+  ...(priceFromEur
+    ? { offers: { '@type': 'Offer', category: 'Paid', price: priceFromEur, priceCurrency: 'EUR' } }
+    : {}),
   hasCourseInstance: {
     '@type': 'CourseInstance',
-    courseMode: 'In-person',
-    courseWorkload: durationISO,
+    courseMode: 'Onsite',
+    courseWorkload: workloadISO,
     location: {
       '@type': 'Place',
-      name: 'Seoul, South Korea',
-      address: {
-        '@type': 'PostalAddress',
-        addressLocality: 'Seoul',
-        addressCountry: 'KR',
-      },
+      name: 'South Korea',
+      address: { '@type': 'PostalAddress', addressCountry: 'KR' },
     },
   },
 });
