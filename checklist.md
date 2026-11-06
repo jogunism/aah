@@ -87,8 +87,8 @@
 
 ## 12. SEO·GEO 개선 (2026-11-06 재점검 후속)
 목표: 프로그램 페이지가 검색 결과와 AI 답변에서 "한국 어학연수·기간·비자"로 잡히게 하고, Course 리치 결과 조건을 채운다.
-- [ ] 프로그램 페이지 검색용 title·description 키 추가(5개 언어), 메타데이터·OG·트위터에 적용
-- [ ] Course 구조화 데이터: offers(EUR 최저가, 가격 없으면 생략), 위치를 한국 전체로, courseWorkload를 수업 시간으로, provider 이름, 설명을 새 description으로
-- [ ] 홈 "Learn more" 링크에 화면에 안 보이는 프로그램 이름 추가
-- [ ] tsc·eslint·빌드, 로컬에서 5개 언어 메타·JSON-LD·Lighthouse SEO 확인
+- [x] 프로그램 페이지 검색용 title·description 키 추가(5개 언어), 메타데이터·OG·트위터에 적용
+- [x] Course 구조화 데이터: offers(EUR 최저가, 가격 없으면 생략), 위치를 한국 전체로, courseWorkload를 수업 시간으로, provider 이름, 설명을 새 description으로
+- [x] 홈 "Learn more" 링크에 화면에 안 보이는 프로그램 이름 추가
+- [x] tsc·eslint·빌드, 로컬에서 5개 언어 메타·JSON-LD·Lighthouse SEO 확인(홈 SEO 92 → 100)
 - [ ] 배포 후 라이브 확인

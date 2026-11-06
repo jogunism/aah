@@ -185,3 +185,6 @@
 - Lighthouse 모바일(로컬, 12.6.1): 홈 perf 95·SEO 92·a11y 96, long 99·100·97, plan 94·100·96. CLS 0, TBT 0.
 - 개선 후보: 프로그램 페이지 title에 Korea/Korean이 없고 description이 h1 문구(61~76자)라 검색 문구가 약하다. Course 구조화 데이터에 offers(가격)가 없어 Google 강좌 리치 결과 대상이 아니고, location이 Seoul(지방 대학 포함과 불일치), courseWorkload가 P3M/P3W(기간을 넣은 오용)다. 홈 "Learn more" 링크 2개가 설명 없는 링크 문구라 SEO 92의 원인이다. 브랜드 빨강 #d8484d와 흰색 대비가 4.23:1로 WCAG AA(4.5:1)에 못 미친다. og:image는 전 페이지 공통 1920×843(권장 1200×630 비율과 다름)이다. GBP를 추가했지만 llms.txt 가격은 EUR·USD뿐이고 areaServed에 GB가 없다. sitemap lastmod가 모든 URL에서 빌드 시각이다.
 - PageSpeed Insights API는 키 없이 쓰면 하루 할당량이 금방 찬다. 로컬 `npx lighthouse@12.6.1 --chrome-flags=--headless=new`로 대신한다.
+- 2026-11-06 개선 1~3번 반영(renewal, 배포 전). 프로그램 페이지 title·description은 검색용 키(`PROGRAM_SHORT/LONG_META_TITLE/DESC`)를 따로 두고 h1 문구(`PROGRAM_MODAL_*_TITLE`)는 화면용으로 남겼다. 가격은 매시간 바뀌므로 description 문구에 넣지 않고 Course `offers`에만 넣는다(EUR 최저가, API 실패 시 생략, ISR 1시간마다 갱신). description은 169~187자라 검색 결과에서 끝이 잘릴 수 있지만 핵심(기간·형태·비자)을 앞에 뒀다.
+- Course `courseWorkload`는 기간이 아니라 수업 시간이다. 대학 기준으로 단기 PT60H(3주×주5일×4시간), 장기 PT200H(학기당 약 200시간)를 넣었다. `courseMode`는 Google 허용값 `Onsite`를 쓴다. 위치는 지방 대학이 있어 도시 없이 한국(KR)만 둔다. provider는 다른 스크립트의 `@id` 참조만으로는 Google이 못 읽을 수 있어 이름을 같이 넣었다.
+- 로컬 확인은 3100이 아니라 3101로 띄웠다. 3100에는 11-03부터 떠 있는 next-server(다른 세션 것일 수 있음)가 있어서, 다시 빌드하면 그 서버가 500을 낸다. 남의 프로세스는 끄지 않는다.
