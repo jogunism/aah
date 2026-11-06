@@ -5,5 +5,8 @@ import { isCurrency } from '@/lib/currency';
 export async function GET(req: Request) {
   const param = new URL(req.url).searchParams.get('currency');
   const currency = isCurrency(param) ? param : 'USD';
-  return Response.json(await getPrices(currency));
+  const data = await getPrices(currency);
+  const ok = Array.isArray(data) ? data.length > 0 : !!data;
+  // Same for every visitor of a currency: let the CDN answer for 5 minutes (not when the API failed)
+  return Response.json(data, ok ? { headers: { 'Cache-Control': 'public, s-maxage=300' } } : undefined);
 }

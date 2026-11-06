@@ -6,8 +6,8 @@ const STEPS = [1, 2, 3, 4, 5, 6] as const;
 /**
  * Study abroad process — step-by-step journey from inquiry to arrival
  */
-export default async function Process() {
-  const { t } = await getTranslation();
+export default async function Process({ lang }: { lang: string }) {
+  const { t } = await getTranslation(lang);
 
   return (
     <Section id="process">

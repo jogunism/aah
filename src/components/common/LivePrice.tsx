@@ -54,7 +54,7 @@ export default function LivePrice({
   return (
     <>
       {before}
-      <b className={amountClassName}>
+      <b className={amountClassName} data-price-cur={state.currency}>
         {SYMBOL[state.currency]}
         {formatPrice(amount, lang)}
       </b>

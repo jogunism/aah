@@ -177,7 +177,7 @@ export default async function ProgramPage({
         </div>
       </main>
 
-      <Footer />
+      <Footer lang={lang} />
     </div>
   );
 }

@@ -9,8 +9,8 @@ import { FAQ_ITEMS } from '@/lib/faq';
  * Server-rendered with native <details> so every answer is in the HTML for
  * search engines and AI crawlers, plus FAQPage structured data.
  */
-export default async function Faq() {
-  const { t } = await getTranslation();
+export default async function Faq({ lang }: { lang: string }) {
+  const { t } = await getTranslation(lang);
 
   const items = FAQ_ITEMS.map((n) => ({
     question: t(`FAQ_Q${n}`),

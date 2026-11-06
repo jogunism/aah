@@ -33,6 +33,7 @@ interface PlanBuilderProps {
   initialSchool?: string;
   initial: University[];
   initialCurrency: Currency;
+  trackOpen?: boolean; // false for the static placeholder rendered before the URL query is read
 }
 
 const SCHOOL_ONLY = '__school_only__';
@@ -73,6 +74,7 @@ export default function PlanBuilder({
   initialSchool,
   initial,
   initialCurrency,
+  trackOpen = true,
 }: PlanBuilderProps) {
   const { i18n } = useTranslation();
   const t = i18n.getFixedT(lang);
@@ -300,10 +302,10 @@ export default function PlanBuilder({
    * lifecycle hooks
    */
   useEffect(() => {
-    trackTuitionCalculationOpen('plan_page');
+    if (trackOpen) trackTuitionCalculationOpen('plan_page');
     // The estimate belongs to this page's form; don't re-inject it into the next page's form
     return () => clearPrefill();
-  }, [clearPrefill]);
+  }, [clearPrefill, trackOpen]);
 
   // Refetch when the visitor switches currency
   useEffect(() => {
@@ -374,7 +376,7 @@ export default function PlanBuilder({
   );
 
   return (
-    <div className="grid lg:grid-cols-[1fr_380px] lg:gap-14 items-start">
+    <div className="grid lg:grid-cols-[1fr_380px] lg:gap-14 items-start" data-price-block={list.currency}>
       {/* Choices */}
       <div className="space-y-10 mb-10 lg:mb-0">
         {/* 1. Program */}

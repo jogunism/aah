@@ -9,8 +9,8 @@ import { getAppVersion } from '@/api/server';
 /**
  * Footer
  */
-export default async function Footer() {
-  const { t, lang } = await getTranslation();
+export default async function Footer({ lang }: { lang: string }) {
+  const { t } = await getTranslation(lang);
   const appVersion = await getAppVersion();
 
   const linkClass = 'hover:text-ink transition-colors';

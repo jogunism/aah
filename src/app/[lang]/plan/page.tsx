@@ -3,7 +3,9 @@ import { Metadata } from 'next';
 import Header from '@/components/context/Header';
 import Footer from '@/components/context/Footer';
 import Contactus from '@/components/context/Contactus';
+import { Suspense } from 'react';
 import PlanBuilder from '@/components/plan/PlanBuilder';
+import PlanBuilderFromQuery from '@/components/plan/PlanBuilderFromQuery';
 import { getTranslation } from '@/lib/i18n.server';
 import { getServerCurrency } from '@/lib/currency.server';
 import { getSchools } from '@/api/server';
@@ -17,11 +19,10 @@ import {
   DEFAULT_LOCALE,
 } from '@/lib/locales';
 
-export const dynamic = 'force-dynamic';
+export const revalidate = 3600; // static, rebuilt hourly (prices follow exchange rates)
 
 interface PageProps {
   params: Promise<{ lang: string }>;
-  searchParams: Promise<{ program?: string; school?: string }>;
 }
 
 const PATH = '/plan';
@@ -51,10 +52,9 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   };
 }
 
-export default async function PlanPage({ params, searchParams }: PageProps) {
+export default async function PlanPage({ params }: PageProps) {
   const { lang: langParam } = await params;
   const lang = isSupportedLocale(langParam) ? langParam : DEFAULT_LOCALE;
-  const { program, school } = await searchParams;
   const { t } = await getTranslation(lang);
   const currency = await getServerCurrency(lang);
   const schools = await getSchools(currency);
@@ -72,18 +72,19 @@ export default async function PlanPage({ params, searchParams }: PageProps) {
           <p className="mt-3 mb-10 md:mb-12 max-w-[680px] text-[17px] md:text-xl leading-relaxed text-ink-2">
             {t('PLAN_LEAD')}
           </p>
-          <PlanBuilder
-            lang={lang}
-            initialProgram={program === 'long' ? 'long' : 'short'}
-            initialSchool={school}
-            initial={schools}
-            initialCurrency={currency}
-          />
+          {/* The static HTML holds the default builder; the URL query (?program=&school=) is read in the browser */}
+          <Suspense
+            fallback={
+              <PlanBuilder lang={lang} initialProgram="short" initial={schools} initialCurrency={currency} trackOpen={false} />
+            }
+          >
+            <PlanBuilderFromQuery lang={lang} initial={schools} initialCurrency={currency} />
+          </Suspense>
         </section>
         <Contactus />
       </main>
 
-      <Footer />
+      <Footer lang={lang} />
     </div>
   );
 }

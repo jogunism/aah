@@ -17,11 +17,13 @@ import { getTranslation } from '@/lib/i18n.server';
 // API
 import { refreshCurrency } from '@/api/server';
 
+export const revalidate = 3600; // static, rebuilt hourly (prices follow exchange rates)
+
 export default async function Home({ params }: { params: Promise<{ lang: string }> }) {
   const { lang } = await params;
   const { t } = await getTranslation(lang);
 
-  // currency
+  // Runs when the page is (re)generated, i.e. at most hourly
   refreshCurrency();
 
   return (
@@ -37,16 +39,16 @@ export default async function Home({ params }: { params: Promise<{ lang: string 
         <Programs lang={lang} />
         <Compare lang={lang} />
         <Included lang={lang} />
-        <Universities />
-        <Introduce />
-        <Process />
+        <Universities lang={lang} />
+        <Introduce lang={lang} />
+        <Process lang={lang} />
         <Instagram />
-        <Faq />
+        <Faq lang={lang} />
         <MailingList />
         <Contactus />
       </main>
 
-      <Footer />
+      <Footer lang={lang} />
       <MobileCtaBar lang={lang} programsLabel={t('NAV_PROGRAMS')} ctaLabel={t('NAV_CTA')} />
     </div>
   );

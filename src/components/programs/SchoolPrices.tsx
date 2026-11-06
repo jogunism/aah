@@ -66,7 +66,7 @@ export default function SchoolPrices({
                   {/* mobile: price under the name */}
                   <p className="sm:hidden mt-1 text-[13px] text-ink-2">
                     {before}
-                    <b className="text-ink">
+                    <b className="text-ink" data-price-cur={state.currency}>
                       {SYMBOL[state.currency]}
                       {formatPrice(priceOf(s, program), lang)}
                     </b>
@@ -76,7 +76,7 @@ export default function SchoolPrices({
                 </div>
                 <p className="hidden sm:block text-sm text-ink-2 text-right whitespace-nowrap">
                   {before}
-                  <b className="text-[17px] text-ink">
+                  <b className="text-[17px] text-ink" data-price-cur={state.currency}>
                     {SYMBOL[state.currency]}
                     {formatPrice(priceOf(s, program), lang)}
                   </b>

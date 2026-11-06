@@ -10,6 +10,8 @@ import GDPRPopup from '@/components/common/GDPRPopup';
 import NavigationProgress from '@/components/common/NavigationProgress';
 import AnalyticsTracker from '@/components/common/AnalyticsTracker';
 
+const PRE_PAINT_SCRIPT = `try{var d=document.documentElement,m=document.cookie.match(/(?:^|; )currency=(USD|EUR|GBP)(?:;|$)/);if(m)d.dataset.cur=m[1];var q=new URLSearchParams(location.search);if(/\\/plan\\/?$/.test(location.pathname)&&(q.has('program')||q.has('school')))d.dataset.planQuery='1'}catch(e){}`;
+
 import {
   SUPPORTED_LOCALES,
   DEFAULT_LOCALE,
@@ -109,7 +111,12 @@ export default async function LangLayout({
   });
 
   return (
-    <html lang={lang} className={inter.variable}>
+    <html lang={lang} className={inter.variable} suppressHydrationWarning>
+      <head>
+        {/* Pages are cached for every visitor, so mark the visitor's currency and /plan query
+            before first paint; globals.css hides prices / the plan builder until they match */}
+        <script dangerouslySetInnerHTML={{ __html: PRE_PAINT_SCRIPT }} />
+      </head>
       <body>
         <script
           type="application/ld+json"

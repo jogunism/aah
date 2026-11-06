@@ -12,5 +12,8 @@ interface CurrencyState {
 export const useCurrencyStore = create<CurrencyState>(set => ({
   currency: 'EUR',
   ready: false,
-  setCurrency: currency => set({ currency, ready: true }),
+  setCurrency: currency => {
+    document.documentElement.dataset.cur = currency; // see globals.css price placeholders
+    set({ currency, ready: true });
+  },
 }));

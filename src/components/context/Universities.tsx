@@ -9,8 +9,8 @@ import type { University } from '@/types/constants';
 /**
  * Univercity list
  */
-export default async function Univercities() {
-  const { t } = await getTranslation();
+export default async function Univercities({ lang }: { lang: string }) {
+  const { t } = await getTranslation(lang);
 
   const universityList: University[] = await getUniversities();
 

@@ -1,5 +1,4 @@
 import i18next, { i18n as I18nInstance } from 'i18next';
-import { headers } from 'next/headers';
 
 import enTranslation from '../../public/locales/en/translation.json';
 import deTranslation from '../../public/locales/de/translation.json';
@@ -7,7 +6,7 @@ import frTranslation from '../../public/locales/fr/translation.json';
 import esTranslation from '../../public/locales/es/translation.json';
 import itTranslation from '../../public/locales/it/translation.json';
 
-import { SUPPORTED_LOCALES, DEFAULT_LOCALE, isSupportedLocale } from './locales';
+import { SUPPORTED_LOCALES, DEFAULT_LOCALE } from './locales';
 
 const resources = {
   en: { translation: enTranslation },
@@ -42,27 +41,12 @@ export const createI18nInstance = (lng: string) => {
   return i18nInstances[lng];
 };
 
-const getLanguageFromHeaders = async (): Promise<string> => {
-  try {
-    const headersList = await headers();
-    const locale = headersList.get('x-locale');
-    if (locale && isSupportedLocale(locale)) {
-      return locale;
-    }
-  } catch {
-    // headers() 호출 실패 시 기본값 사용
-  }
-
-  return DEFAULT_LOCALE;
-};
-
-export const getTranslation = async (lang?: string) => {
-  const resolvedLang = lang || (await getLanguageFromHeaders());
-  const i18n = await createI18nInstance(resolvedLang);
+export const getTranslation = async (lang: string) => {
+  const i18n = await createI18nInstance(lang);
 
   return {
     t: i18n.t.bind(i18n),
-    lang: resolvedLang,
+    lang,
   };
 };
 

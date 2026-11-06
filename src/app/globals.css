@@ -59,3 +59,24 @@ button {
   0% { transform: translateX(-100%); }
   100% { transform: translateX(300%); }
 }
+
+/* Cached pages are rendered in the locale's default currency. When the visitor's currency
+   (html[data-cur], set before paint) differs, show a placeholder instead of the wrong amount
+   until the matching prices arrive. Falls back to the rendered amount after 4s. */
+html[data-cur='USD'] [data-price-cur]:not([data-price-cur='USD']),
+html[data-cur='EUR'] [data-price-cur]:not([data-price-cur='EUR']),
+html[data-cur='GBP'] [data-price-cur]:not([data-price-cur='GBP']) {
+  animation: price-wait 4s steps(1, end) forwards;
+}
+html[data-cur='USD'] [data-price-block]:not([data-price-block='USD']),
+html[data-cur='EUR'] [data-price-block]:not([data-price-block='EUR']),
+html[data-cur='GBP'] [data-price-block]:not([data-price-block='GBP']),
+html[data-plan-query] [data-price-block] {
+  animation: block-wait 4s steps(1, end) forwards;
+}
+@keyframes price-wait {
+  0% { color: transparent; background-color: var(--color-line); border-radius: 6px; }
+}
+@keyframes block-wait {
+  0% { opacity: 0; }
+}

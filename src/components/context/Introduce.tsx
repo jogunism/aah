@@ -5,8 +5,8 @@ import { buttonClass } from '@/components/ui/Button';
 
 const WE_ARE = [1, 2, 3, 4, 5, 6, 7] as const;
 
-export default async function Introduce() {
-  const { t } = await getTranslation();
+export default async function Introduce({ lang }: { lang: string }) {
+  const { t } = await getTranslation(lang);
 
   return (
     <Section id="about" className="bg-soft">

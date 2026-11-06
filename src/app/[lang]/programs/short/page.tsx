@@ -13,7 +13,7 @@ import {
 } from '@/lib/locales';
 import { buildCourseSchema, buildBreadcrumbSchema } from '@/lib/schema';
 
-export const dynamic = 'force-dynamic';
+export const revalidate = 3600; // static, rebuilt hourly (prices follow exchange rates)
 
 interface PageProps {
   params: Promise<{ lang: string }>;
