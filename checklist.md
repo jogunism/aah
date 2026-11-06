@@ -91,4 +91,8 @@
 - [x] Course 구조화 데이터: offers(EUR 최저가, 가격 없으면 생략), 위치를 한국 전체로, courseWorkload를 수업 시간으로, provider 이름, 설명을 새 description으로
 - [x] 홈 "Learn more" 링크에 화면에 안 보이는 프로그램 이름 추가
 - [x] tsc·eslint·빌드, 로컬에서 5개 언어 메타·JSON-LD·Lighthouse SEO 확인(홈 SEO 92 → 100)
-- [ ] 배포 후 라이브 확인
+- [x] 색 대비 WCAG AA: 브랜드 빨강 #D8484D → #C73E43, 상담 박스 정보 칸 bg-white/12 → bg-black/10·글자 불투명, 문의 폼 회색·안내 문구 한 단계 진하게(홈·plan·long·de 접근성 100, 대비 실패 0)
+- [x] 공유 이미지 1200×630 `og.jpg`(main.jpg 가운데를 1.91:1로 잘라 축소)
+- [x] 서비스 지역에 GB, llms.txt 가격에 £ 추가
+- [ ] master 병합·배포 후 라이브 확인
+- [ ] Bing Webmaster Tools 등록(사용자 계정, GSC에서 가져오기)
