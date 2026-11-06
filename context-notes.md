@@ -192,3 +192,5 @@
 - 공유 이미지(OG)는 `public/assets/og.jpg`(1200×630)이고, Organization `image`는 그대로 main.jpg다. main.jpg를 바꾸면 og.jpg도 다시 만든다(`sips --cropToHeightWidth 843 1606` 후 `-z 630 1200`).
 - GBP 추가에 맞춰 서비스 지역(areaServed)에 GB를 넣고, llms.txt 가격은 € 기준에 $·£를 괄호로 덧붙인다. GBP 가격을 못 받으면 £만 빠진다.
 - 2026-11-06 master 5aa2aaf(Amplify #124) 배포 후 라이브 홈 Lighthouse는 SEO 100·접근성 100·권장사항 100이다. 성능은 5회 89~93(LCP 3.2~3.6초, Hero 이미지의 Render Delay가 큼)으로, 같은 날 앞선 1회 측정 95(LCP 2.4초)보다 낮다. 이번 변경은 Hero 이미지·스크립트를 건드리지 않았고 모의 측정 편차가 커서 원인은 미확정이다. 다음 성능 점검 때 같은 조건으로 여러 번 재서 중앙값으로 비교한다.
+- 2026-11-06 Bing Webmaster Tools(이미 등록, 8월부터 데이터) 추천 항목. `/`와 `/en`이 제목·설명 중복으로 잡힌 원인은 루트 리다이렉트가 307(임시)이라 `/`를 별개 페이지로 본 것이어서 308(영구)로 바꿨다. 언어 감지 없이 항상 `/en`으로 보내기 때문에 영구가 맞다. 나중에 브라우저 언어로 리다이렉트하게 바꾸면 308이 브라우저에 캐시돼 언어가 고정되므로 그때는 307로 되돌린다. 짧은 제목·설명(`/en/programs/short`)과 `/es` h1 누락은 예전 스캔 기준이라 이미 해결됐다.
+- IndexNow 키는 `public/86df57804e14e64258679c89a8255439.txt`이다. 배포해서 페이지 내용이 바뀌면 `node scripts/indexnow.mjs`로 sitemap URL을 제출한다(Bing·Yandex 등이 공유). 키 파일을 지우면 제출이 거부된다.

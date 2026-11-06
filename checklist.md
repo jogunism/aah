@@ -95,4 +95,7 @@
 - [x] 공유 이미지 1200×630 `og.jpg`(main.jpg 가운데를 1.91:1로 잘라 축소)
 - [x] 서비스 지역에 GB, llms.txt 가격에 £ 추가
 - [x] master 병합·배포(5aa2aaf, Amplify #124) 후 라이브 확인: 프로그램 10개 페이지 새 title·description·Course(offers·PT60H/PT200H·South Korea), og.jpg, GB, £, #c73e43, 홈 SEO 100·접근성 100
-- [ ] Bing Webmaster Tools 등록(사용자 계정, GSC에서 가져오기)
+- [x] Bing Webmaster Tools는 이미 등록돼 있음(8월부터 데이터). 추천 항목 확인
+- [x] 언어 없는 경로 리다이렉트 307 → 308(`/`와 `/en` 제목·설명 중복 지적)
+- [x] IndexNow 키 파일·제출 스크립트 추가
+- [ ] 배포 후 308·키 파일 라이브 확인, IndexNow 제출
