@@ -73,4 +73,4 @@
 - [x] tsc·eslint·빌드, `.next/static`에 토큰·API 주소 0건 확인
 - [x] 로컬에서 세 라우트가 잘못된 입력에 400을 돌려주는지 확인(실제 메일 발송 없이)
 - [x] aah.api 8차 배포 후 master 병합(efa2dd1) → Amplify 배포, 라이브 세 라우트 400, 홈 JS 청크 15개에 API 주소 0건
-- [ ] (콘솔, 사용자) `JWT_SECRET` 교체 후 새 토큰을 Amplify 환경 변수에 설정
+- [x] `JWT_SECRET` 교체, 새 토큰을 Amplify 환경 변수에 설정(2026-11-06 13:13 UTC, Amplify #122). 예전 토큰 403, 새 토큰 200, 라이브 가격·구독 라우트 정상
