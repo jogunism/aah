@@ -1,6 +1,6 @@
 import { create } from 'zustand';
 // APIs
-import { sendContactUs } from '@/api';
+import { sendContactUs } from '@/api/local';
 // constants
 import type { Contactus } from '@/types/constants';
 

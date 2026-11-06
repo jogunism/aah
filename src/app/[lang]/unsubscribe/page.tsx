@@ -5,7 +5,7 @@ import { useSearchParams } from 'next/navigation';
 import Link from 'next/link';
 import { useTranslation } from 'react-i18next';
 import { FaCheckCircle, FaTimesCircle } from 'react-icons/fa';
-import { cancelSubscription } from '@/api';
+import { cancelSubscription } from '@/api/local';
 import { i18nPromise } from '@/lib/i18n.client';
 
 function UnsubscribeContent({ lang }: { lang: string }) {

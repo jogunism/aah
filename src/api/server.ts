@@ -76,3 +76,24 @@ export const getSchools = cache((currency: Currency) =>
     (list) => list.length > 0,
   ),
 );
+
+/**
+ * Forward a browser request body to the API with the server-side token and
+ * pass the API's status through. Used by the /api route handlers so the token
+ * never reaches the browser.
+ */
+export const forward = async (req: Request, method: 'post' | 'delete', url: string): Promise<Response> => {
+  let data: unknown;
+  try {
+    data = await req.json();
+  } catch {
+    return Response.json({ message: 'Invalid JSON' }, { status: 400 });
+  }
+  try {
+    const res = await http.request({ method, url, data, validateStatus: () => true });
+    return Response.json(res.data, { status: res.status });
+  } catch (error) {
+    console.error(`Error forwarding ${method.toUpperCase()} ${url}:`, error);
+    return Response.json({ message: 'Upstream error' }, { status: 502 });
+  }
+};

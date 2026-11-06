@@ -6,7 +6,7 @@ import { FaCheck } from 'react-icons/fa';
 import { Section } from '@/components/ui/Section';
 import { buttonClass } from '@/components/ui/Button';
 import SmoothScrollLink from './SmoothScrollLink';
-import { subscribeMailingList } from '@/api';
+import { subscribeMailingList } from '@/api/local';
 import { trackInfoSessionSignup } from '@/lib/gtag';
 
 const TOPIC_KEYS = [1, 2, 3, 4, 5, 6] as const;
