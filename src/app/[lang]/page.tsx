@@ -15,14 +15,14 @@ import Contactus from '@/components/context/Contactus';
 import MobileCtaBar from '@/components/common/MobileCtaBar';
 import { getTranslation } from '@/lib/i18n.server';
 // API
-import { updateCurrency } from '@/api';
+import { refreshCurrency } from '@/api/server';
 
 export default async function Home({ params }: { params: Promise<{ lang: string }> }) {
   const { lang } = await params;
   const { t } = await getTranslation(lang);
 
   // currency
-  updateCurrency();
+  refreshCurrency();
 
   return (
     <div className="flex flex-col min-h-screen bg-white">

@@ -1,6 +1,6 @@
 // 서버 렌더링용 API 호출(요청 단위 중복 제거 + 서버 인스턴스에서 몇 분간 결과 재사용)
 import { cache } from 'react';
-import { retrieveUniversityList, retrieveAppVersion } from '@/api';
+import { retrieveUniversityList, retrieveAppVersion, updateCurrency } from '@/api';
 import http from '@/lib/http';
 import type { Prices, University } from '@/types/constants';
 import type { Currency } from '@/lib/currency';
@@ -76,6 +76,18 @@ export const getSchools = cache((currency: Currency) =>
     (list) => list.length > 0,
   ),
 );
+
+let currencyCheckedAt = 0;
+
+/**
+ * Ask the API to refresh exchange rates, at most once per TTL per server instance
+ * (the API itself refetches only when the stored rates are older than 3 hours).
+ */
+export const refreshCurrency = () => {
+  if (Date.now() - currencyCheckedAt < TTL_MS) return;
+  currencyCheckedAt = Date.now();
+  void updateCurrency();
+};
 
 /**
  * Forward a browser request body to the API with the server-side token and

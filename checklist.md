@@ -66,3 +66,11 @@
 - [x] 언어별 기본 통화는 그대로(EN=USD, 그 외 EUR)
 - [x] tsc·eslint·빌드, 로컬에서 GBP 쿠키로 £ 표시 확인
 - [x] aah.api 7차 배포 후 master 병합(709f18e) → Amplify 배포, 라이브 GBP 시작가 £700(단기)·£1,080(장기) 확인
+
+## 10. API 토큰 숨김·호출 줄이기
+- [x] 문의·구독·구독 해지를 Next 서버 라우트(`/api/contact`, `/api/subscribe`, `/api/unsubscribe`) 경유로 변경
+- [x] 홈 렌더링마다 부르던 환율 갱신(`PUT /currency`)을 서버 인스턴스당 5분에 한 번으로 제한
+- [x] tsc·eslint·빌드, `.next/static`에 토큰·API 주소 0건 확인
+- [x] 로컬에서 세 라우트가 잘못된 입력에 400을 돌려주는지 확인(실제 메일 발송 없이)
+- [ ] aah.api 8차 배포 후 master 병합 → Amplify 배포, 라이브 확인
+- [ ] (콘솔, 사용자) `JWT_SECRET` 교체 후 새 토큰을 Amplify 환경 변수에 설정
