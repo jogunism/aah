@@ -115,6 +115,7 @@ export default async function Programs({ lang }: { lang: string }) {
                   </Link>
                   <Link href={`/${lang}/programs/${tile.program}`} className={buttonClass('outline', 'md', tile.text)}>
                     {t('TILE_LEARN')}
+                    <span className="sr-only">: {tile.title}</span>
                   </Link>
                 </div>
               </div>
