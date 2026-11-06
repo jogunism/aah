@@ -127,6 +127,7 @@
 - page_view는 gtag config(첫 접속)와 GA4 향상된 측정(히스토리 변경)이 보낸다. 직접 보내던 코드는 중복이라 없앴다.
 - 커스텀 이벤트는 세 가지다. section_engagement(section_id, engagement_seconds)는 섹션이 화면의 절반 이상을 차지한 누적 시간이고, 1초 미만은 무시하며 이탈·이동 시 beacon으로 보낸다. ui_click(click_text, click_section, link_url)은 카드 링크의 경우 제목만 쓴다. info_session_signup은 설명회 신청 성공 시 보낸다. 기존 contact_form_submit, tuition_inquiry_click, traffic_source, time_on_page도 유지한다.
 - GA 관리 화면에서 사용자가 할 일. 맞춤 측정기준(section_id, click_section, click_text)과 측정항목(engagement_seconds)을 등록하고, 주요 이벤트(contact_form_submit, tuition_inquiry_click, info_session_signup)를 지정해야 한다.
+- 2026-11-06 새 속성(AAH Education, p562082673)에 반영했다. 맞춤 측정기준 section_id·click_section·click_text(이벤트 범위), 맞춤 측정항목 engagement_seconds(초), 주요 이벤트 contact_form_submit·tuition_inquiry_click, 이벤트 데이터 보관 2개월 → 14개월. info_session_signup은 아직 한 번도 수집되지 않아 목록에 없으므로, 첫 신청이 들어온 뒤 관리 → 이벤트 → 최근 활동에서 별표로 지정한다. 속성 생성 때 리드 생성 목표를 골라 GA가 close_convert_lead·qualify_lead를 주요 이벤트로 미리 넣어 두었다(우리 사이트는 보내지 않음). 백업 관리자는 아직 없다.
 
 ## /plan 모바일 요약 바 (2026-11-03)
 - 모바일 하단 바를 `position: fixed`에서 `sticky; bottom: 0`으로 바꿨다. 바를 가격 카드 바로 위(그리드 항목)에 둬서, 스크롤 중에는 하단에 떠 있고 카드 위치에 오면 카드 윗부분으로 붙어 같이 스크롤된다. JS로 스크롤을 감지하지 않는다.
