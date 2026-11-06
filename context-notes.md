@@ -164,4 +164,5 @@
 
 ## 메일 발송과 DMARC (2026-11-06)
 - API(aah.api `email.service.ts`)는 Gmail SMTP(studio.jogunism@gmail.com 계정)로 `from: contact@aah.education` 메일을 보낸다(문의 알림, 구독 등). 이 메일은 SPF(Cloudflare 라우팅만 포함)도, DKIM(gmail.com 서명)도 aah.education과 정렬되지 않아 DMARC를 통과하지 못한다.
+- 2026-11-06 Cloudflare에 `_dmarc` TXT `v=DMARC1; p=none; rua=mailto:contact@aah.education`을 넣었다. 받는 메일(Cloudflare 이메일 라우팅 → 개인 Gmail)에는 영향이 없다.
 - 그래서 DMARC는 `p=none`(보고만)으로만 둔다. `quarantine`/`reject`로 올리면 고객에게 가는 메일이 스팸함으로 가거나 차단된다. 올리려면 먼저 aah.education 도메인으로 DKIM 서명하는 발송 경로(Google Workspace, SES 등)로 바꿔야 한다.
