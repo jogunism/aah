@@ -178,3 +178,10 @@
 - `/plan`은 Suspense 대체 화면에 기본값 계산기(`trackOpen={false}`)를 두고, 실제 계산기는 `PlanBuilderFromQuery`가 `useSearchParams`로 쿼리를 읽는다. 정적 HTML에 계산기가 그대로 들어가고, 학교 데이터는 두 번 실리지 않는다(HTML 크기가 전과 같음).
 - 배포 결과(2026-11-06). 네 페이지와 가격 라우트가 CloudFront 캐시로 응답하고, 첫 바이트가 0.15~0.48초에서 약 0.05초로 줄었다. 빌드할 때 Lambda 동시 실행이 최대 25까지 올라간다(예약 50).
 - 이 Chrome에서 운영·로컬 모두 React hydration 에러 #418이 난다. 이번 변경 전부터 있었고, 메시지에 보이는 `bis_skin_checked` 속성은 브라우저 확장 프로그램이 넣은 것이다. 확장 프로그램이 없는 브라우저에서 확인이 필요하다.
+
+## SEO·GEO 재점검 (2026-11-06, ISR 전환 후)
+- 정상. sitemap 20개 URL(5개 언어×4페이지) 모두 200이고, html lang, title, description, canonical, hreflang(5개+x-default), h1 1개, 구조화 데이터, 이미지 alt가 있다. sitemap에 xhtml:link hreflang이 있다. http→https 301, www→apex 308, 끝 슬래시 308, 없는 경로 404다. FAQPage 11문항은 화면에도 모두 있다.
+- Googlebot·Bingbot·GPTBot·ClaudeBot·PerplexityBot 모두 200, CloudFront Hit, 0.1초 안에 같은 본문을 받는다. Cloudflare는 DNS only라 AI Crawl Control 등 봇 차단이 적용되지 않는다.
+- Lighthouse 모바일(로컬, 12.6.1): 홈 perf 95·SEO 92·a11y 96, long 99·100·97, plan 94·100·96. CLS 0, TBT 0.
+- 개선 후보: 프로그램 페이지 title에 Korea/Korean이 없고 description이 h1 문구(61~76자)라 검색 문구가 약하다. Course 구조화 데이터에 offers(가격)가 없어 Google 강좌 리치 결과 대상이 아니고, location이 Seoul(지방 대학 포함과 불일치), courseWorkload가 P3M/P3W(기간을 넣은 오용)다. 홈 "Learn more" 링크 2개가 설명 없는 링크 문구라 SEO 92의 원인이다. 브랜드 빨강 #d8484d와 흰색 대비가 4.23:1로 WCAG AA(4.5:1)에 못 미친다. og:image는 전 페이지 공통 1920×843(권장 1200×630 비율과 다름)이다. GBP를 추가했지만 llms.txt 가격은 EUR·USD뿐이고 areaServed에 GB가 없다. sitemap lastmod가 모든 URL에서 빌드 시각이다.
+- PageSpeed Insights API는 키 없이 쓰면 하루 할당량이 금방 찬다. 로컬 `npx lighthouse@12.6.1 --chrome-flags=--headless=new`로 대신한다.
