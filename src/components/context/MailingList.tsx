@@ -47,23 +47,23 @@ export default function MailingList() {
           <h2 className="text-[28px] md:text-[44px] leading-[1.1] font-extrabold tracking-[-0.025em]">
             {t('FINAL_TITLE')}
           </h2>
-          <p className="mt-4 mb-7 text-[17px] md:text-xl leading-relaxed text-white/90">{t('FINAL_LEAD')}</p>
+          <p className="mt-4 mb-7 text-[17px] md:text-xl leading-relaxed text-white">{t('FINAL_LEAD')}</p>
           <SmoothScrollLink href="#contactus" className={buttonClass('white')}>
             {t('HERO_CTA_SECONDARY')}
           </SmoothScrollLink>
         </div>
 
         {/* Free online info sessions */}
-        <div className="min-w-0 rounded-2xl bg-white/12 p-5 md:p-6">
+        <div className="min-w-0 rounded-2xl bg-black/10 p-5 md:p-6">
           <h3 className="text-lg font-bold">{t('MAILING_MODAL_TITLE')}</h3>
           <p
-            className="mt-1.5 text-sm leading-relaxed text-white/85"
+            className="mt-1.5 text-sm leading-relaxed text-white"
             dangerouslySetInnerHTML={{ __html: t('MAILING_MODAL_DESCRIPTION') }}
           />
 
           {/* What we'll cover */}
           <p className="mt-4 text-sm font-semibold">{t('MAILING_SECTION_TOPICS_TITLE')}</p>
-          <ul className="mt-2 grid sm:grid-cols-2 gap-x-4 gap-y-1 text-[13px] text-white/90">
+          <ul className="mt-2 grid sm:grid-cols-2 gap-x-4 gap-y-1 text-[13px] text-white">
             {TOPIC_KEYS.map(n => (
               <li key={n} className="flex items-start gap-2">
                 <span aria-hidden="true">•</span>

@@ -327,7 +327,7 @@ export default function Contactus() {
                       }`}
                     >
                       <span
-                        className={`block truncate ${formValues.semester === -1 ? 'text-gray-400' : ''}`}
+                        className={`block truncate ${formValues.semester === -1 ? 'text-gray-500' : ''}`}
                       >
                         {selectedProgram?.label}
                       </span>
@@ -401,7 +401,7 @@ export default function Contactus() {
                   )}
 
                   <div className="mt-3 text-sm text-gray-500">
-                    <p className="text-sm text-red-600 italic flex items-center gap-2">
+                    <p className="text-sm text-red-700 italic flex items-center gap-2">
                       <span className="text-red-600">※</span>
                       {t('CONTACTUS_GDPR')}
                     </p>
