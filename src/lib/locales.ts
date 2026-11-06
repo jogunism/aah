@@ -26,9 +26,9 @@ export const SITE_URL = 'https://aah.education';
 
 // Default social share image (actual file size: 1920x843).
 export const OG_IMAGE = {
-  url: `${SITE_URL}/assets/main.jpg`,
-  width: 1920,
-  height: 843,
+  url: `${SITE_URL}/assets/og.jpg`,
+  width: 1200,
+  height: 630,
   alt: 'Study in Korea with aah! education',
 };
 
