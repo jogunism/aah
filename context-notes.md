@@ -133,3 +133,14 @@
 - 바를 카드(aside) 안에 넣지 않은 이유는 sticky가 부모 범위 안에서만 동작하기 때문이다. 카드 안에 넣으면 카드가 화면에 들어오기 전에는 뜨지 않는다.
 - 카드 전체를 띄우지 않는 이유는 학교를 고르면 카드 높이가 약 456px(390×844 화면의 절반 이상)라 선택지를 가리기 때문이다(사용자 합의).
 - 바에는 학교명, 기간·숙소, 합계만 넣는다. Ask 버튼과 항목별 펼침(v) 버튼은 카드에만 있어서 바가 붙은 뒤에만 보인다(사용자 요청).
+
+## AWS 비용 보호 (2026-11-06)
+- 월 비용은 약 $2다(Amplify 호스팅 컴퓨트, Route 53, API Gateway, 세금). Lambda·DynamoDB는 무료 구간 안이고, 모든 리전에 EC2·EIP·NAT·EBS·RDS·S3가 없다.
+- 예전 알림은 모두 비활성화된 hyunwoo@aah-e.net으로 가고 있었다. 예산 `aah`($5/월, 실제 85%·100%, 예측 100%)와 비용 이상 탐지 구독의 수신자를 studio.jogunism@gmail.com으로 바꿨다. 이상 탐지 기준은 "$100 이상이면서 40% 이상"이라 이 규모에선 울리지 않아서 "$5 이상"으로 낮췄다.
+- API Gateway `aah-API`(REST, stage `default`)에 초당 30·순간 100 제한을 걸었다(이전엔 계정 기본 10,000). API 토큰이 `NEXT_PUBLIC_`이라 누구나 호출할 수 있고, Lambda 예약 동시성과 별개로 API Gateway는 요청마다 과금되기 때문이다. 실측 1분 최대는 337건(평균 약 6rps)이고, 빌드 시 순간 폭주를 고려해 처음 생각한 20/50보다 넉넉히 잡았다. 빌드에서 429가 나면 이 값을 먼저 의심한다.
+- `aah` Lambda 제한 시간은 90초에서 30초로 줄였다. REST API 통합 제한이 29초라 그 이상은 결과 없이 비용만 나가고, 실측 최장은 11.4초다(주간 수업료 동기화 포함).
+- Amplify 로그 그룹 보관 기간을 무제한에서 30일로 바꿨다.
+- 도메인 aah.education은 Route 53 Domains에 등록돼 있다(자동 갱신, 2027-07-03 만료, .education 갱신비 $39). 네임서버는 Cloudflare이고, Route 53 호스팅 영역(Z05422553G73APLA9CYQO, 월 $0.50)은 쓰이지 않는다.
+- ACM 인증서 검증 CNAME이 Route 53 영역에만 있고 Cloudflare에는 없어서 `api.aah.education` 인증서(2026-12-17 만료) 갱신이 PENDING_VALIDATION에 멈춰 있었다. 사이트 인증서(Amplify 관리형, 2027-01-01 만료)도 같은 상태다. 두 CNAME을 Cloudflare에 DNS only로 넣어야 한다.
+  - `_8f7810505e810d03b9184c16da638884` → `_8eba74fddbb637f355da9b51ff0d2ba4.xlfgrmvvlj.acm-validations.aws` (API, ACM eu-central-1)
+  - `_07d797fdbbb4539792ceab6556341b5e` → `_2e1af2d86ebdb4a5f4d9b8a9756ef26e.xlfgrmvvlj.acm-validations.aws` (사이트, Amplify)
