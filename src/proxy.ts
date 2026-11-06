@@ -42,11 +42,12 @@ export function proxy(request: NextRequest) {
     return response;
   }
 
-  // 언어 prefix가 없으면 기본 언어로 리다이렉트
+  // 언어 prefix가 없으면 기본 언어로 리다이렉트. 언어 감지 없이 항상 같은 곳으로 가므로
+  // 영구(308)로 보내 검색엔진이 `/`를 `/en`과 별개 페이지(중복 제목·설명)로 보지 않게 한다.
   const url = request.nextUrl.clone();
   url.pathname = `/${defaultLocale}${pathname}`;
 
-  return NextResponse.redirect(url);
+  return NextResponse.redirect(url, 308);
 }
 
 export const config = {
