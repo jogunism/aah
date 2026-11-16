@@ -319,6 +319,8 @@ export default function PlanBuilder({
       if (term) query.set('period', String(term.period));
       if (selectedDorm) query.set('stay', String(dormitories.indexOf(selectedDorm) + 1));
     }
+    // Currency of the shown prices; the layout's pre-paint script applies it when the link is opened
+    query.set('cur', list.currency);
     return query.toString();
   })();
   const shareUrl = university ? `${SITE_URL}/${lang}/plan?${selectionQuery}` : '';

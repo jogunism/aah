@@ -1,11 +1,16 @@
 'use client';
-// URL 쿼리(program, school, period, stay)를 브라우저에서 읽어 플랜 빌더에 넘기는 래퍼(페이지를 정적 캐시로 두기 위함)
+// URL 쿼리(program, school, period, stay, cur)를 브라우저에서 읽어 플랜 빌더에 넘기는 래퍼(페이지를 정적 캐시로 두기 위함)
 
 import { useEffect } from 'react';
 import { useSearchParams } from 'next/navigation';
 import PlanBuilder from '@/components/plan/PlanBuilder';
 import type { University } from '@/types/constants';
 import type { Currency } from '@/lib/currency';
+
+// Renamed school ids, so links shared before the rename still open the school
+const RENAMED_SCHOOLS: Record<string, string> = { seogagn: 'sogang' };
+const schoolId = (value: string | null, schools: University[]) =>
+  value && !schools.some(u => u.id === value) ? (RENAMED_SCHOOLS[value] ?? value) : (value ?? undefined);
 
 // "2" → 2; missing or malformed values are ignored
 const positiveInt = (value: string | null) => {
@@ -29,7 +34,7 @@ export default function PlanBuilderFromQuery(props: {
     <PlanBuilder
       {...props}
       initialProgram={searchParams.get('program') === 'long' ? 'long' : 'short'}
-      initialSchool={searchParams.get('school') ?? undefined}
+      initialSchool={schoolId(searchParams.get('school'), props.initial)}
       initialPeriod={positiveInt(searchParams.get('period'))}
       initialStay={positiveInt(searchParams.get('stay'))}
       syncUrl

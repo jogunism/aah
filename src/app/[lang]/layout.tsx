@@ -10,7 +10,9 @@ import GDPRPopup from '@/components/common/GDPRPopup';
 import NavigationProgress from '@/components/common/NavigationProgress';
 import AnalyticsTracker from '@/components/common/AnalyticsTracker';
 
-const PRE_PAINT_SCRIPT = `try{var d=document.documentElement,m=document.cookie.match(/(?:^|; )currency=(USD|EUR|GBP)(?:;|$)/);if(m)d.dataset.cur=m[1];var q=new URLSearchParams(location.search);if(/\\/plan\\/?$/.test(location.pathname)&&(q.has('program')||q.has('school')))d.dataset.planQuery='1'}catch(e){}`;
+// Runs before paint: currency from the cookie (a plan link's `cur` wins and is saved like a
+// selector change, same cookie attributes as lib/cookie), and the plan-query placeholder flag
+const PRE_PAINT_SCRIPT = `try{var d=document.documentElement,q=new URLSearchParams(location.search),p=/\\/plan\\/?$/.test(location.pathname),c=q.get('cur');if(p&&/^(USD|EUR|GBP)$/.test(c)){document.cookie='currency='+c+';path=/;max-age=31536000;samesite=lax'+(location.hostname==='aah.education'?';domain=aah.education;secure':'')}var m=document.cookie.match(/(?:^|; )currency=(USD|EUR|GBP)(?:;|$)/);if(m)d.dataset.cur=m[1];if(p&&(q.has('program')||q.has('school')))d.dataset.planQuery='1'}catch(e){}`;
 
 import {
   SUPPORTED_LOCALES,

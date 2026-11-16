@@ -114,3 +114,9 @@
 - [x] master 배포(45adbda, Amplify #126 SUCCEED), 라이브 데스크톱: 링크로 선택 복원, 메뉴 링크 복사·더보기, 복사 링크 정확
 - [ ] 실제 휴대폰에서 공유 시트 직행 확인
 - [x] 선택을 주소창에 반영, 언어 변경 시 쿼리 유지(로컬: en→de→en, 통화 USD→EUR 변경 후에도 선택 유지)
+
+## 13. 공유 링크 통화, 서강대 id
+
+- [x] 쿼리·공유 링크에 `cur`, pre-paint에서 쿠키·data-cur 적용(로컬: cur=GBP 링크 → £ 표시, 복사 링크에 cur 포함)
+- [x] `sogang.png` 추가, 예전 `school=seogagn` 링크 별칭(로컬: DB 변경 전에도 서강대 선택됨)
+- [ ] 배포 → DB 키 `seogagn` → `sogang` 교체 → API 배포 → 라이브 확인
