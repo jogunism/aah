@@ -122,8 +122,12 @@ export default function ShareMenu({ url, title, text, t, placement = 'down', sho
         aria-expanded={open}
         aria-label={t('SHARE_PLAN')}
         onClick={() => setOpen(o => !o)}
-        className={`inline-flex items-center justify-center gap-2 rounded-full border-[1.5px] border-line bg-white text-ink-2 hover:border-ink-2 hover:text-ink transition-colors ${
-          showLabel ? 'h-10 px-4 text-sm font-semibold' : 'w-10 h-10'
+        className={`inline-flex items-center justify-center gap-2 rounded-full text-ink-2 hover:text-ink transition-colors ${
+          showLabel
+            ? 'h-10 px-4 text-sm font-semibold border-[1.5px] border-line bg-white hover:border-ink-2'
+            : // icon only: glyph about the height of the mobile total, 44px tap area that
+              // negative margins keep from growing the bar
+              'w-11 h-11 -my-1.5 -mr-2.5 text-[20px]'
         }`}
       >
         <FaShareAlt aria-hidden="true" />
@@ -141,7 +145,8 @@ export default function ShareMenu({ url, title, text, t, placement = 'down', sho
             <span aria-hidden="true" className="w-4 text-ink-2">{copied ? <FaCheck /> : <FaLink />}</span>
             <span aria-live="polite">{copied ? t('SHARE_COPIED') : t('SHARE_COPY_LINK')}</span>
           </button>
-          {links.map(link => (
+          {/* The device share sheet already lists these apps; show them only where it is missing */}
+          {!canNativeShare && links.map(link => (
             <a
               key={link.method}
               role="menuitem"
