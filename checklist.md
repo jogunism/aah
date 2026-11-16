@@ -119,4 +119,4 @@
 
 - [x] 쿼리·공유 링크에 `cur`, pre-paint에서 쿠키·data-cur 적용(로컬: cur=GBP 링크 → £ 표시, 복사 링크에 cur 포함)
 - [x] `sogang.png` 추가, 예전 `school=seogagn` 링크 별칭(로컬: DB 변경 전에도 서강대 선택됨)
-- [ ] 배포 → DB 키 `seogagn` → `sogang` 교체 → API 배포 → 라이브 확인
+- [x] 배포(#129) → DB 키 교체(백업 후 복사·삭제, `id` 필드도 sogang) → API 배포 → 재빌드(#131) → 라이브: 예전 링크 열면 서강대 선택·주소 sogang으로 바뀜, 엠블럼 정상, cur=EUR 적용
