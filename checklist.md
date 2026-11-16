@@ -99,3 +99,14 @@
 - [x] 언어 없는 경로 리다이렉트 307 → 308(`/`와 `/en` 제목·설명 중복 지적)
 - [x] IndexNow 키 파일·제출 스크립트 추가
 - [x] 배포(10e3539, Amplify #125) 후 라이브 `/`·`/plan` 308, 키 파일 200, IndexNow 제출 202(20 URLs)
+
+## 12. 플랜 견적 공유
+
+- [x] 공유 링크: `/{lang}/plan?program=&school=&period=&stay=` (stay = 선택한 기간의 기숙사 순번, 1부터. 없으면 숙소 별도)
+- [x] `PlanBuilderFromQuery`가 period·stay를 읽어 선택 복원, 잘못된 값은 기본값(첫 기간, 숙소 별도)
+- [x] `ShareMenu`: 링크 복사, WhatsApp, Facebook, X, 이메일, (지원 브라우저만) 기기 공유 시트
+- [x] 데스크톱 합계 옆 "Share" 버튼, 모바일 하단 합계 바 가격 옆 아이콘 버튼(메뉴는 위로)
+- [x] 5개 언어 SHARE_ 키, GA 이벤트 `plan_share`(method)
+- [x] 로컬 확인: 링크로 선택 복원, 메뉴 링크 5종 값, 복사, 390px 모바일 바 넘침 수정(min-w-0)
+- [x] tsc·eslint·next build
+- [ ] master 배포 후 라이브 확인

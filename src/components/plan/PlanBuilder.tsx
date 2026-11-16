@@ -24,6 +24,8 @@ import { fetchSchools } from '@/api/local';
 import { formatPrice } from '@/utils';
 import { CURRENCY_SYMBOL, type Currency } from '@/lib/currency';
 import BoldText from '@/components/common/BoldText';
+import ShareMenu, { type ShareMethod } from '@/components/plan/ShareMenu';
+import { SITE_URL } from '@/lib/locales';
 // Analytics
 import { trackTuitionCalculationOpen, trackTuitionCalculationSubmit, event } from '@/lib/gtag';
 
@@ -31,6 +33,8 @@ interface PlanBuilderProps {
   lang: string;
   initialProgram: 'short' | 'long';
   initialSchool?: string;
+  initialPeriod?: number; // TermPricing.period from a shared link
+  initialStay?: number; // 1-based dormitory position from a shared link; none = school only
   initial: University[];
   initialCurrency: Currency;
   trackOpen?: boolean; // false for the static placeholder rendered before the URL query is read
@@ -72,6 +76,8 @@ export default function PlanBuilder({
   lang,
   initialProgram,
   initialSchool,
+  initialPeriod,
+  initialStay,
   initial,
   initialCurrency,
   trackOpen = true,
@@ -87,8 +93,13 @@ export default function PlanBuilder({
   const [schoolId, setSchoolId] = useState<string | null>(() =>
     initial.some(u => u.id === initialSchool && offersProgram(u, startType)) ? initialSchool! : null,
   );
-  const [period, setPeriod] = useState(1); // option position, see TermPricing.period
-  const [stayKey, setStayKey] = useState(SCHOOL_ONLY); // SCHOOL_ONLY or a dormitory name
+  const [period, setPeriod] = useState(initialPeriod ?? 1); // option position, see TermPricing.period
+  // SCHOOL_ONLY or a dormitory name; a shared link gives the dormitory's position in the chosen term
+  const [stayKey, setStayKey] = useState(() => {
+    const uni = initial.find(u => u.id === initialSchool) ?? null;
+    const startTerm = getProgram(uni, startType)?.terms.find(tm => tm.period === (initialPeriod ?? 1));
+    return (initialStay && startTerm?.dormitories[initialStay - 1]?.name) || SCHOOL_ONLY;
+  });
   const [open, setOpen] = useState({ tuition: false, fee: false }); // expanded summary rows
 
   const symbol = CURRENCY_SYMBOL[list.currency];
@@ -297,6 +308,42 @@ export default function PlanBuilder({
       content: buildInquiryText(),
     });
   };
+
+  // Link that reopens this exact selection (PlanBuilderFromQuery reads it back)
+  const shareUrl = (() => {
+    if (!university) return '';
+    const query = new URLSearchParams({ program: programKey(programType), school: university.id });
+    if (term) query.set('period', String(term.period));
+    if (selectedDorm) query.set('stay', String(dormitories.indexOf(selectedDorm) + 1));
+    return `${SITE_URL}/${lang}/plan?${query}`;
+  })();
+  const sharePlan = university
+    ? [university.title, programTitle, term && durationLabel(term), totalText !== '-' && totalText]
+        .filter(Boolean)
+        .join(' · ')
+    : '';
+
+  const handleShare = (method: ShareMethod) => {
+    event({
+      action: 'plan_share',
+      category: 'tuition_calculator',
+      label: method,
+      custom_parameters: { university_id: university?.id ?? '', program_type: programType, method },
+    });
+  };
+
+  const shareMenu = (placement: 'up' | 'down', showLabel: boolean) =>
+    university && totalText !== '-' ? (
+      <ShareMenu
+        url={shareUrl}
+        title={t('PLAN_META_TITLE')}
+        text={t('SHARE_TEXT', { plan: sharePlan })}
+        t={t}
+        placement={placement}
+        showLabel={showLabel}
+        onShare={handleShare}
+      />
+    ) : null;
 
   /*******************************************************
    * lifecycle hooks
@@ -515,7 +562,7 @@ export default function PlanBuilder({
       {/* Mobile: total bar. Sticks to the bottom while scrolling, then docks as the top of the summary below */}
       <div
         aria-live="polite"
-        className="lg:hidden sticky bottom-0 z-[800] rounded-t-[24px] bg-soft px-6 md:px-7 py-4 flex items-end justify-between gap-4"
+        className="lg:hidden sticky bottom-0 z-[800] min-w-0 rounded-t-[24px] bg-soft px-6 md:px-7 py-4 flex items-end justify-between gap-4"
       >
         <div className="min-w-0">
           <p className="text-xs font-bold uppercase tracking-wide text-muted">{programTitle}</p>
@@ -529,11 +576,14 @@ export default function PlanBuilder({
             </p>
           )}
         </div>
-        <div className="shrink-0 text-right">
-          <p className={`text-2xl leading-tight font-extrabold tracking-tight ${accentText}`}>{totalText}</p>
-          {breakdown && !breakdown.accommodation && (
-            <p className="text-xs font-semibold text-ink-2">{t('TUITION_CALCULATOR_PLUS_ACCOMMODATION')}</p>
-          )}
+        <div className="shrink-0 flex items-end gap-3">
+          <div className="text-right">
+            <p className={`text-2xl leading-tight font-extrabold tracking-tight ${accentText}`}>{totalText}</p>
+            {breakdown && !breakdown.accommodation && (
+              <p className="text-xs font-semibold text-ink-2">{t('TUITION_CALCULATOR_PLUS_ACCOMMODATION')}</p>
+            )}
+          </div>
+          {shareMenu('up', false)}
         </div>
       </div>
 
@@ -640,9 +690,12 @@ export default function PlanBuilder({
           <p className="text-sm font-semibold text-ink-2">
             {breakdown ? t('TUITION_CALCULATOR_TOTAL') : t('TUITION_CALCULATOR_MODAL_ESTIMATED_PRICE')}
           </p>
-          <p className={`mt-1 text-[32px] leading-tight font-extrabold tracking-tight ${accentText}`}>
-            {totalText}
-          </p>
+          <div className="mt-1 flex items-center justify-between gap-3">
+            <p className={`text-[32px] leading-tight font-extrabold tracking-tight ${accentText}`}>
+              {totalText}
+            </p>
+            {shareMenu('down', true)}
+          </div>
           {breakdown && !breakdown.accommodation && (
             <p className="text-sm font-semibold text-ink-2">
               {t('TUITION_CALCULATOR_PLUS_ACCOMMODATION')}
