@@ -40,10 +40,14 @@ export default function ShareMenu({ url, title, text, t, placement = 'down', sho
   const [open, setOpen] = useState(false);
   const [copied, setCopied] = useState(false);
   const [canNativeShare, setCanNativeShare] = useState(false); // checked after mount (no SSR mismatch)
+  // Touch devices go straight to the device share sheet (it has copy link too); desktops get our menu
+  const [directShare, setDirectShare] = useState(false);
   const rootRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    setCanNativeShare(typeof navigator.share === 'function');
+    const native = typeof navigator.share === 'function';
+    setCanNativeShare(native);
+    setDirectShare(native && window.matchMedia('(pointer: coarse)').matches);
   }, []);
 
   // Close on outside click or Escape
@@ -118,10 +122,10 @@ export default function ShareMenu({ url, title, text, t, placement = 'down', sho
     <div ref={rootRef} className="relative">
       <button
         type="button"
-        aria-haspopup="menu"
-        aria-expanded={open}
+        aria-haspopup={directShare ? undefined : 'menu'}
+        aria-expanded={directShare ? undefined : open}
         aria-label={t('SHARE_PLAN')}
-        onClick={() => setOpen(o => !o)}
+        onClick={() => (directShare ? handleNative() : setOpen(o => !o))}
         className={`inline-flex items-center justify-center gap-2 rounded-full text-ink-2 hover:text-ink transition-colors ${
           showLabel
             ? 'h-10 px-4 text-sm font-semibold border-[1.5px] border-line bg-white hover:border-ink-2'
