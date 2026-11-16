@@ -32,6 +32,7 @@ export default function PlanBuilderFromQuery(props: {
       initialSchool={searchParams.get('school') ?? undefined}
       initialPeriod={positiveInt(searchParams.get('period'))}
       initialStay={positiveInt(searchParams.get('stay'))}
+      syncUrl
     />
   );
 }

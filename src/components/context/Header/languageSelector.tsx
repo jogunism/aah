@@ -71,7 +71,8 @@ export default function LanguageSelector({ currentLang }: LanguageSelectorProps)
     const newPathname = pathname.replace(LOCALE_PATH_REGEX, `/${selectedLang}`);
     setActiveLang(selectedLang);
     i18n.changeLanguage(selectedLang);
-    router.replace(newPathname, { scroll: false });
+    // Keep the query (e.g. the plan builder's selection) in the new language
+    router.replace(`${newPathname}${window.location.search}`, { scroll: false });
   };
 
   /*******************************************************

@@ -38,6 +38,7 @@ interface PlanBuilderProps {
   initial: University[];
   initialCurrency: Currency;
   trackOpen?: boolean; // false for the static placeholder rendered before the URL query is read
+  syncUrl?: boolean; // mirror the selection into the address bar (only once the URL query has been read)
 }
 
 const SCHOOL_ONLY = '__school_only__';
@@ -81,6 +82,7 @@ export default function PlanBuilder({
   initial,
   initialCurrency,
   trackOpen = true,
+  syncUrl = false,
 }: PlanBuilderProps) {
   const { i18n } = useTranslation();
   const t = i18n.getFixedT(lang);
@@ -309,14 +311,17 @@ export default function PlanBuilder({
     });
   };
 
-  // Link that reopens this exact selection (PlanBuilderFromQuery reads it back)
-  const shareUrl = (() => {
-    if (!university) return '';
-    const query = new URLSearchParams({ program: programKey(programType), school: university.id });
-    if (term) query.set('period', String(term.period));
-    if (selectedDorm) query.set('stay', String(dormitories.indexOf(selectedDorm) + 1));
-    return `${SITE_URL}/${lang}/plan?${query}`;
+  // Query that reopens this exact selection (PlanBuilderFromQuery reads it back)
+  const selectionQuery = (() => {
+    const query = new URLSearchParams({ program: programKey(programType) });
+    if (university) {
+      query.set('school', university.id);
+      if (term) query.set('period', String(term.period));
+      if (selectedDorm) query.set('stay', String(dormitories.indexOf(selectedDorm) + 1));
+    }
+    return query.toString();
   })();
+  const shareUrl = university ? `${SITE_URL}/${lang}/plan?${selectionQuery}` : '';
   const sharePlan = university
     ? [university.title, programTitle, term && durationLabel(term), totalText !== '-' && totalText]
         .filter(Boolean)
@@ -353,6 +358,16 @@ export default function PlanBuilder({
     // The estimate belongs to this page's form; don't re-inject it into the next page's form
     return () => clearPrefill();
   }, [clearPrefill, trackOpen]);
+
+  // Keep the address bar on the current selection, so switching language (which keeps the
+  // query), reloading or copying the address keeps it. replaceState: no navigation, no history entry
+  useEffect(() => {
+    if (!syncUrl) return;
+    const next = `${window.location.pathname}?${selectionQuery}${window.location.hash}`;
+    if (next !== `${window.location.pathname}${window.location.search}${window.location.hash}`) {
+      window.history.replaceState(null, '', next);
+    }
+  }, [syncUrl, selectionQuery]);
 
   // Refetch when the visitor switches currency
   useEffect(() => {
