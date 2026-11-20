@@ -126,5 +126,5 @@
 - [x] 화면·llms.txt에 성균관대·TLA·Seogang 표기 없음 확인
 - [x] llms.txt에 학교 목록(영문·한글 이름, 프로그램별 시작가와 첫 옵션 기간) 추가
 - [x] 가격 범위 문구를 "each university"로 수정(범위는 대학만 집계)
-- [ ] 배포 후 라이브 llms.txt 확인
+- [x] 배포 후 라이브 llms.txt 확인(Amplify #132). 페이지 본문은 그대로라 IndexNow 제출은 생략
 - [ ] Search Console 색인 요청 9개 결과 확인(11-09 요청분)
