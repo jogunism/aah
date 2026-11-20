@@ -212,3 +212,9 @@
 - 공유 링크와 주소창 쿼리에 통화 `cur`(USD/EUR/GBP)를 넣는다(사용자 요청 2026-11-16). 받는 사람도 보낸 사람과 같은 통화·금액을 본다. 레이아웃의 pre-paint 스크립트가 /plan에서 `cur`를 읽어 currency 쿠키(lib/cookie와 같은 속성)와 `html[data-cur]`를 먼저 맞추므로 다른 통화가 깜빡이지 않고, 사이트 전체 통화도 그 통화로 바뀐다. 앞에서 정한 "통화는 링크에 넣지 않는다"를 대체한다.
 - 서강대 내부 id `seogagn`(오타)을 `sogang`으로 바꿨다(사용자 요청). 엠블럼 `sogang.png`를 추가했고 `seogagn.png`는 캐시된 페이지용으로 남겨 둔다. 예전 링크(`school=seogagn`)는 목록에 그 id가 없을 때만 `sogang`으로 바꿔 읽는다(`PlanBuilderFromQuery`의 RENAMED_SCHOOLS). 그래서 DB 키를 바꾸기 전후 모두 열린다.
 - 학교 항목에는 DB 키 `itemId`와 별도로 API가 응답에 쓰는 `id` 필드가 있다. 키를 바꿀 때 `id`도 함께 바꿔야 한다(서강대 교체 때 처음엔 `itemId`만 바꿔서 사이트에 `seogagn`이 계속 나왔다). DB 값을 바꾼 뒤 정적 페이지는 최대 1시간 캐시되므로 바로 반영하려면 Amplify 재빌드(RELEASE)가 필요하다.
+
+## SEO·GEO 점검 (2026-11-20, 성균관대·TLA 숨김과 서강대 변경 후)
+- 정상. robots, sitemap 20개, 공유 쿼리가 붙은 /plan의 canonical(쿼리 없는 /xx/plan), Organization·FAQPage·Course·BreadcrumbList가 그대로다. 화면 HTML과 llms.txt에 성균관대·TLA·Seogang이 없고 Sogang University로 나온다. 번역문에 학교 수를 고정으로 적은 문구도 없다.
+- GEO 보강. llms.txt에 학교 목록이 없어서 AI가 "어느 학교에 갈 수 있나"에 답할 근거가 없었다. getSchools('EUR')로 대학·어학원을 나눠 영문(한글) 이름과 단기·장기 시작가를 넣었다. 시작가는 첫 옵션 기준이라 그 기간(1 semester, 3 weeks, 1 month 등)을 붙였다. 어학원 장기는 학기가 아니라 월 단위라 "per semester"를 쓰지 않는다. 숨긴 학교는 API가 이미 뺀다.
+- /university/prices의 범위는 대학만 집계한다(어학원 단기 €650이 단기 최저 €860보다 낮음). 그래서 가격 문구를 "each school"에서 "each university"로 바꿨다.
+- 국민대는 가격이 0이라 이름만 나온다(사이트 목록에는 표시 중).

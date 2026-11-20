@@ -5,7 +5,7 @@
 import en from '../../../public/locales/en/translation.json';
 import { SITE_URL, SUPPORTED_LOCALES } from '@/lib/locales';
 import { FAQ_ITEMS } from '@/lib/faq';
-import { getPrices } from '@/api/server';
+import { getPrices, getSchools } from '@/api/server';
 
 // Rendered per request (not at build time, when the API can be throttled) and cached
 // by the CDN for a day, so the price ranges follow the API (exchange rates, school prices)
@@ -36,7 +36,12 @@ export async function GET() {
       `- **${t(row)}**: Short-term: ${cell(short)}. Long-term: ${cell(long)}.`,
   );
 
-  const [eur, usd, gbp] = await Promise.all([getPrices('EUR'), getPrices('USD'), getPrices('GBP')]);
+  const [eur, usd, gbp, schools] = await Promise.all([
+    getPrices('EUR'),
+    getPrices('USD'),
+    getPrices('GBP'),
+    getSchools('EUR'),
+  ]);
   const range = (min: number, max: number, sym: string) =>
     `${sym}${min.toLocaleString('en-US')}–${sym}${max.toLocaleString('en-US')}`;
   const other = (field: 'short' | 'long') =>
@@ -47,7 +52,7 @@ export async function GET() {
     eur && usd
       ? `## Prices
 
-Estimated totals for the first option at each school (registration fee, tuition and the aah! service & contract fee; the upper end includes a dormitory). ${t('COMPARE_PRICE_NOTE').replace(/<\/?b>/g, '')}
+Estimated totals for the first option at each university (registration fee, tuition and the aah! service & contract fee; the upper end includes a dormitory). ${t('COMPARE_PRICE_NOTE').replace(/<\/?b>/g, '')}
 
 - Short-term: ${range(eur.shortMin, eur.shortMax, '€')} (${other('short')})
 - Long-term, per semester: ${range(eur.longMin, eur.longMax, '€')} (${other('long')})
@@ -55,6 +60,33 @@ Estimated totals for the first option at each school (registration fee, tuition 
 
 `
       : '';
+
+  // Partner schools in site order (hidden schools are already left out by the API).
+  // priceShort/priceLong are "from" prices before accommodation; 0 = program not offered.
+  // The "from" price is the school's first option, so name that option's length (1 semester, 4 weeks…)
+  const euro = (n: number) => `€${n.toLocaleString('en-US')}`;
+  const firstTerm = (s: (typeof schools)[number], program: 'short' | 'long') => {
+    const d = s.pricing?.[program]?.terms[0]?.duration;
+    return d ? ` (${d.value} ${d.unit}${d.value === 1 ? '' : 's'})` : '';
+  };
+  const schoolLine = (s: (typeof schools)[number]) => {
+    const offers = [
+      s.priceShort > 0 && `short-term from ${euro(s.priceShort)}${firstTerm(s, 'short')}`,
+      s.priceLong > 0 && `long-term from ${euro(s.priceLong)}${firstTerm(s, 'long')}`,
+    ].filter(Boolean);
+    return `- ${s.title} (${s.subTitle})${offers.length ? `: ${offers.join(', ')}` : ''}`;
+  };
+  const schoolGroup = (type: 'university' | 'language_school', heading: string) => {
+    const lines = schools.filter((s) => (s.schoolType ?? 'university') === type).map(schoolLine);
+    return lines.length ? `### ${heading}\n\n${lines.join('\n')}\n\n` : '';
+  };
+  const schoolList = schools.length
+    ? `## Schools
+
+Korean language programs at these schools in Korea. Prices are estimated totals before accommodation (registration fee, tuition and the aah! service & contract fee).
+
+${schoolGroup('university', 'University language institutes')}${schoolGroup('language_school', 'Language schools')}`
+    : '';
 
   const weAre = (
     [
@@ -103,7 +135,7 @@ ${t('LINEUP_TITLE')}
 
 ${compare.join('\n')}
 
-${prices}## How it works
+${prices}${schoolList}## How it works
 
 ${t('PROCESS_DESCRIPTION')}
 

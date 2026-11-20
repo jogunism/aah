@@ -120,3 +120,11 @@
 - [x] 쿼리·공유 링크에 `cur`, pre-paint에서 쿠키·data-cur 적용(로컬: cur=GBP 링크 → £ 표시, 복사 링크에 cur 포함)
 - [x] `sogang.png` 추가, 예전 `school=seogagn` 링크 별칭(로컬: DB 변경 전에도 서강대 선택됨)
 - [x] 배포(#129) → DB 키 교체(백업 후 복사·삭제, `id` 필드도 sogang) → API 배포 → 재빌드(#131) → 라이브: 예전 링크 열면 서강대 선택·주소 sogang으로 바뀜, 엠블럼 정상, cur=EUR 적용
+
+## 14. SEO·GEO 점검 (2026-11-20, 학교 변경 후)
+- [x] robots·sitemap(20개)·plan canonical(쿼리 제외)·구조화 데이터 라이브 확인
+- [x] 화면·llms.txt에 성균관대·TLA·Seogang 표기 없음 확인
+- [x] llms.txt에 학교 목록(영문·한글 이름, 프로그램별 시작가와 첫 옵션 기간) 추가
+- [x] 가격 범위 문구를 "each university"로 수정(범위는 대학만 집계)
+- [ ] 배포 후 라이브 llms.txt 확인
+- [ ] Search Console 색인 요청 9개 결과 확인(11-09 요청분)
