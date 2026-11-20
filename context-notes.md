@@ -217,4 +217,4 @@
 - 정상. robots, sitemap 20개, 공유 쿼리가 붙은 /plan의 canonical(쿼리 없는 /xx/plan), Organization·FAQPage·Course·BreadcrumbList가 그대로다. 화면 HTML과 llms.txt에 성균관대·TLA·Seogang이 없고 Sogang University로 나온다. 번역문에 학교 수를 고정으로 적은 문구도 없다.
 - GEO 보강. llms.txt에 학교 목록이 없어서 AI가 "어느 학교에 갈 수 있나"에 답할 근거가 없었다. getSchools('EUR')로 대학·어학원을 나눠 영문(한글) 이름과 단기·장기 시작가를 넣었다. 시작가는 첫 옵션 기준이라 그 기간(1 semester, 3 weeks, 1 month 등)을 붙였다. 어학원 장기는 학기가 아니라 월 단위라 "per semester"를 쓰지 않는다. 숨긴 학교는 API가 이미 뺀다.
 - /university/prices의 범위는 대학만 집계한다(어학원 단기 €650이 단기 최저 €860보다 낮음). 그래서 가격 문구를 "each school"에서 "each university"로 바꿨다.
-- 국민대는 가격이 0이라 이름만 나온다(사이트 목록에는 표시 중).
+- 국민대는 가격이 0이라 이름만 나왔다. 같은 날 가격 없는 학교를 API 목록에서 빼도록 바꿔 사이트·llms.txt에서 모두 빠졌다(aah.api context-notes 참고).

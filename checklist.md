@@ -128,3 +128,4 @@
 - [x] 가격 범위 문구를 "each university"로 수정(범위는 대학만 집계)
 - [x] 배포 후 라이브 llms.txt 확인(Amplify #132). 페이지 본문은 그대로라 IndexNow 제출은 생략
 - [ ] Search Console 색인 요청 9개 결과 확인(11-09 요청분)
+- [x] 가격 없는 학교 숨김(API 5108290, 국민대 제외) 배포, Amplify #133 재빌드, 라이브 홈·프로그램·플랜·llms.txt에서 국민대 없음 확인, IndexNow 202(20개)
