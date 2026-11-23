@@ -1,5 +1,5 @@
 'use client';
-// 공식 신청서 폼: 필수·선택 항목 입력, 검증, 전송 후 완료 화면
+// 공식 신청서 폼: 필수·선택 항목 입력, 검증, 전송 후 완료 화면. 포털 1단계에서는 같은 폼으로 신청 내용 수정(이메일 제외)
 
 import { useMemo, useState, type FormEvent } from 'react';
 import Link from 'next/link';
@@ -8,6 +8,8 @@ import { buttonClass } from '@/components/ui/Button';
 import { Field, Note, SectionTitle, inputClass, textareaClass } from './fields';
 import Dropdown from './Dropdown';
 import DatePicker from './DatePicker';
+import type { Application } from '@/lib/portal';
+import { updateApplication } from './api';
 import { KOREAN_LEVELS, birthYears, countryOptions, monthNames, pinnedCountries, termOptions } from '@/lib/apply';
 
 export interface ApplySchool {
@@ -49,6 +51,19 @@ const EMPTY: Form = {
   term: '', semesters: '', arrivalDate: '', departureDate: '', koreanLevel: '', message: '', privacyConsent: false, website: '',
 };
 
+/** The form filled with a submitted application (portal edit) */
+const fromApplication = (a: Application): Form => {
+  const [y, m, d] = a.birthDate.split('-');
+  return {
+    email: a.email, firstName: a.firstName, lastName: a.lastName, phone: a.phone,
+    birthDay: String(Number(d)), birthMonth: String(Number(m)), birthYear: y, nationality: a.nationality,
+    street: a.address.street, postalCode: a.address.postalCode, city: a.address.city, country: a.address.country,
+    education: a.education, program: a.program, schoolId: a.schoolId, term: a.term, semesters: a.semesters ? String(a.semesters) : '',
+    arrivalDate: a.arrivalDate, departureDate: a.departureDate, koreanLevel: a.koreanLevel ?? '', message: a.message ?? '',
+    privacyConsent: true, website: '',
+  };
+};
+
 const EMAIL_RE = /^[^\s@,;<>"()]+@[^\s@,;<>"'()]+\.[^\s@,;<>"'()]+$/;
 const PHONE_RE = /^\+?[0-9 ()./-]{6,25}$/;
 
@@ -81,9 +96,13 @@ const API_FIELD: Record<string, keyof Form> = {
   birthDate: 'birthDay', 'address.street': 'street', 'address.postalCode': 'postalCode', 'address.city': 'city', 'address.country': 'country',
 };
 
-export default function ApplyForm({ lang, schools }: { lang: string; schools: ApplySchool[] }) {
+export default function ApplyForm({ lang, schools, edit }: {
+  lang: string;
+  schools: ApplySchool[];
+  edit?: { app: Application; onSaved: (app: Application) => void; onCancel: () => void };
+}) {
   const { t } = useTranslation();
-  const [f, setF] = useState<Form>(EMPTY);
+  const [f, setF] = useState<Form>(() => (edit ? fromApplication(edit.app) : EMPTY));
   const [errors, setErrors] = useState<Partial<Record<keyof Form, string>>>({});
   const [sending, setSending] = useState(false);
   const [failure, setFailure] = useState<string | null>(null);
@@ -119,6 +138,25 @@ export default function ApplyForm({ lang, schools }: { lang: string; schools: Ap
     'aria-describedby': errors[key] ? `${key}-error` : undefined,
   });
 
+  // Application fields shared by a new application and a portal edit (the email can't be edited)
+  const fields = () => ({
+    firstName: f.firstName.trim(),
+    lastName: f.lastName.trim(),
+    phone: f.phone.trim(),
+    birthDate: birthDate(f),
+    nationality: f.nationality,
+    address: { street: f.street.trim(), postalCode: f.postalCode.trim(), city: f.city.trim(), country: f.country },
+    education: f.education,
+    schoolId: f.schoolId,
+    program: f.program,
+    term: f.term,
+    semesters: f.program === 'long' ? Number(f.semesters) : undefined,
+    arrivalDate: f.arrivalDate,
+    departureDate: f.departureDate,
+    koreanLevel: f.koreanLevel || undefined,
+    message: f.message.trim() || undefined,
+  });
+
   const submit = async (e: FormEvent) => {
     e.preventDefault();
     setFailure(null);
@@ -130,30 +168,28 @@ export default function ApplyForm({ lang, schools }: { lang: string; schools: Ap
       return;
     }
     setSending(true);
+    if (edit) {
+      try {
+        const res = await updateApplication(edit.app.id, fields());
+        if (res.ok && res.body.application) edit.onSaved(res.body.application);
+        else if (res.status === 400 && res.body.field) {
+          const key = API_FIELD[res.body.field] ?? (res.body.field as keyof Form);
+          setErrors({ [key]: key === 'birthDay' ? 'APPLY_ERR_BIRTHDATE' : 'APPLY_ERR_INVALID' });
+          document.getElementById(key)?.focus();
+        } else setFailure(t(res.status === 409 ? 'MY_APP_EDIT_LOCKED' : 'APPLY_ERR_SERVER'));
+      } catch {
+        setFailure(t('APPLY_ERR_SERVER'));
+      } finally {
+        setSending(false);
+      }
+      return;
+    }
     try {
       const res = await fetch('/api/apply', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
-          email: f.email.trim(),
-          firstName: f.firstName.trim(),
-          lastName: f.lastName.trim(),
-          phone: f.phone.trim(),
-          birthDate: birthDate(f),
-          nationality: f.nationality,
-          address: { street: f.street.trim(), postalCode: f.postalCode.trim(), city: f.city.trim(), country: f.country },
-          education: f.education,
-          schoolId: f.schoolId,
-          program: f.program,
-          term: f.term,
-          semesters: f.program === 'long' ? Number(f.semesters) : undefined,
-          arrivalDate: f.arrivalDate,
-          departureDate: f.departureDate,
-          koreanLevel: f.koreanLevel || undefined,
-          message: f.message.trim() || undefined,
-          privacyConsent: f.privacyConsent,
-          lang,
-          website: f.website,
+          email: f.email.trim(), ...fields(), privacyConsent: f.privacyConsent, lang, website: f.website,
         }),
       });
       const body = await res.json().catch(() => ({}));
@@ -202,12 +238,16 @@ export default function ApplyForm({ lang, schools }: { lang: string; schools: Ap
   const optional = t('APPLY_OPTIONAL');
 
   return (
-    <div className="max-w-[760px] mx-auto">
-      <p className="text-xs font-semibold tracking-[0.08em] uppercase text-aah-red">{t('APPLY_EYEBROW')}</p>
-      <h1 className="mt-1 text-[30px] md:text-[38px] leading-tight font-bold tracking-[-0.02em] text-ink">{t('APPLY_TITLE')}</h1>
-      <p className="mt-2 text-[16px] text-muted">{t('APPLY_LEAD')}</p>
+    <div className={edit ? '' : 'max-w-[760px] mx-auto'}>
+      {!edit && (
+        <>
+          <p className="text-xs font-semibold tracking-[0.08em] uppercase text-aah-red">{t('APPLY_EYEBROW')}</p>
+          <h1 className="mt-1 text-[30px] md:text-[38px] leading-tight font-bold tracking-[-0.02em] text-ink">{t('APPLY_TITLE')}</h1>
+          <p className="mt-2 text-[16px] text-muted">{t('APPLY_LEAD')}</p>
+        </>
+      )}
 
-      <form noValidate onSubmit={submit} className="mt-7 rounded-[18px] border border-line p-5 md:p-7 space-y-7">
+      <form noValidate onSubmit={submit} className={edit ? 'mt-5 space-y-7' : 'mt-7 rounded-[18px] border border-line p-5 md:p-7 space-y-7'}>
         {/* honeypot: hidden from people, bots fill it in */}
         <div aria-hidden="true" className="absolute -left-[9999px] w-px h-px overflow-hidden">
           <label htmlFor="website">Website</label>
@@ -219,8 +259,8 @@ export default function ApplyForm({ lang, schools }: { lang: string; schools: Ap
             <SectionTitle n={1}>{t('APPLY_SEC_ABOUT')}</SectionTitle>
             <p className="mt-1 text-[13px] text-muted">{t('APPLY_SEC_ABOUT_HINT')}</p>
           </div>
-          <Field id="email" label={t('APPLY_EMAIL')} required hint={t('APPLY_EMAIL_HINT')} error={err('email')}>
-            <input id="email" type="email" autoComplete="email" className={inputClass(!!errors.email)} value={f.email}
+          <Field id="email" label={t('APPLY_EMAIL')} required hint={t(edit ? 'MY_APP_EMAIL_FIXED' : 'APPLY_EMAIL_HINT')} error={err('email')}>
+            <input id="email" type="email" autoComplete="email" readOnly={!!edit} className={`${inputClass(!!errors.email)} ${edit ? 'bg-soft text-muted' : ''}`} value={f.email}
               onChange={(e) => set('email', e.target.value)} {...aria('email')} />
           </Field>
           <div className="grid gap-4 sm:grid-cols-2">
@@ -364,6 +404,7 @@ export default function ApplyForm({ lang, schools }: { lang: string; schools: Ap
           </Field>
         </section>
 
+        {!edit && (<>
         <hr className="border-line" />
         <div>
           <label className="flex gap-3 items-start text-sm text-ink-2 cursor-pointer">
@@ -382,6 +423,7 @@ export default function ApplyForm({ lang, schools }: { lang: string; schools: Ap
           {errors.privacyConsent && <p id="privacyConsent-error" className="mt-1 ml-[30px] text-xs text-aah-red">{t(errors.privacyConsent)}</p>}
           <p className="mt-2 ml-[30px] text-xs text-muted">{t('APPLY_CONSENT_NOTE')}</p>
         </div>
+        </>)}
 
         {failure && <Note tone="alert">{failure}</Note>}
 
@@ -389,9 +431,16 @@ export default function ApplyForm({ lang, schools }: { lang: string; schools: Ap
           <span className="text-xs text-muted">
             <span className="text-aah-red">*</span> {t('APPLY_REQUIRED_NOTE')}
           </span>
-          <button type="submit" disabled={sending} className={buttonClass('primary', 'md')}>
-            {sending ? t('APPLY_SENDING') : t('APPLY_SUBMIT')}
-          </button>
+          {edit ? (
+            <div className="flex flex-col-reverse gap-2 sm:flex-row">
+              <button type="button" onClick={edit.onCancel} className={buttonClass('outline', 'md', 'text-ink')}>{t('MY_APP_EDIT_CANCEL')}</button>
+              <button type="submit" disabled={sending} className={buttonClass('primary', 'md')}>{sending ? t('APPLY_SENDING') : t('MY_APP_EDIT_SAVE')}</button>
+            </div>
+          ) : (
+            <button type="submit" disabled={sending} className={buttonClass('primary', 'md')}>
+              {sending ? t('APPLY_SENDING') : t('APPLY_SUBMIT')}
+            </button>
+          )}
         </div>
       </form>
     </div>

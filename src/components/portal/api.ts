@@ -1,5 +1,5 @@
 // 포털 화면에서 쓰는 API 호출(같은 사이트의 /api/my 프록시 경유)
-import type { Application, DocType } from '@/lib/portal';
+import type { Application, ConfirmationChecks, DocType } from '@/lib/portal';
 
 export class PortalError extends Error {
   constructor(public status: number) {
@@ -24,9 +24,20 @@ const call = async <T,>(path: string, method: 'GET' | 'POST' | 'DELETE' = 'GET',
 type AppResponse = { application: Application };
 
 export const agreeConfirmation = (body: {
-  applicationId: string; optionId: string; health: string; remarks: string; signedName: string; agreeTerms: boolean; startNow: boolean;
-  notes: string[];
+  applicationId: string; optionId: string; checks: ConfirmationChecks; remarks: string; signedName: string; agreeTerms: boolean; startNow: boolean;
+  notes: string[]; acks: string[];
 }) => call<AppResponse>('confirmation', 'POST', body);
+
+/** Step 1 corrections; 400 carries the invalid field */
+export const updateApplication = async (applicationId: string, form: Record<string, unknown>) => {
+  const res = await fetch('/api/my/application', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ applicationId, ...form }),
+  });
+  const body = await res.json().catch(() => ({}));
+  return { ok: res.ok, status: res.status, body: body as Partial<AppResponse> & { field?: string } };
+};
 
 export const reportVisa = (applicationId: string, action: 'submitted' | 'contacted' | 'issued', extra: { mission?: string; note?: string } = {}) =>
   call<AppResponse>('visa', 'POST', { applicationId, action, ...extra });

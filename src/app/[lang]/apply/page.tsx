@@ -2,12 +2,10 @@
 import { Metadata } from 'next';
 import Header from '@/components/context/Header';
 import Footer from '@/components/context/Footer';
-import ApplyForm, { type ApplySchool } from '@/components/portal/ApplyForm';
+import ApplyForm from '@/components/portal/ApplyForm';
 import { getTranslation } from '@/lib/i18n.server';
-import { getServerCurrency } from '@/lib/currency.server';
-import { getSchools } from '@/api/server';
+import { getApplySchools } from '@/lib/applySchools.server';
 import { isSupportedLocale, DEFAULT_LOCALE } from '@/lib/locales';
-import type { University } from '@/types/constants';
 
 export const revalidate = 3600;
 
@@ -22,19 +20,10 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   return { title: t('APPLY_META_TITLE'), robots: { index: false, follow: false } };
 }
 
-// Same rule as the plan builder: pricing for the program, or a legacy price above 0
-const offers = (u: University, program: 'long' | 'short') =>
-  u.pricing ? !!u.pricing[program] : (program === 'short' ? u.priceShort : u.priceLong) > 0;
-
 export default async function ApplyPage({ params }: PageProps) {
   const { lang: langParam } = await params;
   const lang = isSupportedLocale(langParam) ? langParam : DEFAULT_LOCALE;
-  const schools: ApplySchool[] = (await getSchools(await getServerCurrency(lang))).map((u) => ({
-    id: u.id,
-    title: u.title,
-    long: offers(u, 'long'),
-    short: offers(u, 'short'),
-  }));
+  const schools = await getApplySchools(lang);
 
   return (
     <div className="flex flex-col min-h-screen bg-white">

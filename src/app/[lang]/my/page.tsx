@@ -3,6 +3,7 @@ import { redirect } from 'next/navigation';
 import { getTranslation } from '@/lib/i18n.server';
 import { getPortalData } from '@/lib/portal.server';
 import { getEurRates } from '@/api/server';
+import { getApplySchools } from '@/lib/applySchools.server';
 import Portal from '@/components/portal/Portal';
 import { isSupportedLocale, DEFAULT_LOCALE } from '@/lib/locales';
 
@@ -22,7 +23,7 @@ export default async function MyPage({
   const { lang: langParam } = await params;
   const lang = isSupportedLocale(langParam) ? langParam : DEFAULT_LOCALE;
   const { id, password } = await searchParams;
-  const [data, rates] = await Promise.all([getPortalData(id), getEurRates()]);
+  const [data, rates, schools] = await Promise.all([getPortalData(id), getEurRates(), getApplySchools(lang)]);
   if (!data) redirect(`/${lang}/my/login`);
-  return <Portal lang={lang} initial={data} rates={rates} passwordChanged={password === 'changed'} />;
+  return <Portal lang={lang} initial={data} rates={rates} schools={schools} passwordChanged={password === 'changed'} />;
 }

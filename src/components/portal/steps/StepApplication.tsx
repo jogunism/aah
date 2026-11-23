@@ -1,17 +1,60 @@
 'use client';
-// 1단계: 제출한 신청 내용 다시 보기
+// 1단계: 제출한 신청 내용 다시 보기. 확인서 동의 전까지는 같은 신청 폼으로 수정(이메일 제외)
+import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import type { StepProps } from '../Portal';
-import { countryName, formatDate } from '@/lib/portal';
+import { canEditApplication, countryName, formatDate } from '@/lib/portal';
+import { buttonClass } from '@/components/ui/Button';
+import ApplyForm from '../ApplyForm';
+import { Note } from '../fields';
 import { KV, StepHeader, Sub } from './common';
 
-export default function StepApplication({ app, lang }: StepProps) {
+export default function StepApplication({ app, lang, schools, onChange }: StepProps) {
   const { t } = useTranslation();
+  const [editing, setEditing] = useState(false);
+  const [saved, setSaved] = useState(false);
   const [year, season] = app.term.split('-');
+  const editable = canEditApplication(app);
+  const header = (
+    <StepHeader n={1} title={t('MY_STEP_APPLICATION')} tone="green"
+      chip={t('MY_SUBMITTED_ON', { date: formatDate(app.createdAt, lang) })}
+      lead={t(editing ? 'MY_APP_EDIT_LEAD' : editable ? 'MY_APP_LEAD_EDITABLE' : 'MY_APP_LEAD')} />
+  );
+
+  if (editing) {
+    // A school that is no longer listed stays selectable for this application
+    const list = schools.some((s) => s.id === app.schoolId)
+      ? schools
+      : [...schools, { id: app.schoolId, title: app.schoolName, long: true, short: true }];
+    return (
+      <>
+        {header}
+        {app.confirmation.status === 'sent' && <div className="mt-5"><Note>{t('MY_APP_EDIT_PRICED')}</Note></div>}
+        <ApplyForm lang={lang} schools={list} edit={{
+          app,
+          onCancel: () => setEditing(false),
+          onSaved: (next) => {
+            onChange(next);
+            setEditing(false);
+            setSaved(true);
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+          },
+        }} />
+      </>
+    );
+  }
+
   return (
     <>
-      <StepHeader n={1} title={t('MY_STEP_APPLICATION')} tone="green"
-        chip={t('MY_SUBMITTED_ON', { date: formatDate(app.createdAt, lang) })} lead={t('MY_APP_LEAD')} />
+      {header}
+      {saved && <div className="mt-5"><Note tone="success">{t('MY_APP_SAVED')}</Note></div>}
+      {editable && (
+        <div className="mt-5">
+          <button type="button" onClick={() => { setSaved(false); setEditing(true); }} className={buttonClass('outline', 'sm', 'text-ink')}>
+            {t('MY_APP_EDIT')}
+          </button>
+        </div>
+      )}
       <Sub>{t('APPLY_SEC_ABOUT')}</Sub>
       <KV rows={[
         [t('MY_APP_NAME'), `${app.firstName} ${app.lastName}`],

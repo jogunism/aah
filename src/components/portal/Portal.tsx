@@ -9,7 +9,8 @@ import { buttonClass } from '@/components/ui/Button';
 import { Note } from './fields';
 import Dropdown from './Dropdown';
 import type { Currency } from '@/lib/currency';
-import type { Application, PortalData, StepKey } from '@/lib/portal';
+import type { ApplySchool } from './ApplyForm';
+import type { Application, PortalData, StepKey, StepState } from '@/lib/portal';
 import { currentStep, formatDate, stepStates } from '@/lib/portal';
 import StepApplication from './steps/StepApplication';
 import StepConfirmation from './steps/StepConfirmation';
@@ -23,6 +24,7 @@ export interface StepProps {
   lang: string;
   bank: PortalData['bank'];
   rates: Record<Currency, number> | null; // EUR → currency, for the refund amounts
+  schools: ApplySchool[]; // for correcting the application
   onChange: (app: Application) => void;
 }
 
@@ -35,8 +37,8 @@ const PANELS: Record<StepKey, (p: StepProps) => React.ReactNode> = {
   visaStatus: StepVisaStatus,
 };
 
-export default function Portal({ lang, initial, rates, passwordChanged }: {
-  lang: string; initial: PortalData; rates: Record<Currency, number> | null; passwordChanged: boolean;
+export default function Portal({ lang, initial, rates, schools, passwordChanged }: {
+  lang: string; initial: PortalData; rates: Record<Currency, number> | null; schools: ApplySchool[]; passwordChanged: boolean;
 }) {
   const { t } = useTranslation();
   const router = useRouter();
@@ -51,6 +53,13 @@ export default function Portal({ lang, initial, rates, passwordChanged }: {
   };
 
   const Panel = PANELS[view];
+
+  // Under each step: locked / in review / we're checking your reply / to do / done
+  const stepSub = (key: StepKey, state: StepState) =>
+    state === 'locked' ? t('MY_STATE_LOCKED')
+      : key === 'confirmation' && app.confirmation.status === 'preparing' ? t('MY_STEP_CONFIRMATION_PREP')
+        : key === 'confirmation' && app.confirmation.status === 'agreed' ? t('MY_STEP_CONFIRMATION_CHECK')
+          : t(`MY_STEP_${key.toUpperCase()}_${state === 'done' ? 'DONE' : 'NOW'}`);
 
   return (
     <div className="max-w-[1180px] mx-auto px-5 md:px-6 pt-8 md:pt-10 pb-16">
@@ -96,9 +105,7 @@ export default function Portal({ lang, initial, rates, passwordChanged }: {
           {states.map(({ key, state }, i) => {
             const selected = view === key;
             const label = t(`MY_STEP_${key.toUpperCase()}`);
-            const sub = state === 'locked' ? t('MY_STATE_LOCKED')
-              : key === 'confirmation' && app.confirmation.status === 'preparing' ? t('MY_STEP_CONFIRMATION_PREP')
-                : t(`MY_STEP_${key.toUpperCase()}_${state === 'done' ? 'DONE' : 'NOW'}`);
+            const sub = stepSub(key, state);
             return (
               <li key={key} className="relative flex-1 text-center">
                 {i > 0 && (
@@ -130,9 +137,7 @@ export default function Portal({ lang, initial, rates, passwordChanged }: {
         {(() => {
           const n = states.findIndex((s) => s.key === view);
           const s = states[n];
-          const sub = s.state === 'locked' ? t('MY_STATE_LOCKED')
-            : view === 'confirmation' && app.confirmation.status === 'preparing' ? t('MY_STEP_CONFIRMATION_PREP')
-              : t(`MY_STEP_${view.toUpperCase()}_${s.state === 'done' ? 'DONE' : 'NOW'}`);
+          const sub = stepSub(view, s.state);
           return (
             <p aria-hidden="true" className="sm:hidden mt-2 text-center text-[14px]">
               <span className="text-muted">{n + 1}/{states.length} · </span>
@@ -145,7 +150,7 @@ export default function Portal({ lang, initial, rates, passwordChanged }: {
 
       <div className="grid grid-cols-1 gap-6 lg:grid-cols-[minmax(0,1fr)_320px] lg:items-start">
         <section className="min-w-0 rounded-[18px] border border-line p-4 sm:p-5 md:p-7">
-          <Panel app={app} lang={lang} bank={initial.bank} rates={rates} onChange={onChange} />
+          <Panel app={app} lang={lang} bank={initial.bank} rates={rates} schools={schools} onChange={onChange} />
         </section>
         <aside className="min-w-0 space-y-4">
           <div className="rounded-[18px] border border-line p-5">

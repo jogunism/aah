@@ -25,6 +25,36 @@ export interface PriceOption {
   items: LineItem[];
 }
 
+export const ACKS_ALL = ['SCHEDULE', 'DOCS', 'FLIGHT'] as const;
+export const ACKS_LONG = ['VISA_TRIP', 'VISA_STAY'] as const;
+export type AckKey = (typeof ACKS_ALL)[number] | (typeof ACKS_LONG)[number];
+
+export interface ConfirmationChecks {
+  passport: { has: boolean; expiry: string | null };
+  health: { declared: boolean; details: string };
+  residence: string | null; // long-term only
+  acks: AckKey[];
+}
+
+export interface ConfirmationReply {
+  optionId: string;
+  checks?: ConfirmationChecks; // missing on replies from before the checks existed
+  health: string;
+  remarks: string;
+  signedName: string;
+  agreedAt: string;
+}
+
+/** Passport must be valid at least until arrival + 6 months */
+export const passportNeededUntil = (arrivalDate: string) => {
+  const d = new Date(`${arrivalDate}T00:00:00Z`);
+  d.setUTCMonth(d.getUTCMonth() + 6);
+  return d.toISOString().slice(0, 10);
+};
+
+/** The application can be changed until the student agrees to the confirmation */
+export const canEditApplication = (a: Application) => a.confirmation.status === 'preparing' || a.confirmation.status === 'sent';
+
 export type Currency3 = 'EUR' | 'USD' | 'GBP';
 
 export interface Application {
@@ -49,13 +79,16 @@ export interface Application {
   lang: string;
   createdAt: string;
   confirmation: {
-    status: 'preparing' | 'sent' | 'agreed';
+    status: 'preparing' | 'sent' | 'agreed' | 'approved'; // agreed = we're checking the answers
     sentAt: string | null;
     replyBy: string | null;
     currency: Currency3;
     options: PriceOption[];
     message: string | null;
-    reply: { optionId: string; health: string; remarks: string; signedName: string; agreedAt: string } | null;
+    reply: ConfirmationReply | null;
+    approvedAt?: string | null;
+    returned?: { at: string; message: string } | null; // our request for corrections
+    history?: ConfirmationReply[]; // earlier replies we returned
   };
   payment: {
     status: 'pending' | 'confirmed';
@@ -98,7 +131,7 @@ export type StepState = 'done' | 'current' | 'locked';
 
 const DONE: Record<StepKey, (a: Application) => boolean> = {
   application: () => true,
-  confirmation: (a) => a.confirmation.status === 'agreed',
+  confirmation: (a) => a.confirmation.status === 'approved',
   payment: (a) => a.payment.status === 'confirmed',
   school: (a) => a.school.status === 'admitted',
   visaDocs: (a) => a.visa.status !== 'not_started',
