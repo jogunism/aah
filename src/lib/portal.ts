@@ -84,7 +84,7 @@ export interface Bank {
 }
 
 export interface PortalData {
-  account: { email: string };
+  account: { email: string; mustChangePassword: boolean };
   applications: { id: string; schoolName: string; term: string }[];
   application: Application;
   bank: Bank;

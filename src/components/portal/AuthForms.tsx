@@ -1,5 +1,5 @@
 'use client';
-// 포털 계정 폼: 로그인, 처음 비밀번호 설정·비밀번호 찾기, 재설정(메일 링크), 비밀번호 변경
+// 포털 계정 폼: 로그인, 비밀번호 찾기, 재설정(메일 링크), 비밀번호 변경(첫 로그인 임시 비밀번호 포함)
 
 import { useState, type FormEvent, type ReactNode } from 'react';
 import Link from 'next/link';
@@ -79,17 +79,11 @@ export function LoginForm({ lang }: { lang: string }) {
         {error && <Note tone="alert">{error}</Note>}
         <button type="submit" disabled={busy} className={buttonClass('dark', 'md', 'w-full')}>{t('MY_LOGIN_SUBMIT')}</button>
       </form>
-      {/* Accounts start without a password: the applicant sets it by email link */}
-      <div className="mt-5 border-t border-line pt-4 text-sm">
-        <p className="font-semibold text-ink">{t('MY_LOGIN_FIRST_TITLE')}</p>
-        <p className="mt-1 text-muted">{t('MY_LOGIN_FIRST_BODY')}</p>
-        <Link href={`/${lang}/my/forgot?first=1`} className={buttonClass('outline', 'sm', 'mt-3 text-ink')}>{t('MY_LOGIN_FIRST_BUTTON')}</Link>
-      </div>
     </Shell>
   );
 }
 
-export function ForgotForm({ lang, first }: { lang: string; first: boolean }) {
+export function ForgotForm({ lang }: { lang: string }) {
   const { t } = useTranslation();
   const [email, setEmail] = useState('');
   const [sent, setSent] = useState(false);
@@ -103,7 +97,7 @@ export function ForgotForm({ lang, first }: { lang: string; first: boolean }) {
   };
 
   return (
-    <Shell title={t(first ? 'MY_FIRST_TITLE' : 'MY_FORGOT_TITLE')} lead={t(first ? 'MY_FIRST_LEAD' : 'MY_FORGOT_LEAD')}
+    <Shell title={t('MY_FORGOT_TITLE')} lead={t('MY_FORGOT_LEAD')}
       footer={<Link href={`/${lang}/my/login`} className="text-aah-blue underline underline-offset-2">{t('MY_BACK_TO_LOGIN')}</Link>}>
       {sent ? (
         <Note tone="success">{t('MY_FORGOT_SENT', { email: email.trim() })}</Note>
@@ -148,7 +142,6 @@ export function ResetForm({ lang }: { lang: string }) {
   const [password, setPassword] = useState('');
   const [repeat, setRepeat] = useState('');
   const [error, setError] = useState<string | null>(null);
-  const first = query.get('first') === '1'; // link from the confirmation mail / "first time" form
 
   const submit = async (e: FormEvent) => {
     e.preventDefault();
@@ -160,18 +153,18 @@ export function ResetForm({ lang }: { lang: string }) {
   };
 
   return (
-    <Shell title={t(first ? 'MY_FIRST_SET_TITLE' : 'MY_RESET_TITLE')} lead={first ? t('MY_FIRST_SET_LEAD') : undefined}
-      footer={<Link href={`/${lang}/my/forgot${first ? '?first=1' : ''}`} className="text-aah-blue underline underline-offset-2">{t('MY_RESET_NEW_LINK')}</Link>}>
+    <Shell title={t('MY_RESET_TITLE')}
+      footer={<Link href={`/${lang}/my/forgot`} className="text-aah-blue underline underline-offset-2">{t('MY_RESET_NEW_LINK')}</Link>}>
       <form onSubmit={submit} className="space-y-4">
         <NewPasswordFields password={password} repeat={repeat} setPassword={setPassword} setRepeat={setRepeat} />
         {error && <Note tone="alert">{error}</Note>}
-        <button type="submit" className={buttonClass('dark', 'md', 'w-full')}>{t(first ? 'MY_FIRST_SET_SUBMIT' : 'MY_RESET_SUBMIT')}</button>
+        <button type="submit" className={buttonClass('dark', 'md', 'w-full')}>{t('MY_RESET_SUBMIT')}</button>
       </form>
     </Shell>
   );
 }
 
-export function PasswordForm({ lang }: { lang: string }) {
+export function PasswordForm({ lang, mustChange }: { lang: string; mustChange: boolean }) {
   const { t } = useTranslation();
   const router = useRouter();
   const [current, setCurrent] = useState('');
@@ -191,10 +184,10 @@ export function PasswordForm({ lang }: { lang: string }) {
   };
 
   return (
-    <Shell title={t('MY_CHANGE_PASSWORD')}
+    <Shell title={t('MY_CHANGE_PASSWORD')} lead={mustChange ? t('MY_TEMP_PASSWORD_LEAD') : undefined}
       footer={<Link href={`/${lang}/my`} className="text-aah-blue underline underline-offset-2">{t('MY_BACK')}</Link>}>
       <form onSubmit={submit} className="space-y-4">
-        <Field id="currentPassword" label={t('MY_CURRENT_PASSWORD')}>
+        <Field id="currentPassword" label={t(mustChange ? 'MY_TEMP_PASSWORD' : 'MY_CURRENT_PASSWORD')}>
           <input id="currentPassword" type="password" autoComplete="current-password" required className={inputClass()}
             value={current} onChange={(e) => setCurrent(e.target.value)} />
         </Field>

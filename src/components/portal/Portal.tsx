@@ -2,8 +2,10 @@
 // 포털 본문: 인사·신청 번호, 진행 단계 표시(완료·현재·잠김), 선택한 단계 화면, 옆 안내 카드
 
 import { useState } from 'react';
+import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { useTranslation } from 'react-i18next';
+import { buttonClass } from '@/components/ui/Button';
 import { Note } from './fields';
 import Dropdown from './Dropdown';
 import type { Currency } from '@/lib/currency';
@@ -52,6 +54,16 @@ export default function Portal({ lang, initial, rates, passwordChanged }: {
 
   return (
     <div className="max-w-[1180px] mx-auto px-5 md:px-6 pt-8 md:pt-10 pb-16">
+      {initial.account.mustChangePassword && (
+        <div className="mb-7 flex flex-col gap-3 rounded-[14px] border border-[#F4E0BD] bg-[#FFF7EB] px-4 py-3 text-sm text-[#7A4B00] sm:flex-row sm:items-center">
+          <p className="flex-1">
+            <strong>{t('MY_TEMP_BANNER_TITLE')}</strong> {t('MY_TEMP_BANNER_BODY')}
+          </p>
+          <Link href={`/${lang}/my/password`} className={buttonClass('dark', 'sm', 'self-start sm:self-auto')}>
+            {t('MY_CHANGE_PASSWORD')}
+          </Link>
+        </div>
+      )}
       {passwordChanged && (
         <div className="mb-7">
           <Note tone="success">{t('MY_PASSWORD_CHANGED')}</Note>
