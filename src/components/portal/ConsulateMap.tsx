@@ -16,8 +16,8 @@ const KEY = process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY;
 // Advanced markers need a map ID; Google's DEMO_MAP_ID works until we create our own
 const MAP_ID = process.env.NEXT_PUBLIC_GOOGLE_MAPS_MAP_ID || 'DEMO_MAP_ID';
 
-// Default view at most this close: a whole city stays visible
-const CITY_ZOOM = 11;
+// Default view at most this close (district level, about 4 km across the map; user choice)
+const CITY_ZOOM = 14;
 
 let loading: Promise<void> | null = null;
 
