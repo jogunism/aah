@@ -203,6 +203,7 @@ const doc: LegalDoc = {
       title: '15. Otras cuestiones',
       blocks: [
         'Las cuestiones que no se resuelvan en estas condiciones se acordarán de buena fe entre tú y nosotros.',
+        'Estas condiciones se rigen por la legislación alemana.',
         'Si eres consumidor, se aplican siempre las normas imperativas de protección de los consumidores de tu país de residencia.',
       ],
     },
@@ -214,7 +215,7 @@ const doc: LegalDoc = {
     },
     {
       title: 'Contacto',
-      blocks: ['aah! education Europe · contact@aah.education'],
+      blocks: ['aah! education Europe · Titular: Hyun Woo Cho · Nicolaiweg 6, 65812 Bad Soden am Taunus, Alemania · contact@aah.education'],
     },
   ],
 };

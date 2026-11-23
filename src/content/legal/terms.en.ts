@@ -203,6 +203,7 @@ const doc: LegalDoc = {
       title: '15. Other matters',
       blocks: [
         'Questions that these terms do not answer are settled by good-faith discussion between you and us.',
+        'These terms are governed by German law.',
         'If you are a consumer, the mandatory consumer protection rules of your country of residence always apply.',
       ],
     },
@@ -214,7 +215,7 @@ const doc: LegalDoc = {
     },
     {
       title: 'Contact',
-      blocks: ['aah! education Europe · contact@aah.education'],
+      blocks: ['aah! education Europe · Owner: Hyun Woo Cho · Nicolaiweg 6, 65812 Bad Soden am Taunus, Germany · contact@aah.education'],
     },
   ],
 };

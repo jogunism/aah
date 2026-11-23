@@ -2,7 +2,7 @@
 
 # 개인정보 및 보안 정책 (초안)
 
-> **확정본(2026-11-23 게시, 영어판 `src/content/legal/privacy.en.ts`가 기준).** 보관 기간은 아래 제안값 그대로 게시했다(사용자 결정, 나중에 조정). 처리 책임자는 aah! education Europe과 contact@aah.education만 적었다(주소 미정). 위탁 업체에 사이트 인스타그램 피드(Behold)를 더했다.
+> **확정본(2026-11-23 게시, 영어판 `src/content/legal/privacy.en.ts`가 기준).** 보관 기간은 아래 제안값 그대로 게시했다(사용자 결정, 나중에 조정). 처리 책임자는 aah! education Europe(운영자 Hyun Woo Cho, Nicolaiweg 6, 65812 Bad Soden am Taunus)과 contact@aah.education이다. 위탁 업체에 사이트 인스타그램 피드(Behold)를 더했다.
 >
 > 원래 안내: 「검토」 표시는 사용자 확인이 필요한 곳이고, 【 】는 채워야 할 값입니다. 원문은 aah-e.net 「프라이버시 정책」(privacy.html)입니다. 원문은 일본 개인정보보호법 기준이라, 유럽 고객을 위해 GDPR(EU 일반 개인정보 보호법)이 요구하는 항목(처리 근거, 보관 기간, 권리, 국외 이전)을 더했습니다.
 
@@ -12,8 +12,8 @@
 
 ## 1. 개인정보 처리 책임자
 
-【법인명】(서비스명 aah! education, 이하 「회사」)
-【주소】
+aah! education Europe(운영자 Hyun Woo Cho, 이하 「회사」)
+Nicolaiweg 6, 65812 Bad Soden am Taunus, 독일
 contact@aah.education
 
 회사는 개인정보 보호를 중요하게 여기며, 유학 수속을 다루는 회사로서 관련 법령과 지침을 지키고 고객의 개인정보를 안전하게 관리합니다.

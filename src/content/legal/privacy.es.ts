@@ -12,7 +12,7 @@ const doc: LegalDoc = {
   sections: [
     {
       title: '1. Responsable del tratamiento',
-      blocks: ['aah! education Europe («nosotros») es responsable del tratamiento de tus datos personales. Puedes contactar con nosotros en contact@aah.education.'],
+      blocks: ['aah! education Europe («nosotros») es responsable del tratamiento de tus datos personales. Puedes contactar con nosotros en contact@aah.education.', 'Dirección postal: aah! education Europe, titular Hyun Woo Cho, Nicolaiweg 6, 65812 Bad Soden am Taunus, Alemania.'],
     },
     {
       title: '2. Qué son los datos personales',
@@ -134,7 +134,7 @@ const doc: LegalDoc = {
     },
     {
       title: 'Contacto',
-      blocks: ['aah! education Europe · contact@aah.education'],
+      blocks: ['aah! education Europe · Titular: Hyun Woo Cho · Nicolaiweg 6, 65812 Bad Soden am Taunus, Alemania · contact@aah.education'],
     },
   ],
 };

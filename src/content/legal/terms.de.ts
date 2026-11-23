@@ -203,6 +203,7 @@ const doc: LegalDoc = {
       title: '15. Sonstiges',
       blocks: [
         'Fragen, die diese Bedingungen nicht beantworten, werden in gutem Glauben zwischen Ihnen und uns geklärt.',
+        'Für diese Bedingungen gilt deutsches Recht.',
         'Wenn Sie Verbraucher sind, gelten stets die zwingenden Verbraucherschutzvorschriften Ihres Wohnsitzlandes.',
       ],
     },
@@ -214,7 +215,7 @@ const doc: LegalDoc = {
     },
     {
       title: 'Kontakt',
-      blocks: ['aah! education Europe · contact@aah.education'],
+      blocks: ['aah! education Europe · Inhaber: Hyun Woo Cho · Nicolaiweg 6, 65812 Bad Soden am Taunus, Deutschland · contact@aah.education'],
     },
   ],
 };
