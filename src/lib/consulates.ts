@@ -7,6 +7,8 @@ export interface VisaCenter {
   phone: string;
   email: string;
   website: string;
+  lat: number;
+  lng: number;
 }
 
 export interface Mission {
@@ -20,6 +22,8 @@ export interface Mission {
   website: string | null;
   jurisdiction: string[]; // as written by the mission (English / local names)
   visaCenter?: VisaCenter; // visas are lodged here instead of at the mission
+  lat: number; // geocoded once from the address (OpenStreetMap), for the map
+  lng: number;
 }
 
 export const MISSIONS: Mission[] = [
@@ -44,8 +48,12 @@ export const MISSIONS: Mission[] = [
       "address": "Charlottenstraße 68, 5th floor, 10117 Berlin",
       "phone": "+49 30 2902245550",
       "email": "kvacdeinfo@iom.int",
-      "website": "https://www.visaforkorea.eu"
-    }
+      "website": "https://www.visaforkorea.eu",
+      "lat": 52.510121,
+      "lng": 13.391681
+    },
+    "lat": 52.50764,
+    "lng": 13.348604
   },
   {
     "country": "DE",
@@ -59,7 +67,9 @@ export const MISSIONS: Mission[] = [
       "Nordrhein-Westfalen",
       "Rheinland-Pfalz",
       "Saarland"
-    ]
+    ],
+    "lat": 50.700818,
+    "lng": 7.138659
   },
   {
     "country": "DE",
@@ -73,7 +83,9 @@ export const MISSIONS: Mission[] = [
       "Hessen",
       "Baden-Württemberg",
       "Bayern"
-    ]
+    ],
+    "lat": 50.078893,
+    "lng": 8.623408
   },
   {
     "country": "DE",
@@ -89,7 +101,9 @@ export const MISSIONS: Mission[] = [
       "Niedersachsen",
       "Schleswig-Holstein"
     ],
-    "visaPhone": "+49 40 650677614"
+    "visaPhone": "+49 40 650677614",
+    "lat": 53.552582,
+    "lng": 9.984168
   },
   {
     "country": "AT",
@@ -103,7 +117,9 @@ export const MISSIONS: Mission[] = [
       "Austria",
       "Kosovo"
     ],
-    "visaPhone": "+43 1 4781991-68"
+    "visaPhone": "+43 1 4781991-68",
+    "lat": 48.23303,
+    "lng": 16.337417
   },
   {
     "country": "CH",
@@ -117,7 +133,9 @@ export const MISSIONS: Mission[] = [
       "Switzerland",
       "Liechtenstein"
     ],
-    "visaPhone": "+41 31 356 2459"
+    "visaPhone": "+41 31 356 2459",
+    "lat": 46.936963,
+    "lng": 7.462362
   },
   {
     "country": "FR",
@@ -136,8 +154,12 @@ export const MISSIONS: Mission[] = [
       "address": "56 Rue Crozatier, 75012 Paris",
       "phone": "+33 1 43 14 31 37",
       "email": "kvacfrinfo@iom.int",
-      "website": "https://www.visaforkorea.eu"
-    }
+      "website": "https://www.visaforkorea.eu",
+      "lat": 48.849152,
+      "lng": 2.380042
+    },
+    "lat": 48.862959,
+    "lng": 2.2927
   },
   {
     "country": "BE",
@@ -150,7 +172,9 @@ export const MISSIONS: Mission[] = [
     "jurisdiction": [
       "Belgium"
     ],
-    "visaPhone": "+32 2 661 0035"
+    "visaPhone": "+32 2 661 0035",
+    "lat": 50.795729,
+    "lng": 4.402414
   },
   {
     "country": "LU",
@@ -162,7 +186,9 @@ export const MISSIONS: Mission[] = [
     "website": "https://overseas.mofa.go.kr/lu-en/index.do",
     "jurisdiction": [
       "Luxembourg"
-    ]
+    ],
+    "lat": 49.608696,
+    "lng": 6.121821
   },
   {
     "country": "NL",
@@ -180,8 +206,12 @@ export const MISSIONS: Mission[] = [
       "address": "Carnegielaan 12, 2517 KH Den Haag",
       "phone": "+31 70 318 1590",
       "email": "kvacnlinfo@iom.int",
-      "website": "https://www.visaforkorea.eu"
-    }
+      "website": "https://www.visaforkorea.eu",
+      "lat": 52.085387,
+      "lng": 4.293677
+    },
+    "lat": 52.09341,
+    "lng": 4.287134
   },
   {
     "country": "IT",
@@ -207,7 +237,9 @@ export const MISSIONS: Mission[] = [
       "Malta",
       "San Marino"
     ],
-    "visaPhone": "+39 06 420402226"
+    "visaPhone": "+39 06 420402226",
+    "lat": 41.907293,
+    "lng": 12.493808
   },
   {
     "country": "IT",
@@ -226,7 +258,9 @@ export const MISSIONS: Mission[] = [
       "Friuli-Venezia Giulia",
       "Trentino-Alto Adige",
       "Valle d'Aosta"
-    ]
+    ],
+    "lat": 45.47288,
+    "lng": 9.19488
   },
   {
     "country": "ES",
@@ -238,7 +272,9 @@ export const MISSIONS: Mission[] = [
     "website": "https://overseas.mofa.go.kr/es-es/index.do",
     "jurisdiction": [
       "Spain (all regions except Cataluña, Comunidad Valenciana, Islas Baleares and Canarias)"
-    ]
+    ],
+    "lat": 40.466405,
+    "lng": -3.664259
   },
   {
     "country": "ES",
@@ -252,7 +288,9 @@ export const MISSIONS: Mission[] = [
       "Cataluña",
       "Comunidad Valenciana",
       "Islas Baleares"
-    ]
+    ],
+    "lat": 41.395741,
+    "lng": 2.159972
   },
   {
     "country": "ES",
@@ -264,7 +302,9 @@ export const MISSIONS: Mission[] = [
     "website": "https://overseas.mofa.go.kr/es-las-es/index.do",
     "jurisdiction": [
       "Canarias (provinces of Las Palmas and Santa Cruz de Tenerife)"
-    ]
+    ],
+    "lat": 28.120648,
+    "lng": -15.424912
   },
   {
     "country": "PT",
@@ -276,7 +316,9 @@ export const MISSIONS: Mission[] = [
     "website": "https://overseas.mofa.go.kr/pt-pt/index.do",
     "jurisdiction": [
       "Portugal"
-    ]
+    ],
+    "lat": 38.737119,
+    "lng": -9.147279
   },
   {
     "country": "GB",
@@ -294,8 +336,12 @@ export const MISSIONS: Mission[] = [
       "address": "Heron House, 1st floor, 10 Dean Farrar Street, London SW1H 0DX",
       "phone": "+44 20 7811 6098",
       "email": "kvacukinfo@iom.int",
-      "website": "https://www.visaforkorea.eu"
-    }
+      "website": "https://www.visaforkorea.eu",
+      "lat": 51.499207,
+      "lng": -0.13181
+    },
+    "lat": 51.498515,
+    "lng": -0.136664
   },
   {
     "country": "IE",
@@ -307,7 +353,9 @@ export const MISSIONS: Mission[] = [
     "website": "https://overseas.mofa.go.kr/ie-en/index.do",
     "jurisdiction": [
       "Ireland"
-    ]
+    ],
+    "lat": 53.338859,
+    "lng": -6.250283
   },
   {
     "country": "SE",
@@ -319,7 +367,9 @@ export const MISSIONS: Mission[] = [
     "website": "https://overseas.mofa.go.kr/se-en/index.do",
     "jurisdiction": [
       "Sweden"
-    ]
+    ],
+    "lat": 59.333224,
+    "lng": 18.103141
   },
   {
     "country": "NO",
@@ -333,7 +383,9 @@ export const MISSIONS: Mission[] = [
       "Norway",
       "Iceland"
     ],
-    "visaPhone": "+47 225 47 091"
+    "visaPhone": "+47 225 47 091",
+    "lat": 59.921182,
+    "lng": 10.736356
   },
   {
     "country": "DK",
@@ -346,7 +398,9 @@ export const MISSIONS: Mission[] = [
     "jurisdiction": [
       "Denmark"
     ],
-    "visaPhone": "+45 39 46 04 09"
+    "visaPhone": "+45 39 46 04 09",
+    "lat": 55.730932,
+    "lng": 12.573998
   },
   {
     "country": "FI",
@@ -358,7 +412,9 @@ export const MISSIONS: Mission[] = [
     "website": "https://overseas.mofa.go.kr/fi-en/index.do",
     "jurisdiction": [
       "Finland"
-    ]
+    ],
+    "lat": 60.165614,
+    "lng": 24.950903
   },
   {
     "country": "PL",
@@ -371,7 +427,9 @@ export const MISSIONS: Mission[] = [
     "jurisdiction": [
       "Poland"
     ],
-    "visaPhone": "+48 22 559 2907"
+    "visaPhone": "+48 22 559 2907",
+    "lat": 52.216917,
+    "lng": 21.041844
   },
   {
     "country": "CZ",
@@ -383,7 +441,9 @@ export const MISSIONS: Mission[] = [
     "website": "https://overseas.mofa.go.kr/cz-cs/index.do",
     "jurisdiction": [
       "Czech Republic"
-    ]
+    ],
+    "lat": 50.100543,
+    "lng": 14.407009
   },
   {
     "country": "HU",
@@ -396,7 +456,9 @@ export const MISSIONS: Mission[] = [
     "jurisdiction": [
       "Hungary"
     ],
-    "visaPhone": "+36 1 462 3097"
+    "visaPhone": "+36 1 462 3097",
+    "lat": 47.511791,
+    "lng": 19.073951
   },
   {
     "country": "GR",
@@ -408,7 +470,9 @@ export const MISSIONS: Mission[] = [
     "website": "https://overseas.mofa.go.kr/gr-en/index.do",
     "jurisdiction": [
       "Greece"
-    ]
+    ],
+    "lat": 37.98459,
+    "lng": 23.760789
   },
   {
     "country": "US",
@@ -424,7 +488,9 @@ export const MISSIONS: Mission[] = [
       "District of Columbia",
       "West Virginia"
     ],
-    "visaPhone": "+1-202-939-5653"
+    "visaPhone": "+1-202-939-5653",
+    "lat": 38.912044,
+    "lng": -77.051382
   },
   {
     "country": "US",
@@ -440,7 +506,9 @@ export const MISSIONS: Mission[] = [
       "Pennsylvania",
       "Connecticut",
       "Delaware"
-    ]
+    ],
+    "lat": 40.760866,
+    "lng": -73.970817
   },
   {
     "country": "US",
@@ -455,7 +523,9 @@ export const MISSIONS: Mission[] = [
       "Colorado",
       "Utah",
       "Wyoming"
-    ]
+    ],
+    "lat": 37.788876,
+    "lng": -122.450723
   },
   {
     "country": "US",
@@ -470,7 +540,9 @@ export const MISSIONS: Mission[] = [
       "Arizona",
       "Nevada",
       "New Mexico"
-    ]
+    ],
+    "lat": 34.06187,
+    "lng": -118.292638
   },
   {
     "country": "US",
@@ -486,7 +558,9 @@ export const MISSIONS: Mission[] = [
       "Rhode Island",
       "Maine",
       "Vermont"
-    ]
+    ],
+    "lat": 42.356811,
+    "lng": -71.185992
   },
   {
     "country": "US",
@@ -510,7 +584,9 @@ export const MISSIONS: Mission[] = [
       "Ohio",
       "South Dakota",
       "Wisconsin"
-    ]
+    ],
+    "lat": 41.890057,
+    "lng": -87.621075
   },
   {
     "country": "US",
@@ -526,7 +602,9 @@ export const MISSIONS: Mission[] = [
       "Idaho",
       "Montana",
       "Alaska"
-    ]
+    ],
+    "lat": 47.624372,
+    "lng": -122.358966
   },
   {
     "country": "US",
@@ -545,7 +623,9 @@ export const MISSIONS: Mission[] = [
       "South Carolina",
       "Tennessee",
       "Virgin Islands"
-    ]
+    ],
+    "lat": 33.759921,
+    "lng": -84.386478
   },
   {
     "country": "US",
@@ -561,7 +641,9 @@ export const MISSIONS: Mission[] = [
       "Mississippi",
       "Oklahoma",
       "Texas (except Dallas and Fort Worth)"
-    ]
+    ],
+    "lat": 29.745344,
+    "lng": -95.462763
   },
   {
     "country": "US",
@@ -574,7 +656,9 @@ export const MISSIONS: Mission[] = [
     "jurisdiction": [
       "Hawaii",
       "American Samoa"
-    ]
+    ],
+    "lat": 21.333396,
+    "lng": -157.841594
   },
   {
     "country": "US",
@@ -587,7 +671,9 @@ export const MISSIONS: Mission[] = [
     "jurisdiction": [
       "Guam",
       "Commonwealth of the Northern Mariana Islands (CNMI)"
-    ]
+    ],
+    "lat": 13.496685,
+    "lng": 144.777216
   },
   {
     "country": "CA",
@@ -601,7 +687,9 @@ export const MISSIONS: Mission[] = [
       "Ottawa (Ontario)",
       "Nunavut"
     ],
-    "visaPhone": "+1-613-244-5030"
+    "visaPhone": "+1-613-244-5030",
+    "lat": 45.434854,
+    "lng": -75.694835
   },
   {
     "country": "CA",
@@ -614,7 +702,9 @@ export const MISSIONS: Mission[] = [
     "jurisdiction": [
       "Ontario (except Ottawa)",
       "Manitoba"
-    ]
+    ],
+    "lat": 43.68728,
+    "lng": -79.40136
   },
   {
     "country": "CA",
@@ -630,7 +720,9 @@ export const MISSIONS: Mission[] = [
       "New Brunswick",
       "Nova Scotia",
       "Prince Edward Island"
-    ]
+    ],
+    "lat": 45.497316,
+    "lng": -73.571155
   },
   {
     "country": "CA",
@@ -646,7 +738,9 @@ export const MISSIONS: Mission[] = [
       "Saskatchewan",
       "Yukon",
       "Northwest Territories"
-    ]
+    ],
+    "lat": 49.285331,
+    "lng": -123.123193
   },
   {
     "country": "AU",
@@ -662,7 +756,9 @@ export const MISSIONS: Mission[] = [
       "WA",
       "TAS"
     ],
-    "visaPhone": "+61-2-6270-4151"
+    "visaPhone": "+61-2-6270-4151",
+    "lat": -35.307365,
+    "lng": 149.135924
   },
   {
     "country": "AU",
@@ -675,7 +771,9 @@ export const MISSIONS: Mission[] = [
     "jurisdiction": [
       "New South Wales",
       "Northern Territory"
-    ]
+    ],
+    "lat": -33.870517,
+    "lng": 151.205854
   },
   {
     "country": "AU",
@@ -687,7 +785,9 @@ export const MISSIONS: Mission[] = [
     "website": "https://overseas.mofa.go.kr/au-melbourne-en/index.do",
     "jurisdiction": [
       "Victoria"
-    ]
+    ],
+    "lat": -37.8548,
+    "lng": 144.98147
   },
   {
     "country": "AU",
@@ -699,7 +799,9 @@ export const MISSIONS: Mission[] = [
     "website": "https://overseas.mofa.go.kr/au-brisbane-en/index.do",
     "jurisdiction": [
       "Queensland"
-    ]
+    ],
+    "lat": -27.46822,
+    "lng": 153.024789
   },
   {
     "country": "NZ",
@@ -716,7 +818,9 @@ export const MISSIONS: Mission[] = [
       "Samoa",
       "Tonga",
       "Niue"
-    ]
+    ],
+    "lat": -41.282035,
+    "lng": 174.77773
   },
   {
     "country": "NZ",
@@ -728,7 +832,9 @@ export const MISSIONS: Mission[] = [
     "website": "https://overseas.mofa.go.kr/nz-auckland-en/index.do",
     "jurisdiction": [
       "Part of the North Island (Auckland, Waikato, Bay of Plenty, Northland, Gisborne)"
-    ]
+    ],
+    "lat": -36.849282,
+    "lng": 174.764691
   }
 ];
 

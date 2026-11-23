@@ -1,9 +1,11 @@
 'use client';
-// 5단계(장기): 입학 서류 내려받기, D-4 비자 서류 체크리스트, 나라별 한국 공관, 비자 신청 완료 알림
-import { useState } from 'react';
+// 5단계(장기): 입학 서류 내려받기, D-4 비자 서류 체크리스트, 나라별 한국 공관(지도·주소), 비자 신청 완료 알림
+import { useMemo, useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import type { StepProps } from '../Portal';
 import { countryName } from '@/lib/portal';
+import { pinnedCountries } from '@/lib/apply';
+import ConsulateMap, { type MapPoint } from '../ConsulateMap';
 import { MISSIONS, MISSION_COUNTRIES, type Mission } from '@/lib/consulates';
 import { buttonClass } from '@/components/ui/Button';
 import { Field, Note, inputClass } from '../fields';
@@ -15,10 +17,13 @@ import { StepHeader, Sub } from './common';
 const CHECKLIST = ['FORM', 'PASSPORT', 'PHOTO', 'ADMISSION', 'BUSINESS', 'TUITION', 'FUNDS', 'DIPLOMA', 'FEE'] as const;
 const FROM_US = new Set(['ADMISSION', 'BUSINESS', 'TUITION']);
 
-function MissionCard({ m }: { m: Mission }) {
+function MissionCard({ m, active, onClick }: { m: Mission; active: boolean; onClick: () => void }) {
   const { t } = useTranslation();
   return (
-    <div className="rounded-[14px] border border-line p-4 text-[13px] text-muted">
+    // Clicking the card shows its pin; links inside keep working
+    <div onClick={onClick} aria-current={active ? 'true' : undefined}
+      className={`cursor-pointer rounded-[14px] border p-4 text-[13px] text-muted transition-shadow ${
+        active ? 'border-aah-red ring-2 ring-aah-red/20' : 'border-line hover:border-[#C7C7CC]'}`}>
       <p className="text-sm font-semibold text-ink">{m.name}</p>
       <p className="mt-1">{m.address}</p>
       <p><a href={`tel:${m.phone.replace(/[^\d+]/g, '')}`} className="hover:text-ink">{m.phone}</a>
@@ -41,15 +46,42 @@ function MissionCard({ m }: { m: Mission }) {
 
 export default function StepVisaDocs({ app, lang, onChange }: StepProps) {
   const { t } = useTranslation();
-  const home = MISSION_COUNTRIES.includes(app.address.country) ? app.address.country : MISSION_COUNTRIES[0];
+  // Countries of the site's languages first (as in the apply form), then the rest; start with the billing country
+  const pinned = pinnedCountries(lang).filter((c) => MISSION_COUNTRIES.includes(c));
+  const home = MISSION_COUNTRIES.includes(app.address.country) ? app.address.country : pinned[0] ?? MISSION_COUNTRIES[0];
   const [country, setCountry] = useState(home);
+  const [active, setActive] = useState<number | null>(null);
+  const cards = useRef<(HTMLDivElement | null)[]>([]);
   const [mission, setMission] = useState('');
   const [busy, setBusy] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const aahDocs = app.documents.filter((d) => d.owner === 'aah' && d.type !== 'invoice');
   const submitted = app.visa.status !== 'not_started';
-  const countries = MISSION_COUNTRIES.map((c) => ({ code: c, name: countryName(c, lang) }))
-    .sort((a, b) => (a.code === home ? -1 : b.code === home ? 1 : a.name.localeCompare(b.name, lang)));
+  const countries = MISSION_COUNTRIES.map((c) => ({ value: c, label: countryName(c, lang) }))
+    .sort((a, b) => a.label.localeCompare(b.label, lang));
+  const missions = MISSIONS.map((m, i) => ({ m, i })).filter(({ m }) => m.country === country);
+  // One pin per mission, plus its visa centre where visas are lodged; both point to the same card
+  const points = useMemo<MapPoint[]>(() => missions.flatMap(({ m, i }) => [
+    { id: String(i), lat: m.lat, lng: m.lng, title: m.name },
+    ...(m.visaCenter ? [{ id: `${i}-vc`, lat: m.visaCenter.lat, lng: m.visaCenter.lng, title: m.visaCenter.name }] : []),
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  ]), [country]);
+  const [activePin, setActivePin] = useState<string | null>(null);
+  const pickPin = (id: string) => {
+    const i = Number(id.split('-')[0]);
+    setActivePin(id);
+    setActive(i);
+    cards.current[i]?.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+  };
+  const pickCard = (i: number) => {
+    setActive(i);
+    setActivePin(String(i));
+  };
+  const changeCountry = (c: string) => {
+    setCountry(c);
+    setActive(null);
+    setActivePin(null);
+  };
 
   const report = async () => {
     setBusy(true);
@@ -89,10 +121,17 @@ export default function StepVisaDocs({ app, lang, onChange }: StepProps) {
       <p className="mt-2 text-[13px] text-muted">{t('MY_VISA_CHECKLIST_NOTE')}</p>
 
       <Sub>{t('MY_VISA_MISSIONS')}</Sub>
-      <Dropdown id="missionCountry" value={country} onChange={setCountry} className="max-w-[320px]" placeholder={t('APPLY_COUNTRY')}
-        options={countries.map((c) => ({ value: c.code, label: c.name }))} />
+      <Dropdown id="missionCountry" value={country} onChange={changeCountry} className="max-w-[320px]" placeholder={t('APPLY_COUNTRY')}
+        options={countries} pinned={pinned} searchPlaceholder={t('APPLY_SEARCH')} noMatch={t('APPLY_NO_MATCH')} />
+      <div className="mt-3">
+        <ConsulateMap points={points} activeId={activePin} onSelect={pickPin} lang={lang} label={t('MY_VISA_MAP')} />
+      </div>
       <div className="mt-3 grid gap-3 md:grid-cols-2">
-        {MISSIONS.filter((m) => m.country === country).map((m) => <MissionCard key={m.name + m.city} m={m} />)}
+        {missions.map(({ m, i }) => (
+          <div key={m.name + m.city} ref={(el) => { cards.current[i] = el; }}>
+            <MissionCard m={m} active={active === i} onClick={() => pickCard(i)} />
+          </div>
+        ))}
       </div>
       <p className="mt-2 text-[13px] text-muted">{t('MY_VISA_MISSIONS_NOTE')}</p>
 

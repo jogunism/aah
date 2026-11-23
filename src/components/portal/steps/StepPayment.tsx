@@ -1,5 +1,5 @@
 'use client';
-// 3단계: 서비스 비용·학비 납부. 금액, 입금 계좌(IBAN)·참조번호, 취소 안내, 입금 확인 후 인보이스
+// 3단계: 서비스 비용·학비 납부. 인보이스(동의 뒤 발행) 내려받기, 금액, 입금 계좌(IBAN)·참조번호, 취소 안내
 import { useState } from 'react';
 import Link from 'next/link';
 import { useTranslation } from 'react-i18next';
@@ -56,7 +56,7 @@ export default function StepPayment({ app, lang, bank, rates }: StepProps) {
       <>
         <StepHeader n={3} title={t('MY_STEP_PAYMENT')} tone="green" chip={t('MY_PAY_CONFIRMED_CHIP')} />
         <div className="mt-5 flex flex-col gap-3 rounded-xl border border-[#CDEBD9] bg-[#EEF8F2] px-4 py-3 text-sm text-[#16643F] sm:flex-row sm:items-center">
-          <p className="flex-1"><strong>{t('MY_PAY_CONFIRMED', { date: formatDate(p.confirmedAt!, lang) })}</strong> {t('MY_PAY_INVOICE_SENT')}</p>
+          <p className="flex-1"><strong>{t('MY_PAY_CONFIRMED', { date: formatDate(p.confirmedAt!, lang) })}</strong></p>
           {invoice && (
             <button type="button" onClick={() => openDocument(app.id, invoice.id)}
               className="h-9 rounded-full bg-ink px-4 text-[13px] font-semibold text-white hover:bg-black">
@@ -75,6 +75,15 @@ export default function StepPayment({ app, lang, bank, rates }: StepProps) {
     <>
       <StepHeader n={3} title={t('MY_STEP_PAYMENT')} tone="amber" chip={t('MY_PAY_WAITING_CHIP')}
         lead={p.dueDate ? t('MY_PAY_LEAD_DUE', { date: formatDate(p.dueDate, lang) }) : t('MY_PAY_LEAD')} />
+      {invoice && (
+        <div className="mt-5 flex flex-col gap-3 rounded-xl border border-line bg-soft px-4 py-3 text-sm text-ink-2 sm:flex-row sm:items-center">
+          <p className="flex-1"><strong className="text-ink">{t('MY_PAY_INVOICE_TITLE', { no: p.invoiceNo })}</strong> {t('MY_PAY_INVOICE_READY')}</p>
+          <button type="button" onClick={() => openDocument(app.id, invoice.id)}
+            className="h-9 rounded-full bg-ink px-4 text-[13px] font-semibold text-white hover:bg-black">
+            {t('MY_PAY_DOWNLOAD_INVOICE')}
+          </button>
+        </div>
+      )}
       <Sub>{t('MY_PAY_AMOUNT')}</Sub>
       <MoneyTable items={p.items} currency={p.currency} lang={lang} totalLabel={t('MY_TOTAL')} />
       <Sub>{t('MY_PAY_BANK')}</Sub>
