@@ -45,7 +45,7 @@ const SCHOOL_ONLY = '__school_only__';
 
 // What the aah! fee covers: the ベーシック plan of the aah-e.net fee tables
 // (regular_fee.html for long-term, special_fee.html for short-term). The amount itself is
-// aah! Europe's fixed fee (API AAH_FEE), which is the deposit paid at contract.
+// aah! Europe's fixed fee (API AAH_FEE).
 // 留学ドクターパス is an extra charge that the shown fee excludes, so it is not listed.
 const FEE_SERVICES: Record<'short' | 'long', { group: string; items: string[] }[]> = {
   long: [
@@ -168,6 +168,8 @@ export default function PlanBuilder({
       : size.min === size.max
         ? t('CLASS_SIZE_ABOUT', { count: size.max })
         : t('CLASS_SIZE_RANGE', { min: size.min, max: size.max });
+  // The tuition row expands only when there are class details to show
+  const hasClassInfo = scheduleParts.length > 0 || slots.length > 0 || !!sizeText;
 
   // Schools that have not been synced yet only have a single number
   const legacyPrice =
@@ -273,7 +275,7 @@ export default function PlanBuilder({
         );
       }
       lines.push(
-        `- ${t('TUITION_CALCULATOR_AAH_FEE')}: ${money(breakdown.aahFee)} (${t('PLAN_DEPOSIT')})`,
+        `- ${t('TUITION_CALCULATOR_AAH_FEE')}: ${money(breakdown.aahFee)}`,
       );
       lines.push(
         `- ${t('TUITION_CALCULATOR_TOTAL')}: ${moneyRange(breakdown.total)}${
@@ -639,12 +641,14 @@ export default function PlanBuilder({
               </div>
             )}
             <div className="grid grid-cols-[1fr_auto] gap-x-4 py-2.5">
-              <dt>{expandButton('tuition', t('TUITION_CALCULATOR_TUITION'))}</dt>
+              <dt>
+                {hasClassInfo
+                  ? expandButton('tuition', t('TUITION_CALCULATOR_TUITION'))
+                  : t('TUITION_CALCULATOR_TUITION')}
+              </dt>
               <dd className="font-medium text-ink">{money(breakdown.tuition)}</dd>
-              {open.tuition && (
+              {hasClassInfo && open.tuition && (
                 <dd id="plan-row-tuition" className="col-span-2 mt-1 space-y-0.5 text-[13px] text-muted">
-                  {/* School costs are paid in Korea; the service & contract fee is the deposit */}
-                  <p className="font-semibold text-ink-2">{t('PLAN_PAID_IN_KOREA')}</p>
                   {(scheduleParts.length > 0 || slots.length > 0) && (
                     <p>
                       {t('CLASS_HOURS_LABEL')}:{' '}
@@ -675,7 +679,6 @@ export default function PlanBuilder({
               <dd className="font-medium text-ink">{money(breakdown.aahFee)}</dd>
               {open.fee && (
                 <dd id="plan-row-fee" className="col-span-2 mt-2 space-y-3 text-[13px] text-muted">
-                  <p className="font-semibold text-ink-2">{t('PLAN_DEPOSIT')}</p>
                   {FEE_SERVICES[programKey(programType)].map(({ group, items: all }) => {
                     // Housing help follows the chosen stay: dormitory application, or booking elsewhere
                     const items =

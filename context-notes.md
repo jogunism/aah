@@ -218,3 +218,8 @@
 - GEO 보강. llms.txt에 학교 목록이 없어서 AI가 "어느 학교에 갈 수 있나"에 답할 근거가 없었다. getSchools('EUR')로 대학·어학원을 나눠 영문(한글) 이름과 단기·장기 시작가를 넣었다. 시작가는 첫 옵션 기준이라 그 기간(1 semester, 3 weeks, 1 month 등)을 붙였다. 어학원 장기는 학기가 아니라 월 단위라 "per semester"를 쓰지 않는다. 숨긴 학교는 API가 이미 뺀다.
 - /university/prices의 범위는 대학만 집계한다(어학원 단기 €650이 단기 최저 €860보다 낮음). 그래서 가격 문구를 "each school"에서 "each university"로 바꿨다.
 - 국민대는 가격이 0이라 이름만 나왔다. 같은 날 가격 없는 학교를 API 목록에서 빼도록 바꿔 사이트·llms.txt에서 모두 빠졌다(aah.api context-notes 참고).
+
+## 플랜 요약의 결제 안내 문구 제거 (2026-11-23)
+- 플랜 요약에서 aah! 수수료 아래 "Deposit, paid at contract"(`PLAN_DEPOSIT`)와 수업료 아래 "Paid in Korea"(`PLAN_PAID_IN_KOREA`)를 5개 언어 모두 뺐다(사용자 결정). "Deposit/Anzahlung"은 총액의 일부를 미리 내는 것으로 읽혀, 독일에서 받는 돈이 서비스 대가라는 점과 맞지 않는다. "Paid in Korea"는 수업료를 도착 후 내면 되는 것처럼 읽히지만 실제로는 입학 지원 때(출국 전) 낸다.
+- 수업료 행은 이제 수업 시간·정원 정보가 있을 때만 펼침 버튼을 보인다. 라벨이 빠져 정보가 없는 학교에서 빈 칸이 열리지 않게 하기 위함.
+- 아직 남은 문구(별도 결정 필요): `FAQ_A11`의 "as a deposit", `FEE_SVC_PAYMENT`의 "International transfer ... (bank fees included)"(학생이 서울에 직접 송금하는 구조와 맞지 않음), FAQ의 "paid in Korea". 수수료 금액은 EUR 장기 450·단기 350이 맞다(390은 처음 정한 USD 단기 금액).
