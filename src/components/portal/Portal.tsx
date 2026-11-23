@@ -90,8 +90,9 @@ export default function Portal({ lang, initial, rates, passwordChanged }: {
       </div>
 
       {/* Stepper */}
-      <nav aria-label={t('MY_STEPS')} className="mt-8 mb-7 -mx-5 overflow-x-auto px-5 md:mx-0 md:px-0">
-        <ol className="flex min-w-[600px] md:min-w-0">
+      {/* Phones: small circles that all fit, the selected step's name in one line below */}
+      <nav aria-label={t('MY_STEPS')} className="mt-7 mb-6 sm:mt-8 sm:mb-7 sm:-mx-5 sm:overflow-x-auto sm:px-5 md:mx-0 md:px-0">
+        <ol className="flex sm:min-w-[600px] md:min-w-0">
           {states.map(({ key, state }, i) => {
             const selected = view === key;
             const label = t(`MY_STEP_${key.toUpperCase()}`);
@@ -101,38 +102,52 @@ export default function Portal({ lang, initial, rates, passwordChanged }: {
             return (
               <li key={key} className="relative flex-1 text-center">
                 {i > 0 && (
-                  <span aria-hidden="true" className={`absolute top-[19px] right-1/2 w-full h-0.5 ${state === 'locked' ? 'bg-line' : 'bg-ink'}`} />
+                  <span aria-hidden="true" className={`absolute top-[15px] sm:top-[19px] right-1/2 w-full h-0.5 ${state === 'locked' ? 'bg-line' : 'bg-ink'}`} />
                 )}
                 <button type="button" disabled={state === 'locked'} onClick={() => setView(key)}
-                  aria-current={selected ? 'step' : undefined}
+                  aria-current={selected ? 'step' : undefined} aria-label={`${i + 1}. ${label} – ${sub}`}
                   className="relative z-10 mx-auto flex flex-col items-center px-1 disabled:cursor-not-allowed group">
-                  <span className={`flex w-10 h-10 items-center justify-center rounded-full border-2 text-[15px] font-semibold ${
+                  <span className={`flex w-8 h-8 sm:w-10 sm:h-10 items-center justify-center rounded-full border-2 text-[13px] sm:text-[15px] font-semibold ${
                     state === 'done' ? 'border-ink bg-ink text-white'
                       : state === 'current' ? 'border-aah-red bg-aah-red text-white ring-6 ring-aah-red/15'
                         : 'border-line bg-white text-[#A1A1A6]'}`}>
                     {state === 'done' ? '✓' : i + 1}
                   </span>
-                  <span className={`mt-2.5 text-[13px] leading-tight ${
+                  <span className={`hidden sm:block mt-2.5 text-[13px] leading-tight ${
                     state === 'current' ? 'font-bold text-ink' : state === 'done' ? 'font-medium text-ink-2 group-hover:text-ink' : 'font-medium text-[#A1A1A6]'}`}>
                     {label}
                   </span>
-                  <span className={`mt-0.5 text-[11px] ${
+                  <span className={`hidden sm:block mt-0.5 text-[11px] ${
                     state === 'current' ? 'font-semibold text-aah-red' : state === 'done' ? 'text-[#1E8E5A]' : 'text-[#A1A1A6]'}`}>
                     {sub}
                   </span>
-                  <span aria-hidden="true" className={`mt-2 h-[3px] w-9 rounded ${selected ? (state === 'current' ? 'bg-aah-red' : 'bg-ink') : 'bg-transparent'}`} />
+                  <span aria-hidden="true" className={`mt-1.5 sm:mt-2 h-[3px] w-6 sm:w-9 rounded ${selected ? (state === 'current' ? 'bg-aah-red' : 'bg-ink') : 'bg-transparent'}`} />
                 </button>
               </li>
             );
           })}
         </ol>
+        {(() => {
+          const n = states.findIndex((s) => s.key === view);
+          const s = states[n];
+          const sub = s.state === 'locked' ? t('MY_STATE_LOCKED')
+            : view === 'confirmation' && app.confirmation.status === 'preparing' ? t('MY_STEP_CONFIRMATION_PREP')
+              : t(`MY_STEP_${view.toUpperCase()}_${s.state === 'done' ? 'DONE' : 'NOW'}`);
+          return (
+            <p aria-hidden="true" className="sm:hidden mt-2 text-center text-[14px]">
+              <span className="text-muted">{n + 1}/{states.length} · </span>
+              <b className="font-semibold text-ink">{t(`MY_STEP_${view.toUpperCase()}`)}</b>
+              <span className={s.state === 'current' ? 'font-semibold text-aah-red' : 'text-[#1E8E5A]'}> · {sub}</span>
+            </p>
+          );
+        })()}
       </nav>
 
-      <div className="grid gap-6 lg:grid-cols-[1fr_320px] lg:items-start">
-        <section className="rounded-[18px] border border-line p-5 md:p-7">
+      <div className="grid grid-cols-1 gap-6 lg:grid-cols-[minmax(0,1fr)_320px] lg:items-start">
+        <section className="min-w-0 rounded-[18px] border border-line p-4 sm:p-5 md:p-7">
           <Panel app={app} lang={lang} bank={initial.bank} rates={rates} onChange={onChange} />
         </section>
-        <aside className="space-y-4">
+        <aside className="min-w-0 space-y-4">
           <div className="rounded-[18px] border border-line p-5">
             <h2 className="text-[15px] font-semibold text-ink">{t('MY_SIDE_PLAN')}</h2>
             <p className="mt-2 text-[13px] text-muted">
