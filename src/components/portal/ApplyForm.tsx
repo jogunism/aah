@@ -6,7 +6,8 @@ import Link from 'next/link';
 import { useTranslation } from 'react-i18next';
 import { buttonClass } from '@/components/ui/Button';
 import { Field, Note, SectionTitle, inputClass, textareaClass } from './fields';
-import { KOREAN_LEVELS, countryOptions, termOptions } from '@/lib/apply';
+import Dropdown from './Dropdown';
+import { KOREAN_LEVELS, birthYears, countryOptions, monthNames, pinnedCountries, termOptions } from '@/lib/apply';
 
 export interface ApplySchool {
   id: string;
@@ -20,7 +21,9 @@ type Form = {
   firstName: string;
   lastName: string;
   phone: string;
-  birthDate: string;
+  birthDay: string;
+  birthMonth: string;
+  birthYear: string;
   nationality: string;
   street: string;
   postalCode: string;
@@ -40,7 +43,7 @@ type Form = {
 };
 
 const EMPTY: Form = {
-  email: '', firstName: '', lastName: '', phone: '', birthDate: '', nationality: '',
+  email: '', firstName: '', lastName: '', phone: '', birthDay: '', birthMonth: '', birthYear: '', nationality: '',
   street: '', postalCode: '', city: '', country: '', education: '', program: '', schoolId: '',
   term: '', semesters: '', arrivalDate: '', departureDate: '', koreanLevel: '', message: '', privacyConsent: false, website: '',
 };
@@ -48,15 +51,24 @@ const EMPTY: Form = {
 const EMAIL_RE = /^[^\s@,;<>"()]+@[^\s@,;<>"'()]+\.[^\s@,;<>"'()]+$/;
 const PHONE_RE = /^\+?[0-9 ()./-]{6,25}$/;
 
+/** YYYY-MM-DD from the three date-of-birth dropdowns, or null if incomplete or impossible (31 February) */
+const birthDate = (f: Form): string | null => {
+  if (!f.birthDay || !f.birthMonth || !f.birthYear) return null;
+  const iso = `${f.birthYear}-${f.birthMonth.padStart(2, '0')}-${f.birthDay.padStart(2, '0')}`;
+  return new Date(`${iso}T00:00:00Z`).getUTCDate() === Number(f.birthDay) ? iso : null;
+};
+
 const validate = (f: Form): Partial<Record<keyof Form, string>> => {
   const e: Partial<Record<keyof Form, string>> = {};
-  const req: (keyof Form)[] = ['firstName', 'lastName', 'birthDate', 'nationality', 'street', 'postalCode', 'city',
+  const req: (keyof Form)[] = ['firstName', 'lastName', 'nationality', 'street', 'postalCode', 'city',
     'country', 'education', 'program', 'schoolId', 'term', 'arrivalDate', 'departureDate'];
   req.forEach((k) => {
     if (!String(f[k]).trim()) e[k] = 'APPLY_ERR_REQUIRED';
   });
   if (!EMAIL_RE.test(f.email.trim())) e.email = 'APPLY_ERR_EMAIL';
   if (!PHONE_RE.test(f.phone.trim())) e.phone = 'APPLY_ERR_PHONE';
+  if (!f.birthDay || !f.birthMonth || !f.birthYear) e.birthDay = 'APPLY_ERR_REQUIRED';
+  else if (!birthDate(f)) e.birthDay = 'APPLY_ERR_BIRTHDATE';
   if (f.program === 'long' && !f.semesters) e.semesters = 'APPLY_ERR_REQUIRED';
   if (f.arrivalDate && f.departureDate && f.departureDate < f.arrivalDate) e.departureDate = 'APPLY_ERR_DATES';
   if (!f.privacyConsent) e.privacyConsent = 'APPLY_ERR_CONSENT';
@@ -65,7 +77,7 @@ const validate = (f: Form): Partial<Record<keyof Form, string>> => {
 
 // API field names → form keys (server-side validation errors)
 const API_FIELD: Record<string, keyof Form> = {
-  'address.street': 'street', 'address.postalCode': 'postalCode', 'address.city': 'city', 'address.country': 'country',
+  birthDate: 'birthDay', 'address.street': 'street', 'address.postalCode': 'postalCode', 'address.city': 'city', 'address.country': 'country',
 };
 
 export default function ApplyForm({ lang, schools }: { lang: string; schools: ApplySchool[] }) {
@@ -76,7 +88,11 @@ export default function ApplyForm({ lang, schools }: { lang: string; schools: Ap
   const [failure, setFailure] = useState<string | null>(null);
   const [done, setDone] = useState<{ id: string } | null>(null);
 
-  const countries = useMemo(() => countryOptions(lang), [lang]);
+  const countries = useMemo(() => countryOptions(lang).map((c) => ({ value: c.code, label: c.name })), [lang]);
+  const pinned = useMemo(() => pinnedCountries(lang), [lang]);
+  const months = useMemo(() => monthNames(lang).map((m, i) => ({ value: String(i + 1), label: m })), [lang]);
+  const years = useMemo(() => birthYears().map((y) => ({ value: String(y), label: String(y) })), []);
+  const days = useMemo(() => Array.from({ length: 31 }, (_, i) => ({ value: String(i + 1), label: String(i + 1) })), []);
   const terms = useMemo(() => termOptions(), []);
   const visibleSchools = schools.filter((s) => !f.program || s[f.program]);
 
@@ -90,7 +106,9 @@ export default function ApplyForm({ lang, schools }: { lang: string; schools: Ap
       }
       return next;
     });
-    if (errors[key]) setErrors((prev) => ({ ...prev, [key]: undefined }));
+    // The three date-of-birth dropdowns share one error (shown under the day)
+    const errorKey = key === 'birthMonth' || key === 'birthYear' ? 'birthDay' : key;
+    if (errors[errorKey]) setErrors((prev) => ({ ...prev, [errorKey]: undefined }));
   };
 
   const err = (key: keyof Form) => (errors[key] ? t(errors[key]!) : null);
@@ -119,7 +137,7 @@ export default function ApplyForm({ lang, schools }: { lang: string; schools: Ap
           firstName: f.firstName.trim(),
           lastName: f.lastName.trim(),
           phone: f.phone.trim(),
-          birthDate: f.birthDate,
+          birthDate: birthDate(f),
           nationality: f.nationality,
           address: { street: f.street.trim(), postalCode: f.postalCode.trim(), city: f.city.trim(), country: f.country },
           education: f.education,
@@ -144,7 +162,7 @@ export default function ApplyForm({ lang, schools }: { lang: string; schools: Ap
         setFailure(t('APPLY_ERR_DUPLICATE'));
       } else if (res.status === 400 && body.field) {
         const key = API_FIELD[body.field] ?? (body.field as keyof Form);
-        setErrors({ [key]: key === 'birthDate' ? 'APPLY_ERR_BIRTHDATE' : 'APPLY_ERR_INVALID' });
+        setErrors({ [key]: key === 'birthDay' ? 'APPLY_ERR_BIRTHDATE' : 'APPLY_ERR_INVALID' });
         document.getElementById(key)?.focus();
       } else {
         setFailure(t('APPLY_ERR_SERVER'));
@@ -216,17 +234,20 @@ export default function ApplyForm({ lang, schools }: { lang: string; schools: Ap
               <input id="phone" type="tel" autoComplete="tel" className={inputClass(!!errors.phone)}
                 value={f.phone} onChange={(e) => set('phone', e.target.value)} {...aria('phone')} />
             </Field>
-            <Field id="birthDate" label={t('APPLY_BIRTHDATE')} required error={err('birthDate')}>
-              <input id="birthDate" type="date" autoComplete="bday" className={inputClass(!!errors.birthDate)} value={f.birthDate}
-                onChange={(e) => set('birthDate', e.target.value)} {...aria('birthDate')} />
+            <Field id="birthDay" label={t('APPLY_BIRTHDATE')} required error={err('birthDay')}>
+              <div className="grid grid-cols-[1fr_1.6fr_1.2fr] gap-2">
+                <Dropdown id="birthDay" value={f.birthDay} onChange={(v) => set('birthDay', v)} options={days}
+                  placeholder={t('APPLY_DAY')} invalid={!!errors.birthDay} describedBy={errors.birthDay ? 'birthDay-error' : undefined} />
+                <Dropdown id="birthMonth" value={f.birthMonth} onChange={(v) => set('birthMonth', v)} options={months}
+                  placeholder={t('APPLY_MONTH')} invalid={!!errors.birthDay} />
+                <Dropdown id="birthYear" value={f.birthYear} onChange={(v) => set('birthYear', v)} options={years}
+                  placeholder={t('APPLY_YEAR')} invalid={!!errors.birthDay} />
+              </div>
             </Field>
           </div>
           <Field id="nationality" label={t('APPLY_NATIONALITY')} required error={err('nationality')}>
-            <select id="nationality" className={inputClass(!!errors.nationality)} value={f.nationality}
-              onChange={(e) => set('nationality', e.target.value)} {...aria('nationality')}>
-              <option value="">{t('APPLY_SELECT')}</option>
-              {countries.map((c) => <option key={c.code} value={c.code}>{c.name}</option>)}
-            </select>
+            <Dropdown id="nationality" value={f.nationality} onChange={(v) => set('nationality', v)} searchPlaceholder={t('APPLY_SEARCH')} noMatch={t('APPLY_NO_MATCH')} pinned={pinned} options={countries} placeholder={t('APPLY_SELECT')}
+              invalid={!!errors.nationality} describedBy={errors.nationality ? 'nationality-error' : undefined} />
           </Field>
         </section>
 
@@ -251,11 +272,8 @@ export default function ApplyForm({ lang, schools }: { lang: string; schools: Ap
             </Field>
           </div>
           <Field id="country" label={t('APPLY_COUNTRY')} required error={err('country')}>
-            <select id="country" autoComplete="country" className={inputClass(!!errors.country)} value={f.country}
-              onChange={(e) => set('country', e.target.value)} {...aria('country')}>
-              <option value="">{t('APPLY_SELECT')}</option>
-              {countries.map((c) => <option key={c.code} value={c.code}>{c.name}</option>)}
-            </select>
+            <Dropdown id="country" value={f.country} onChange={(v) => set('country', v)} searchPlaceholder={t('APPLY_SEARCH')} noMatch={t('APPLY_NO_MATCH')} pinned={pinned} options={countries} placeholder={t('APPLY_SELECT')}
+              invalid={!!errors.country} describedBy={errors.country ? 'country-error' : undefined} />
           </Field>
         </section>
 
@@ -286,39 +304,30 @@ export default function ApplyForm({ lang, schools }: { lang: string; schools: Ap
           <SectionTitle n={4}>{t('APPLY_SEC_PLAN')}</SectionTitle>
           <div className="grid gap-4 sm:grid-cols-2">
             <Field id="program" label={t('APPLY_PROGRAM')} required error={err('program')}>
-              <select id="program" className={inputClass(!!errors.program)} value={f.program}
-                onChange={(e) => set('program', e.target.value as Form['program'])} {...aria('program')}>
-                <option value="">{t('APPLY_SELECT')}</option>
-                <option value="long">{t('APPLY_PROGRAM_LONG')}</option>
-                <option value="short">{t('APPLY_PROGRAM_SHORT')}</option>
-              </select>
+              <Dropdown id="program" value={f.program} onChange={(v) => set('program', v as Form['program'])} placeholder={t('APPLY_SELECT')}
+                options={[{ value: 'long', label: t('APPLY_PROGRAM_LONG') }, { value: 'short', label: t('APPLY_PROGRAM_SHORT') }]}
+                invalid={!!errors.program} describedBy={errors.program ? 'program-error' : undefined} />
             </Field>
             <Field id="term" label={t('APPLY_TERM')} required error={err('term')}>
-              <select id="term" className={inputClass(!!errors.term)} value={f.term}
-                onChange={(e) => set('term', e.target.value)} {...aria('term')}>
-                <option value="">{t('APPLY_SELECT')}</option>
-                {terms.map((term) => {
-                  const [y, s] = term.split('-');
-                  return <option key={term} value={term}>{t(`APPLY_SEASON_${s.toUpperCase()}`, { year: y })}</option>;
+              <Dropdown id="term" value={f.term} onChange={(v) => set('term', v)} placeholder={t('APPLY_SELECT')}
+                options={terms.map((term) => {
+                  const [y, season] = term.split('-');
+                  return { value: term, label: t(`APPLY_SEASON_${season.toUpperCase()}`, { year: y }) };
                 })}
-              </select>
+                invalid={!!errors.term} describedBy={errors.term ? 'term-error' : undefined} />
             </Field>
           </div>
           {f.program === 'long' && (
             <Field id="semesters" label={t('APPLY_SEMESTERS')} required hint={t('APPLY_SEMESTERS_HINT')} error={err('semesters')}>
-              <select id="semesters" className={inputClass(!!errors.semesters)} value={f.semesters}
-                onChange={(e) => set('semesters', e.target.value)} {...aria('semesters')}>
-                <option value="">{t('APPLY_SELECT')}</option>
-                {[1, 2, 3, 4, 5, 6, 7, 8].map((n) => <option key={n} value={n}>{t('APPLY_SEMESTER_COUNT', { count: n })}</option>)}
-              </select>
+              <Dropdown id="semesters" value={f.semesters} onChange={(v) => set('semesters', v)} placeholder={t('APPLY_SELECT')}
+                options={[1, 2, 3, 4, 5, 6, 7, 8].map((n) => ({ value: String(n), label: t('APPLY_SEMESTER_COUNT', { count: n }) }))}
+                invalid={!!errors.semesters} describedBy={errors.semesters ? 'semesters-error' : undefined} />
             </Field>
           )}
           <Field id="schoolId" label={t('APPLY_SCHOOL')} required error={err('schoolId')}>
-            <select id="schoolId" className={inputClass(!!errors.schoolId)} value={f.schoolId}
-              onChange={(e) => set('schoolId', e.target.value)} {...aria('schoolId')}>
-              <option value="">{t('APPLY_SELECT')}</option>
-              {visibleSchools.map((s) => <option key={s.id} value={s.id}>{s.title}</option>)}
-            </select>
+            <Dropdown id="schoolId" value={f.schoolId} onChange={(v) => set('schoolId', v)} placeholder={t('APPLY_SELECT')}
+              options={visibleSchools.map((sc) => ({ value: sc.id, label: sc.title }))}
+              invalid={!!errors.schoolId} describedBy={errors.schoolId ? 'schoolId-error' : undefined} />
           </Field>
           <div className="grid gap-4 sm:grid-cols-2">
             <Field id="arrivalDate" label={t('APPLY_ARRIVAL')} required error={err('arrivalDate')}>
@@ -341,10 +350,8 @@ export default function ApplyForm({ lang, schools }: { lang: string; schools: Ap
             {t('APPLY_SEC_MORE')} <span className="text-sm font-normal text-muted">({optional})</span>
           </SectionTitle>
           <Field id="koreanLevel" label={t('APPLY_KOREAN_LEVEL')} optionalLabel={optional}>
-            <select id="koreanLevel" className={inputClass()} value={f.koreanLevel} onChange={(e) => set('koreanLevel', e.target.value)}>
-              <option value="">{t('APPLY_SELECT')}</option>
-              {KOREAN_LEVELS.map((l) => <option key={l} value={l}>{t(`APPLY_LEVEL_${l.toUpperCase()}`)}</option>)}
-            </select>
+            <Dropdown id="koreanLevel" value={f.koreanLevel} onChange={(v) => set('koreanLevel', v)} placeholder={t('APPLY_SELECT')}
+              options={KOREAN_LEVELS.map((l) => ({ value: l, label: t(`APPLY_LEVEL_${l.toUpperCase()}`) }))} />
           </Field>
           <Field id="message" label={t('APPLY_MESSAGE')} optionalLabel={optional}>
             <textarea id="message" maxLength={2000} placeholder={t('APPLY_MESSAGE_PLACEHOLDER')} className={textareaClass()}

@@ -517,5 +517,11 @@
   "APPLY_SEMESTERS": "Number of semesters",
   "APPLY_SEMESTERS_HINT": "One semester is about 10 weeks. Your plan can still change.",
   "APPLY_SEMESTER_COUNT_one": "{{count}} semester",
-  "APPLY_SEMESTER_COUNT_other": "{{count}} semesters"
+  "APPLY_SEMESTER_COUNT_other": "{{count}} semesters",
+
+  "APPLY_DAY": "Day",
+  "APPLY_MONTH": "Month",
+  "APPLY_YEAR": "Year",
+  "APPLY_SEARCH": "Search…",
+  "APPLY_NO_MATCH": "No match"
 }

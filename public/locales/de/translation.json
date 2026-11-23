@@ -516,5 +516,11 @@
   "APPLY_SEMESTERS": "Anzahl der Semester",
   "APPLY_SEMESTERS_HINT": "Ein Semester dauert etwa 10 Wochen. Ihr Plan kann sich noch ändern.",
   "APPLY_SEMESTER_COUNT_one": "{{count}} Semester",
-  "APPLY_SEMESTER_COUNT_other": "{{count}} Semester"
+  "APPLY_SEMESTER_COUNT_other": "{{count}} Semester",
+
+  "APPLY_DAY": "Tag",
+  "APPLY_MONTH": "Monat",
+  "APPLY_YEAR": "Jahr",
+  "APPLY_SEARCH": "Suchen…",
+  "APPLY_NO_MATCH": "Keine Treffer"
 }

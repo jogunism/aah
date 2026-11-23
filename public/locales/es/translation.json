@@ -517,5 +517,11 @@
   "APPLY_SEMESTERS": "Número de semestres",
   "APPLY_SEMESTERS_HINT": "Un semestre dura unas 10 semanas. Tu plan todavía puede cambiar.",
   "APPLY_SEMESTER_COUNT_one": "{{count}} semestre",
-  "APPLY_SEMESTER_COUNT_other": "{{count}} semestres"
+  "APPLY_SEMESTER_COUNT_other": "{{count}} semestres",
+
+  "APPLY_DAY": "Día",
+  "APPLY_MONTH": "Mes",
+  "APPLY_YEAR": "Año",
+  "APPLY_SEARCH": "Buscar…",
+  "APPLY_NO_MATCH": "Sin resultados"
 }
