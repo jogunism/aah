@@ -140,4 +140,5 @@
 - [x] `/{lang}/apply` 폼(필수·선택, "정확하지 않아도 됨" 안내, 개인정보 동의), 완료 화면, noindex
 - [x] API `POST /apply`(aah.api `feature/apply-form`): 저장, 신청자 확인 메일(5개 언어), 담당자 알림 — 로컬 13개 확인
 - [x] 5개 언어 번역 병합, tsc·eslint·build, 로컬 확인(헤드리스 크롬으로 빈 제출 시 16개 필드 오류 → 입력·제출 → 완료 화면, 프록시 경유 저장, 5개 언어 페이지 200)
-- [ ] API 배포(master push → Lambda) → 프론트 배포(master → Amplify) → 운영에서 실제 신청 1건으로 확인 후 테스트 데이터 삭제
+- [x] API 배포(aah.api d0d9d04, Lambda 2026-11-23 10:30 UTC) → 프론트 배포(b25f731, Amplify #135 SUCCEED) → 운영 확인: 15개 페이지 200, 푸터 링크, /apply noindex, 실제 신청 1건 저장·메일 발송(오류 로그 없음) → 테스트 신청·계정 삭제, 번호 카운터 초기화(첫 실제 신청 = AAH-26-0001)
+- [ ] 확인 필요: contact@aah.education 받은편지함에 테스트 확인 메일·담당자 알림 2통이 왔는지(스팸함 포함)
