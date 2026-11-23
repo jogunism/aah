@@ -82,19 +82,20 @@ const doc: LegalDoc = {
       blocks: [
         'Puedes cancelar en cualquier momento. Comunícanoslo por correo electrónico (contact@aah.education) o por correo postal. La fecha de cancelación es el día laborable en que **recibimos** tu comunicación.',
         'Antes de aceptar la confirmación de solicitud, puedes cancelar sin coste alguno.',
-        'A partir de entonces, reembolsamos la siguiente parte de **nuestra tarifa de servicio** (curso de larga duración 450 €, curso de corta duración 350 €):',
+        'A partir de entonces, reembolsamos la siguiente parte de **nuestra tarifa de servicio** (curso de larga duración {{eur:450}}, curso de corta duración {{eur:350}}):',
         {
           table: {
             head: ['Cuándo cancelas', 'Reembolso – curso de larga duración', 'Reembolso – curso de corta duración'],
             rows: [
               ['Antes de aceptar la confirmación de solicitud', 'Aún no se ha pagado nada', 'Aún no se ha pagado nada'],
-              ['Después de aceptar la confirmación de solicitud', '380 €', '260 €'],
-              ['A partir del 7.º día tras tu aceptación', '340 €', '210 €'],
-              ['Después de que hayamos presentado tu solicitud al centro', '310 €', '170 €'],
+              ['Después de aceptar la confirmación de solicitud', '{{eur:380}}', '{{eur:260}}'],
+              ['A partir del 7.º día tras tu aceptación', '{{eur:340}}', '{{eur:210}}'],
+              ['Después de que hayamos presentado tu solicitud al centro', '{{eur:310}}', '{{eur:170}}'],
               ['Después de completarse el trámite con el centro o de confirmarse tu alojamiento', 'Sin reembolso', 'Sin reembolso'],
             ],
           },
         },
+        'Los importes se muestran en la moneda que hayas elegido en nuestra web, convertidos desde el euro al tipo de cambio actual. Se aplican los importes indicados en tu confirmación de solicitud.',
         '«Trámite con el centro completado» significa que has presentado la solicitud, has sido admitido y se ha pagado tu matrícula.',
         'La matrícula y las tasas de residencia se reembolsan según las normas del centro y de la residencia (apartado 10). Las comisiones bancarias de los reembolsos corren de tu cuenta.',
         '**Derecho de desistimiento (consumidores de la UE, el EEE y el Reino Unido):** puedes desistir del contrato en un plazo de 14 días desde que aceptas la confirmación de solicitud, sin necesidad de indicar el motivo. Al aceptarla, nos pides que empecemos de inmediato. Si después desistes dentro de esos 14 días, pagas un importe proporcional a los servicios que ya hayamos prestado, pero nunca más que los importes retenidos según la tabla anterior.',
@@ -128,11 +129,11 @@ const doc: LegalDoc = {
             head: ['Cambio', 'Condiciones', 'Curso de larga duración', 'Curso de corta duración'],
             rows: [
               ['Aplazamiento al siguiente periodo en el mismo centro', 'El centro lo permite, se trata del periodo inmediatamente siguiente sin interrupción (o del posterior, si el centro lo permite) y no implica ningún reembolso', 'Gratis, una vez', 'Gratis, una vez (antes de que presentemos la solicitud al centro)'],
-              ['Aplazamiento que implica liquidar una matrícula ya pagada', '', '40 €', '50 €'],
-              ['Otros aplazamientos (un segundo aplazamiento, un periodo con interrupción o un centro que no lo permite)', 'Se trata como una cancelación (apartado 7) y una nueva solicitud', 'Tarifa de servicio de la nueva solicitud reducida en 40 €', 'Tarifa de servicio de la nueva solicitud reducida en 50 €'],
+              ['Aplazamiento que implica liquidar una matrícula ya pagada', '', '{{eur:40}}', '{{eur:50}}'],
+              ['Otros aplazamientos (un segundo aplazamiento, un periodo con interrupción o un centro que no lo permite)', 'Se trata como una cancelación (apartado 7) y una nueva solicitud', 'Tarifa de servicio de la nueva solicitud reducida en {{eur:40}}', 'Tarifa de servicio de la nueva solicitud reducida en {{eur:50}}'],
               ['Cambio a otro centro', 'En los 7 días siguientes a tu aceptación', 'Gratis', 'Gratis'],
-              ['Cambio a otro centro', 'A partir del 7.º día, antes de que presentemos tu solicitud', '40 €', '50 €'],
-              ['Cambio a otro centro', 'Después de que presentemos tu solicitud', '70 €', '90 €'],
+              ['Cambio a otro centro', 'A partir del 7.º día, antes de que presentemos tu solicitud', '{{eur:40}}', '{{eur:50}}'],
+              ['Cambio a otro centro', 'Después de que presentemos tu solicitud', '{{eur:70}}', '{{eur:90}}'],
             ],
           },
         },
@@ -144,7 +145,7 @@ const doc: LegalDoc = {
       blocks: [
         {
           list: [
-            'La matrícula ya pagada se reembolsa según las normas de reembolso del centro. Si solicitamos y recibimos el reembolso en tu nombre, cobramos una tarifa de gestión de 40 € (larga duración) o 50 € (corta duración), más las comisiones bancarias y otros costes reales.',
+            'La matrícula ya pagada se reembolsa según las normas de reembolso del centro. Si solicitamos y recibimos el reembolso en tu nombre, cobramos una tarifa de gestión de {{eur:40}} (larga duración) o {{eur:50}} (corta duración), más las comisiones bancarias y otros costes reales.',
             'Las tasas de residencia se reembolsan según las normas de la residencia del centro.',
             'Otros alojamientos reservados a través de nosotros se rigen por las condiciones que te indiquemos al hacer la reserva. Las reservas con tarifa reducida y las estancias ya iniciadas, por lo general, no son reembolsables.',
             'No cobramos ninguna tarifa por cancelar el alojamiento antes de tu llegada; las comisiones bancarias del reembolso corren de tu cuenta.',

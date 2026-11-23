@@ -82,19 +82,20 @@ const doc: LegalDoc = {
       blocks: [
         'Vous pouvez annuler à tout moment. Veuillez nous en informer par e-mail (contact@aah.education) ou par courrier. La date d’annulation est le jour ouvré au cours duquel **nous recevons** votre notification.',
         'Avant de confirmer la confirmation de candidature, vous pouvez annuler sans frais.',
-        'Ensuite, nous remboursons la part suivante de **nos frais de service** (cours long terme 450 €, cours court terme 350 €) :',
+        'Ensuite, nous remboursons la part suivante de **nos frais de service** (cours long terme {{eur:450}}, cours court terme {{eur:350}}) :',
         {
           table: {
             head: ['Moment de l’annulation', 'Remboursement – cours long terme', 'Remboursement – cours court terme'],
             rows: [
               ['Avant de confirmer la confirmation de candidature', 'Rien n’a encore été payé', 'Rien n’a encore été payé'],
-              ['Après avoir confirmé la confirmation de candidature', '380 €', '260 €'],
-              ['À partir du 7e jour suivant votre confirmation', '340 €', '210 €'],
-              ['Après l’envoi de votre candidature à l’école', '310 €', '170 €'],
+              ['Après avoir confirmé la confirmation de candidature', '{{eur:380}}', '{{eur:260}}'],
+              ['À partir du 7e jour suivant votre confirmation', '{{eur:340}}', '{{eur:210}}'],
+              ['Après l’envoi de votre candidature à l’école', '{{eur:310}}', '{{eur:170}}'],
               ['Après l’achèvement de la procédure auprès de l’école ou la confirmation de votre hébergement', 'Aucun remboursement', 'Aucun remboursement'],
             ],
           },
         },
+        'Les montants sont affichés dans la devise choisie sur notre site, convertis depuis l’euro au taux de change actuel. Les montants indiqués dans votre confirmation de candidature font foi.',
         '« Procédure auprès de l’école achevée » signifie que vous avez présenté votre candidature, avez été admis et que vos frais de scolarité ont été payés.',
         'Les frais de scolarité et de résidence sont remboursés selon les règles de l’école et de la résidence (article 10). Les frais bancaires liés aux remboursements sont à votre charge.',
         '**Droit de rétractation (consommateurs de l’UE, de l’EEE et du Royaume-Uni) :** vous pouvez vous rétracter du contrat dans un délai de 14 jours à compter de la confirmation de la confirmation de candidature, sans avoir à motiver votre décision. En confirmant, vous nous demandez de commencer immédiatement. Si vous vous rétractez ensuite dans ce délai de 14 jours, vous payez un montant proportionnel aux services déjà fournis, sans jamais dépasser les montants retenus selon le tableau ci-dessus.',
@@ -128,11 +129,11 @@ const doc: LegalDoc = {
             head: ['Modification', 'Conditions', 'Cours long terme', 'Cours court terme'],
             rows: [
               ['Report à la session suivante dans la même école', 'L’école l’autorise, il s’agit de la session immédiatement suivante (ou de celle d’après, si l’école l’autorise) et aucun remboursement n’est en jeu', 'Gratuit, une fois', 'Gratuit, une fois (avant notre candidature auprès de l’école)'],
-              ['Report impliquant la régularisation de frais de scolarité déjà payés', '', '40 €', '50 €'],
-              ['Autres reports (second report, session non consécutive ou école qui ne l’autorise pas)', 'Traité comme une annulation (article 7) et une nouvelle candidature', 'Frais de service de la nouvelle candidature réduits de 40 €', 'Frais de service de la nouvelle candidature réduits de 50 €'],
+              ['Report impliquant la régularisation de frais de scolarité déjà payés', '', '{{eur:40}}', '{{eur:50}}'],
+              ['Autres reports (second report, session non consécutive ou école qui ne l’autorise pas)', 'Traité comme une annulation (article 7) et une nouvelle candidature', 'Frais de service de la nouvelle candidature réduits de {{eur:40}}', 'Frais de service de la nouvelle candidature réduits de {{eur:50}}'],
               ['Changement d’école', 'Dans les 7 jours suivant votre confirmation', 'Gratuit', 'Gratuit'],
-              ['Changement d’école', 'À partir du 7e jour, avant l’envoi de votre candidature', '40 €', '50 €'],
-              ['Changement d’école', 'Après l’envoi de votre candidature', '70 €', '90 €'],
+              ['Changement d’école', 'À partir du 7e jour, avant l’envoi de votre candidature', '{{eur:40}}', '{{eur:50}}'],
+              ['Changement d’école', 'Après l’envoi de votre candidature', '{{eur:70}}', '{{eur:90}}'],
             ],
           },
         },
@@ -144,7 +145,7 @@ const doc: LegalDoc = {
       blocks: [
         {
           list: [
-            'Les frais de scolarité déjà payés sont remboursés selon les règles de remboursement de l’école. Si nous demandons et recevons le remboursement pour votre compte, nous facturons des frais de traitement de 40 € (long terme) ou 50 € (court terme), plus les frais bancaires et les autres coûts réels.',
+            'Les frais de scolarité déjà payés sont remboursés selon les règles de remboursement de l’école. Si nous demandons et recevons le remboursement pour votre compte, nous facturons des frais de traitement de {{eur:40}} (long terme) ou {{eur:50}} (court terme), plus les frais bancaires et les autres coûts réels.',
             'Les frais de résidence sont remboursés selon les règles de la résidence de l’école.',
             'Les autres hébergements réservés par notre intermédiaire sont soumis aux conditions que nous vous communiquons lors de la réservation. Les réservations à tarif réduit et les séjours déjà commencés ne sont en général pas remboursables.',
             'Nous ne facturons pas de frais pour l’annulation d’un hébergement avant votre arrivée ; les frais bancaires liés au remboursement sont à votre charge.',

@@ -82,19 +82,20 @@ const doc: LegalDoc = {
       blocks: [
         'Sie können jederzeit stornieren. Bitte teilen Sie uns dies per E-Mail (contact@aah.education) oder per Post mit. Als Stornierungsdatum gilt der Werktag, an dem Ihre Mitteilung **bei uns eingeht**.',
         'Bevor Sie die Anmeldebestätigung bestätigen, können Sie kostenlos stornieren.',
-        'Danach erstatten wir folgenden Anteil **unserer Servicegebühr** (Langzeitkurs 450 €, Kurzzeitkurs 350 €):',
+        'Danach erstatten wir folgenden Anteil **unserer Servicegebühr** (Langzeitkurs {{eur:450}}, Kurzzeitkurs {{eur:350}}):',
         {
           table: {
             head: ['Zeitpunkt der Stornierung', 'Erstattung – Langzeitkurs', 'Erstattung – Kurzzeitkurs'],
             rows: [
               ['Bevor Sie die Anmeldebestätigung bestätigen', 'Es wurde noch nichts bezahlt', 'Es wurde noch nichts bezahlt'],
-              ['Nachdem Sie die Anmeldebestätigung bestätigt haben', '380 €', '260 €'],
-              ['Ab dem 7. Tag nach Ihrer Bestätigung', '340 €', '210 €'],
-              ['Nachdem wir Ihre Bewerbung bei der Schule eingereicht haben', '310 €', '170 €'],
+              ['Nachdem Sie die Anmeldebestätigung bestätigt haben', '{{eur:380}}', '{{eur:260}}'],
+              ['Ab dem 7. Tag nach Ihrer Bestätigung', '{{eur:340}}', '{{eur:210}}'],
+              ['Nachdem wir Ihre Bewerbung bei der Schule eingereicht haben', '{{eur:310}}', '{{eur:170}}'],
               ['Nach Abschluss des Schulverfahrens oder nach Bestätigung Ihrer Unterkunft', 'Keine Erstattung', 'Keine Erstattung'],
             ],
           },
         },
+        'Die Beträge werden in der auf unserer Website gewählten Währung angezeigt und zum aktuellen Wechselkurs aus Euro umgerechnet. Maßgeblich sind die Beträge in Ihrer Anmeldebestätigung.',
         '„Abschluss des Schulverfahrens“ bedeutet, dass Sie sich beworben haben, zugelassen wurden und Ihre Studiengebühren bezahlt sind.',
         'Studiengebühren und Wohnheimgebühren werden nach den Regeln der Schule und des Wohnheims erstattet (Abschnitt 10). Bankgebühren für Erstattungen tragen Sie.',
         '**Widerrufsrecht (Verbraucher in der EU, im EWR und im Vereinigten Königreich):** Sie können den Vertrag innerhalb von 14 Tagen nach Bestätigung der Anmeldebestätigung ohne Angabe von Gründen widerrufen. Mit Ihrer Bestätigung verlangen Sie, dass wir sofort mit der Leistung beginnen. Widerrufen Sie dann innerhalb der 14 Tage, zahlen Sie einen Betrag, der dem Anteil der bereits erbrachten Leistungen entspricht, jedoch nie mehr als die nach der obigen Tabelle einbehaltenen Beträge.',
@@ -128,11 +129,11 @@ const doc: LegalDoc = {
             head: ['Änderung', 'Voraussetzungen', 'Langzeitkurs', 'Kurzzeitkurs'],
             rows: [
               ['Verschiebung auf das nächste Semester an derselben Schule', 'Die Schule erlaubt es, es ist das unmittelbar folgende Semester (oder das darauf folgende, wenn die Schule es erlaubt) und es ist keine Erstattung erforderlich', 'Einmalig kostenlos', 'Einmalig kostenlos (bevor wir Sie bei der Schule anmelden)'],
-              ['Verschiebung, bei der bereits gezahlte Studiengebühren verrechnet werden müssen', '', '40 €', '50 €'],
-              ['Andere Verschiebungen (eine zweite Verschiebung, ein Semester mit Unterbrechung oder eine Schule, die es nicht erlaubt)', 'Gilt als Stornierung (Abschnitt 7) und neue Anmeldung', 'Servicegebühr für die neue Anmeldung um 40 € reduziert', 'Servicegebühr für die neue Anmeldung um 50 € reduziert'],
+              ['Verschiebung, bei der bereits gezahlte Studiengebühren verrechnet werden müssen', '', '{{eur:40}}', '{{eur:50}}'],
+              ['Andere Verschiebungen (eine zweite Verschiebung, ein Semester mit Unterbrechung oder eine Schule, die es nicht erlaubt)', 'Gilt als Stornierung (Abschnitt 7) und neue Anmeldung', 'Servicegebühr für die neue Anmeldung um {{eur:40}} reduziert', 'Servicegebühr für die neue Anmeldung um {{eur:50}} reduziert'],
               ['Wechsel zu einer anderen Schule', 'Innerhalb von 7 Tagen nach Ihrer Bestätigung', 'Kostenlos', 'Kostenlos'],
-              ['Wechsel zu einer anderen Schule', 'Ab dem 7. Tag, bevor wir Ihre Bewerbung einreichen', '40 €', '50 €'],
-              ['Wechsel zu einer anderen Schule', 'Nachdem wir Ihre Bewerbung eingereicht haben', '70 €', '90 €'],
+              ['Wechsel zu einer anderen Schule', 'Ab dem 7. Tag, bevor wir Ihre Bewerbung einreichen', '{{eur:40}}', '{{eur:50}}'],
+              ['Wechsel zu einer anderen Schule', 'Nachdem wir Ihre Bewerbung eingereicht haben', '{{eur:70}}', '{{eur:90}}'],
             ],
           },
         },
@@ -144,7 +145,7 @@ const doc: LegalDoc = {
       blocks: [
         {
           list: [
-            'Bereits gezahlte Studiengebühren werden nach den Erstattungsregeln der Schule erstattet. Wenn wir die Erstattung in Ihrem Namen beantragen und entgegennehmen, berechnen wir eine Bearbeitungsgebühr von 40 € (Langzeitkurs) bzw. 50 € (Kurzzeitkurs) zuzüglich Bankgebühren und sonstiger tatsächlicher Kosten.',
+            'Bereits gezahlte Studiengebühren werden nach den Erstattungsregeln der Schule erstattet. Wenn wir die Erstattung in Ihrem Namen beantragen und entgegennehmen, berechnen wir eine Bearbeitungsgebühr von {{eur:40}} (Langzeitkurs) bzw. {{eur:50}} (Kurzzeitkurs) zuzüglich Bankgebühren und sonstiger tatsächlicher Kosten.',
             'Wohnheimgebühren werden nach den Regeln des Wohnheims der Schule erstattet.',
             'Für andere über uns gebuchte Unterkünfte gelten die Bedingungen, die wir Ihnen bei der Buchung nennen. Buchungen zu einem ermäßigten Tarif und bereits begonnene Aufenthalte sind in der Regel nicht erstattungsfähig.',
             'Für die Stornierung einer Unterkunft vor Ihrer Ankunft berechnen wir keine Gebühr; Bankgebühren für die Erstattung tragen Sie.',

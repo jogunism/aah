@@ -82,19 +82,20 @@ const doc: LegalDoc = {
       blocks: [
         'You can cancel at any time. Please tell us by email (contact@aah.education) or by post. The date of cancellation is the business day on which **we receive** your notice.',
         'Before you confirm the application confirmation, you can cancel free of charge.',
-        'After that, we refund the following part of **our service fee** (long-term course €450, short-term course €350):',
+        'After that, we refund the following part of **our service fee** (long-term course {{eur:450}}, short-term course {{eur:350}}):',
         {
           table: {
             head: ['When you cancel', 'Refund – long-term course', 'Refund – short-term course'],
             rows: [
               ['Before you confirm the application confirmation', 'Nothing has been paid yet', 'Nothing has been paid yet'],
-              ['After you confirm the application confirmation', '€380', '€260'],
-              ['From day 7 after your confirmation', '€340', '€210'],
-              ['After we have submitted your application to the school', '€310', '€170'],
+              ['After you confirm the application confirmation', '{{eur:380}}', '{{eur:260}}'],
+              ['From day 7 after your confirmation', '{{eur:340}}', '{{eur:210}}'],
+              ['After we have submitted your application to the school', '{{eur:310}}', '{{eur:170}}'],
               ['After the school procedure is completed or your accommodation is confirmed', 'No refund', 'No refund'],
             ],
           },
         },
+        'Amounts are shown in the currency you selected on our website, converted from euros at the current exchange rate. The amounts in your application confirmation apply.',
         '"School procedure completed" means that you have applied, been admitted and your tuition has been paid.',
         'Tuition and dormitory fees are refunded according to the rules of the school and the dormitory (section 10). Bank charges for refunds are paid by you.',
         '**Right of withdrawal (EU, EEA and UK consumers):** you can withdraw from the contract within 14 days of confirming the application confirmation without giving a reason. When you confirm, you ask us to start right away. If you then withdraw within the 14 days, you pay an amount in proportion to the services we have already provided, but never more than the amounts kept under the table above.',
@@ -128,11 +129,11 @@ const doc: LegalDoc = {
             head: ['Change', 'Conditions', 'Long-term course', 'Short-term course'],
             rows: [
               ['Postpone to the next term at the same school', 'The school allows it, it is the next term without a gap (or the one after, if the school allows), and no refund is involved', 'Free, once', 'Free, once (before we apply to the school)'],
-              ['Postponement that involves settling tuition already paid', '', '€40', '€50'],
-              ['Other postponements (a second postponement, a term with a gap, or a school that does not allow it)', 'Treated as a cancellation (section 7) and a new application', 'Service fee for the new application reduced by €40', 'Service fee for the new application reduced by €50'],
+              ['Postponement that involves settling tuition already paid', '', '{{eur:40}}', '{{eur:50}}'],
+              ['Other postponements (a second postponement, a term with a gap, or a school that does not allow it)', 'Treated as a cancellation (section 7) and a new application', 'Service fee for the new application reduced by {{eur:40}}', 'Service fee for the new application reduced by {{eur:50}}'],
               ['Change to another school', 'Within 7 days of your confirmation', 'Free', 'Free'],
-              ['Change to another school', 'From day 7, before we submit your application', '€40', '€50'],
-              ['Change to another school', 'After we submit your application', '€70', '€90'],
+              ['Change to another school', 'From day 7, before we submit your application', '{{eur:40}}', '{{eur:50}}'],
+              ['Change to another school', 'After we submit your application', '{{eur:70}}', '{{eur:90}}'],
             ],
           },
         },
@@ -144,7 +145,7 @@ const doc: LegalDoc = {
       blocks: [
         {
           list: [
-            'Tuition already paid is refunded according to the school’s refund rules. If we apply for and receive the refund on your behalf, we charge a handling fee of €40 (long-term) or €50 (short-term) plus bank charges and other actual costs.',
+            'Tuition already paid is refunded according to the school’s refund rules. If we apply for and receive the refund on your behalf, we charge a handling fee of {{eur:40}} (long-term) or {{eur:50}} (short-term) plus bank charges and other actual costs.',
             'Dormitory fees are refunded according to the rules of the school’s dormitory.',
             'Other accommodation booked through us follows the conditions we tell you when booking. Bookings at a discounted rate, and stays that have started, are generally not refundable.',
             'We do not charge a fee for cancelling accommodation before you arrive; bank charges for the refund are paid by you.',

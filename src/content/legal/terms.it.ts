@@ -82,19 +82,20 @@ const doc: LegalDoc = {
       blocks: [
         'Puoi cancellare in qualsiasi momento. Comunicacelo via e-mail (contact@aah.education) o per posta. La data di cancellazione è il giorno lavorativo in cui **riceviamo** la tua comunicazione.',
         'Prima di accettare la conferma della domanda puoi cancellare gratuitamente.',
-        'Successivamente, rimborsiamo la seguente parte del **nostro compenso per il servizio** (programma a lungo termine 450 €, programma a breve termine 350 €):',
+        'Successivamente, rimborsiamo la seguente parte del **nostro compenso per il servizio** (programma a lungo termine {{eur:450}}, programma a breve termine {{eur:350}}):',
         {
           table: {
             head: ['Quando cancelli', 'Rimborso – programma a lungo termine', 'Rimborso – programma a breve termine'],
             rows: [
               ['Prima di accettare la conferma della domanda', 'Non è stato ancora pagato nulla', 'Non è stato ancora pagato nulla'],
-              ['Dopo aver accettato la conferma della domanda', '380 €', '260 €'],
-              ['Dal 7° giorno dopo la tua accettazione', '340 €', '210 €'],
-              ['Dopo che abbiamo presentato la tua domanda alla scuola', '310 €', '170 €'],
+              ['Dopo aver accettato la conferma della domanda', '{{eur:380}}', '{{eur:260}}'],
+              ['Dal 7° giorno dopo la tua accettazione', '{{eur:340}}', '{{eur:210}}'],
+              ['Dopo che abbiamo presentato la tua domanda alla scuola', '{{eur:310}}', '{{eur:170}}'],
               ['Dopo il completamento della procedura con la scuola o la conferma del tuo alloggio', 'Nessun rimborso', 'Nessun rimborso'],
             ],
           },
         },
+        'Gli importi sono indicati nella valuta scelta sul nostro sito, convertiti dall’euro al tasso di cambio attuale. Fanno fede gli importi indicati nella conferma della domanda.',
         '«Procedura con la scuola completata» significa che hai presentato domanda, sei stato ammesso e la tua retta è stata pagata.',
         'La retta e le quote dello studentato vengono rimborsate secondo le regole della scuola e dello studentato (sezione 10). Le spese bancarie per i rimborsi sono a tuo carico.',
         '**Diritto di recesso (consumatori di UE, SEE e Regno Unito):** puoi recedere dal contratto entro 14 giorni dall’accettazione della conferma della domanda, senza indicarne il motivo. Con l’accettazione ci chiedi di iniziare subito l’esecuzione del servizio. Se poi recedi entro i 14 giorni, paghi un importo proporzionale ai servizi già forniti, ma mai superiore agli importi trattenuti secondo la tabella sopra.',
@@ -128,11 +129,11 @@ const doc: LegalDoc = {
             head: ['Modifica', 'Condizioni', 'Programma a lungo termine', 'Programma a breve termine'],
             rows: [
               ['Rinvio al semestre successivo nella stessa scuola', 'La scuola lo consente, si tratta del semestre immediatamente successivo senza interruzioni (o di quello dopo, se la scuola lo consente) e non è previsto alcun rimborso', 'Gratuito, una volta', 'Gratuito, una volta (prima che presentiamo la domanda alla scuola)'],
-              ['Rinvio che comporta il conguaglio della retta già pagata', '', '40 €', '50 €'],
-              ['Altri rinvii (un secondo rinvio, un semestre non consecutivo o una scuola che non lo consente)', 'Trattati come cancellazione (sezione 7) e nuova domanda', 'Compenso per il servizio della nuova domanda ridotto di 40 €', 'Compenso per il servizio della nuova domanda ridotto di 50 €'],
+              ['Rinvio che comporta il conguaglio della retta già pagata', '', '{{eur:40}}', '{{eur:50}}'],
+              ['Altri rinvii (un secondo rinvio, un semestre non consecutivo o una scuola che non lo consente)', 'Trattati come cancellazione (sezione 7) e nuova domanda', 'Compenso per il servizio della nuova domanda ridotto di {{eur:40}}', 'Compenso per il servizio della nuova domanda ridotto di {{eur:50}}'],
               ['Cambio di scuola', 'Entro 7 giorni dalla tua accettazione', 'Gratuito', 'Gratuito'],
-              ['Cambio di scuola', 'Dal 7° giorno, prima che presentiamo la tua domanda', '40 €', '50 €'],
-              ['Cambio di scuola', 'Dopo che abbiamo presentato la tua domanda', '70 €', '90 €'],
+              ['Cambio di scuola', 'Dal 7° giorno, prima che presentiamo la tua domanda', '{{eur:40}}', '{{eur:50}}'],
+              ['Cambio di scuola', 'Dopo che abbiamo presentato la tua domanda', '{{eur:70}}', '{{eur:90}}'],
             ],
           },
         },
@@ -144,7 +145,7 @@ const doc: LegalDoc = {
       blocks: [
         {
           list: [
-            'La retta già pagata viene rimborsata secondo le regole sui rimborsi della scuola. Se richiediamo e riceviamo il rimborso per tuo conto, addebitiamo un costo di gestione di 40 € (lungo termine) o 50 € (breve termine), più le spese bancarie e gli altri costi effettivi.',
+            'La retta già pagata viene rimborsata secondo le regole sui rimborsi della scuola. Se richiediamo e riceviamo il rimborso per tuo conto, addebitiamo un costo di gestione di {{eur:40}} (lungo termine) o {{eur:50}} (breve termine), più le spese bancarie e gli altri costi effettivi.',
             'Le quote dello studentato vengono rimborsate secondo le regole dello studentato della scuola.',
             'Gli altri alloggi prenotati tramite noi seguono le condizioni che ti comunichiamo al momento della prenotazione. Le prenotazioni a tariffa scontata e i soggiorni già iniziati, di norma, non sono rimborsabili.',
             'Non addebitiamo alcun costo per la cancellazione dell’alloggio prima del tuo arrivo; le spese bancarie per il rimborso sono a tuo carico.',

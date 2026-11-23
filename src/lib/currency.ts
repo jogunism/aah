@@ -7,3 +7,9 @@ export const CURRENCY_SYMBOL: Record<Currency, string> = { USD: '$', EUR: '€',
 
 export const isCurrency = (value: string | null | undefined): value is Currency =>
   CURRENCIES.includes(value as Currency);
+
+/**
+ * A fixed euro amount (our service fee, refunds) in another currency: same rule as the
+ * API's service fee conversion (tuition.service fromEur) – rounded to the nearest 10.
+ */
+export const fromEur = (eur: number, perEur: number) => (perEur === 1 ? eur : Math.round((eur * perEur) / 10) * 10);

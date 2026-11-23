@@ -77,6 +77,29 @@ export const getSchools = cache((currency: Currency) =>
   ),
 );
 
+/**
+ * Units of each currency per 1 EUR, from the API's JPY rates (the same rates the
+ * tuition prices use). null if the API is unavailable; callers then show euros.
+ */
+export const getEurRates = cache(() =>
+  remember(
+    'eurRates',
+    async (): Promise<Record<Currency, number> | null> => {
+      try {
+        const rate = async (c: Currency) =>
+          (await http.get<{ rate: number }>('/currency/rate', { headers: { Cookie: `currency=${c}` } })).data.rate;
+        const [eur, usd, gbp] = await Promise.all([rate('EUR'), rate('USD'), rate('GBP')]);
+        if (!(eur > 0 && usd > 0 && gbp > 0)) return null;
+        return { EUR: 1, USD: eur / usd, GBP: eur / gbp };
+      } catch (error) {
+        console.error('Error fetching currency rates:', error);
+        return null;
+      }
+    },
+    (r) => !!r,
+  ),
+);
+
 let currencyCheckedAt = 0;
 
 /**
