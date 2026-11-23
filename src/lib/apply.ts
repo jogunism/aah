@@ -27,7 +27,7 @@ export const COUNTRY_CODES = (
   'LK SD SR SJ SE CH SY TW TJ TZ TH TL TG TK TO TT TN TR TM TC TV UG UA AE GB US UM UY UZ VU VE VN VG VI WF EH YE ZM ZW'
 ).split(' ');
 
-const countryName = (code: string, lang: string) => {
+export const countryName = (code: string, lang: string) => {
   try {
     return new Intl.DisplayNames([lang], { type: 'region' }).of(code) ?? code;
   } catch {
