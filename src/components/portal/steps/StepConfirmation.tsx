@@ -33,8 +33,8 @@ export default function StepConfirmation({ app, lang, onChange }: StepProps) {
   const c = app.confirmation;
   const long = app.program === 'long';
   const ackKeys: AckKey[] = [...ACKS_ALL, ...(long ? ACKS_LONG : [])];
-  // After a request for corrections the form starts with the previous answers
-  const prev: ConfirmationReply | undefined = c.history?.[c.history.length - 1];
+  // Only after our request for corrections does the form start with the previous answers
+  const prev: ConfirmationReply | undefined = c.returned ? c.history?.[c.history.length - 1] : undefined;
   const [optionId, setOptionId] = useState(prev?.optionId ?? (c.options.length === 1 ? c.options[0].id : ''));
   const [hasPassport, setHasPassport] = useState<boolean | null>(prev?.checks?.passport.has ?? null);
   // Expiry as day / month / year dropdowns: passports run for years, a month-by-month calendar is too slow
