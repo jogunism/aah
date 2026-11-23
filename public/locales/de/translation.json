@@ -523,6 +523,9 @@
   "APPLY_YEAR": "Jahr",
   "APPLY_SEARCH": "Suchen…",
   "APPLY_NO_MATCH": "Keine Treffer",
+  "APPLY_SELECT_DATE": "Datum wählen",
+  "APPLY_PREV_MONTH": "Vorheriger Monat",
+  "APPLY_NEXT_MONTH": "Nächster Monat",
 
   "MY_TITLE": "Meine Anmeldung",
   "MY_ACCOUNT": "Passwort",

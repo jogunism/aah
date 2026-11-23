@@ -524,6 +524,9 @@
   "APPLY_YEAR": "Année",
   "APPLY_SEARCH": "Rechercher…",
   "APPLY_NO_MATCH": "Aucun résultat",
+  "APPLY_SELECT_DATE": "Choisir une date",
+  "APPLY_PREV_MONTH": "Mois précédent",
+  "APPLY_NEXT_MONTH": "Mois suivant",
 
   "MY_TITLE": "Ma candidature",
   "MY_ACCOUNT": "Mot de passe",

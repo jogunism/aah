@@ -524,6 +524,9 @@
   "APPLY_YEAR": "Año",
   "APPLY_SEARCH": "Buscar…",
   "APPLY_NO_MATCH": "Sin resultados",
+  "APPLY_SELECT_DATE": "Elige una fecha",
+  "APPLY_PREV_MONTH": "Mes anterior",
+  "APPLY_NEXT_MONTH": "Mes siguiente",
 
   "MY_TITLE": "Mi solicitud",
   "MY_ACCOUNT": "Contraseña",

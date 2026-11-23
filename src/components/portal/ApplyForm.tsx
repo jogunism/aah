@@ -7,6 +7,7 @@ import { useTranslation } from 'react-i18next';
 import { buttonClass } from '@/components/ui/Button';
 import { Field, Note, SectionTitle, inputClass, textareaClass } from './fields';
 import Dropdown from './Dropdown';
+import DatePicker from './DatePicker';
 import { KOREAN_LEVELS, birthYears, countryOptions, monthNames, pinnedCountries, termOptions } from '@/lib/apply';
 
 export interface ApplySchool {
@@ -90,6 +91,7 @@ export default function ApplyForm({ lang, schools }: { lang: string; schools: Ap
 
   const countries = useMemo(() => countryOptions(lang).map((c) => ({ value: c.code, label: c.name })), [lang]);
   const pinned = useMemo(() => pinnedCountries(lang), [lang]);
+  const today = useMemo(() => new Date().toLocaleDateString('sv-SE'), []); // YYYY-MM-DD, local
   const months = useMemo(() => monthNames(lang).map((m, i) => ({ value: String(i + 1), label: m })), [lang]);
   const years = useMemo(() => birthYears().map((y) => ({ value: String(y), label: String(y) })), []);
   const days = useMemo(() => Array.from({ length: 31 }, (_, i) => ({ value: String(i + 1), label: String(i + 1) })), []);
@@ -326,17 +328,20 @@ export default function ApplyForm({ lang, schools }: { lang: string; schools: Ap
           )}
           <Field id="schoolId" label={t('APPLY_SCHOOL')} required error={err('schoolId')}>
             <Dropdown id="schoolId" value={f.schoolId} onChange={(v) => set('schoolId', v)} placeholder={t('APPLY_SELECT')}
+              searchPlaceholder={t('APPLY_SEARCH')} noMatch={t('APPLY_NO_MATCH')}
               options={visibleSchools.map((sc) => ({ value: sc.id, label: sc.title }))}
               invalid={!!errors.schoolId} describedBy={errors.schoolId ? 'schoolId-error' : undefined} />
           </Field>
           <div className="grid gap-4 sm:grid-cols-2">
             <Field id="arrivalDate" label={t('APPLY_ARRIVAL')} required error={err('arrivalDate')}>
-              <input id="arrivalDate" type="date" className={inputClass(!!errors.arrivalDate)} value={f.arrivalDate}
-                onChange={(e) => set('arrivalDate', e.target.value)} {...aria('arrivalDate')} />
+              <DatePicker id="arrivalDate" lang={lang} value={f.arrivalDate} onChange={(v) => set('arrivalDate', v)} min={today}
+                placeholder={t('APPLY_SELECT_DATE')} prevLabel={t('APPLY_PREV_MONTH')} nextLabel={t('APPLY_NEXT_MONTH')}
+                invalid={!!errors.arrivalDate} describedBy={errors.arrivalDate ? 'arrivalDate-error' : undefined} />
             </Field>
             <Field id="departureDate" label={t('APPLY_DEPARTURE')} required error={err('departureDate')}>
-              <input id="departureDate" type="date" min={f.arrivalDate || undefined} className={inputClass(!!errors.departureDate)}
-                value={f.departureDate} onChange={(e) => set('departureDate', e.target.value)} {...aria('departureDate')} />
+              <DatePicker id="departureDate" lang={lang} value={f.departureDate} onChange={(v) => set('departureDate', v)}
+                min={f.arrivalDate || today} placeholder={t('APPLY_SELECT_DATE')} prevLabel={t('APPLY_PREV_MONTH')} nextLabel={t('APPLY_NEXT_MONTH')}
+                invalid={!!errors.departureDate} describedBy={errors.departureDate ? 'departureDate-error' : undefined} />
             </Field>
           </div>
           <Note>
