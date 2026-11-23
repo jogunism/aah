@@ -155,7 +155,7 @@ export default function Dropdown({
                 placeholder={searchPlaceholder}
                 aria-controls={listId}
                 aria-activedescendant={items.all[active] ? `${listId}-${active}` : undefined}
-                className="h-9 w-full rounded-md border border-gray-200 px-3 text-sm outline-none focus:border-ink"
+                className="h-9 w-full rounded-md border border-gray-200 bg-white px-3 text-sm text-ink placeholder:text-[#A1A1A6] outline-none focus:border-ink"
               />
             </div>
           )}
