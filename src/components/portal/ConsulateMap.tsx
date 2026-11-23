@@ -16,6 +16,9 @@ const KEY = process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY;
 // Advanced markers need a map ID; Google's DEMO_MAP_ID works until we create our own
 const MAP_ID = process.env.NEXT_PUBLIC_GOOGLE_MAPS_MAP_ID || 'DEMO_MAP_ID';
 
+// Default view at most this close: a whole city stays visible
+const CITY_ZOOM = 11;
+
 let loading: Promise<void> | null = null;
 
 /** Load the Maps JavaScript API once per page */
@@ -125,9 +128,14 @@ export default function ConsulateMap({
       });
       if (points.length === 1) {
         map.current!.setCenter({ lat: points[0].lat, lng: points[0].lng });
-        map.current!.setZoom(14);
+        map.current!.setZoom(CITY_ZOOM);
       } else if (points.length > 0) {
         map.current!.fitBounds(bounds, 48);
+        // Places close together (e.g. embassy and visa centre in one city): don't zoom in past city level
+        const m = map.current!;
+        google.maps.event.addListenerOnce(m, 'idle', () => {
+          if ((m.getZoom() ?? 0) > CITY_ZOOM) m.setZoom(CITY_ZOOM);
+        });
       }
     });
      
