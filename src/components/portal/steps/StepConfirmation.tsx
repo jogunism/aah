@@ -15,6 +15,9 @@ import Dropdown from '../Dropdown';
 import { agreeConfirmation } from '../api';
 import { KV, MoneyTable, StepHeader, Sub } from './common';
 
+// "Message from us" (confirmation.message) stays hidden until the admin page can write it (user decision)
+const SHOW_MESSAGE = false;
+
 const NOTES = ['CONTRACT', 'PRICES', 'DORM', 'DOCS', 'PAYMENT', 'VISA', 'INSURANCE'] as const;
 
 function Choice({ name, value, checked, onChange, children }: {
@@ -105,7 +108,7 @@ export default function StepConfirmation({ app, lang, onChange }: StepProps) {
           [t('MY_CONF_REMARKS'), r.remarks || '–'],
           [t('MY_CONF_SIGNED'), `${r.signedName} · ${formatDate(r.agreedAt, lang)}`],
         ]} />
-        {c.message && (<><Sub>{t('MY_CONF_MESSAGE')}</Sub><p className="whitespace-pre-line text-[14px] text-ink-2">{c.message}</p></>)}
+        {SHOW_MESSAGE && c.message && (<><Sub>{t('MY_CONF_MESSAGE')}</Sub><p className="whitespace-pre-line text-[14px] text-ink-2">{c.message}</p></>)}
         {notes}
       </>
     );
@@ -168,7 +171,7 @@ export default function StepConfirmation({ app, lang, onChange }: StepProps) {
         </div>
       )}
 
-      {c.message && (
+      {SHOW_MESSAGE && c.message && (
         <>
           <Sub>{t('MY_CONF_MESSAGE')}</Sub>
           <div className="whitespace-pre-line rounded-xl bg-soft px-4 py-3 text-[14px] text-ink-2">{c.message}</div>
