@@ -1,11 +1,11 @@
 'use client';
-// 5단계(장기): 입학 서류 내려받기, D-4 비자 서류 체크리스트, 나라별 한국 공관·비자센터(지도·주소, 집에서 가까운 곳 강조), 비자 신청 완료 알림
-import { useEffect, useMemo, useRef, useState, type ReactNode } from 'react';
+// 5단계(장기): 입학 서류 내려받기, D-4 비자 서류 체크리스트, 나라별 한국 공관·비자센터(지도·주소, 1번 대표 공관 강조), 비자 신청 완료 알림
+import { useMemo, useRef, useState, type ReactNode } from 'react';
 import { useTranslation } from 'react-i18next';
 import type { StepProps } from '../Portal';
 import { countryName } from '@/lib/portal';
 import { pinnedCountries } from '@/lib/apply';
-import ConsulateMap, { geocodeAddress, nearest, type LatLng, type MapPoint } from '../ConsulateMap';
+import ConsulateMap, { type MapPoint } from '../ConsulateMap';
 import { MISSIONS, MISSION_COUNTRIES, type Mission, type VisaCenter } from '@/lib/consulates';
 import { buttonClass } from '@/components/ui/Button';
 import { Field, Note, inputClass } from '../fields';
@@ -24,7 +24,7 @@ type Place =
 
 const tel = (phone: string) => `tel:${phone.replace(/[^\d+]/g, '')}`;
 
-function PlaceCard({ place, active, nearestToHome, onClick }: { place: Place; active: boolean; nearestToHome: boolean; onClick: () => void }) {
+function PlaceCard({ place, active, onClick }: { place: Place; active: boolean; onClick: () => void }) {
   const { t } = useTranslation();
   const center = place.kind === 'center';
   const head = (name: string, extra?: ReactNode) => (
@@ -42,11 +42,8 @@ function PlaceCard({ place, active, nearestToHome, onClick }: { place: Place; ac
     <div onClick={onClick} aria-current={active ? 'true' : undefined}
       className={`h-full cursor-pointer rounded-[14px] border p-4 text-[13px] text-muted transition-shadow ${
         active ? 'border-aah-red ring-2 ring-aah-red/20' : 'border-line hover:border-[#C7C7CC]'} ${center ? 'bg-[#FFFBF3]' : ''}`}>
-      {head(center ? place.c.name : place.m.name, (
-        <div className="mt-1 flex flex-wrap gap-1.5">
-          {center && <span className="rounded-md bg-[#FFF1DA] px-1.5 py-0.5 text-[11px] font-semibold text-[#B26A00]">{t('MY_VISA_CENTER_BADGE')}</span>}
-          {nearestToHome && <span className="rounded-md bg-[#E6EEF7] px-1.5 py-0.5 text-[11px] font-semibold text-[#2C4F78]">{t('MY_VISA_NEAREST')}</span>}
-        </div>
+      {head(center ? place.c.name : place.m.name, center && (
+        <span className="mt-1 inline-block rounded-md bg-[#FFF1DA] px-1.5 py-0.5 text-[11px] font-semibold text-[#B26A00]">{t('MY_VISA_CENTER_BADGE')}</span>
       ))}
       <div className="mt-2 pl-[34px]">
         {place.kind === 'center' ? (
@@ -79,7 +76,8 @@ export default function StepVisaDocs({ app, lang, onChange }: StepProps) {
   const pinned = pinnedCountries(lang).filter((c) => MISSION_COUNTRIES.includes(c));
   const home = MISSION_COUNTRIES.includes(app.address.country) ? app.address.country : pinned[0] ?? MISSION_COUNTRIES[0];
   const [country, setCountry] = useState(home);
-  const [activeId, setActiveId] = useState<string | null>(null);
+  // The main mission (no. 1: the embassy, listed first in the data) is highlighted until another one is picked
+  const [picked, setPicked] = useState<string | null>(null);
   const cards = useRef(new Map<string, HTMLDivElement | null>());
   const [mission, setMission] = useState('');
   const [busy, setBusy] = useState(false);
@@ -104,30 +102,15 @@ export default function StepVisaDocs({ app, lang, onChange }: StepProps) {
     [places],
   );
 
-  // The student's address on the map, and the place closest to it highlighted (in their own country)
-  const [homePoint, setHomePoint] = useState<LatLng | null>(null);
-  useEffect(() => {
-    let cancelled = false;
-    const { street, postalCode, city, country: c } = app.address;
-    geocodeAddress(`${street}, ${postalCode} ${city}`, c, lang).then((p) => !cancelled && setHomePoint(p));
-    return () => {
-      cancelled = true;
-    };
-  }, [app.address, lang]);
-  const atHome = country === app.address.country && homePoint;
-  const closest = atHome ? nearest(homePoint, places) : null;
-  useEffect(() => {
-    if (closest) setActiveId(closest.id);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [closest?.id]);
+  const activeId = picked ?? places[0]?.id ?? null;
 
   const pickPin = (id: string) => {
-    setActiveId(id);
+    setPicked(id);
     cards.current.get(id)?.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
   };
   const changeCountry = (c: string) => {
     setCountry(c);
-    setActiveId(null);
+    setPicked(null);
   };
 
   const report = async () => {
@@ -172,12 +155,12 @@ export default function StepVisaDocs({ app, lang, onChange }: StepProps) {
         options={countries} pinned={pinned} searchPlaceholder={t('APPLY_SEARCH')} noMatch={t('APPLY_NO_MATCH')} />
       <div className="mt-3">
         <ConsulateMap points={points} activeId={activeId} onSelect={pickPin} lang={lang} label={t('MY_VISA_MAP')}
-          home={atHome ? homePoint : null} homeTitle={t('MY_VISA_HOME')} />
+          />
       </div>
       <div className="mt-3 grid gap-3 md:grid-cols-2">
         {places.map((p) => (
           <div key={p.id} ref={(el) => { cards.current.set(p.id, el); }}>
-            <PlaceCard place={p} active={activeId === p.id} nearestToHome={closest?.id === p.id} onClick={() => setActiveId(p.id)} />
+            <PlaceCard place={p} active={activeId === p.id} onClick={() => setPicked(p.id)} />
           </div>
         ))}
       </div>
