@@ -1,6 +1,6 @@
 'use client';
 /// <reference types="google.maps" />
-// 공관 지도(Google Maps): 나라의 공관·비자센터에 핀을 모두 찍고, 핀을 누르면 해당 주소 카드를 강조(카드를 누르면 핀으로 이동)
+// 공관 지도(Google Maps): 공관·비자센터에 번호 핀을 모두 찍고 핀 ↔ 주소 카드 강조, 학생 주소(집) 표시와 주소 → 좌표 변환
 
 import { useEffect, useRef, useState } from 'react';
 
@@ -9,6 +9,12 @@ export interface MapPoint {
   lat: number;
   lng: number;
   title: string;
+  label: string; // number shown on the pin and on its address card
+}
+
+export interface LatLng {
+  lat: number;
+  lng: number;
 }
 
 const KEY = process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY;
@@ -38,14 +44,59 @@ const loadMaps = (lang: string) => {
   return loading;
 };
 
-/** Gray pin; the selected one is red and larger */
-const pinElement = (on: boolean) =>
+/** Gray numbered pin; the selected one is red and larger */
+const pinElement = (on: boolean, label: string) =>
   new google.maps.marker.PinElement({
     background: on ? '#C73E43' : '#86868B',
     borderColor: '#FFFFFF',
+    glyphText: label,
     glyphColor: '#FFFFFF',
     scale: on ? 1.3 : 1,
   });
+
+/** Small blue dot for the student's own address */
+const homeElement = () => {
+  const dot = document.createElement('div');
+  dot.style.cssText = 'width:14px;height:14px;border-radius:50%;background:#2C6BED;border:3px solid #fff;box-shadow:0 0 0 1px rgba(0,0,0,.25)';
+  return dot;
+};
+
+const distanceKm = (a: LatLng, b: LatLng) => {
+  const rad = (d: number) => (d * Math.PI) / 180;
+  const h = Math.sin(rad(b.lat - a.lat) / 2) ** 2 + Math.cos(rad(a.lat)) * Math.cos(rad(b.lat)) * Math.sin(rad(b.lng - a.lng) / 2) ** 2;
+  return 12742 * Math.asin(Math.sqrt(h));
+};
+
+/** The point closest to `from` */
+export const nearest = <T extends LatLng>(from: LatLng, points: T[]): T | null =>
+  points.reduce<T | null>((best, p) => (!best || distanceKm(from, p) < distanceKm(from, best) ? p : best), null);
+
+/**
+ * Address → coordinates with Google's geocoder (needs the Geocoding API on the key).
+ * Cached in the browser so each student's address is looked up once; null when not available.
+ */
+export const geocodeAddress = async (address: string, region: string, lang: string): Promise<LatLng | null> => {
+  if (!KEY) return null;
+  const cacheKey = `aah-geo:${region}:${address}`;
+  try {
+    const cached = localStorage.getItem(cacheKey);
+    if (cached) return JSON.parse(cached);
+  } catch {}
+  try {
+    await loadMaps(lang);
+    const { Geocoder } = (await google.maps.importLibrary('geocoding')) as google.maps.GeocodingLibrary;
+    const { results } = await new Geocoder().geocode({ address, region });
+    const loc = results[0]?.geometry.location;
+    if (!loc) return null;
+    const point = { lat: loc.lat(), lng: loc.lng() };
+    try {
+      localStorage.setItem(cacheKey, JSON.stringify(point));
+    } catch {}
+    return point;
+  } catch {
+    return null;
+  }
+};
 
 export default function ConsulateMap({
   points,
@@ -53,7 +104,11 @@ export default function ConsulateMap({
   onSelect,
   lang,
   label,
+  home,
+  homeTitle,
 }: {
+  home: LatLng | null; // the student's address, shown as a blue dot
+  homeTitle: string;
   points: MapPoint[];
   activeId: string | null;
   onSelect: (id: string) => void;
@@ -114,31 +169,39 @@ export default function ConsulateMap({
           map: map.current,
           position: { lat: p.lat, lng: p.lng },
           title: p.title,
-          content: pinElement(false).element,
+          content: pinElement(false, p.label).element,
           gmpClickable: true,
         });
         marker.addListener('click', () => select.current(p.id));
         markers.current.set(p.id, { marker });
         bounds.extend({ lat: p.lat, lng: p.lng });
       });
-      if (points.length === 1) {
+      if (home) {
+        const marker = new google.maps.marker.AdvancedMarkerElement({ map: map.current, position: home, title: homeTitle, content: homeElement() });
+        markers.current.set('home', { marker });
+        bounds.extend(home);
+      }
+      if (points.length === 1 && !home) {
         map.current!.setCenter({ lat: points[0].lat, lng: points[0].lng });
         map.current!.setZoom(14);
-      } else if (points.length > 1) {
+      } else if (points.length > 0) {
         map.current!.fitBounds(bounds, 48);
       }
     });
      
-  }, [ready, failed, points]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [ready, failed, points, home]);
 
   // Selected pin: red and on top; the map pans to it
   useEffect(() => {
     if (!ready || failed) return;
     safely(() =>
       markers.current.forEach(({ marker }, id) => {
+        if (id === 'home') return;
         const on = id === activeId;
+        const point = points.find((p) => p.id === id);
         // A fresh pin instead of changing scale on the old one (that setter throws in the current Maps version)
-        marker.content = pinElement(on).element;
+        marker.content = pinElement(on, point?.label ?? '').element;
         marker.zIndex = on ? 10 : 1;
         if (on && marker.position) map.current?.panTo(marker.position);
       }),
