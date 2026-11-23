@@ -604,7 +604,7 @@
   "MY_CONF_PREPARING": "Wir prüfen Ihre Anmeldung und klären Preise und freie Plätze mit der Schule. Ihre Anmeldebestätigung mit den Preisoptionen erscheint innerhalb von 1–2 Werktagen hier. Sobald sie bereit ist, informieren wir Sie per E-Mail.",
   "MY_CONF_WAITING_CHIP": "Wartet auf Ihre Antwort",
   "MY_CONF_OVERDUE_CHIP": "Antwort überfällig",
-  "MY_CONF_LEAD": "Bitte prüfen Sie die Angaben, wählen Sie eine Option und bestätigen Sie bis zum {{date}}. Mit Ihrer Bestätigung beginnt das formelle Verfahren.",
+  "MY_CONF_LEAD": "Bitte prüfen Sie die Angaben, wählen Sie eine Option und bestätigen Sie bis zum {{date}}.",
   "MY_CONF_MESSAGE": "Nachricht von uns",
   "MY_CONF_NOTES": "Wichtige Hinweise",
   "MY_CONF_NOTE_CONTRACT": "Der Vertrag mit uns kommt zustande, wenn Sie diese Anmeldebestätigung bestätigen. Ab dann gelten die Stornobedingungen in unseren AGB.",

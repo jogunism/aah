@@ -605,7 +605,7 @@
   "MY_CONF_PREPARING": "Estamos revisando tu solicitud y consultando precios y plazas con el centro. Tu confirmación de solicitud con las opciones de precio aparecerá aquí en 1–2 días laborables y te avisaremos por correo electrónico en cuanto esté lista.",
   "MY_CONF_WAITING_CHIP": "Esperando tu respuesta",
   "MY_CONF_OVERDUE_CHIP": "Respuesta vencida",
-  "MY_CONF_LEAD": "Revisa los detalles, elige una opción y confirma antes del {{date}}. Tu confirmación da inicio al proceso formal.",
+  "MY_CONF_LEAD": "Revisa los detalles, elige una opción y confirma antes del {{date}}.",
   "MY_CONF_MESSAGE": "Mensaje de nuestra parte",
   "MY_CONF_NOTES": "Notas importantes",
   "MY_CONF_NOTE_CONTRACT": "Tu contrato con nosotros empieza cuando aceptas esta confirmación de solicitud. A partir de ese momento se aplican las normas de cancelación de nuestras condiciones.",

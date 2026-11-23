@@ -605,7 +605,7 @@
   "MY_CONF_PREPARING": "Stiamo esaminando la tua candidatura e verificando prezzi e posti con la scuola. La conferma della candidatura con le opzioni di prezzo comparirà qui entro 1–2 giorni lavorativi e ti scriveremo via e-mail appena sarà pronta.",
   "MY_CONF_WAITING_CHIP": "In attesa della tua risposta",
   "MY_CONF_OVERDUE_CHIP": "Risposta in ritardo",
-  "MY_CONF_LEAD": "Controlla i dettagli, scegli un’opzione e conferma entro il {{date}}. Con la tua conferma inizia la procedura ufficiale.",
+  "MY_CONF_LEAD": "Controlla i dettagli, scegli un’opzione e conferma entro il {{date}}.",
   "MY_CONF_MESSAGE": "Messaggio da parte nostra",
   "MY_CONF_NOTES": "Note importanti",
   "MY_CONF_NOTE_CONTRACT": "Il tuo contratto con noi inizia quando confermi questa conferma della candidatura. Da quel momento valgono le regole di cancellazione indicate nelle nostre condizioni.",

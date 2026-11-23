@@ -605,7 +605,7 @@
   "MY_CONF_PREPARING": "We're reviewing your application and checking prices and places with the school. Your application confirmation with the price options will appear here within 1–2 business days, and we'll email you as soon as it's ready.",
   "MY_CONF_WAITING_CHIP": "Waiting for your reply",
   "MY_CONF_OVERDUE_CHIP": "Reply overdue",
-  "MY_CONF_LEAD": "Please check the details, choose an option and confirm by {{date}}. Your confirmation starts the formal process.",
+  "MY_CONF_LEAD": "Please check the details, choose an option and confirm by {{date}}.",
   "MY_CONF_MESSAGE": "Message from us",
   "MY_CONF_NOTES": "Important notes",
   "MY_CONF_NOTE_CONTRACT": "Your contract with us starts when you confirm this application confirmation. From then on, the cancellation rules in our terms apply.",
