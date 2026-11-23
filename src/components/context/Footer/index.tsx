@@ -69,7 +69,11 @@ export default async function Footer({ lang }: { lang: string }) {
 
         <div className="mt-10 pt-5 border-t border-line flex flex-col sm:flex-row sm:justify-between gap-1">
           <p>© {new Date().getFullYear()} aah! education Europe. All rights reserved.</p>
-          {appVersion && <p>v{appVersion}</p>}
+          <nav aria-label={t('POLICY_NAV')} className="flex flex-wrap gap-x-5 gap-y-1">
+            <Link href={`/${lang}/terms`} className={linkClass}>{t('POLICY_TERMS')}</Link>
+            <Link href={`/${lang}/privacy`} className={linkClass}>{t('POLICY_PRIVACY')}</Link>
+            {appVersion && <span>v{appVersion}</span>}
+          </nav>
         </div>
       </div>
     </footer>
