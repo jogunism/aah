@@ -30,6 +30,7 @@ type Form = {
   program: '' | 'long' | 'short';
   schoolId: string;
   term: string;
+  semesters: string; // long-term only
   arrivalDate: string;
   departureDate: string;
   koreanLevel: string;
@@ -41,7 +42,7 @@ type Form = {
 const EMPTY: Form = {
   email: '', firstName: '', lastName: '', phone: '', birthDate: '', nationality: '',
   street: '', postalCode: '', city: '', country: '', education: '', program: '', schoolId: '',
-  term: '', arrivalDate: '', departureDate: '', koreanLevel: '', message: '', privacyConsent: false, website: '',
+  term: '', semesters: '', arrivalDate: '', departureDate: '', koreanLevel: '', message: '', privacyConsent: false, website: '',
 };
 
 const EMAIL_RE = /^[^\s@,;<>"()]+@[^\s@,;<>"'()]+\.[^\s@,;<>"'()]+$/;
@@ -56,6 +57,7 @@ const validate = (f: Form): Partial<Record<keyof Form, string>> => {
   });
   if (!EMAIL_RE.test(f.email.trim())) e.email = 'APPLY_ERR_EMAIL';
   if (!PHONE_RE.test(f.phone.trim())) e.phone = 'APPLY_ERR_PHONE';
+  if (f.program === 'long' && !f.semesters) e.semesters = 'APPLY_ERR_REQUIRED';
   if (f.arrivalDate && f.departureDate && f.departureDate < f.arrivalDate) e.departureDate = 'APPLY_ERR_DATES';
   if (!f.privacyConsent) e.privacyConsent = 'APPLY_ERR_CONSENT';
   return e;
@@ -124,6 +126,7 @@ export default function ApplyForm({ lang, schools }: { lang: string; schools: Ap
           schoolId: f.schoolId,
           program: f.program,
           term: f.term,
+          semesters: f.program === 'long' ? Number(f.semesters) : undefined,
           arrivalDate: f.arrivalDate,
           departureDate: f.departureDate,
           koreanLevel: f.koreanLevel || undefined,
@@ -301,6 +304,15 @@ export default function ApplyForm({ lang, schools }: { lang: string; schools: Ap
               </select>
             </Field>
           </div>
+          {f.program === 'long' && (
+            <Field id="semesters" label={t('APPLY_SEMESTERS')} required hint={t('APPLY_SEMESTERS_HINT')} error={err('semesters')}>
+              <select id="semesters" className={inputClass(!!errors.semesters)} value={f.semesters}
+                onChange={(e) => set('semesters', e.target.value)} {...aria('semesters')}>
+                <option value="">{t('APPLY_SELECT')}</option>
+                {[1, 2, 3, 4, 5, 6, 7, 8].map((n) => <option key={n} value={n}>{t('APPLY_SEMESTER_COUNT', { count: n })}</option>)}
+              </select>
+            </Field>
+          )}
           <Field id="schoolId" label={t('APPLY_SCHOOL')} required error={err('schoolId')}>
             <select id="schoolId" className={inputClass(!!errors.schoolId)} value={f.schoolId}
               onChange={(e) => set('schoolId', e.target.value)} {...aria('schoolId')}>

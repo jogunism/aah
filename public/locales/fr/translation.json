@@ -512,5 +512,10 @@
   "APPLY_DONE_HOME": "Retour à l'accueil",
   "POLICY_NAV": "Informations légales",
   "POLICY_TERMS": "Conditions générales et politique d'annulation",
-  "POLICY_PRIVACY": "Politique de confidentialité"
+  "POLICY_PRIVACY": "Politique de confidentialité",
+
+  "APPLY_SEMESTERS": "Nombre de semestres",
+  "APPLY_SEMESTERS_HINT": "Un semestre dure environ 10 semaines. Votre projet peut encore changer.",
+  "APPLY_SEMESTER_COUNT_one": "{{count}} semestre",
+  "APPLY_SEMESTER_COUNT_other": "{{count}} semestres"
 }

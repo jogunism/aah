@@ -511,5 +511,10 @@
   "APPLY_DONE_HOME": "Zurück zur Startseite",
   "POLICY_NAV": "Rechtliches",
   "POLICY_TERMS": "AGB & Stornobedingungen",
-  "POLICY_PRIVACY": "Datenschutzerklärung"
+  "POLICY_PRIVACY": "Datenschutzerklärung",
+
+  "APPLY_SEMESTERS": "Anzahl der Semester",
+  "APPLY_SEMESTERS_HINT": "Ein Semester dauert etwa 10 Wochen. Ihr Plan kann sich noch ändern.",
+  "APPLY_SEMESTER_COUNT_one": "{{count}} Semester",
+  "APPLY_SEMESTER_COUNT_other": "{{count}} Semester"
 }

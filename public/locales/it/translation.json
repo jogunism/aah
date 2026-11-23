@@ -512,5 +512,10 @@
   "APPLY_DONE_HOME": "Torna alla home",
   "POLICY_NAV": "Note legali",
   "POLICY_TERMS": "Condizioni generali e politica di cancellazione",
-  "POLICY_PRIVACY": "Informativa sulla privacy"
+  "POLICY_PRIVACY": "Informativa sulla privacy",
+
+  "APPLY_SEMESTERS": "Numero di semestri",
+  "APPLY_SEMESTERS_HINT": "Un semestre dura circa 10 settimane. Il tuo piano può ancora cambiare.",
+  "APPLY_SEMESTER_COUNT_one": "{{count}} semestre",
+  "APPLY_SEMESTER_COUNT_other": "{{count}} semestri"
 }
