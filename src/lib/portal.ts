@@ -17,6 +17,8 @@ export interface PortalDocument {
 export interface LineItem {
   label: string;
   amount: number;
+  type?: 'service' | 'application' | 'tuition' | 'other_school';
+  qty?: number; // tuition: semesters covered
 }
 
 export interface PriceOption {

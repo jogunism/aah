@@ -66,6 +66,9 @@ export default function StepConfirmation({ app, lang, onChange }: StepProps) {
   const isBad = (f: Field) => bad.has(f);
   const fix = (f: Field) => bad.has(f) && setBad((prev) => { const next = new Set(prev); next.delete(f); return next; });
   const [busy, setBusy] = useState(false);
+  // Applied for more semesters than the chosen plan covers: the rest is paid by the student later
+  const chosenQty = c.options.find((o) => o.id === optionId)?.items.find((i) => i.type === 'tuition')?.qty;
+  const restSemesters = long && app.semesters && chosenQty ? app.semesters - chosenQty : 0;
   const countries = useMemo(() => countryOptions(lang).map((o) => ({ value: o.code, label: o.name })), [lang]);
   const months = useMemo(() => monthNames(lang).map((m, i) => ({ value: String(i + 1), label: m })), [lang]);
   const years = useMemo(() => Array.from({ length: 12 }, (_, i) => String(new Date().getFullYear() + i)).map((y) => ({ value: y, label: y })), []);
@@ -183,6 +186,7 @@ export default function StepConfirmation({ app, lang, onChange }: StepProps) {
           // Only one option: nothing to choose, just the course and its price
           <>
             <Sub>{t('MY_CONF_PRICE')}</Sub>
+            {long && <div className="mb-3"><Note>{t('MY_CONF_MIN_SEMESTERS')}</Note></div>}
             <div className="rounded-xl border border-[#D2D2D7] p-4">
               <p className="flex items-center gap-3">
                 <span className="flex-1 font-semibold text-ink">{c.options[0].label}</span>
@@ -196,6 +200,7 @@ export default function StepConfirmation({ app, lang, onChange }: StepProps) {
         ) : (
           <>
             <Sub>{t('MY_CONF_CHOOSE')}</Sub>
+            {long && <div className="mb-3"><Note>{t('MY_CONF_MIN_SEMESTERS')}</Note></div>}
             <div className="space-y-3" role="radiogroup" aria-label={t('MY_CONF_CHOOSE')}>
               {c.options.map((o) => (
                 <label key={o.id} className={`block cursor-pointer rounded-xl border p-4 ${optionId === o.id ? 'border-ink ring-1 ring-ink' : isBad('option') ? BAD_BORDER : 'border-[#D2D2D7]'}`}>
@@ -211,6 +216,9 @@ export default function StepConfirmation({ app, lang, onChange }: StepProps) {
               ))}
             </div>
           </>
+        )}
+        {restSemesters > 0 && (
+          <div className="mt-3"><Note tone="warn">{t('MY_CONF_REST_TUITION', { count: restSemesters, total: app.semesters })}</Note></div>
         )}
 
         <Sub>{t('MY_CONF_CHECKS')}</Sub>
