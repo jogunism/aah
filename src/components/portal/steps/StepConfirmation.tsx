@@ -170,7 +170,8 @@ export default function StepConfirmation({ app, lang, onChange }: StepProps) {
         <div className="mt-5">
           <Note tone="warn">
             <strong>{t('MY_CONF_RETURNED')}</strong>
-            <span className="mt-1 block whitespace-pre-line">{c.returned.message}</span>
+            {/* The operator's own words, set apart from the fixed sentence above */}
+            <span className="mt-2.5 block border-l-2 border-[#E2C48A] pl-3 whitespace-pre-line">{c.returned.message}</span>
           </Note>
         </div>
       )}
