@@ -19,7 +19,8 @@ import { KV, MoneyTable, StepHeader, Sub } from './common';
 const SHOW_MESSAGE = false;
 
 // Important notes under the questions (the contract note sits in the step lead instead)
-const NOTES = ['PRICES', 'DORM', 'SCHEDULE', 'DOCS', 'FLIGHT', 'VISA', 'INSURANCE'] as const;
+const NOTES = ['PRICES', 'DORM', 'SCHEDULE', 'DOCS', 'FLIGHT', 'VISA', 'INSURANCE', 'INSURANCE_VISA'] as const;
+const LONG_ONLY = new Set<string>(['VISA', 'INSURANCE_VISA']);
 
 function Choice({ name, value, checked, onChange, children }: {
   name: string; value: string; checked: boolean; onChange: () => void; children: ReactNode;
@@ -75,7 +76,7 @@ export default function StepConfirmation({ app, lang, onChange }: StepProps) {
     );
   }
 
-  const noteKeys = NOTES.filter((n) => n !== 'VISA' || long);
+  const noteKeys = NOTES.filter((n) => long || !LONG_ONLY.has(n));
   const notes = (
     <>
       <Sub>{t('MY_CONF_NOTES')}</Sub>
