@@ -18,7 +18,7 @@ export default async function PortalHeader({ lang, signedIn }: { lang: string; s
         </Link>
         <div className="flex-1" />
         <div className="shrink-0">
-          <LanguageSelector currentLang={lang} />
+          <LanguageSelector currentLang={lang} savePortalLang={signedIn} />
         </div>
         {signedIn && (
           <>

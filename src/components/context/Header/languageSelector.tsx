@@ -17,9 +17,11 @@ import {
 
 interface LanguageSelectorProps {
   currentLang: string;
+  /** Signed in on /my: the choice is saved for the next login and every mail */
+  savePortalLang?: boolean;
 }
 
-export default function LanguageSelector({ currentLang }: LanguageSelectorProps) {
+export default function LanguageSelector({ currentLang, savePortalLang }: LanguageSelectorProps) {
   const { setCurrency } = useCurrencyStore();
   const [isOpen, setIsOpen] = useState(false);
   const [activeLang, setActiveLang] = useState<Locale>(
@@ -57,6 +59,13 @@ export default function LanguageSelector({ currentLang }: LanguageSelectorProps)
     setIsOpen(false);
 
     trackLanguageChange(selectedLang, activeLang);
+
+    if (savePortalLang) {
+      // keepalive: the request survives the navigation below
+      fetch('/api/my/language', {
+        method: 'POST', keepalive: true, headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ lang: selectedLang }),
+      }).catch(() => {});
+    }
 
     const newCurrency = LOCALE_META[selectedLang].currency;
     setCurrency(newCurrency);
