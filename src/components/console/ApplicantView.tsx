@@ -22,6 +22,25 @@ function ConfirmationPanel({ d, lang, t }: { d: ApplicantDetail; lang: ConsoleLa
   const c = d.application.confirmation;
   const r = c.reply;
   const time = (iso: string | null) => (iso ? consoleTime(lang, iso) : t('none_text'));
+  // After the reply only the plan the student chose matters; the others fold away
+  const optionCard = (o: ApplicantDetail['application']['confirmation']['options'][number], chosen: boolean) => {
+    const sum = o.items.reduce((s, i) => s + i.amount, 0);
+    return (
+      <Card key={o.id} title={`${t(chosen ? 'conf_chosen_option' : 'conf_options')} ${o.id} · ${o.label}`}>
+        <ul className="text-sm">
+          {o.items.map((i, n) => (
+            <li key={n} className="flex justify-between gap-3 border-t border-[#EEF0F3] py-2 first:border-t-0">
+              <span>{i.label}</span><span className="shrink-0 tabular-nums">{money(i.amount, c.currency)}</span>
+            </li>
+          ))}
+          <li className="flex justify-between gap-3 border-t border-[#D5DBE3] py-2 font-semibold">
+            <span>{t('conf_total')}</span><span className="tabular-nums">{money(sum, c.currency)}</span>
+          </li>
+        </ul>
+        {o.course && <p className="mt-1 text-[13px] text-muted">{t('conf_course')} · {dateOnly(lang, o.course.start)} – {dateOnly(lang, o.course.end)}</p>}
+      </Card>
+    );
+  };
   return (
     <div className="space-y-4">
       <Note>{t('conf_actions_soon')}</Note>
@@ -33,24 +52,7 @@ function ConfirmationPanel({ d, lang, t }: { d: ApplicantDetail; lang: ConsoleLa
           ...(c.message ? [[t('conf_message'), <span key="m" className="whitespace-pre-line">{c.message}</span>] as [string, ReactNode]] : []),
         ]} />
       </Card>
-      {c.options.map((o) => {
-        const sum = o.items.reduce((s, i) => s + i.amount, 0);
-        return (
-          <Card key={o.id} title={`${t('conf_options')} ${o.id} · ${o.label}`} aside={r?.optionId === o.id ? t('conf_chosen') : undefined}>
-            <ul className="text-sm">
-              {o.items.map((i, n) => (
-                <li key={n} className="flex justify-between gap-3 border-t border-[#EEF0F3] py-2 first:border-t-0">
-                  <span>{i.label}</span><span className="shrink-0 tabular-nums">{money(i.amount, c.currency)}</span>
-                </li>
-              ))}
-              <li className="flex justify-between gap-3 border-t border-[#D5DBE3] py-2 font-semibold">
-                <span>{t('conf_total')}</span><span className="tabular-nums">{money(sum, c.currency)}</span>
-              </li>
-            </ul>
-            {o.course && <p className="mt-1 text-[13px] text-muted">{t('conf_course')} · {dateOnly(lang, o.course.start)} – {dateOnly(lang, o.course.end)}</p>}
-          </Card>
-        );
-      })}
+      {(r ? c.options.filter((o) => o.id === r.optionId) : c.options).map((o) => optionCard(o, !!r))}
       {r && (
         <Card title={t('conf_reply')}>
           {d.warnings.length > 0 && (
@@ -69,6 +71,12 @@ function ConfirmationPanel({ d, lang, t }: { d: ApplicantDetail; lang: ConsoleLa
             ...(r.remarks ? [[t('conf_remarks'), r.remarks] as [string, ReactNode]] : []),
           ]} />
         </Card>
+      )}
+      {r && c.options.length > 1 && (
+        <details className="rounded-[14px] border border-[#E3E7ED] bg-white px-5 py-3">
+          <summary className="cursor-pointer text-sm font-semibold text-muted">{t('conf_other_options', { n: c.options.length - 1 })}</summary>
+          <div className="mt-3 space-y-3">{c.options.filter((o) => o.id !== r.optionId).map((o) => optionCard(o, false))}</div>
+        </details>
       )}
     </div>
   );
