@@ -1,6 +1,7 @@
-// 관리자 화면 서버 전용: 운영자 세션 쿠키 설정과 서버 렌더링용 운영자 정보·API 조회
+// 관리자 화면 서버 전용: 운영자 세션 쿠키 설정, 화면 언어, 서버 렌더링용 운영자 정보·API 조회
 import { cookies } from 'next/headers';
 import http from '@/lib/http';
+import { CONSOLE_LANG_COOKIE, toConsoleLang, type ConsoleLang } from '@/lib/console.i18n';
 
 export const CONSOLE_COOKIE = 'aah_console';
 
@@ -13,9 +14,16 @@ export const consoleCookieOptions = {
 };
 
 export interface Operator {
-  email: string;
+  id: string;
+  name: string;
+  role: 'super' | 'admin';
+  mustSetup: boolean;
+  locked: boolean;
   lastLoginAt: string | null;
+  createdAt: string;
 }
+
+export const getConsoleLang = async (): Promise<ConsoleLang> => toConsoleLang((await cookies()).get(CONSOLE_LANG_COOKIE)?.value);
 
 /** GET from the console API as the signed-in operator; null = not signed in (or the session expired) */
 export const consoleGet = async <T,>(path: string): Promise<T | null> => {
@@ -23,7 +31,7 @@ export const consoleGet = async <T,>(path: string): Promise<T | null> => {
   if (!token) return null;
   const res = await http.get<T>(`/console/${path}`, { headers: { 'X-Console-Token': token }, validateStatus: () => true });
   if (res.status === 200) return res.data;
-  if (res.status === 401) return null;
+  if (res.status === 401 || res.status === 403) return null;
   throw new Error(`Console API ${res.status}`);
 };
 
