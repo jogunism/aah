@@ -149,7 +149,7 @@ const ko = {
   step_n: '{n}단계',
   state_done: '완료',
   state_current: '진행 중',
-  state_locked: '잠김',
+  state_locked: '대기',
   st_new: '확인서 작성 전',
   st_review: '확인서 동의 · 승인 필요',
   st_waiting_reply: '확인서 보냄 · 회신 기다림',
