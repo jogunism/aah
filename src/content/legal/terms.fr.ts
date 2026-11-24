@@ -5,7 +5,7 @@ const doc: LegalDoc = {
   metaTitle: 'Conditions générales et politique d’annulation',
   metaDescription: 'Conditions générales de service et politique d’annulation pour les candidatures aux cours de coréen avec aah! education.',
   title: 'Conditions générales et politique d’annulation',
-  effective: 'En vigueur au 23 novembre 2026',
+  effective: 'En vigueur au 1er septembre 2026',
   intro: [
     'Les présentes conditions s’appliquent au service de candidature aux cours de coréen proposé par aah! education Europe (« nous »). Veuillez les lire conjointement avec notre Politique de confidentialité.',
   ],

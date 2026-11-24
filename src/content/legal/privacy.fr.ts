@@ -5,7 +5,7 @@ const doc: LegalDoc = {
   metaTitle: 'Politique de confidentialité',
   metaDescription: 'Comment aah! education collecte, utilise et protège vos données personnelles.',
   title: 'Politique de confidentialité et de sécurité',
-  effective: 'En vigueur au 23 novembre 2026',
+  effective: 'En vigueur au 1er septembre 2026',
   intro: [
     'Nous prenons la protection de vos données personnelles au sérieux. En tant qu’entreprise qui traite des candidatures d’études à l’étranger, nous respectons les lois applicables en matière de protection des données, notamment le Règlement général sur la protection des données de l’UE (RGPD), et prenons soin de vos données.',
   ],

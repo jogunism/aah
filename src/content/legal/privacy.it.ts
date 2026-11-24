@@ -5,7 +5,7 @@ const doc: LegalDoc = {
   metaTitle: 'Informativa sulla privacy',
   metaDescription: 'Come aah! education raccoglie, utilizza e protegge i tuoi dati personali.',
   title: 'Informativa sulla privacy e sulla sicurezza',
-  effective: 'In vigore dal 23 novembre 2026',
+  effective: 'In vigore dal 1° settembre 2026',
   intro: [
     'Prendiamo sul serio la protezione dei tuoi dati personali. In quanto società che gestisce domande di studio all’estero, rispettiamo la normativa applicabile in materia di protezione dei dati, compreso il Regolamento generale sulla protezione dei dati dell’UE (GDPR), e trattiamo i tuoi dati con cura.',
   ],

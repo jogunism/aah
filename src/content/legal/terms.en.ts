@@ -5,7 +5,7 @@ const doc: LegalDoc = {
   metaTitle: 'Terms & Cancellation Policy',
   metaDescription: 'Terms of service and cancellation policy for Korean language course applications with aah! education.',
   title: 'Terms & Cancellation Policy',
-  effective: 'Effective: 23 November 2026',
+  effective: 'Effective: 1 September 2026',
   intro: [
     'These terms apply to the application service for Korean language courses provided by aah! education Europe ("we", "us"). Please read them together with our Privacy Policy.',
   ],

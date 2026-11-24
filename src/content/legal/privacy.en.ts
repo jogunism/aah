@@ -5,7 +5,7 @@ const doc: LegalDoc = {
   metaTitle: 'Privacy Policy',
   metaDescription: 'How aah! education collects, uses and protects your personal data.',
   title: 'Privacy & Security Policy',
-  effective: 'Effective: 23 November 2026',
+  effective: 'Effective: 1 September 2026',
   intro: [
     'We take the protection of your personal data seriously. As a company that handles study-abroad applications, we follow the applicable data protection laws, including the EU General Data Protection Regulation (GDPR), and look after your data carefully.',
   ],

@@ -5,7 +5,7 @@ const doc: LegalDoc = {
   metaTitle: 'Datenschutzerklärung',
   metaDescription: 'Wie aah! education Ihre personenbezogenen Daten erhebt, verwendet und schützt.',
   title: 'Datenschutz- und Sicherheitsrichtlinie',
-  effective: 'Gültig ab: 23. November 2026',
+  effective: 'Gültig ab: 1. September 2026',
   intro: [
     'Wir nehmen den Schutz Ihrer personenbezogenen Daten ernst. Als Unternehmen, das Anmeldungen für Auslandsaufenthalte bearbeitet, halten wir uns an die geltenden Datenschutzgesetze, einschließlich der EU-Datenschutz-Grundverordnung (DSGVO), und gehen sorgfältig mit Ihren Daten um.',
   ],

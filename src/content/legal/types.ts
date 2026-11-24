@@ -12,7 +12,7 @@ export interface LegalDoc {
   metaTitle: string;
   metaDescription: string;
   title: string;
-  effective: string; // "Effective: 23 November 2026"
+  effective: string; // "Effective: 1 September 2026"
   intro: string[];
   sections: LegalSection[];
 }

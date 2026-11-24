@@ -5,7 +5,7 @@ const doc: LegalDoc = {
   metaTitle: 'AGB & Stornobedingungen',
   metaDescription: 'Allgemeine Geschäftsbedingungen und Stornobedingungen für Anmeldungen zu Koreanischkursen über aah! education.',
   title: 'AGB & Stornobedingungen',
-  effective: 'Gültig ab: 23. November 2026',
+  effective: 'Gültig ab: 1. September 2026',
   intro: [
     'Diese Bedingungen gelten für den Anmeldeservice für Koreanischkurse von aah! education Europe („wir“, „uns“). Bitte lesen Sie sie zusammen mit unserer Datenschutzerklärung.',
   ],

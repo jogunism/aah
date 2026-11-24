@@ -5,7 +5,7 @@ const doc: LegalDoc = {
   metaTitle: 'Condizioni generali e politica di cancellazione',
   metaDescription: 'Condizioni di servizio e politica di cancellazione per le domande di iscrizione ai corsi di lingua coreana con aah! education.',
   title: 'Condizioni generali e politica di cancellazione',
-  effective: 'In vigore dal 23 novembre 2026',
+  effective: 'In vigore dal 1° settembre 2026',
   intro: [
     'Le presenti condizioni si applicano al servizio di iscrizione ai corsi di lingua coreana fornito da aah! education Europe («noi»). Ti invitiamo a leggerle insieme alla nostra Informativa sulla privacy.',
   ],
