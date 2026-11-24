@@ -54,12 +54,11 @@ export default function Portal({ lang, initial, rates, schools, passwordChanged 
 
   const Panel = PANELS[view];
 
-  // Under each step: locked / in review / we're checking your reply / to do / done
+  // Under each step: locked / we're checking your reply / to do / done
   const stepSub = (key: StepKey, state: StepState) =>
     state === 'locked' ? t('MY_STATE_LOCKED')
-      : key === 'confirmation' && app.confirmation.status === 'preparing' ? t('MY_STEP_CONFIRMATION_PREP')
-        : key === 'confirmation' && app.confirmation.status === 'agreed' ? t('MY_STEP_CONFIRMATION_CHECK')
-          : t(`MY_STEP_${key.toUpperCase()}_${state === 'done' ? 'DONE' : 'NOW'}`);
+      : key === 'confirmation' && app.confirmation.status === 'agreed' ? t('MY_STEP_CONFIRMATION_CHECK')
+        : t(`MY_STEP_${key.toUpperCase()}_${state === 'done' ? 'DONE' : 'NOW'}`);
 
   return (
     <div className="max-w-[1180px] mx-auto px-5 md:px-6 pt-8 md:pt-10 pb-16">

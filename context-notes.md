@@ -264,3 +264,8 @@
 - 2단계 배치: 상단 안내 문장에 계약 시작(CONTRACT) 문장을 붙이고, 그 아래 옵션 → 여권·건강·거주국 질문 → 중요사항(PRICES, DORM, SCHEDULE, DOCS, FLIGHT, VISA, INSURANCE) → 비고와 동의 순서. 확인 체크 5개는 중요사항 문장으로 합쳤다(체크 없음). checks.acks는 API 호환을 위해 계속 보내며 "동의로 확인됨"을 뜻한다. 동의 기록의 notes에는 CONTRACT를 포함한 화면 문장이 그대로 저장된다.
 
 - 건강 질문은 필수. "있음"을 고르면 내용 칸 아래에 필수 동의 체크(MY_CONF_HEALTH_CONSENT)를 띄운다. 개인정보처리방침의 건강 항목도 "확인서의 건강 질문에 답할 때"로 고쳤다.
+
+## 2단계 대기 화면 제거 (2026-11-24)
+- 로그인 정보는 관리자가 확인서를 보낼 때(send-confirmation)만 나가므로, 학생이 처음 들어오면 2단계에 옵션과 확인 내용이 이미 있다. "In review" 대기 화면(MY_CONF_PREPARING*, MY_STEP_CONFIRMATION_PREP)은 필요 없어서 지웠다.
+- 흐름: /apply 제출 → 관리자 send-confirmation(링크·아이디·임시 비밀번호·옵션) → 학생 로그인, 비밀번호 변경, 2단계 확인 → 관리자 approve 또는 return.
+- API의 send-login은 확인서가 아직 preparing이면 거부한다(빈 2단계에 로그인시키지 않기 위해).

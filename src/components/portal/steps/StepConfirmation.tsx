@@ -68,15 +68,6 @@ export default function StepConfirmation({ app, lang, onChange }: StepProps) {
     return new Date(`${iso}T00:00:00Z`).getUTCDate() === Number(expDay) ? iso : '';
   })();
 
-  if (c.status === 'preparing') {
-    return (
-      <>
-        <StepHeader n={2} title={t('MY_STEP_CONFIRMATION')} chip={t('MY_CONF_PREPARING_CHIP')} tone="blue" />
-        <div className="mt-5"><Note>{t('MY_CONF_PREPARING')}</Note></div>
-      </>
-    );
-  }
-
   const noteKeys = NOTES.filter((n) => long || !LONG_ONLY.has(n));
   const notes = (
     <>
