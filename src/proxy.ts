@@ -22,6 +22,7 @@ export function proxy(request: NextRequest) {
   if (
     pathname.startsWith('/_next') ||
     pathname.startsWith('/api') ||
+    pathname === '/console' || pathname.startsWith('/console/') || // operator console: Korean only, no language prefix
     pathname.startsWith('/assets') ||
     pathname.includes('.') // 정적 파일 (.ico, .png, .jpg 등)
   ) {
