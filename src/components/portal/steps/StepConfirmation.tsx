@@ -48,7 +48,6 @@ export default function StepConfirmation({ app, lang, onChange }: StepProps) {
   const [declared, setDeclared] = useState<boolean | null>(prev?.checks?.health.declared ?? null);
   const [health, setHealth] = useState(prev?.checks?.health.details ?? '');
   const [residence, setResidence] = useState(prev?.checks?.residence ?? app.address.country);
-  const [acks, setAcks] = useState<Set<AckKey>>(new Set());
   const [remarks, setRemarks] = useState(prev?.remarks ?? '');
   const [agreeTerms, setAgreeTerms] = useState(false);
   const [startNow, setStartNow] = useState(false);
@@ -114,13 +113,6 @@ export default function StepConfirmation({ app, lang, onChange }: StepProps) {
   }
 
   const overdue = !!c.replyBy && Date.parse(c.replyBy) < Date.now();
-  const toggleAck = (k: AckKey, on: boolean) =>
-    setAcks((before) => {
-      const next = new Set(before);
-      if (on) next.add(k);
-      else next.delete(k);
-      return next;
-    });
 
   const submit = async (e: FormEvent) => {
     e.preventDefault();
@@ -129,7 +121,6 @@ export default function StepConfirmation({ app, lang, onChange }: StepProps) {
     if (hasPassport === null || (hasPassport && !expiry)) return setError(t('MY_CONF_ERR_PASSPORT'));
     if (declared === null || (declared && !health.trim())) return setError(t('MY_CONF_ERR_HEALTH'));
     if (long && !residence) return setError(t('MY_CONF_ERR_RESIDENCE'));
-    if (ackKeys.some((k) => !acks.has(k))) return setError(t('MY_CONF_ERR_ACKS'));
     if (!agreeTerms || !startNow) return setError(t('MY_CONF_ERR_AGREE'));
     setBusy(true);
     try {
@@ -139,7 +130,7 @@ export default function StepConfirmation({ app, lang, onChange }: StepProps) {
           passport: { has: hasPassport, expiry: hasPassport ? expiry : null },
           health: { declared, details: declared ? health.trim() : '' },
           residence: long ? residence : null,
-          acks: ackKeys,
+          acks: ackKeys, // read as notes; agreeing covers them
         },
         // kept in the agreement record as the student read them
         notes: noteKeys.map((n) => t(`MY_CONF_NOTE_${n}`)),
@@ -178,21 +169,39 @@ export default function StepConfirmation({ app, lang, onChange }: StepProps) {
       {notes}
 
       <form onSubmit={submit}>
-        <Sub>{t('MY_CONF_CHOOSE')}</Sub>
-        <div className="space-y-3" role="radiogroup" aria-label={t('MY_CONF_CHOOSE')}>
-          {c.options.map((o) => (
-            <label key={o.id} className={`block cursor-pointer rounded-xl border p-4 ${optionId === o.id ? 'border-ink ring-1 ring-ink' : 'border-[#D2D2D7]'}`}>
-              <span className="flex items-center gap-3">
-                <input type="radio" name="option" value={o.id} checked={optionId === o.id} onChange={() => setOptionId(o.id)} className="accent-ink" />
-                <span className="flex-1 font-semibold text-ink">{o.label}</span>
-                <span className="font-semibold text-ink">{formatMoney(total(o.items), c.currency, lang)}</span>
-              </span>
-              <span className="mt-3 block pl-7">
-                <MoneyTable items={o.items} currency={c.currency} lang={lang} totalLabel={t('MY_TOTAL')} />
-              </span>
-            </label>
-          ))}
-        </div>
+        {c.options.length === 1 ? (
+          // Only one option: nothing to choose, just the course and its price
+          <>
+            <Sub>{t('MY_CONF_PRICE')}</Sub>
+            <div className="rounded-xl border border-[#D2D2D7] p-4">
+              <p className="flex items-center gap-3">
+                <span className="flex-1 font-semibold text-ink">{c.options[0].label}</span>
+                <span className="font-semibold text-ink">{formatMoney(total(c.options[0].items), c.currency, lang)}</span>
+              </p>
+              <div className="mt-3">
+                <MoneyTable items={c.options[0].items} currency={c.currency} lang={lang} totalLabel={t('MY_TOTAL')} />
+              </div>
+            </div>
+          </>
+        ) : (
+          <>
+            <Sub>{t('MY_CONF_CHOOSE')}</Sub>
+            <div className="space-y-3" role="radiogroup" aria-label={t('MY_CONF_CHOOSE')}>
+              {c.options.map((o) => (
+                <label key={o.id} className={`block cursor-pointer rounded-xl border p-4 ${optionId === o.id ? 'border-ink ring-1 ring-ink' : 'border-[#D2D2D7]'}`}>
+                  <span className="flex items-center gap-3">
+                    <input type="radio" name="option" value={o.id} checked={optionId === o.id} onChange={() => setOptionId(o.id)} className="accent-ink" />
+                    <span className="flex-1 font-semibold text-ink">{o.label}</span>
+                    <span className="font-semibold text-ink">{formatMoney(total(o.items), c.currency, lang)}</span>
+                  </span>
+                  <span className="mt-3 block pl-7">
+                    <MoneyTable items={o.items} currency={c.currency} lang={lang} totalLabel={t('MY_TOTAL')} />
+                  </span>
+                </label>
+              ))}
+            </div>
+          </>
+        )}
 
         <Sub>{t('MY_CONF_CHECKS')}</Sub>
         <p className="-mt-1 mb-4 text-[13px] text-muted">{t('MY_CONF_CHECKS_LEAD')}</p>
@@ -246,17 +255,12 @@ export default function StepConfirmation({ app, lang, onChange }: StepProps) {
             </Field>
           )}
 
-          <fieldset>
-            <legend className="mb-2 text-sm font-semibold text-ink">{t('MY_CONF_ACKS')} <span className="text-aah-red">*</span></legend>
-            <div className="space-y-3">
-              {ackKeys.map((k) => (
-                <label key={k} className="flex items-start gap-3 text-sm text-ink-2">
-                  <input type="checkbox" checked={acks.has(k)} onChange={(e) => toggleAck(k, e.target.checked)} className="mt-0.5 w-[18px] h-[18px] shrink-0 accent-ink" />
-                  <span>{t(`MY_CONF_ACK_${k}`)}</span>
-                </label>
-              ))}
-            </div>
-          </fieldset>
+          <div>
+            <p className="mb-2 text-sm font-semibold text-ink">{t('MY_CONF_ACKS')}</p>
+            <ul className="ml-5 list-disc space-y-2 text-sm text-ink-2">
+              {ackKeys.map((k) => <li key={k}>{t(`MY_CONF_ACK_${k}`)}</li>)}
+            </ul>
+          </div>
         </div>
 
         <Sub>{t('MY_CONF_REPLY_FORM')}</Sub>
@@ -276,6 +280,10 @@ export default function StepConfirmation({ app, lang, onChange }: StepProps) {
             <input type="checkbox" checked={startNow} onChange={(e) => setStartNow(e.target.checked)} className="mt-0.5 w-[18px] h-[18px] shrink-0 accent-ink" />
             <span>{t('MY_CONF_START_NOW')}</span>
           </label>
+          <p className="text-[13px] text-muted">
+            {t('MY_CONF_PRIVACY')}{' '}
+            <Link href={`/${lang}/privacy`} target="_blank" className="text-aah-blue underline underline-offset-2">{t('POLICY_PRIVACY')}</Link>
+          </p>
           {error && <Note tone="alert">{error}</Note>}
           <p className="text-[13px] text-muted">{t('MY_CONF_AFTER_SUBMIT')}</p>
           <div className="flex justify-end">
