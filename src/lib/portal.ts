@@ -98,7 +98,7 @@ export interface Application {
     confirmedAt: string | null;
     invoiceNo: string | null;
   };
-  school: { status: 'not_started' | 'submitted' | 'reviewing' | 'admitted' | 'rejected'; updatedAt: string | null };
+  school: { status: 'not_started' | 'submitted' | 'reviewing' | 'admitted' | 'rejected'; updatedAt: string | null; postedAt?: string | null };
   visa: {
     status: 'not_started' | 'submitted' | 'issued' | 'refused';
     submittedAt: string | null;
@@ -122,6 +122,9 @@ export interface PortalData {
   application: Application;
   bank: Bank;
 }
+
+/** Where long-term students post their original documents (Seoul office on aah-e.net). TODO(사용자 확인): 수신인 표기 */
+export const KOREA_OFFICE = ['aah! Seoul office', '4F MOO Building, 21 Baekbeom-ro 1-gil', 'Mapo-gu, Seoul 04101', 'Republic of Korea'];
 
 /*************************************************************************
  * Steps

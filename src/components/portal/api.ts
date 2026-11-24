@@ -42,6 +42,8 @@ export const updateApplication = async (applicationId: string, form: Record<stri
 export const reportVisa = (applicationId: string, action: 'submitted' | 'contacted' | 'issued', extra: { mission?: string; note?: string } = {}) =>
   call<AppResponse>('visa', 'POST', { applicationId, action, ...extra });
 
+export const reportPosted = (applicationId: string) => call<AppResponse>('school/posted', 'POST', { applicationId });
+
 export const deleteDocument = (applicationId: string, docId: string) =>
   call<AppResponse>(`documents/${applicationId}/${docId}`, 'DELETE');
 
