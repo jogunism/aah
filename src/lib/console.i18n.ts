@@ -147,7 +147,7 @@ const ko = {
   step_housing: '숙소',
   step_complete: '완료',
   step_n: '{n}단계',
-  state_done: '끝남',
+  state_done: '완료',
   state_current: '진행 중',
   state_locked: '잠김',
   st_new: '확인서 작성 전',
