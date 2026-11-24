@@ -1,5 +1,5 @@
 'use client';
-// 2단계: 신청 접수 확인서. 검토 중 → 확인서 도착(옵션 선택, 여권·질환·거주국 질문, 중요사항, 비고·동의) → 우리가 회신 확인 → 승인(3단계) 또는 보완 요청
+// 2단계: 신청 접수 확인서. 확인서 도착(옵션 선택, 여권·질환·거주국 질문, 중요사항, 비고·동의, 빠진 칸은 빨간 테두리) → 우리가 회신 확인 → 승인(3단계) 또는 보완 요청
 import { useMemo, useState, type FormEvent, type ReactNode } from 'react';
 import Link from 'next/link';
 import { useTranslation } from 'react-i18next';
@@ -19,14 +19,20 @@ import { KV, MoneyTable, StepHeader, Sub } from './common';
 const SHOW_MESSAGE = false;
 
 // Important notes under the questions (the contract note sits in the step lead instead)
+type Field = 'option' | 'passport' | 'expiry' | 'health' | 'healthDetails' | 'healthConsent' | 'residence' | 'agreeTerms' | 'startNow';
+
 const NOTES = ['PRICES', 'DORM', 'SCHEDULE', 'DOCS', 'FLIGHT', 'VISA', 'INSURANCE', 'INSURANCE_VISA'] as const;
 const LONG_ONLY = new Set<string>(['VISA', 'INSURANCE_VISA']);
 
-function Choice({ name, value, checked, onChange, children }: {
-  name: string; value: string; checked: boolean; onChange: () => void; children: ReactNode;
+// Red edge on a field the last Confirm found missing (same look as invalid inputs)
+const BAD_BORDER = 'border-aah-red ring-3 ring-aah-red/15';
+const BAD_CHECK = 'outline-2 outline-offset-2 outline-aah-red';
+
+function Choice({ name, value, checked, invalid, onChange, children }: {
+  name: string; value: string; checked: boolean; invalid?: boolean; onChange: () => void; children: ReactNode;
 }) {
   return (
-    <label className={`flex cursor-pointer items-center gap-3 rounded-xl border px-4 py-3 text-sm ${checked ? 'border-ink ring-1 ring-ink' : 'border-[#D2D2D7]'}`}>
+    <label className={`flex cursor-pointer items-center gap-3 rounded-xl border px-4 py-3 text-sm ${checked ? 'border-ink ring-1 ring-ink' : invalid ? BAD_BORDER : 'border-[#D2D2D7]'}`}>
       <input type="radio" name={name} value={value} checked={checked} onChange={onChange} className="accent-ink" />
       <span className="text-ink">{children}</span>
     </label>
@@ -55,6 +61,10 @@ export default function StepConfirmation({ app, lang, onChange }: StepProps) {
   const [agreeTerms, setAgreeTerms] = useState(false);
   const [startNow, setStartNow] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  // Fields the last Confirm found missing; each one clears as soon as it is answered
+  const [bad, setBad] = useState<Set<Field>>(new Set());
+  const isBad = (f: Field) => bad.has(f);
+  const fix = (f: Field) => bad.has(f) && setBad((prev) => { const next = new Set(prev); next.delete(f); return next; });
   const [busy, setBusy] = useState(false);
   const countries = useMemo(() => countryOptions(lang).map((o) => ({ value: o.code, label: o.name })), [lang]);
   const months = useMemo(() => monthNames(lang).map((m, i) => ({ value: String(i + 1), label: m })), [lang]);
@@ -111,12 +121,19 @@ export default function StepConfirmation({ app, lang, onChange }: StepProps) {
   const submit = async (e: FormEvent) => {
     e.preventDefault();
     setError(null);
-    if (!optionId) return setError(t('MY_CONF_ERR_OPTION'));
-    if (hasPassport === null || (hasPassport && !expiry)) return setError(t('MY_CONF_ERR_PASSPORT'));
-    if (declared === null || (declared && !health.trim())) return setError(t('MY_CONF_ERR_HEALTH'));
-    if (declared && !healthConsent) return setError(t('MY_CONF_ERR_HEALTH_CONSENT'));
-    if (long && !residence) return setError(t('MY_CONF_ERR_RESIDENCE'));
-    if (!agreeTerms || !startNow) return setError(t('MY_CONF_ERR_AGREE'));
+    // Every missing field gets a red edge; the message names the first one
+    const missing: [Field, string][] = [];
+    if (!optionId) missing.push(['option', 'MY_CONF_ERR_OPTION']);
+    if (hasPassport === null) missing.push(['passport', 'MY_CONF_ERR_PASSPORT']);
+    else if (hasPassport && !expiry) missing.push(['expiry', 'MY_CONF_ERR_PASSPORT']);
+    if (declared === null) missing.push(['health', 'MY_CONF_ERR_HEALTH']);
+    else if (declared && !health.trim()) missing.push(['healthDetails', 'MY_CONF_ERR_HEALTH']);
+    if (declared && !healthConsent) missing.push(['healthConsent', 'MY_CONF_ERR_HEALTH_CONSENT']);
+    if (long && !residence) missing.push(['residence', 'MY_CONF_ERR_RESIDENCE']);
+    if (!agreeTerms) missing.push(['agreeTerms', 'MY_CONF_ERR_AGREE']);
+    if (!startNow) missing.push(['startNow', 'MY_CONF_ERR_AGREE']);
+    setBad(new Set(missing.map(([f]) => f)));
+    if (missing.length || hasPassport === null || declared === null) return setError(t(missing[0][1]));
     setBusy(true);
     try {
       const res = await agreeConfirmation({
@@ -181,9 +198,9 @@ export default function StepConfirmation({ app, lang, onChange }: StepProps) {
             <Sub>{t('MY_CONF_CHOOSE')}</Sub>
             <div className="space-y-3" role="radiogroup" aria-label={t('MY_CONF_CHOOSE')}>
               {c.options.map((o) => (
-                <label key={o.id} className={`block cursor-pointer rounded-xl border p-4 ${optionId === o.id ? 'border-ink ring-1 ring-ink' : 'border-[#D2D2D7]'}`}>
+                <label key={o.id} className={`block cursor-pointer rounded-xl border p-4 ${optionId === o.id ? 'border-ink ring-1 ring-ink' : isBad('option') ? BAD_BORDER : 'border-[#D2D2D7]'}`}>
                   <span className="flex items-center gap-3">
-                    <input type="radio" name="option" value={o.id} checked={optionId === o.id} onChange={() => setOptionId(o.id)} className="accent-ink" />
+                    <input type="radio" name="option" value={o.id} checked={optionId === o.id} onChange={() => { setOptionId(o.id); fix('option'); }} className="accent-ink" />
                     <span className="flex-1 font-semibold text-ink">{o.label}</span>
                     <span className="font-semibold text-ink">{formatMoney(total(o.items), c.currency, lang)}</span>
                   </span>
@@ -202,17 +219,17 @@ export default function StepConfirmation({ app, lang, onChange }: StepProps) {
           <fieldset className="space-y-2">
             <legend className="mb-2 text-sm font-semibold text-ink">{t('MY_CONF_PASSPORT')} <span className="text-aah-red">*</span></legend>
             <div className="grid gap-2 sm:grid-cols-2">
-              <Choice name="passport" value="yes" checked={hasPassport === true} onChange={() => setHasPassport(true)}>{t('MY_CONF_PASSPORT_HAVE')}</Choice>
-              <Choice name="passport" value="no" checked={hasPassport === false} onChange={() => setHasPassport(false)}>{t('MY_CONF_PASSPORT_NONE')}</Choice>
+              <Choice name="passport" value="yes" checked={hasPassport === true} invalid={isBad('passport')} onChange={() => { setHasPassport(true); fix('passport'); }}>{t('MY_CONF_PASSPORT_HAVE')}</Choice>
+              <Choice name="passport" value="no" checked={hasPassport === false} invalid={isBad('passport')} onChange={() => { setHasPassport(false); fix('passport'); fix('expiry'); }}>{t('MY_CONF_PASSPORT_NONE')}</Choice>
             </div>
             {hasPassport && (
               <div className="pt-2">
                 <Field id="passportExpiry" label={t('MY_CONF_PASSPORT_EXPIRY')} required
                   hint={t('MY_CONF_PASSPORT_EXPIRY_HINT', { date: formatDate(neededUntil, lang) })}>
                   <div className="grid max-w-[420px] grid-cols-[1fr_1.6fr_1.2fr] gap-2">
-                    <Dropdown id="passportExpiry" value={expDay} onChange={setExpDay} options={days} placeholder={t('APPLY_DAY')} />
-                    <Dropdown id="passportExpiryMonth" value={expMonth} onChange={setExpMonth} options={months} placeholder={t('APPLY_MONTH')} />
-                    <Dropdown id="passportExpiryYear" value={expYear} onChange={setExpYear} options={years} placeholder={t('APPLY_YEAR')} />
+                    <Dropdown id="passportExpiry" value={expDay} onChange={(v) => { setExpDay(v); fix('expiry'); }} options={days} placeholder={t('APPLY_DAY')} invalid={isBad('expiry') && !expDay} />
+                    <Dropdown id="passportExpiryMonth" value={expMonth} onChange={(v) => { setExpMonth(v); fix('expiry'); }} options={months} placeholder={t('APPLY_MONTH')} invalid={isBad('expiry') && !expMonth} />
+                    <Dropdown id="passportExpiryYear" value={expYear} onChange={(v) => { setExpYear(v); fix('expiry'); }} options={years} placeholder={t('APPLY_YEAR')} invalid={isBad('expiry') && !expYear} />
                   </div>
                 </Field>
                 {expiry && expiry < neededUntil && (
@@ -227,17 +244,18 @@ export default function StepConfirmation({ app, lang, onChange }: StepProps) {
             <legend className="mb-1 text-sm font-semibold text-ink">{t('MY_CONF_HEALTH')} <span className="text-aah-red">*</span></legend>
             <p className="mb-2 text-[13px] text-muted">{t('MY_CONF_HEALTH_HINT')}</p>
             <div className="grid gap-2 sm:grid-cols-2">
-              <Choice name="health" value="no" checked={declared === false} onChange={() => setDeclared(false)}>{t('MY_CONF_HEALTH_NO')}</Choice>
-              <Choice name="health" value="yes" checked={declared === true} onChange={() => setDeclared(true)}>{t('MY_CONF_HEALTH_YES')}</Choice>
+              <Choice name="health" value="no" checked={declared === false} invalid={isBad('health')} onChange={() => { setDeclared(false); fix('health'); fix('healthDetails'); fix('healthConsent'); }}>{t('MY_CONF_HEALTH_NO')}</Choice>
+              <Choice name="health" value="yes" checked={declared === true} invalid={isBad('health')} onChange={() => { setDeclared(true); fix('health'); }}>{t('MY_CONF_HEALTH_YES')}</Choice>
             </div>
             {declared && (
               <div className="pt-2">
                 <Field id="health" label={t('MY_CONF_HEALTH_DETAILS')} required hint={t('MY_CONF_HEALTH_DETAILS_HINT')}>
-                  <textarea id="health" maxLength={1000} className={textareaClass()} value={health} onChange={(e) => setHealth(e.target.value)} />
+                  <textarea id="health" maxLength={1000} className={textareaClass(isBad('healthDetails'))} value={health} onChange={(e) => { setHealth(e.target.value); fix('healthDetails'); }} />
                 </Field>
                 {/* Health details are special-category data (GDPR Art. 9): explicit consent with them */}
                 <label className="mt-3 flex items-start gap-3 text-sm text-ink-2">
-                  <input type="checkbox" checked={healthConsent} onChange={(e) => setHealthConsent(e.target.checked)} className="mt-0.5 w-[18px] h-[18px] shrink-0 accent-ink" />
+                  <input type="checkbox" checked={healthConsent} onChange={(e) => { setHealthConsent(e.target.checked); fix('healthConsent'); }}
+                    className={`mt-0.5 w-[18px] h-[18px] shrink-0 accent-ink ${isBad('healthConsent') ? BAD_CHECK : ''}`} />
                   <span>{t('MY_CONF_HEALTH_CONSENT')} <span className="text-aah-red">*</span></span>
                 </label>
               </div>
@@ -247,7 +265,7 @@ export default function StepConfirmation({ app, lang, onChange }: StepProps) {
           {long && (
             <Field id="residence" label={t('MY_CONF_RESIDENCE')} required hint={t('MY_CONF_RESIDENCE_HINT')}>
               <div className="max-w-[320px]">
-                <Dropdown id="residence" value={residence} onChange={setResidence} options={countries} pinned={pinnedCountries(lang)}
+                <Dropdown id="residence" value={residence} onChange={(v) => { setResidence(v); fix('residence'); }} invalid={isBad('residence')} options={countries} pinned={pinnedCountries(lang)}
                   placeholder={t('APPLY_SELECT')} searchPlaceholder={t('APPLY_SEARCH')} noMatch={t('APPLY_NO_MATCH')} />
               </div>
             </Field>
@@ -263,7 +281,8 @@ export default function StepConfirmation({ app, lang, onChange }: StepProps) {
             <textarea id="remarks" maxLength={1000} className={textareaClass()} value={remarks} onChange={(e) => setRemarks(e.target.value)} />
           </Field>
           <label className="flex items-start gap-3 text-sm text-ink-2">
-            <input type="checkbox" checked={agreeTerms} onChange={(e) => setAgreeTerms(e.target.checked)} className="mt-0.5 w-[18px] h-[18px] shrink-0 accent-ink" />
+            <input type="checkbox" checked={agreeTerms} onChange={(e) => { setAgreeTerms(e.target.checked); fix('agreeTerms'); }}
+              className={`mt-0.5 w-[18px] h-[18px] shrink-0 accent-ink ${isBad('agreeTerms') ? BAD_CHECK : ''}`} />
             <span>
               {t('MY_CONF_AGREE_TERMS_BEFORE', { name: `${app.firstName} ${app.lastName}` })}{' '}
               <Link href={`/${lang}/terms`} target="_blank" className="text-aah-blue underline underline-offset-2">{t('POLICY_TERMS')}</Link>{' '}
@@ -271,7 +290,8 @@ export default function StepConfirmation({ app, lang, onChange }: StepProps) {
             </span>
           </label>
           <label className="flex items-start gap-3 text-sm text-ink-2">
-            <input type="checkbox" checked={startNow} onChange={(e) => setStartNow(e.target.checked)} className="mt-0.5 w-[18px] h-[18px] shrink-0 accent-ink" />
+            <input type="checkbox" checked={startNow} onChange={(e) => { setStartNow(e.target.checked); fix('startNow'); }}
+              className={`mt-0.5 w-[18px] h-[18px] shrink-0 accent-ink ${isBad('startNow') ? BAD_CHECK : ''}`} />
             <span>{t('MY_CONF_START_NOW')}</span>
           </label>
           <p className="text-[13px] text-muted">
