@@ -6,7 +6,7 @@ export const inputClass =
 export const primaryClass =
   'w-full rounded-[10px] bg-[#2C4F78] px-4 py-3 text-[15px] font-semibold text-white hover:bg-[#24425F] disabled:opacity-50';
 export const buttonClass =
-  'rounded-[9px] border border-[#E3E7ED] bg-white px-3 py-1.5 text-[13px] font-semibold text-ink hover:bg-[#F5F6F8] disabled:opacity-50';
+  'shrink-0 whitespace-nowrap rounded-[9px] border border-[#E3E7ED] bg-white px-3 py-1.5 text-[13px] font-semibold text-ink hover:bg-[#F5F6F8] disabled:opacity-50';
 
 export function Label({ text, hint, children }: { text: string; hint?: string; children: ReactNode }) {
   return (

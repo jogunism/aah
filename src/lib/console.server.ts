@@ -19,6 +19,7 @@ export interface Operator {
   role: 'super' | 'admin';
   mustSetup: boolean;
   locked: boolean;
+  totpEnabled: boolean;
   lastLoginAt: string | null;
   createdAt: string;
 }

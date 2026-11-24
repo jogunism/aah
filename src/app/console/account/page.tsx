@@ -1,7 +1,8 @@
-// 내 계정(/console/account): 아이디·이름·권한·마지막 로그인, 비밀번호 변경
+// 내 계정(/console/account): 아이디·이름·권한·마지막 로그인, 비밀번호 변경, 2단계 인증 켜기·끄기
 import { redirect } from 'next/navigation';
 import ConsoleShell from '@/components/console/ConsoleShell';
 import PasswordForm from '@/components/console/PasswordForm';
+import TwoStepCard from '@/components/console/TwoStepCard';
 import { Card } from '@/components/console/ui';
 import { getConsoleLang, getOperator } from '@/lib/console.server';
 import { ct, consoleTime } from '@/lib/console.i18n';
@@ -35,6 +36,7 @@ export default async function AccountPage() {
         <Card title={ct(lang, 'pw_title')}>
           <PasswordForm lang={lang} />
         </Card>
+        <TwoStepCard lang={lang} enabled={operator.totpEnabled} />
       </div>
     </ConsoleShell>
   );
