@@ -8,7 +8,7 @@ import {
   country, courseLabel, dateOnly, langName, LOGIN_TONE, money, statusTone,
   type ApplicantDetail, type StepKey,
 } from '@/lib/console.applicants';
-import { Card, Rows, buttonClass, consolePost, primaryClass } from './ui';
+import { Card, Label, Rows, buttonClass, consolePost, inputClass, primaryClass } from './ui';
 import { Chip } from './ApplicantList';
 import ApplicationPanel from './ApplicationPanel';
 
@@ -18,7 +18,86 @@ const Note = ({ children }: { children: ReactNode }) => (
   <p className="rounded-[12px] bg-[#E6EEF7] px-4 py-3 text-sm text-[#2C4F78]">{children}</p>
 );
 
-function ConfirmationPanel({ d, lang, t }: { d: ApplicantDetail; lang: ConsoleLang; t: T }) {
+type Update = (d: ApplicantDetail) => void;
+type Msg = { ok: boolean; text: string } | null;
+
+const StatusMsg = ({ msg }: { msg: Msg }) => msg && (
+  <p role="status" className={`rounded-[10px] px-3 py-2.5 text-sm ${msg.ok ? 'bg-[#E7F5EE] text-[#1F7A4D]' : 'bg-[#FDECEA] text-[#B3261E]'}`}>{msg.text}</p>
+);
+
+/** Inline "send?" step under a button, like the login card */
+function Confirmable({ label, question, busy, tone, disabled, onSend, t }: {
+  label: string; question: string; busy: boolean; tone: string; disabled?: boolean; onSend: () => void; t: T;
+}) {
+  const [open, setOpen] = useState(false);
+  if (!open) {
+    return <button type="button" className={`${tone} w-full py-2.5`} disabled={busy || disabled} onClick={() => setOpen(true)}>{label}</button>;
+  }
+  return (
+    <div className="rounded-[10px] border border-[#D5DBE3] p-3">
+      <p className="text-sm font-semibold break-all">{question}</p>
+      <div className="mt-2.5 flex gap-2">
+        <button type="button" className={`${primaryClass} py-2`} disabled={busy} onClick={onSend}>{busy ? t('checking') : t('send')}</button>
+        <button type="button" className={`${buttonClass} px-4`} disabled={busy} onClick={() => setOpen(false)}>{t('cancel')}</button>
+      </div>
+    </div>
+  );
+}
+
+/** Student agreed: approve (invoice goes out) or ask for a correction (reply form reopens) */
+function ReviewActions({ d, lang, t, onUpdate, onDone }: { d: ApplicantDetail; lang: ConsoleLang; t: T; onUpdate: Update; onDone: (m: Msg) => void }) {
+  const today = new Date().toISOString().slice(0, 10);
+  const [due, setDue] = useState(new Date(Date.now() + 14 * 86_400_000).toISOString().slice(0, 10));
+  const [note, setNote] = useState('');
+  const [busy, setBusy] = useState<'approve' | 'return' | null>(null);
+  const [error, setError] = useState<Msg>(null);
+  const run = async (path: 'approve' | 'return', body: object, done: ConsoleKey) => {
+    setBusy(path);
+    setError(null);
+    const { status, body: res } = await consolePost(`applicants/${d.application.id}/${path}`, body);
+    setBusy(null);
+    if (status === 401) return window.location.assign('/console/login');
+    if (status === 200) {
+      onUpdate(res as ApplicantDetail);
+      onDone({ ok: true, text: t(done) });
+    } else setError({ ok: false, text: errorText(lang, res.error) });
+  };
+  const email = d.application.email;
+  return (
+    <>
+      <StatusMsg msg={error} />
+      <div className="grid gap-4 md:grid-cols-2 md:items-start">
+        <Card title={t('approve_title')}>
+          <p className="mb-3 text-sm text-muted">{t('approve_lead')}</p>
+          <Label text={t('approve_due')} hint={t('approve_due_hint')}>
+            <input type="date" className={inputClass} min={today} value={due} onChange={(e) => setDue(e.target.value)} />
+          </Label>
+          <div className="mt-3">
+            <Confirmable t={t} tone="inline-flex items-center justify-center rounded-[10px] bg-[#1F7A4D] px-4 text-[15px] font-semibold text-white hover:bg-[#17633E] disabled:opacity-50"
+              label={t('approve_btn')} busy={busy === 'approve'} disabled={!!busy || !due || due < today}
+              question={t('approve_confirm', { d: due ? dateOnly(lang, due) : '-', email })}
+              onSend={() => run('approve', { due }, 'approve_done')} />
+          </div>
+        </Card>
+        <Card title={t('return_title')}>
+          <p className="mb-3 text-sm text-muted">{t('return_lead')}</p>
+          <Label text={t('return_label', { l: langName(lang, d.application.lang) })}>
+            <textarea className={`${inputClass} min-h-[96px]`} rows={4} maxLength={2000} value={note} onChange={(e) => setNote(e.target.value)} />
+          </Label>
+          <div className="mt-3">
+            <Confirmable t={t} tone="inline-flex items-center justify-center rounded-[10px] border border-[#F0D9A8] bg-[#FFF4DE] px-4 text-[15px] font-semibold text-[#8A5A00] hover:bg-[#FCEBC6] disabled:opacity-50"
+              label={t('return_btn')} busy={busy === 'return'} disabled={!!busy || !note.trim()}
+              question={t('return_confirm', { email })}
+              onSend={() => run('return', { message: note }, 'return_done')} />
+          </div>
+        </Card>
+      </div>
+    </>
+  );
+}
+
+function ConfirmationPanel({ d, lang, t, onUpdate }: { d: ApplicantDetail; lang: ConsoleLang; t: T; onUpdate: Update }) {
+  const [done, setDone] = useState<Msg>(null);
   const c = d.application.confirmation;
   const r = c.reply;
   const time = (iso: string | null) => (iso ? consoleTime(lang, iso) : t('none_text'));
@@ -43,7 +122,8 @@ function ConfirmationPanel({ d, lang, t }: { d: ApplicantDetail; lang: ConsoleLa
   };
   return (
     <div className="space-y-4">
-      <Note>{t('conf_actions_soon')}</Note>
+      <StatusMsg msg={done} />
+      {(c.status === 'preparing' || c.status === 'sent') && <Note>{t('conf_actions_soon')}</Note>}
       <Card title={t('conf_title')} aside={t(`conf_${c.status}` as ConsoleKey)}>
         <Rows rows={[
           [t('conf_sent_at'), time(c.sentAt)],
@@ -72,6 +152,7 @@ function ConfirmationPanel({ d, lang, t }: { d: ApplicantDetail; lang: ConsoleLa
           ]} />
         </Card>
       )}
+      {c.status === 'agreed' && r && <ReviewActions d={d} lang={lang} t={t} onUpdate={onUpdate} onDone={setDone} />}
       {r && c.options.length > 1 && (
         <details className="rounded-[14px] border border-[#E3E7ED] bg-white px-5 py-3">
           <summary className="cursor-pointer text-sm font-semibold text-muted">{t('conf_other_options', { n: c.options.length - 1 })}</summary>
@@ -284,7 +365,7 @@ export default function ApplicantView({ lang, initial, schools }: {
       <div className="mt-4 grid gap-4 lg:grid-cols-[minmax(0,1fr)_340px] lg:items-start">
         <div className="min-w-0">
           {step === 'application' ? <ApplicationPanel lang={lang} d={d} schools={schools} onUpdate={setD} />
-            : step === 'confirmation' ? <ConfirmationPanel d={d} lang={lang} t={t} />
+            : step === 'confirmation' ? <ConfirmationPanel d={d} lang={lang} t={t} onUpdate={setD} />
             : <StatusPanel d={d} step={step} lang={lang} t={t} />}
         </div>
         <div className="grid gap-4">

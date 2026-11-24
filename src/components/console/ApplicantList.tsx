@@ -7,7 +7,7 @@ import { ct, consoleTime, type ConsoleKey, type ConsoleLang } from '@/lib/consol
 import {
   country, courseLabel, isTodo, LOGIN_TONE, statusTone, termLabel, TONES, type ApplicantSummary, type StepKey,
 } from '@/lib/console.applicants';
-import { buttonClass, inputClass } from './ui';
+import { inputClass } from './ui';
 
 type Tab = 'all' | 'todo' | 'student' | 'done';
 const STEPS: StepKey[] = ['confirmation', 'payment', 'school', 'visaDocs', 'visaStatus', 'housing', 'complete'];
@@ -99,20 +99,18 @@ export default function ApplicantList({ lang, items }: { lang: ConsoleLang; item
                   {(['col_id', 'col_name', 'col_school', 'col_progress', 'col_status', 'col_login', 'col_last'] as ConsoleKey[]).map((k) => (
                     <th key={k} className="px-4 py-2.5 font-semibold">{t(k)}</th>
                   ))}
-                  <th />
                 </tr>
               </thead>
               <tbody>
                 {rows.map((s) => (
                   <tr key={s.id} className="border-t border-[#EEF0F3] align-middle">
-                    <td className="px-4 py-3 text-muted">{s.id}</td>
-                    <td className="px-4 py-3"><b className="font-semibold">{s.firstName} {s.lastName}</b><br /><span className="text-[13px] text-muted">{country(lang, s.nationality)}</span></td>
+                    <td className="px-4 py-3"><Link href={`/console/applicants/${s.id}`} className="text-[#2C4F78] hover:underline">{s.id}</Link></td>
+                    <td className="px-4 py-3"><Link href={`/console/applicants/${s.id}`} className="font-semibold text-[#2C4F78] hover:underline">{s.firstName} {s.lastName}</Link><br /><span className="text-[13px] text-muted">{country(lang, s.nationality)}</span></td>
                     <td className="px-4 py-3">{s.schoolName}<br /><span className="text-[13px] text-muted">{courseLabel(lang, s)}</span></td>
                     <td className="px-4 py-3"><Progress steps={s.steps} /></td>
                     <td className="px-4 py-3">{status(s)}</td>
                     <td className="px-4 py-3">{loginChip(s)}</td>
                     <td className="px-4 py-3 text-[13px] text-muted">{last(s)}</td>
-                    <td className="px-4 py-3 text-right"><Link href={`/console/applicants/${s.id}`} className={buttonClass}>{t('open')}</Link></td>
                   </tr>
                 ))}
               </tbody>
