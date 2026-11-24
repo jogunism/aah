@@ -260,3 +260,5 @@
 - **확인서 "Message from us" 숨김(사용자 결정, 2026-11-23)**: `confirmation.message`(관리자가 학생별로 쓰는 답변·안내)는 관리자 화면이 생길 때까지 2단계에 보이지 않는다(`StepConfirmation`의 `SHOW_MESSAGE`). 데이터 저장·동의 스냅샷 기록은 그대로.
 
 - 2단계 서명: 이름 입력 칸을 없애고 약관 동의 문장에 신청서 이름을 넣었다("I, {{name}}, have read and agree to the…"). 서명 값은 서버가 신청서 이름으로 저장한다.
+
+- 2단계 배치: 상단 안내 문장에 계약 시작(CONTRACT) 문장을 붙이고, 그 아래 옵션 → 여권·건강·거주국 질문 → 중요사항(PRICES, DORM, SCHEDULE, DOCS, FLIGHT, VISA, INSURANCE) → 비고와 동의 순서. 확인 체크 5개는 중요사항 문장으로 합쳤다(체크 없음). checks.acks는 API 호환을 위해 계속 보내며 "동의로 확인됨"을 뜻한다. 동의 기록의 notes에는 CONTRACT를 포함한 화면 문장이 그대로 저장된다.

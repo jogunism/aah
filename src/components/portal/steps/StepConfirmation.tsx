@@ -1,5 +1,5 @@
 'use client';
-// 2단계: 신청 접수 확인서. 검토 중 → 확인서 도착(옵션 선택, 여권·질환·거주국·확인 체크, 비고·서명·동의) → 우리가 회신 확인 → 승인(3단계) 또는 보완 요청
+// 2단계: 신청 접수 확인서. 검토 중 → 확인서 도착(옵션 선택, 여권·질환·거주국 질문, 중요사항, 비고·동의) → 우리가 회신 확인 → 승인(3단계) 또는 보완 요청
 import { useMemo, useState, type FormEvent, type ReactNode } from 'react';
 import Link from 'next/link';
 import { useTranslation } from 'react-i18next';
@@ -18,7 +18,8 @@ import { KV, MoneyTable, StepHeader, Sub } from './common';
 // "Message from us" (confirmation.message) stays hidden until the admin page can write it (user decision)
 const SHOW_MESSAGE = false;
 
-const NOTES = ['CONTRACT', 'PRICES', 'DORM', 'DOCS', 'PAYMENT', 'VISA', 'INSURANCE'] as const;
+// Important notes under the questions (the contract note sits in the step lead instead)
+const NOTES = ['PRICES', 'DORM', 'SCHEDULE', 'DOCS', 'FLIGHT', 'VISA', 'INSURANCE'] as const;
 
 function Choice({ name, value, checked, onChange, children }: {
   name: string; value: string; checked: boolean; onChange: () => void; children: ReactNode;
@@ -130,11 +131,11 @@ export default function StepConfirmation({ app, lang, onChange }: StepProps) {
           passport: { has: hasPassport, expiry: hasPassport ? expiry : null },
           health: { declared, details: declared ? health.trim() : '' },
           residence: long ? residence : null,
-          acks: ackKeys, // read as notes; agreeing covers them
+          acks: ackKeys, // the points are in the notes; agreeing covers them
         },
-        // kept in the agreement record as the student read them
-        notes: noteKeys.map((n) => t(`MY_CONF_NOTE_${n}`)),
-        acks: ackKeys.map((k) => t(`MY_CONF_ACK_${k}`)),
+        // kept in the agreement record as the student read them (the visa and flight points are part of the notes now)
+        notes: ['CONTRACT', ...noteKeys].map((n) => t(`MY_CONF_NOTE_${n}`)),
+        acks: [],
       });
       onChange(res.application);
       window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -149,7 +150,7 @@ export default function StepConfirmation({ app, lang, onChange }: StepProps) {
     <>
       <StepHeader n={2} title={t('MY_STEP_CONFIRMATION')} tone={overdue ? 'red' : 'amber'}
         chip={t(overdue ? 'MY_CONF_OVERDUE_CHIP' : 'MY_CONF_WAITING_CHIP')}
-        lead={t('MY_CONF_LEAD', { date: c.replyBy ? formatDate(c.replyBy, lang) : '' })} />
+        lead={`${t('MY_CONF_LEAD', { date: c.replyBy ? formatDate(c.replyBy, lang) : '' })} ${t('MY_CONF_NOTE_CONTRACT')}`} />
 
       {c.returned && (
         <div className="mt-5">
@@ -166,8 +167,6 @@ export default function StepConfirmation({ app, lang, onChange }: StepProps) {
           <div className="whitespace-pre-line rounded-xl bg-soft px-4 py-3 text-[14px] text-ink-2">{c.message}</div>
         </>
       )}
-      {notes}
-
       <form onSubmit={submit}>
         {c.options.length === 1 ? (
           // Only one option: nothing to choose, just the course and its price
@@ -255,13 +254,9 @@ export default function StepConfirmation({ app, lang, onChange }: StepProps) {
             </Field>
           )}
 
-          <div>
-            <p className="mb-2 text-sm font-semibold text-ink">{t('MY_CONF_ACKS')}</p>
-            <ul className="ml-5 list-disc space-y-2 text-sm text-ink-2">
-              {ackKeys.map((k) => <li key={k}>{t(`MY_CONF_ACK_${k}`)}</li>)}
-            </ul>
-          </div>
         </div>
+
+        {notes}
 
         <Sub>{t('MY_CONF_REPLY_FORM')}</Sub>
         <div className="space-y-4">
