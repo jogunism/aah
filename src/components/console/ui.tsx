@@ -1,4 +1,4 @@
-// 관리자 화면 공용 UI 조각: 입력칸·버튼 클래스, 라벨, 카드, API 호출
+// 관리자 화면 공용 UI 조각: 입력칸·버튼 클래스, 라벨, 카드, 항목·값 표, API 호출
 import type { ReactNode } from 'react';
 
 export const inputClass =
@@ -27,6 +27,20 @@ export function Card({ title, aside, children }: { title: string; aside?: ReactN
       </h2>
       {children}
     </section>
+  );
+}
+
+/** Label / value rows */
+export function Rows({ rows }: { rows: [string, ReactNode][] }) {
+  return (
+    <dl className="grid grid-cols-[minmax(96px,auto)_1fr] gap-x-4 text-sm">
+      {rows.map(([k, v], i) => (
+        <div key={k} className="contents">
+          <dt className={`py-2 text-muted ${i ? 'border-t border-[#EEF0F3]' : ''}`}>{k}</dt>
+          <dd className={`min-w-0 py-2 break-words ${i ? 'border-t border-[#EEF0F3]' : ''}`}>{v}</dd>
+        </div>
+      ))}
+    </dl>
   );
 }
 
