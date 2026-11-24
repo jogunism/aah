@@ -175,3 +175,11 @@
 - [x] API·프론트 tsc, 프론트 lint·build (로컬 e2e는 운영 DB를 바라봐서 안 돌림)
 - [ ] 한국 사무소 주소·수신인 사용자 확인
 - [ ] 운영 배포(API → 프론트 순서)
+
+## 19. 숙소 단계와 완료 단계 (2026-11-24, 사용자 요청)
+- [x] API: `housing { status: arranging | contracted, contractedAt }`(예전 신청은 없음 = arranging), CLI `housing <id> contracted|arranging`
+- [x] 단계 순서: 장기 … 비자 → 숙소 → 완료(8단계), 단기 … 학교 → 숙소 → 완료(6단계). 단계 번호는 순서에서 계산
+- [x] 숙소 화면: 계약은 우리가 대신, 보통 도착 약 2주 전에 정해짐, 계약 뒤 주소·입주 안내 메일 (aah-e.net stay·departure 페이지 참고)
+- [x] 완료 화면: 감사·응원 메시지, 서울 사무소 주소(영문·한글)·전화 +82 2-702-2753·contact@aah.education
+- [x] 5개 언어, tsc·lint·build, 단계 상태 계산 스크립트 확인(장기·단기, 숙소 필드 없음·계약 완료)
+- [ ] 관리자 화면(/console)에 "집 계약 완료" 버튼 연결(관리자 화면 작업 세션 몫)

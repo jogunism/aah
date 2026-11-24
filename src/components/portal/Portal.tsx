@@ -18,6 +18,8 @@ import StepPayment from './steps/StepPayment';
 import StepSchool from './steps/StepSchool';
 import StepVisaDocs from './steps/StepVisaDocs';
 import StepVisaStatus from './steps/StepVisaStatus';
+import StepHousing from './steps/StepHousing';
+import StepComplete from './steps/StepComplete';
 
 export interface StepProps {
   app: Application;
@@ -35,6 +37,8 @@ const PANELS: Record<StepKey, (p: StepProps) => React.ReactNode> = {
   school: StepSchool,
   visaDocs: StepVisaDocs,
   visaStatus: StepVisaStatus,
+  housing: StepHousing,
+  complete: StepComplete,
 };
 
 export default function Portal({ lang, initial, rates, schools, passwordChanged }: {

@@ -106,6 +106,7 @@ export interface Application {
     contactedAt: string | null;
     issuedAt: string | null;
   };
+  housing?: { status: 'arranging' | 'contracted'; contractedAt: string | null }; // missing on older applications = arranging
   documents: PortalDocument[];
 }
 
@@ -123,13 +124,15 @@ export interface PortalData {
   bank: Bank;
 }
 
-/** Where long-term students post their original documents (Seoul office on aah-e.net). TODO(사용자 확인): 수신인 표기 */
-export const KOREA_OFFICE = ['aah! Seoul office', '4F MOO Building, 21 Baekbeom-ro 1-gil', 'Mapo-gu, Seoul 04101', 'Republic of Korea'];
+/** Our Seoul office (aah-e.net footer): where long-term students post originals, and the contact in Korea. TODO(사용자 확인): 수신인 표기 */
+export const KOREA_OFFICE = ['aah! Seoul office', 'MOO Building 4F, 21 Baekbeom-ro 1-gil', 'Mapo-gu, Seoul 04101', 'Republic of Korea'];
+export const KOREA_OFFICE_KO = '서울특별시 마포구 백범로1길 21 MOO빌딩 4층 (04101)'; // for taxi drivers
+export const KOREA_OFFICE_PHONE = '+82 2-702-2753';
 
 /*************************************************************************
  * Steps
  */
-export type StepKey = 'application' | 'confirmation' | 'payment' | 'school' | 'visaDocs' | 'visaStatus';
+export type StepKey = 'application' | 'confirmation' | 'payment' | 'school' | 'visaDocs' | 'visaStatus' | 'housing' | 'complete';
 export type StepState = 'done' | 'current' | 'locked';
 
 const DONE: Record<StepKey, (a: Application) => boolean> = {
@@ -139,13 +142,15 @@ const DONE: Record<StepKey, (a: Application) => boolean> = {
   school: (a) => a.school.status === 'admitted',
   visaDocs: (a) => a.visa.status !== 'not_started',
   visaStatus: (a) => a.visa.status === 'issued',
+  housing: (a) => a.housing?.status === 'contracted',
+  complete: () => true, // nothing to do: it opens once every step before it is done
 };
 
-/** Short courses don't need a student visa, so they end with the school step */
+/** Short courses don't need a student visa, so they skip the visa steps */
 export const stepsFor = (a: Application): StepKey[] =>
   a.program === 'short'
-    ? ['application', 'confirmation', 'payment', 'school']
-    : ['application', 'confirmation', 'payment', 'school', 'visaDocs', 'visaStatus'];
+    ? ['application', 'confirmation', 'payment', 'school', 'housing', 'complete']
+    : ['application', 'confirmation', 'payment', 'school', 'visaDocs', 'visaStatus', 'housing', 'complete'];
 
 export const stepStates = (a: Application): { key: StepKey; state: StepState }[] => {
   const keys = stepsFor(a);
