@@ -49,6 +49,7 @@ export default function StepConfirmation({ app, lang, onChange }: StepProps) {
   const [expYear, setExpYear] = useState(prevY ?? '');
   const [declared, setDeclared] = useState<boolean | null>(prev?.checks?.health.declared ?? null);
   const [health, setHealth] = useState(prev?.checks?.health.details ?? '');
+  const [healthConsent, setHealthConsent] = useState(false);
   const [residence, setResidence] = useState(prev?.checks?.residence ?? app.address.country);
   const [remarks, setRemarks] = useState(prev?.remarks ?? '');
   const [agreeTerms, setAgreeTerms] = useState(false);
@@ -122,6 +123,7 @@ export default function StepConfirmation({ app, lang, onChange }: StepProps) {
     if (!optionId) return setError(t('MY_CONF_ERR_OPTION'));
     if (hasPassport === null || (hasPassport && !expiry)) return setError(t('MY_CONF_ERR_PASSPORT'));
     if (declared === null || (declared && !health.trim())) return setError(t('MY_CONF_ERR_HEALTH'));
+    if (declared && !healthConsent) return setError(t('MY_CONF_ERR_HEALTH_CONSENT'));
     if (long && !residence) return setError(t('MY_CONF_ERR_RESIDENCE'));
     if (!agreeTerms || !startNow) return setError(t('MY_CONF_ERR_AGREE'));
     setBusy(true);
@@ -130,7 +132,7 @@ export default function StepConfirmation({ app, lang, onChange }: StepProps) {
         applicationId: app.id, optionId, remarks, agreeTerms, startNow,
         checks: {
           passport: { has: hasPassport, expiry: hasPassport ? expiry : null },
-          health: { declared, details: declared ? health.trim() : '' },
+          health: { declared, details: declared ? health.trim() : '', consent: declared && healthConsent },
           residence: long ? residence : null,
           acks: ackKeys, // the points are in the notes; agreeing covers them
         },
@@ -242,6 +244,11 @@ export default function StepConfirmation({ app, lang, onChange }: StepProps) {
                 <Field id="health" label={t('MY_CONF_HEALTH_DETAILS')} required hint={t('MY_CONF_HEALTH_DETAILS_HINT')}>
                   <textarea id="health" maxLength={1000} className={textareaClass()} value={health} onChange={(e) => setHealth(e.target.value)} />
                 </Field>
+                {/* Health details are special-category data (GDPR Art. 9): explicit consent with them */}
+                <label className="mt-3 flex items-start gap-3 text-sm text-ink-2">
+                  <input type="checkbox" checked={healthConsent} onChange={(e) => setHealthConsent(e.target.checked)} className="mt-0.5 w-[18px] h-[18px] shrink-0 accent-ink" />
+                  <span>{t('MY_CONF_HEALTH_CONSENT')} <span className="text-aah-red">*</span></span>
+                </label>
               </div>
             )}
           </fieldset>

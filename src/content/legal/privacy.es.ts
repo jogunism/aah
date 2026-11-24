@@ -29,7 +29,7 @@ const doc: LegalDoc = {
             rows: [
               ['Nombre, correo electrónico, número de teléfono, fecha de nacimiento, nacionalidad, dirección, título más alto, centro preferido, periodo y fechas, nivel de coreano, tu mensaje', 'Cuando envías el formulario de solicitud', 'Revisar tu solicitud, preparar tu confirmación de solicitud, presentar la solicitud al centro, emitir facturas', 'Medidas precontractuales adoptadas a petición tuya y ejecución del contrato (art. 6.1.b)'],
               ['Tu respuesta a la confirmación de solicitud (opción elegida, tu nombre, fecha y hora, observaciones)', 'Cuando aceptas', 'Constancia del contrato', 'Ejecución del contrato (art. 6.1.b)'],
-              ['Problemas de salud o alergias', 'Solo si nos lo comunicas', 'Pedir al centro o al alojamiento el apoyo que necesitas', 'Tu consentimiento explícito (art. 9.2.a), que puedes retirar en cualquier momento'],
+              ['Información de salud', 'Cuando respondes a la pregunta de salud en la confirmación de solicitud o nos lo comunicas de otro modo', 'Comprobar si la estancia es posible, preparar los documentos del centro, la residencia y el visado, y pedir el apoyo que necesitas', 'Tu consentimiento explícito (art. 9.2.a), que puedes retirar en cualquier momento'],
               ['Copia del pasaporte, foto, título, copia del visado', 'Cuando nos los envías', 'Solicitud al centro y orientación sobre el visado', 'Ejecución del contrato (art. 6.1.b)'],
               ['Pagos y facturas', 'Cuando pagas', 'Contabilidad y obligaciones fiscales', 'Obligación legal (art. 6.1.c)'],
               ['Estadísticas de visitas (cookies)', 'Cuando visitas el sitio web', 'Mejorar el sitio web', 'Tu consentimiento en el aviso de cookies (art. 6.1.a)'],

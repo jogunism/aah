@@ -31,7 +31,7 @@ export type AckKey = (typeof ACKS_ALL)[number] | (typeof ACKS_LONG)[number];
 
 export interface ConfirmationChecks {
   passport: { has: boolean; expiry: string | null };
-  health: { declared: boolean; details: string };
+  health: { declared: boolean; details: string; consent?: boolean }; // consent: GDPR Art. 9, required with details
   residence: string | null; // long-term only
   acks: AckKey[];
 }

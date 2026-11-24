@@ -29,7 +29,7 @@ const doc: LegalDoc = {
             rows: [
               ['Name, email, phone number, date of birth, nationality, address, highest diploma, preferred school, term and dates, Korean level, your message', 'When you submit the application form', 'Reviewing your application, preparing your application confirmation, applying to the school, issuing invoices', 'Steps at your request before a contract and performance of the contract (Art. 6(1)(b))'],
               ['Your reply to the application confirmation (chosen option, your name, date and time, remarks)', 'When you confirm', 'Record of the contract', 'Performance of the contract (Art. 6(1)(b))'],
-              ['Health conditions or allergies', 'Only if you tell us', 'Asking the school or accommodation for the support you need', 'Your explicit consent (Art. 9(2)(a)), which you can withdraw at any time'],
+              ['Health information', 'When you answer the health question in the application confirmation, or tell us otherwise', 'Checking whether your stay is possible, preparing school, dormitory and visa documents, and asking for the support you need', 'Your explicit consent (Art. 9(2)(a)), which you can withdraw at any time'],
               ['Passport copy, photo, diploma, visa copy', 'When you send them to us', 'School application and visa guidance', 'Performance of the contract (Art. 6(1)(b))'],
               ['Payments and invoices', 'When you pay', 'Accounting and tax', 'Legal obligation (Art. 6(1)(c))'],
               ['Visit statistics (cookies)', 'When you visit the website', 'Improving the website', 'Your consent in the cookie notice (Art. 6(1)(a))'],
