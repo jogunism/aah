@@ -259,7 +259,7 @@ export default function StepConfirmation({ app, lang, onChange }: StepProps) {
           </fieldset>
         </div>
 
-        <Sub>{t('MY_CONF_YOUR_REPLY')}</Sub>
+        <Sub>{t('MY_CONF_REPLY_FORM')}</Sub>
         <div className="space-y-4">
           <Field id="remarks" label={t('MY_CONF_REMARKS')} optionalLabel={t('APPLY_OPTIONAL')}>
             <textarea id="remarks" maxLength={1000} className={textareaClass()} value={remarks} onChange={(e) => setRemarks(e.target.value)} />
