@@ -24,7 +24,7 @@ const call = async <T,>(path: string, method: 'GET' | 'POST' | 'DELETE' = 'GET',
 type AppResponse = { application: Application };
 
 export const agreeConfirmation = (body: {
-  applicationId: string; optionId: string; checks: ConfirmationChecks; remarks: string; signedName: string; agreeTerms: boolean; startNow: boolean;
+  applicationId: string; optionId: string; checks: ConfirmationChecks; remarks: string; agreeTerms: boolean; startNow: boolean;
   notes: string[]; acks: string[];
 }) => call<AppResponse>('confirmation', 'POST', body);
 

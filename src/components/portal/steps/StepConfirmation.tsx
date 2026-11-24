@@ -10,7 +10,7 @@ import {
 } from '@/lib/portal';
 import { countryOptions, monthNames, pinnedCountries } from '@/lib/apply';
 import { buttonClass } from '@/components/ui/Button';
-import { Field, Note, inputClass, textareaClass } from '../fields';
+import { Field, Note, textareaClass } from '../fields';
 import Dropdown from '../Dropdown';
 import { agreeConfirmation } from '../api';
 import { KV, MoneyTable, StepHeader, Sub } from './common';
@@ -50,7 +50,6 @@ export default function StepConfirmation({ app, lang, onChange }: StepProps) {
   const [residence, setResidence] = useState(prev?.checks?.residence ?? app.address.country);
   const [acks, setAcks] = useState<Set<AckKey>>(new Set());
   const [remarks, setRemarks] = useState(prev?.remarks ?? '');
-  const [signedName, setSignedName] = useState('');
   const [agreeTerms, setAgreeTerms] = useState(false);
   const [startNow, setStartNow] = useState(false);
   const [error, setError] = useState<string | null>(null);
@@ -131,12 +130,11 @@ export default function StepConfirmation({ app, lang, onChange }: StepProps) {
     if (declared === null || (declared && !health.trim())) return setError(t('MY_CONF_ERR_HEALTH'));
     if (long && !residence) return setError(t('MY_CONF_ERR_RESIDENCE'));
     if (ackKeys.some((k) => !acks.has(k))) return setError(t('MY_CONF_ERR_ACKS'));
-    if (!signedName.trim()) return setError(t('MY_CONF_ERR_NAME'));
     if (!agreeTerms || !startNow) return setError(t('MY_CONF_ERR_AGREE'));
     setBusy(true);
     try {
       const res = await agreeConfirmation({
-        applicationId: app.id, optionId, remarks, signedName, agreeTerms, startNow,
+        applicationId: app.id, optionId, remarks, agreeTerms, startNow,
         checks: {
           passport: { has: hasPassport, expiry: hasPassport ? expiry : null },
           health: { declared, details: declared ? health.trim() : '' },
@@ -266,13 +264,10 @@ export default function StepConfirmation({ app, lang, onChange }: StepProps) {
           <Field id="remarks" label={t('MY_CONF_REMARKS')} optionalLabel={t('APPLY_OPTIONAL')}>
             <textarea id="remarks" maxLength={1000} className={textareaClass()} value={remarks} onChange={(e) => setRemarks(e.target.value)} />
           </Field>
-          <Field id="signedName" label={t('MY_CONF_SIGN_NAME')} required hint={t('MY_CONF_SIGN_HINT')}>
-            <input id="signedName" autoComplete="name" className={inputClass()} value={signedName} onChange={(e) => setSignedName(e.target.value)} />
-          </Field>
           <label className="flex items-start gap-3 text-sm text-ink-2">
             <input type="checkbox" checked={agreeTerms} onChange={(e) => setAgreeTerms(e.target.checked)} className="mt-0.5 w-[18px] h-[18px] shrink-0 accent-ink" />
             <span>
-              {t('MY_CONF_AGREE_TERMS_BEFORE')}{' '}
+              {t('MY_CONF_AGREE_TERMS_BEFORE', { name: `${app.firstName} ${app.lastName}` })}{' '}
               <Link href={`/${lang}/terms`} target="_blank" className="text-aah-blue underline underline-offset-2">{t('POLICY_TERMS')}</Link>{' '}
               {t('MY_CONF_AGREE_TERMS_AFTER')}
             </span>
