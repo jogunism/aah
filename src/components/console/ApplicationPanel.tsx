@@ -1,20 +1,25 @@
 'use client';
-// 1단계 신청서: 받은 내용 보기, 운영자 수정(학생 메일 없음, 기록에만). 확인서 동의 뒤에는 학교·과정·학기는 잠금
+// 1단계 신청서: 받은 내용 보기, 운영자 수정(학생 메일 없음, 기록에만), 안내 언어·통화 변경. 확인서 동의 뒤에는 학교·과정·학기·통화는 잠금
 
 import { useState, type FormEvent, type ReactNode } from 'react';
 import { ct, consoleTime, errorText, type ConsoleKey, type ConsoleLang } from '@/lib/console.i18n';
-import { country, courseLabel, dateOnly, termLabel, type ApplicantDetail, type ApplicationData } from '@/lib/console.applicants';
+import { country, courseLabel, dateOnly, langName, termLabel, type ApplicantDetail, type ApplicationData } from '@/lib/console.applicants';
 import { COUNTRY_CODES, KOREAN_LEVELS, termOptions } from '@/lib/apply';
 import { Card, Label, Rows, buttonClass, consolePost, inputClass, primaryClass } from './ui';
 
 type Form = Pick<ApplicationData, 'firstName' | 'lastName' | 'phone' | 'birthDate' | 'nationality' | 'address' | 'education'
-  | 'schoolId' | 'program' | 'term' | 'arrivalDate' | 'departureDate'> & { semesters: number; koreanLevel: string; message: string };
+  | 'schoolId' | 'program' | 'term' | 'arrivalDate' | 'departureDate' | 'lang'> & { semesters: number; koreanLevel: string; message: string; currency: Currency };
+
+type Currency = 'EUR' | 'USD' | 'GBP';
+const LANGS = ['en', 'de', 'fr', 'es', 'it'];
+/** Older applications have no currency: the confirmation uses the site language's default (as the API does) */
+const currencyOf = (a: ApplicationData): Currency => a.currency ?? (a.lang === 'en' ? 'USD' : 'EUR');
 
 const toForm = (a: ApplicationData): Form => ({
   firstName: a.firstName, lastName: a.lastName, phone: a.phone, birthDate: a.birthDate, nationality: a.nationality,
   address: { ...a.address }, education: a.education, schoolId: a.schoolId, program: a.program, term: a.term,
   semesters: a.semesters ?? 2, arrivalDate: a.arrivalDate, departureDate: a.departureDate,
-  koreanLevel: a.koreanLevel ?? '', message: a.message ?? '',
+  koreanLevel: a.koreanLevel ?? '', message: a.message ?? '', lang: a.lang, currency: currencyOf(a),
 });
 
 export default function ApplicationPanel({ lang, d, schools, onUpdate }: {
@@ -43,6 +48,8 @@ export default function ApplicationPanel({ lang, d, schools, onUpdate }: {
       ...(form.program === 'long' ? {} : { semesters: undefined }),
       koreanLevel: form.koreanLevel || undefined,
       message: form.message.trim() || undefined,
+      // Older applications have no stored currency: only send one the operator actually chose
+      currency: a.currency || form.currency !== currencyOf(a) ? form.currency : undefined,
     };
     const { status, body: res } = await consolePost(`applicants/${a.id}/application`, body);
     setBusy(false);
@@ -72,6 +79,8 @@ export default function ApplicationPanel({ lang, d, schools, onUpdate }: {
     [t('f_departureDate'), dateOnly(lang, a.departureDate)],
     [t('f_koreanLevel'), a.koreanLevel ? t(`lvl_${a.koreanLevel}` as ConsoleKey) : t('none_text')],
     [t('f_message'), a.message ? <span key="m" className="whitespace-pre-line">{a.message}</span> : t('none_text')],
+    [t('f_lang'), langName(lang, a.lang)],
+    [t('f_currency'), a.currency ?? `${currencyOf(a)} (${t('currency_default')})`],
   ];
 
   const select = (value: string, onChange: (v: string) => void, options: [string, string][], disabled = false) => (
@@ -120,6 +129,11 @@ export default function ApplicationPanel({ lang, d, schools, onUpdate }: {
           <Label text={t('f_message')}>
             <textarea className={inputClass} rows={3} maxLength={2000} value={form.message} onChange={(e) => set('message', e.target.value)} />
           </Label>
+          <div className="grid gap-4 sm:grid-cols-2">
+            <Label text={t('f_lang')}>{select(form.lang, (v) => set('lang', v), LANGS.map((l) => [l, langName(lang, l)]))}</Label>
+            <Label text={t('f_currency')}>{select(form.currency, (v) => set('currency', v as Currency), [['EUR', 'EUR (€)'], ['USD', 'USD ($)'], ['GBP', 'GBP (£)']], locked)}</Label>
+          </div>
+          <p className="text-[13px] text-muted">{t('edit_lang_note')}</p>
           <p className="text-[13px] text-muted">{t('edit_note')}</p>
           {error && <p role="alert" className="rounded-[10px] bg-[#FDECEA] px-3 py-2.5 text-sm text-[#B3261E]">{error}</p>}
           <div className="flex gap-2">

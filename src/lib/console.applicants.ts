@@ -64,6 +64,7 @@ export interface ApplicationData {
   koreanLevel?: string;
   message?: string;
   lang: string;
+  currency?: 'EUR' | 'USD' | 'GBP'; // chosen on the site when applying (missing on older applications)
   createdAt: string;
   confirmation: {
     status: 'preparing' | 'sent' | 'agreed' | 'approved';
