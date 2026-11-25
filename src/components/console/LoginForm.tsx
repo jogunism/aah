@@ -2,6 +2,7 @@
 // 운영자 로그인 폼: 아이디·비밀번호(2단계 인증을 켠 사람은 다음 화면에서 앱 코드), 첫 로그인이면 새 비밀번호 정하기
 
 import { useState, type FormEvent } from 'react';
+import Image from 'next/image';
 import LangSwitch from './LangSwitch';
 import { Label, consolePost, inputClass, primaryClass } from './ui';
 import { ct, errorText, type ConsoleLang } from '@/lib/console.i18n';
@@ -62,8 +63,8 @@ export default function LoginForm({ lang }: { lang: ConsoleLang }) {
     <div className="min-h-screen flex items-center justify-center px-4 py-12">
       <div className="w-full max-w-[420px]">
         <div className="mb-5 flex items-center justify-between">
-          <p className="flex items-center gap-2 text-[17px] font-bold text-[#1E2A3A]">
-            aah<span className="text-aah-red">!</span> education
+          <p className="flex items-center gap-2">
+            <Image src="/assets/logo.png" width={169} height={21} alt="aah! education" priority className="h-auto w-[132px]" />
             <span className="rounded-md bg-[#1E2A3A] px-2 py-0.5 text-[11px] font-semibold text-white">{t('brand_tag')}</span>
           </p>
           <LangSwitch lang={lang} label={t('lang')} />
