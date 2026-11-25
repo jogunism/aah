@@ -8,6 +8,7 @@ import {
   country, courseLabel, isTodo, LOGIN_TONE, statusTone, termLabel, TONES, type ApplicantSummary, type StepKey,
 } from '@/lib/console.applicants';
 import { inputClass } from './ui';
+import { useTimeZone } from './TimeZone';
 
 type Tab = 'all' | 'todo' | 'student' | 'done';
 const STEPS: StepKey[] = ['confirmation', 'payment', 'school', 'visaDocs', 'visaStatus', 'housing', 'complete'];
@@ -30,6 +31,7 @@ export function Progress({ steps }: { steps: ApplicantSummary['steps'] }) {
 }
 
 export default function ApplicantList({ lang, items }: { lang: ConsoleLang; items: ApplicantSummary[] }) {
+  const zone = useTimeZone();
   const t = (k: ConsoleKey, v?: Record<string, string | number>) => ct(lang, k, v);
   const [q, setQ] = useState('');
   const [tab, setTab] = useState<Tab>('all');
@@ -55,11 +57,11 @@ export default function ApplicantList({ lang, items }: { lang: ConsoleLang; item
   const status = (s: ApplicantSummary) => (
     <Chip tone={statusTone(s)}>
       {t(`st_${s.status}` as ConsoleKey)}
-      {s.due && ['waiting_reply', 'returned', 'waiting_payment'].includes(s.status) && ` · ${t('until', { d: consoleTime(lang, s.due) })}`}
+      {s.due && ['waiting_reply', 'returned', 'waiting_payment'].includes(s.status) && ` · ${t('until', { d: consoleTime(lang, s.due, zone) })}`}
     </Chip>
   );
   const loginChip = (s: ApplicantSummary) => <Chip tone={LOGIN_TONE[s.login]}>{t(`login_${s.login}` as ConsoleKey)}</Chip>;
-  const last = (s: ApplicantSummary) => s.lastEvent && `${consoleTime(lang, s.lastEvent.at)} · ${t(`ev_${s.lastEvent.code}` as ConsoleKey)}`;
+  const last = (s: ApplicantSummary) => s.lastEvent && `${consoleTime(lang, s.lastEvent.at, zone)} · ${t(`ev_${s.lastEvent.code}` as ConsoleKey)}`;
 
   return (
     <div className="space-y-3">

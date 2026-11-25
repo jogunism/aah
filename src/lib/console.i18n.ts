@@ -76,6 +76,17 @@ const ko = {
   pw_new: '새 비밀번호 (10자 이상)',
   pw_btn: '비밀번호 바꾸기',
   pw_done: '비밀번호를 바꿨습니다.',
+  settings_title: '화면 설정',
+  settings_lang: '화면 언어',
+  settings_tz: '시간대',
+  settings_tz_lead: '관리자 화면의 모든 시각을 이 시간대로 보여 줍니다. 처음에는 이 기기의 시간대로 맞춰집니다.',
+  settings_tz_common: '자주 쓰는 시간대',
+  settings_tz_all: '전체 시간대',
+  settings_tz_now: '이 시간대의 지금 시각은 {t}입니다.',
+  settings_tz_device: '이 기기 시간대({z})로 바꾸기',
+  settings_saved: '저장했습니다.',
+  err_bad_time_zone: '알 수 없는 시간대입니다. 목록에서 골라 주세요.',
+  err_bad_lang: '한국어나 일본어 중에서 골라 주세요.',
 
   ops_title: '관리자 관리',
   ops_lead: '관리자를 추가하면 임시 비밀번호가 한 번만 보입니다. 본인에게 직접 전해 주세요. 처음 로그인할 때 새 비밀번호를 정합니다.',
@@ -442,6 +453,17 @@ const ja: Dict = {
   pw_new: '新しいパスワード（10文字以上）',
   pw_btn: 'パスワードを変更',
   pw_done: 'パスワードを変更しました。',
+  settings_title: '画面設定',
+  settings_lang: '画面の言語',
+  settings_tz: 'タイムゾーン',
+  settings_tz_lead: '管理画面のすべての時刻をこのタイムゾーンで表示します。最初はこの端末のタイムゾーンに合わせます。',
+  settings_tz_common: 'よく使うタイムゾーン',
+  settings_tz_all: 'すべてのタイムゾーン',
+  settings_tz_now: 'このタイムゾーンの現在時刻は{t}です。',
+  settings_tz_device: 'この端末のタイムゾーン（{z}）にする',
+  settings_saved: '保存しました。',
+  err_bad_time_zone: '不明なタイムゾーンです。一覧から選んでください。',
+  err_bad_lang: '韓国語か日本語を選んでください。',
 
   ops_title: '管理者管理',
   ops_lead: '管理者を追加すると、仮パスワードが一度だけ表示されます。ご本人に直接お伝えください。初回ログイン時に新しいパスワードを決めます。',
@@ -748,8 +770,21 @@ export const errorText = (lang: ConsoleLang, code: unknown): string => {
   return key in ko ? ct(lang, key as ConsoleKey) : ct(lang, 'err_server');
 };
 
-/** A moment in Korean time, written the operator's way */
-export const consoleTime = (lang: ConsoleLang, iso: string) =>
+/** Until the operator's browser zone is saved (first visit) */
+export const DEFAULT_TIME_ZONE = 'Asia/Seoul';
+
+/** A moment in the operator's time zone (my account), written the operator's way */
+export const consoleTime = (lang: ConsoleLang, iso: string, timeZone: string) =>
   new Date(iso).toLocaleString(lang === 'ja' ? 'ja-JP' : 'ko-KR', {
-    month: 'long', day: 'numeric', hour: 'numeric', minute: '2-digit', timeZone: 'Asia/Seoul',
+    month: 'long', day: 'numeric', hour: 'numeric', minute: '2-digit', timeZone,
   });
+
+/** Today's date (YYYY-MM-DD) in the operator's time zone, `days` from now */
+export const zoneDate = (timeZone: string, days = 0) =>
+  new Intl.DateTimeFormat('en-CA', { timeZone, year: 'numeric', month: '2-digit', day: '2-digit' }).format(Date.now() + days * 86_400_000);
+
+/** "UTC+01:00" for a zone right now */
+export const zoneOffset = (timeZone: string) => {
+  const part = new Intl.DateTimeFormat('en-US', { timeZone, timeZoneName: 'longOffset' }).formatToParts(new Date()).find((p) => p.type === 'timeZoneName')?.value ?? 'GMT';
+  return part === 'GMT' ? 'UTC+00:00' : part.replace('GMT', 'UTC');
+};

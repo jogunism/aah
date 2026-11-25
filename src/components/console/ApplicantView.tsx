@@ -3,7 +3,7 @@
 
 import Link from 'next/link';
 import { useState, type ReactNode } from 'react';
-import { ct, consoleTime, errorText, type ConsoleKey, type ConsoleLang } from '@/lib/console.i18n';
+import { ct, consoleTime, errorText, zoneDate, type ConsoleKey, type ConsoleLang } from '@/lib/console.i18n';
 import {
   country, courseLabel, dateOnly, langName, LOGIN_TONE, money, statusTone,
   type ApplicantDetail, type StepKey,
@@ -11,6 +11,7 @@ import {
 import { Card, Label, Rows, buttonClass, consolePost, inputClass, primaryClass } from './ui';
 import { Chip } from './ApplicantList';
 import ApplicationPanel from './ApplicationPanel';
+import { useTimeZone } from './TimeZone';
 
 type T = (k: ConsoleKey, v?: Record<string, string | number>) => string;
 
@@ -46,8 +47,9 @@ function Confirmable({ label, question, busy, tone, disabled, onSend, t }: {
 
 /** Student agreed: approve (invoice goes out) or ask for a correction (reply form reopens) */
 function ReviewActions({ d, lang, t, onUpdate, onDone }: { d: ApplicantDetail; lang: ConsoleLang; t: T; onUpdate: Update; onDone: (m: Msg) => void }) {
-  const today = new Date().toISOString().slice(0, 10);
-  const [due, setDue] = useState(new Date(Date.now() + 14 * 86_400_000).toISOString().slice(0, 10));
+  const zone = useTimeZone();
+  const today = zoneDate(zone);
+  const [due, setDue] = useState(zoneDate(zone, 14));
   const [note, setNote] = useState('');
   const [busy, setBusy] = useState<'approve' | 'return' | null>(null);
   const [error, setError] = useState<Msg>(null);
@@ -97,10 +99,11 @@ function ReviewActions({ d, lang, t, onUpdate, onDone }: { d: ApplicantDetail; l
 }
 
 function ConfirmationPanel({ d, lang, t, onUpdate }: { d: ApplicantDetail; lang: ConsoleLang; t: T; onUpdate: Update }) {
+  const zone = useTimeZone();
   const [done, setDone] = useState<Msg>(null);
   const c = d.application.confirmation;
   const r = c.reply;
-  const time = (iso: string | null) => (iso ? consoleTime(lang, iso) : t('none_text'));
+  const time = (iso: string | null) => (iso ? consoleTime(lang, iso, zone) : t('none_text'));
   // After the reply only the plan the student chose matters; the others fold away
   const optionCard = (o: ApplicantDetail['application']['confirmation']['options'][number], chosen: boolean) => {
     const sum = o.items.reduce((s, i) => s + i.amount, 0);
@@ -129,7 +132,7 @@ function ConfirmationPanel({ d, lang, t, onUpdate }: { d: ApplicantDetail; lang:
         <Rows rows={[
           [t('conf_sent_at'), time(c.sentAt)],
           [t('conf_reply_by'), time(c.replyBy)],
-          ...(c.returned ? [[t('conf_returned'), `${consoleTime(lang, c.returned.at)} · ${c.returned.message}`] as [string, ReactNode]] : []),
+          ...(c.returned ? [[t('conf_returned'), `${consoleTime(lang, c.returned.at, zone)} · ${c.returned.message}`] as [string, ReactNode]] : []),
           ...(c.message ? [[t('conf_message'), <span key="m" className="whitespace-pre-line">{c.message}</span>] as [string, ReactNode]] : []),
         ]} />
       </Card>
@@ -145,7 +148,7 @@ function ConfirmationPanel({ d, lang, t, onUpdate }: { d: ApplicantDetail; lang:
           <Rows rows={[
             [t('conf_chosen'), r.optionId],
             [t('conf_signed'), r.signedName],
-            [t('conf_agreed_at'), consoleTime(lang, r.agreedAt)],
+            [t('conf_agreed_at'), consoleTime(lang, r.agreedAt, zone)],
             [t('conf_passport'), r.checks.passport.has ? t('passport_yes', { d: r.checks.passport.expiry ? dateOnly(lang, r.checks.passport.expiry) : '-' }) : t('passport_no')],
             [t('conf_health'), r.checks.health.declared ? r.checks.health.details : t('health_none')],
             ...(r.checks.residence ? [[t('conf_residence'), country(lang, r.checks.residence)] as [string, ReactNode]] : []),
@@ -165,8 +168,9 @@ function ConfirmationPanel({ d, lang, t, onUpdate }: { d: ApplicantDetail; lang:
 }
 
 function StatusPanel({ d, step, lang, t }: { d: ApplicantDetail; step: StepKey; lang: ConsoleLang; t: T }) {
+  const zone = useTimeZone();
   const a = d.application;
-  const time = (iso: string | null | undefined) => (iso ? consoleTime(lang, iso) : t('none_text'));
+  const time = (iso: string | null | undefined) => (iso ? consoleTime(lang, iso, zone) : t('none_text'));
   const v = (x: string) => t(`v_${x}` as ConsoleKey);
   const rows: Partial<Record<StepKey, [string, ReactNode][]>> = {
     payment: [
@@ -194,7 +198,7 @@ function StatusPanel({ d, step, lang, t }: { d: ApplicantDetail; step: StepKey; 
             {a.documents.map((doc) => (
               <li key={doc.id} className="flex flex-wrap justify-between gap-x-3 border-t border-[#EEF0F3] py-2 first:border-t-0">
                 <span><b className="font-semibold">{t(`doc_${doc.type}` as ConsoleKey)}</b> · {doc.fileName}</span>
-                <span className="text-muted">{consoleTime(lang, doc.uploadedAt)}</span>
+                <span className="text-muted">{consoleTime(lang, doc.uploadedAt, zone)}</span>
               </li>
             ))}
           </ul>
@@ -205,6 +209,7 @@ function StatusPanel({ d, step, lang, t }: { d: ApplicantDetail; step: StepKey; 
 }
 
 function LoginCard({ d, lang, t, onUpdate }: { d: ApplicantDetail; lang: ConsoleLang; t: T; onUpdate: (d: ApplicantDetail) => void }) {
+  const zone = useTimeZone();
   const acc = d.account;
   const [confirming, setConfirming] = useState(false);
   const [busy, setBusy] = useState(false);
@@ -222,7 +227,7 @@ function LoginCard({ d, lang, t, onUpdate }: { d: ApplicantDetail; lang: Console
       setMsg({ ok: true, text: t(done) });
     } else setMsg({ ok: false, text: errorText(lang, body.error) });
   };
-  const time = (iso: string | null) => (iso ? consoleTime(lang, iso) : t('none_text'));
+  const time = (iso: string | null) => (iso ? consoleTime(lang, iso, zone) : t('none_text'));
   return (
     <Card title={t('acct_card')}>
       <Rows rows={[
@@ -231,7 +236,7 @@ function LoginCard({ d, lang, t, onUpdate }: { d: ApplicantDetail; lang: Console
         [t('acct_sent'), time(acc.loginSentAt)],
         [t('acct_first'), time(acc.firstLoginAt)],
         [t('acct_last'), time(acc.lastLoginAt)],
-        ...(acc.state === 'locked' && acc.lockedUntil ? [[t('login_locked'), t('locked_until', { d: consoleTime(lang, acc.lockedUntil) })] as [string, ReactNode]] : []),
+        ...(acc.state === 'locked' && acc.lockedUntil ? [[t('login_locked'), t('locked_until', { d: consoleTime(lang, acc.lockedUntil, zone) })] as [string, ReactNode]] : []),
       ]} />
       <div className="mt-3 space-y-2.5 border-t border-[#EEF0F3] pt-3">
         {acc.state === 'locked' && (
@@ -260,6 +265,7 @@ function LoginCard({ d, lang, t, onUpdate }: { d: ApplicantDetail; lang: Console
 }
 
 function MemoCard({ d, lang, t, onUpdate }: { d: ApplicantDetail; lang: ConsoleLang; t: T; onUpdate: (d: ApplicantDetail) => void }) {
+  const zone = useTimeZone();
   const [text, setText] = useState('');
   const [busy, setBusy] = useState(false);
   const [error, setError] = useState<string | null>(null);
@@ -288,7 +294,7 @@ function MemoCard({ d, lang, t, onUpdate }: { d: ApplicantDetail; lang: ConsoleL
         <ul className="mt-2 text-sm">
           {memos.map((m) => (
             <li key={m.at} className="border-t border-[#EEF0F3] py-2.5">
-              <p className="text-[13px] text-muted"><b className="font-semibold text-ink">{m.by}</b> {consoleTime(lang, m.at)}</p>
+              <p className="text-[13px] text-muted"><b className="font-semibold text-ink">{m.by}</b> {consoleTime(lang, m.at, zone)}</p>
               <p className="mt-0.5 whitespace-pre-line">{m.text}</p>
             </li>
           ))}
@@ -299,6 +305,7 @@ function MemoCard({ d, lang, t, onUpdate }: { d: ApplicantDetail; lang: ConsoleL
 }
 
 function TimelineCard({ d, lang, t }: { d: ApplicantDetail; lang: ConsoleLang; t: T }) {
+  const zone = useTimeZone();
   return (
     <Card title={t('tl_title')}>
       <ol className="relative ml-1 border-l border-[#E3E7ED]">
@@ -310,7 +317,7 @@ function TimelineCard({ d, lang, t }: { d: ApplicantDetail; lang: ConsoleLang; t
               {e.actor && <span className="text-muted"> ({e.actor})</span>}
               {e.detail && <span className="text-muted"> · {e.code.endsWith('_edit') ? e.detail.split(', ').map((f) => t(`f_${f}` as ConsoleKey)).join(', ') : e.detail}</span>}
             </p>
-            <p className="text-xs text-muted">{consoleTime(lang, e.at)}</p>
+            <p className="text-xs text-muted">{consoleTime(lang, e.at, zone)}</p>
           </li>
         ))}
       </ol>

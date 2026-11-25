@@ -3,7 +3,7 @@ import Link from 'next/link';
 import { redirect } from 'next/navigation';
 import ConsoleShell from '@/components/console/ConsoleShell';
 import { Card, buttonClass } from '@/components/console/ui';
-import { consoleGet, getConsoleLang, getOperator } from '@/lib/console.server';
+import { consoleGet, getConsoleLang, getOperator, zoneOf } from '@/lib/console.server';
 import { ct, consoleTime, type ConsoleKey, type ConsoleLang } from '@/lib/console.i18n';
 import { courseLabel, isTodo, statusTone, URGENT, type ApplicantSummary, type StepKey } from '@/lib/console.applicants';
 
@@ -42,6 +42,7 @@ export default async function ConsoleHome() {
   const operator = await getOperator();
   if (!operator) redirect('/console/login');
   const lang = await getConsoleLang();
+  const zone = zoneOf(operator);
   const [applicants, logRes] = await Promise.all([
     consoleGet<{ items: ApplicantSummary[] }>('applicants'),
     consoleGet<{ items: LogEntry[] }>('log'),
@@ -59,7 +60,7 @@ export default async function ConsoleHome() {
   const oldest = fresh.reduce<string | null>((m, s) => (!m || s.createdAt < m ? s.createdAt : m), null);
   const counts = STEP_ORDER.map((k) => ({ key: k, n: all.filter((s) => s.step === k).length })).filter((c) => c.n > 0);
   const recent = all.filter((s) => s.lastEvent).sort((a, b) => b.lastEvent!.at.localeCompare(a.lastEvent!.at)).slice(0, 8);
-  const today = new Date().toLocaleDateString(lang === 'ja' ? 'ja-JP' : 'ko-KR', { year: 'numeric', month: 'long', day: 'numeric', weekday: 'long', timeZone: 'Asia/Seoul' });
+  const today = new Date().toLocaleDateString(lang === 'ja' ? 'ja-JP' : 'ko-KR', { year: 'numeric', month: 'long', day: 'numeric', weekday: 'long', timeZone: zone });
 
   return (
     <ConsoleShell active="dashboard" operator={operator} lang={lang}>
@@ -70,7 +71,7 @@ export default async function ConsoleHome() {
 
       <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 xl:grid-cols-5">
         <Kpi title={ct(lang, 'kpi_new')} value={fresh.length} alert
-          sub={oldest ? ct(lang, 'kpi_oldest', { d: consoleTime(lang, oldest) }) : ct(lang, 'kpi_none')} />
+          sub={oldest ? ct(lang, 'kpi_oldest', { d: consoleTime(lang, oldest, zone) }) : ct(lang, 'kpi_none')} />
         <Kpi title={ct(lang, 'kpi_review')} value={review.length} alert sub={review.length ? review.map(name).join(', ') : ct(lang, 'kpi_none')} />
         <Kpi title={ct(lang, 'kpi_reply')} value={reply.length}
           sub={ct(lang, 'kpi_overdue', { n: reply.filter((s) => s.status === 'reply_overdue').length })} />
@@ -92,7 +93,7 @@ export default async function ConsoleHome() {
                     <p className="font-semibold">{name(s)} · {todoLine(lang, s)}</p>
                     <p className="truncate text-[13px] text-muted">
                       {s.schoolName}, {courseLabel(lang, s)}
-                      {s.due && <> · {ct(lang, 'until', { d: consoleTime(lang, s.due) })}</>}
+                      {s.due && <> · {ct(lang, 'until', { d: consoleTime(lang, s.due, zone) })}</>}
                     </p>
                   </div>
                   <Link href={`/console/applicants/${s.id}`} className={buttonClass}>{ct(lang, 'open')}</Link>
@@ -132,7 +133,7 @@ export default async function ConsoleHome() {
               <ul>
                 {recent.map((s) => (
                   <li key={s.id} className="flex gap-3 border-t border-[#EEF0F3] py-2.5 text-sm first:border-t-0">
-                    <time className="w-[104px] shrink-0 text-muted">{consoleTime(lang, s.lastEvent!.at)}</time>
+                    <time className="w-[104px] shrink-0 text-muted">{consoleTime(lang, s.lastEvent!.at, zone)}</time>
                     <Link href={`/console/applicants/${s.id}`} className="min-w-0 flex-1 hover:underline">
                       <b className="font-semibold">{name(s)}</b> · {ct(lang, `ev_${s.lastEvent!.code}` as ConsoleKey)}
                     </Link>
@@ -152,7 +153,7 @@ export default async function ConsoleHome() {
             <ul>
               {log.map((e) => (
                 <li key={`${e.at}${e.action}${e.actor}`} className="flex flex-wrap gap-x-4 gap-y-0.5 border-t border-[#EEF0F3] py-2.5 text-sm first:border-t-0">
-                  <time className="w-[130px] shrink-0 text-muted">{consoleTime(lang, e.at)}</time>
+                  <time className="w-[130px] shrink-0 text-muted">{consoleTime(lang, e.at, zone)}</time>
                   <span className="min-w-0 flex-1">
                     <b className={`font-semibold ${/failed|locked/.test(e.action) ? 'text-[#B3261E]' : ''}`}>{ct(lang, `act_${e.action}` as ConsoleKey)}</b>
                     {e.target && <span className="text-muted"> · {e.target}</span>}

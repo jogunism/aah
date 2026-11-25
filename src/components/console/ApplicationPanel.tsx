@@ -6,6 +6,7 @@ import { ct, consoleTime, errorText, type ConsoleKey, type ConsoleLang } from '@
 import { country, courseLabel, dateOnly, langName, termLabel, type ApplicantDetail, type ApplicationData } from '@/lib/console.applicants';
 import { COUNTRY_CODES, KOREAN_LEVELS, termOptions } from '@/lib/apply';
 import { Card, Label, Rows, buttonClass, consolePost, inputClass, primaryClass } from './ui';
+import { useTimeZone } from './TimeZone';
 
 type Form = Pick<ApplicationData, 'firstName' | 'lastName' | 'phone' | 'birthDate' | 'nationality' | 'address' | 'education'
   | 'schoolId' | 'program' | 'term' | 'arrivalDate' | 'departureDate' | 'lang'> & { semesters: number; koreanLevel: string; message: string; currency: Currency };
@@ -25,6 +26,7 @@ const toForm = (a: ApplicationData): Form => ({
 export default function ApplicationPanel({ lang, d, schools, onUpdate }: {
   lang: ConsoleLang; d: ApplicantDetail; schools: { id: string; title: string }[]; onUpdate: (d: ApplicantDetail) => void;
 }) {
+  const zone = useTimeZone();
   const t = (k: ConsoleKey, v?: Record<string, string | number>) => ct(lang, k, v);
   const a = d.application;
   const [form, setForm] = useState<Form | null>(null);
@@ -92,7 +94,7 @@ export default function ApplicationPanel({ lang, d, schools, onUpdate }: {
   return (
     <Card title={t('app_title')} aside={
       <span className="flex items-center gap-3">
-        {t('app_received', { d: consoleTime(lang, a.createdAt) })}
+        {t('app_received', { d: consoleTime(lang, a.createdAt, zone) })}
         {!form && <button type="button" className={buttonClass} onClick={() => { setForm(toForm(a)); setSaved(false); }}>{t('edit')}</button>}
       </span>
     }>

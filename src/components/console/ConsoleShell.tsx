@@ -1,12 +1,12 @@
-// 관리자 화면 공통 틀: 남색 왼쪽 메뉴(공식 로고, 휴대폰·태블릿은 메뉴 버튼으로 여는 서랍), 위쪽 언어 선택·운영자 표시·로그아웃, 본문
+// 관리자 화면 공통 틀: 남색 왼쪽 메뉴(공식 로고, 휴대폰·태블릿은 메뉴 버튼으로 여는 서랍), 위쪽 현재 언어·운영자 표시·로그아웃(언어·시간대는 내 계정에서 바꿈), 본문
 import Image from 'next/image';
 import Link from 'next/link';
 import { ReactNode } from 'react';
 import LogoutButton from './LogoutButton';
-import LangSwitch from './LangSwitch';
 import MobileNav from './MobileNav';
-import { ct, type ConsoleKey, type ConsoleLang } from '@/lib/console.i18n';
-import type { Operator } from '@/lib/console.server';
+import TimeZoneProvider from './TimeZone';
+import { ct, LANG_NAMES, type ConsoleKey, type ConsoleLang } from '@/lib/console.i18n';
+import { zoneOf, type Operator } from '@/lib/console.server';
 
 export type NavKey = 'dashboard' | 'applicants' | 'inbox' | 'tools' | 'operators' | 'account';
 
@@ -72,14 +72,16 @@ export default function ConsoleShell({ active, operator, lang, children }: {
           </div>
           <span className="hidden md:block" />
           <div className="flex items-center gap-3 text-sm text-muted">
-            <LangSwitch lang={lang} label={ct(lang, 'lang')} />
+            <Link href="/console/account" className="hover:text-ink">{LANG_NAMES[lang]}</Link>
             <Link href="/console/account" className="hidden sm:inline hover:text-ink">
               {operator.name} <span className="text-xs">({operator.id})</span>
             </Link>
             <LogoutButton label={ct(lang, 'logout')} />
           </div>
         </header>
-        <main className="px-4 py-6 md:px-7">{children}</main>
+        <main className="px-4 py-6 md:px-7">
+          <TimeZoneProvider zone={zoneOf(operator)} saved={!!operator.timeZone}>{children}</TimeZoneProvider>
+        </main>
       </div>
     </div>
   );

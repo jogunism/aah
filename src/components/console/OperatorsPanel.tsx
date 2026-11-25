@@ -6,8 +6,10 @@ import { useRouter } from 'next/navigation';
 import { Card, Label, buttonClass, consolePost, inputClass } from './ui';
 import { ct, consoleTime, errorText, type ConsoleLang } from '@/lib/console.i18n';
 import type { Operator } from '@/lib/console.server';
+import { useTimeZone } from './TimeZone';
 
 export default function OperatorsPanel({ lang, me, items }: { lang: ConsoleLang; me: string; items: Operator[] }) {
+  const zone = useTimeZone();
   const t = (k: Parameters<typeof ct>[1], v?: Record<string, string>) => ct(lang, k, v);
   const router = useRouter();
   const [id, setId] = useState('');
@@ -94,7 +96,7 @@ export default function OperatorsPanel({ lang, me, items }: { lang: ConsoleLang;
                   <td className="px-5 py-3 font-semibold">{o.name}{o.id === me && <span className="ml-1.5 text-xs font-normal text-muted">({t('you')})</span>}</td>
                   <td className="px-5 py-3">{t(o.role === 'super' ? 'role_super' : 'role_admin')}</td>
                   <td className="px-5 py-3">{status(o)}</td>
-                  <td className="px-5 py-3 text-muted">{o.lastLoginAt ? consoleTime(lang, o.lastLoginAt) : t('never')}</td>
+                  <td className="px-5 py-3 text-muted">{o.lastLoginAt ? consoleTime(lang, o.lastLoginAt, zone) : t('never')}</td>
                   <td className="px-5 py-3 text-right">
                     {o.id !== me && (confirming === o.id ? (
                       <span className="inline-flex flex-wrap items-center justify-end gap-2">

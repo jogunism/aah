@@ -1,7 +1,7 @@
 // 관리자 화면 서버 전용: 운영자 세션 쿠키 설정, 화면 언어, 서버 렌더링용 운영자 정보·API 조회
 import { cookies } from 'next/headers';
 import http from '@/lib/http';
-import { CONSOLE_LANG_COOKIE, toConsoleLang, type ConsoleLang } from '@/lib/console.i18n';
+import { CONSOLE_LANG_COOKIE, DEFAULT_TIME_ZONE, toConsoleLang, type ConsoleLang } from '@/lib/console.i18n';
 
 export const CONSOLE_COOKIE = 'aah_console';
 
@@ -22,7 +22,12 @@ export interface Operator {
   totpEnabled: boolean;
   lastLoginAt: string | null;
   createdAt: string;
+  lang: ConsoleLang | null;
+  timeZone: string | null;
 }
+
+/** The zone the operator's times are shown in */
+export const zoneOf = (operator: Operator) => operator.timeZone ?? DEFAULT_TIME_ZONE;
 
 export const getConsoleLang = async (): Promise<ConsoleLang> => toConsoleLang((await cookies()).get(CONSOLE_LANG_COOKIE)?.value);
 

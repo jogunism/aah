@@ -2,6 +2,7 @@
 import { cookies } from 'next/headers';
 import http from '@/lib/http';
 import { CONSOLE_COOKIE, consoleCookieOptions } from '@/lib/console.server';
+import { CONSOLE_LANG_COOKIE, CONSOLE_LANGS } from '@/lib/console.i18n';
 
 type Ctx = { params: Promise<{ path: string[] }> };
 
@@ -38,6 +39,10 @@ const handle = async (req: Request, { params }: Ctx, method: 'get' | 'post' | 'd
     if (body && typeof body === 'object' && typeof body.token === 'string') {
       jar.set(CONSOLE_COOKIE, body.token, consoleCookieOptions);
       delete body.token;
+    }
+    // Login: the language saved in the operator's account follows them to this device
+    if (body && typeof body === 'object' && CONSOLE_LANGS.includes(body.lang)) {
+      jar.set(CONSOLE_LANG_COOKIE, body.lang, { path: '/', maxAge: 31536000, sameSite: 'strict' });
     }
     if (res.status === 401 && token) jar.delete(CONSOLE_COOKIE);
     return Response.json(body, { status: res.status });
