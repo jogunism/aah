@@ -62,6 +62,7 @@ export default function Portal({ lang, initial, rates, schools, passwordChanged 
   const stepSub = (key: StepKey, state: StepState) =>
     state === 'locked' ? t('MY_STATE_LOCKED')
       : key === 'confirmation' && app.confirmation.status === 'agreed' ? t('MY_STEP_CONFIRMATION_CHECK')
+        : key === 'confirmation' && state === 'current' && app.confirmation.options.length === 0 ? t('MY_STEP_CONFIRMATION_PREPARING')
         : t(`MY_STEP_${key.toUpperCase()}_${state === 'done' ? 'DONE' : 'NOW'}`);
 
   return (

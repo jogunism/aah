@@ -91,6 +91,11 @@ export default function StepConfirmation({ app, lang, onChange }: StepProps) {
     </>
   );
 
+  // No price options yet (none for the school, or the login went out first): nothing to answer
+  if (c.status === 'preparing' || (c.status === 'sent' && c.options.length === 0)) {
+    return <StepHeader n={2} title={t('MY_STEP_CONFIRMATION')} tone="gray" chip={t('MY_CONF_PREPARING_CHIP')} lead={t('MY_CONF_PREPARING_LEAD')} />;
+  }
+
   if ((c.status === 'agreed' || c.status === 'approved') && c.reply) {
     const r = c.reply;
     const chosen = c.options.find((o) => o.id === r.optionId);

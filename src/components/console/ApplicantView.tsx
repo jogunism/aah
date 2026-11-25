@@ -123,6 +123,7 @@ function ConfirmationPanel({ d, lang, t, onUpdate }: { d: ApplicantDetail; lang:
   return (
     <div className="space-y-4">
       <StatusMsg msg={done} />
+      {c.status === 'preparing' && <Note>{t(c.options.length ? 'conf_auto_note' : 'conf_no_options')}</Note>}
       {(c.status === 'preparing' || c.status === 'sent') && <Note>{t('conf_actions_soon')}</Note>}
       <Card title={t('conf_title')} aside={t(`conf_${c.status}` as ConsoleKey)}>
         <Rows rows={[
@@ -209,7 +210,6 @@ function LoginCard({ d, lang, t, onUpdate }: { d: ApplicantDetail; lang: Console
   const [busy, setBusy] = useState(false);
   const [msg, setMsg] = useState<{ ok: boolean; text: string } | null>(null);
   if (!acc) return null;
-  const preparing = d.application.confirmation.status === 'preparing';
   const run = async (path: string, done: ConsoleKey) => {
     setBusy(true);
     setMsg(null);
@@ -246,12 +246,12 @@ function LoginCard({ d, lang, t, onUpdate }: { d: ApplicantDetail; lang: Console
             </div>
           </div>
         ) : (
-          <button type="button" className={primaryClass} disabled={busy || preparing} onClick={() => setConfirming(true)}>
+          <button type="button" className={primaryClass} disabled={busy} onClick={() => setConfirming(true)}>
             {t(acc.state === 'not_sent' ? 'send_login_btn' : 'resend_login_btn')}
           </button>
         )}
         <p className="text-[13px] text-muted">
-          {preparing ? t('send_login_wait') : t('send_login_note', { l: langName(lang, d.application.lang) })}
+          {t('send_login_note', { l: langName(lang, d.application.lang) })}
         </p>
         {msg && <p role="status" className={`rounded-[10px] px-3 py-2.5 text-sm ${msg.ok ? 'bg-[#E7F5EE] text-[#1F7A4D]' : 'bg-[#FDECEA] text-[#B3261E]'}`}>{msg.text}</p>}
       </div>

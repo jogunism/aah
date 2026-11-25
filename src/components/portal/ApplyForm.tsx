@@ -10,6 +10,7 @@ import Dropdown from './Dropdown';
 import DatePicker from './DatePicker';
 import type { Application } from '@/lib/portal';
 import { updateApplication } from './api';
+import { getCookie } from '@/lib/cookie';
 import { KOREAN_LEVELS, birthYears, countryOptions, monthNames, pinnedCountries, termOptions } from '@/lib/apply';
 
 export interface ApplySchool {
@@ -190,6 +191,8 @@ export default function ApplyForm({ lang, schools, edit }: {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
           email: f.email.trim(), ...fields(), privacyConsent: f.privacyConsent, lang, website: f.website,
+          // The currency the student sees prices in: the confirmation is drafted in it
+          ...(['EUR', 'USD', 'GBP'].includes(getCookie('currency') ?? '') ? { currency: getCookie('currency') } : {}),
         }),
       });
       const body = await res.json().catch(() => ({}));
