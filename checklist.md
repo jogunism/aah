@@ -199,5 +199,8 @@
 - [x] 내부 링크: SchoolPrices "Select", 공유 링크를 새 경로로
 - [x] sitemap에 학교 URL 추가, llms.txt 학교 목록에 학교 페이지 링크
 - [x] 검증(sitemap 115개, 캐시 MISS→HIT, 콘솔 오류 없음, 3100은 다른 서버가 써서 3101): tsc·eslint·next build, 로컬에서 curl로 학교 HTML에 이름·가격·canonical 확인, 예전 쿼리 링크 308 확인, 새로고침·언어 변경·학교 변경 시 선택 유지, 데스크톱 1440 / 모바일 390
-- [ ] 배포 후: 라이브 확인, Search Console sitemap 재제출·학교 URL 2~3개 색인 요청, IndexNow
+- [x] 배포(Amplify #162 SUCCEED, API Lambda 갱신) 후 라이브 확인: 학교 페이지 200·제목·canonical·안내문, 예전 `?school=` 308, sitemap 115개, llms.txt 학교 링크, 새 엠블럼 200, IndexNow 200(115개)
+- [x] 학교 id 공식 철자(ewha, swu), 이화여대 영문명 Ewha Womans University(운영 DB·API·엠블럼), seogagn 별칭 제거
+- [x] h1 고정·학교 이름은 안내문에, 학교 변경 시 페이지 이동 없이 주소만 갱신(깜빡임 수정)
+- [ ] Search Console: sitemap 재제출, 학교 URL 색인 요청(배포 전 404 상태에서 요청한 것은 다시 요청)
 - [ ] 4~8주 뒤 GSC에서 학교 이름 + tuition 검색어 노출 확인
