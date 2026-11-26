@@ -392,7 +392,7 @@
   "PLAN_LEAD": "Choisissez le programme, l'école, la durée et le logement pour voir votre coût estimé. Envoyez-le-nous et un conseiller vous répondra.",
   "PLAN_SCHOOL_META_TITLE": "{{school}} cours de coréen : frais et coûts",
   "PLAN_SCHOOL_META_DESC": "Cours de coréen à {{school}} : à partir de {{price}} pour {{duration}}, inscription, frais de scolarité et frais aah! compris. Choisissez la durée et le logement pour voir le total.",
-  "PLAN_SCHOOL_TITLE": "{{school}} : frais et coûts.",
+  "PLAN_SCHOOL_LEAD": "{{school}} : frais et coûts. Choisissez la durée et le logement pour voir votre coût total estimé. Envoyez-le-nous et un conseiller vous répondra.",
 
   "***** CLASS HOURS *****": "",
   "CLASS_HOURS_LABEL": "Horaires des cours",

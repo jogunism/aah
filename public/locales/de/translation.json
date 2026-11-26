@@ -391,7 +391,7 @@
   "PLAN_LEAD": "Wählen Sie Programm, Schule, Dauer und Unterkunft und sehen Sie Ihre voraussichtlichen Kosten. Senden Sie uns die Auswahl, und unsere Beratung meldet sich bei Ihnen.",
   "PLAN_SCHOOL_META_TITLE": "{{school}} Koreanischkurs: Kosten & Gebühren",
   "PLAN_SCHOOL_META_DESC": "{{school}}, Koreanischkurs: ab {{price}} für {{duration}}, inklusive Anmeldung, Kursgebühr und aah!-Gebühr. Wählen Sie Dauer und Unterkunft und sehen Sie die Gesamtkosten.",
-  "PLAN_SCHOOL_TITLE": "{{school}}: Kosten und Gebühren.",
+  "PLAN_SCHOOL_LEAD": "{{school}}: Kosten und Gebühren. Wählen Sie Dauer und Unterkunft und sehen Sie Ihre voraussichtlichen Gesamtkosten. Senden Sie uns die Auswahl, und unsere Beratung meldet sich bei Ihnen.",
 
   "***** CLASS HOURS *****": "",
   "CLASS_HOURS_LABEL": "Unterricht",

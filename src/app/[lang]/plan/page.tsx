@@ -58,7 +58,6 @@ export default async function PlanIndexPage({ params }: PageProps) {
     <PlanPage
       lang={lang}
       title={t('PLAN_TITLE')}
-      lead={t('PLAN_LEAD')}
       schools={schools}
       currency={currency}
       defaultProgram="short"

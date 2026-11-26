@@ -93,8 +93,7 @@ export default async function SchoolPlanPage({ params }: PageProps) {
   return (
     <PlanPage
       lang={lang}
-      title={t('PLAN_SCHOOL_TITLE', { school: school.title })}
-      lead={t('PLAN_LEAD')}
+      title={t('PLAN_TITLE')}
       schools={schools}
       currency={currency}
       school={school.id}

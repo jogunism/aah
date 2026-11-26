@@ -392,7 +392,7 @@
   "PLAN_LEAD": "Elige programa, centro, duración y alojamiento para ver el coste estimado. Envíanoslo y un asesor se pondrá en contacto contigo.",
   "PLAN_SCHOOL_META_TITLE": "{{school}} curso de coreano: precios y costes",
   "PLAN_SCHOOL_META_DESC": "Curso de coreano en {{school}}: desde {{price}} por {{duration}}, con matrícula, clases y tarifa de aah! incluidas. Elige la duración y el alojamiento para ver el total.",
-  "PLAN_SCHOOL_TITLE": "{{school}}: precios y costes.",
+  "PLAN_SCHOOL_LEAD": "{{school}}: precios y costes. Elige duración y alojamiento para ver el coste total estimado. Envíanoslo y un asesor se pondrá en contacto contigo.",
 
   "***** CLASS HOURS *****": "",
   "CLASS_HOURS_LABEL": "Horario de clases",
