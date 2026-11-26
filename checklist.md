@@ -202,5 +202,5 @@
 - [x] 배포(Amplify #162 SUCCEED, API Lambda 갱신) 후 라이브 확인: 학교 페이지 200·제목·canonical·안내문, 예전 `?school=` 308, sitemap 115개, llms.txt 학교 링크, 새 엠블럼 200, IndexNow 200(115개)
 - [x] 학교 id 공식 철자(ewha, swu), 이화여대 영문명 Ewha Womans University(운영 DB·API·엠블럼), seogagn 별칭 제거
 - [x] h1 고정·학교 이름은 안내문에, 학교 변경 시 페이지 이동 없이 주소만 갱신(깜빡임 수정)
-- [ ] Search Console: sitemap 재제출, 학교 URL 색인 요청(배포 전 404 상태에서 요청한 것은 다시 요청)
+- [x] Search Console(2026-11-26): 학교 URL 색인 요청 5개(en: yonsei, korea, seoul, hongik, hankukforeign, 배포 후 실시간 테스트 '등록할 수 있음'), sitemap.xml 재제출(배포 전 읽어 20개로 잡혀 있었음)
 - [ ] 4~8주 뒤 GSC에서 학교 이름 + tuition 검색어 노출 확인
