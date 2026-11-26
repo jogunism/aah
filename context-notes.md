@@ -238,3 +238,4 @@
 - 예전 `?school=` 링크와 바뀌기 전 id는 proxy에서 308로 넘긴다(`src/lib/plan.ts`의 RENAMED_SCHOOLS). proxy는 학교 목록을 모르므로 별칭은 목록 확인 없이 바로 적용한다. seogagn은 DB에서 이미 없어져 문제없다.
 - 메타 설명의 시작가는 기본 프로그램 첫 옵션의 숙소 제외 가격(priceLong/priceShort)이고, 언어 기본 통화(en USD, 그 외 EUR)로 적는다.
 - URL에 노출되는 학교 id 중 철자가 틀린 것이 있다. `seoulwaman`(Seoul Women's), `ehwa`(Ewha). 색인되기 전에 바꿀지 사용자 결정이 필요하다. 바꾸면 DB `itemId`·`id` 둘 다 바꾸고 RENAMED_SCHOOLS에 별칭을 추가한다(서강대 때와 같은 절차).
+- 2026-11-26 학교 id 정리(사용자 결정). 이화여대 `ehwa` → `ewha`, 서울여대 `seoulwaman` → `swu`(공식 도메인·aah-e.net id와 같음), 이화여대 표시 이름 `Ewha Womans University`. 운영 DB를 먼저 바꿨고(백업 `~/Documents/Workspace/db-backup/`), 엠블럼 파일도 새 id 이름으로 옮겼다. 예전 id 별칭은 두지 않는다. 서강대 `seogagn` 별칭과 `seogagn.png`도 지웠다. 그래서 `/plan/seogagn`, `/plan/ehwa`, `/plan/seoulwaman`은 모르는 학교로 보고 `/plan`으로 보낸다. 앞에 적은 RENAMED_SCHOOLS 내용은 이 결정으로 대체된다.

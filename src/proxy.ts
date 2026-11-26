@@ -1,7 +1,6 @@
 import { NextResponse } from 'next/server';
 import type { NextRequest } from 'next/server';
 import { SUPPORTED_LOCALES, DEFAULT_LOCALE } from '@/lib/locales';
-import { RENAMED_SCHOOLS } from '@/lib/plan';
 
 const supportedLocales = SUPPORTED_LOCALES as readonly string[];
 const defaultLocale = DEFAULT_LOCALE;
@@ -35,14 +34,13 @@ export function proxy(request: NextRequest) {
   );
 
   if (pathnameHasLocale) {
-    // 학교 페이지 이전의 플랜 링크(/xx/plan?school=id)와 바뀌기 전 학교 id는 학교 페이지로 영구 이동.
+    // 학교 페이지 이전의 플랜 링크(/xx/plan?school=id)는 학교 페이지로 영구 이동.
     // 나머지 쿼리(program, period, stay, cur)는 유지
-    const plan = pathname.match(/^\/([a-z]{2})\/plan(?:\/([^/]+))?\/?$/);
-    const querySchool = request.nextUrl.searchParams.get('school');
-    const school = plan && (plan[2] ?? querySchool);
-    if (plan && school && (querySchool || RENAMED_SCHOOLS[school])) {
+    const plan = pathname.match(/^\/([a-z]{2})\/plan\/?$/);
+    const school = request.nextUrl.searchParams.get('school');
+    if (plan && school) {
       const url = request.nextUrl.clone();
-      url.pathname = `/${plan[1]}/plan/${RENAMED_SCHOOLS[school] ?? school}`;
+      url.pathname = `/${plan[1]}/plan/${school}`;
       url.searchParams.delete('school');
       return NextResponse.redirect(url, 308);
     }
