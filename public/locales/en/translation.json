@@ -390,6 +390,9 @@
   "PLAN_META_TITLE": "Plan your study in Korea",
   "PLAN_TITLE": "Plan your study in Korea.",
   "PLAN_LEAD": "Choose a program, school, duration and housing to see your estimated cost. Send it to us and an advisor will get back to you.",
+  "PLAN_SCHOOL_META_TITLE": "{{school}} Korean Course: Tuition & Costs",
+  "PLAN_SCHOOL_META_DESC": "Korean language course at {{school}}: from {{price}} for {{duration}}, including registration, tuition and the aah! fee. Choose your duration and housing to see the total.",
+  "PLAN_SCHOOL_TITLE": "{{school}}: tuition and costs.",
 
   "***** CLASS HOURS *****": "",
   "CLASS_HOURS_LABEL": "Class hours",

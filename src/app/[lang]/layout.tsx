@@ -12,7 +12,7 @@ import AnalyticsTracker from '@/components/common/AnalyticsTracker';
 
 // Runs before paint: currency from the cookie (a plan link's `cur` wins and is saved like a
 // selector change, same cookie attributes as lib/cookie), and the plan-query placeholder flag
-const PRE_PAINT_SCRIPT = `try{var d=document.documentElement,q=new URLSearchParams(location.search),p=/\\/plan\\/?$/.test(location.pathname),c=q.get('cur');if(p&&/^(USD|EUR|GBP)$/.test(c)){document.cookie='currency='+c+';path=/;max-age=31536000;samesite=lax'+(location.hostname==='aah.education'?';domain=aah.education;secure':'')}var m=document.cookie.match(/(?:^|; )currency=(USD|EUR|GBP)(?:;|$)/);if(m)d.dataset.cur=m[1];if(p&&(q.has('program')||q.has('school')))d.dataset.planQuery='1'}catch(e){}`;
+const PRE_PAINT_SCRIPT = `try{var d=document.documentElement,q=new URLSearchParams(location.search),p=/\\/plan(\\/[^/]+)?\\/?$/.test(location.pathname),c=q.get('cur');if(p&&/^(USD|EUR|GBP)$/.test(c)){document.cookie='currency='+c+';path=/;max-age=31536000;samesite=lax'+(location.hostname==='aah.education'?';domain=aah.education;secure':'')}var m=document.cookie.match(/(?:^|; )currency=(USD|EUR|GBP)(?:;|$)/);if(m)d.dataset.cur=m[1];if(p&&(q.has('program')||q.has('school')))d.dataset.planQuery='1'}catch(e){}`;
 
 import {
   SUPPORTED_LOCALES,

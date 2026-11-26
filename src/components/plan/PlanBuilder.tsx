@@ -4,6 +4,7 @@
 import React, { useState, useEffect, useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
 import Image from 'next/image';
+import { useRouter } from 'next/navigation';
 // Constants
 import {
   ProgramType,
@@ -26,6 +27,7 @@ import { CURRENCY_SYMBOL, type Currency } from '@/lib/currency';
 import BoldText from '@/components/common/BoldText';
 import ShareMenu, { type ShareMethod } from '@/components/plan/ShareMenu';
 import { SITE_URL } from '@/lib/locales';
+import { offersProgram as offers, planPath } from '@/lib/plan';
 // Analytics
 import { trackTuitionCalculationOpen, trackTuitionCalculationSubmit, event } from '@/lib/gtag';
 
@@ -67,11 +69,7 @@ const programKey = (type: ProgramType) => (type === ProgramType.SHORT ? 'short' 
 const getProgram = (uni: University | null, type: ProgramType): ProgramPricing | null =>
   uni?.pricing?.[programKey(type)] ?? null;
 
-// A school is offered for a program if it has synced pricing for it, or a legacy price
-const offersProgram = (uni: University, type: ProgramType) =>
-  uni.pricing
-    ? !!uni.pricing[programKey(type)]
-    : (type === ProgramType.SHORT ? uni.priceShort : uni.priceLong) > 0;
+const offersProgram = (uni: University, type: ProgramType) => offers(uni, programKey(type));
 
 export default function PlanBuilder({
   lang,
@@ -88,6 +86,7 @@ export default function PlanBuilder({
   const t = i18n.getFixedT(lang);
   const currency = useCurrencyStore((s) => (s.ready ? s.currency : null)) as Currency | null;
   const { requestPrefill, clearPrefill } = useContactUsStore();
+  const router = useRouter();
 
   const startType = initialProgram === 'long' ? ProgramType.LONG : ProgramType.SHORT;
   const [list, setList] = useState({ schools: initial, currency: initialCurrency });
@@ -313,11 +312,11 @@ export default function PlanBuilder({
     });
   };
 
-  // Query that reopens this exact selection (PlanBuilderFromQuery reads it back)
+  // Path and query that reopen this exact selection (the school page reads them back)
+  const selectionPath = planPath(lang, university?.id);
   const selectionQuery = (() => {
     const query = new URLSearchParams({ program: programKey(programType) });
     if (university) {
-      query.set('school', university.id);
       if (term) query.set('period', String(term.period));
       if (selectedDorm) query.set('stay', String(dormitories.indexOf(selectedDorm) + 1));
     }
@@ -325,7 +324,7 @@ export default function PlanBuilder({
     query.set('cur', list.currency);
     return query.toString();
   })();
-  const shareUrl = university ? `${SITE_URL}/${lang}/plan?${selectionQuery}` : '';
+  const shareUrl = university ? `${SITE_URL}${selectionPath}?${selectionQuery}` : '';
   const sharePlan = university
     ? [university.title, programTitle, term && durationLabel(term), totalText !== '-' && totalText]
         .filter(Boolean)
@@ -364,14 +363,17 @@ export default function PlanBuilder({
   }, [clearPrefill, trackOpen]);
 
   // Keep the address bar on the current selection, so switching language (which keeps the
-  // query), reloading or copying the address keeps it. replaceState: no navigation, no history entry
+  // query), reloading or copying the address keeps it. Another school is another page (its own
+  // title and heading): replace-navigate there. Otherwise replaceState: no navigation, no history entry
   useEffect(() => {
     if (!syncUrl) return;
-    const next = `${window.location.pathname}?${selectionQuery}${window.location.hash}`;
-    if (next !== `${window.location.pathname}${window.location.search}${window.location.hash}`) {
+    const next = `${selectionPath}?${selectionQuery}${window.location.hash}`;
+    if (selectionPath !== window.location.pathname) {
+      router.replace(next, { scroll: false });
+    } else if (next !== `${window.location.pathname}${window.location.search}${window.location.hash}`) {
       window.history.replaceState(null, '', next);
     }
-  }, [syncUrl, selectionQuery]);
+  }, [syncUrl, selectionPath, selectionQuery, router]);
 
   // Refetch when the visitor switches currency
   useEffect(() => {
