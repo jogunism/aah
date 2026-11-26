@@ -129,3 +129,20 @@
 - [x] 배포 후 라이브 llms.txt 확인(Amplify #132). 페이지 본문은 그대로라 IndexNow 제출은 생략
 - [ ] Search Console 색인 요청 9개 결과 확인(11-09 요청분)
 - [x] 가격 없는 학교 숨김(API 5108290, 국민대 제외) 배포, Amplify #133 재빌드, 라이브 홈·프로그램·플랜·llms.txt에서 국민대 없음 확인, IndexNow 202(20개)
+
+## 15. 학교별 플랜 페이지 (SEO: 학교 이름 + 학비 검색)
+
+목표: `/{lang}/plan/{학교id}`를 학교마다 색인되는 페이지로 만든다. 서버 HTML에 그 학교의 견적이 들어 있고, 제목·설명·h1·canonical이 학교마다 다르다. 프로그램·기간·숙소·통화는 지금처럼 쿼리로 두고 canonical은 학교 페이지로 모은다.
+
+- [ ] 라우트 `src/app/[lang]/plan/[school]/page.tsx`: 가격 있는 학교 × 5개 언어 정적 생성(1시간 ISR), 모르는 id·가격 없는 학교는 `/{lang}/plan`으로 리다이렉트(쿼리 유지)
+- [ ] 서버 렌더링: PlanBuilder를 그 학교로 선택한 상태로 그림(장기 가격이 있으면 장기, 없으면 단기). 쿼리의 program·period·stay는 지금처럼 브라우저에서 덮어씀
+- [ ] 메타데이터: 학교 이름이 들어간 제목·설명(언어 기본 통화 시작가)·h1, canonical은 쿼리 없는 자기 주소, hreflang은 같은 학교의 5개 언어
+- [ ] 번역 키 5개 언어: `PLAN_SCHOOL_META_TITLE`, `PLAN_SCHOOL_META_DESC`, `PLAN_SCHOOL_TITLE`
+- [ ] 빌더 주소 동기화: 학교가 있으면 경로 `/plan/{id}`, 없으면 `/plan`. 학교를 바꾸면 그 학교 페이지로 이동(제목·h1이 같이 바뀌도록), 프로그램 등은 쿼리 유지
+- [ ] pre-paint 스크립트: `/plan/{id}` 경로도 플랜 페이지로 인식(통화 `cur`, 자리표시 처리)
+- [ ] 리다이렉트(proxy.ts): `/{lang}/plan?school=X&...` → `/{lang}/plan/X?...`(308). 학교 id 별칭(seogagn → sogang)도 적용
+- [ ] 내부 링크: SchoolPrices "Select", 공유 링크를 새 경로로
+- [ ] sitemap에 학교 URL 추가, llms.txt 학교 목록에 학교 페이지 링크
+- [ ] 검증: tsc·eslint·next build(생성된 학교 페이지 수), 로컬 3100에서 curl로 학교 HTML에 이름·가격·canonical 확인, 예전 쿼리 링크 308 확인, 새로고침·언어 변경·학교 변경 시 선택 유지, 데스크톱 1440 / 모바일 390
+- [ ] 배포 후: 라이브 확인, Search Console sitemap 재제출·학교 URL 2~3개 색인 요청, IndexNow
+- [ ] 4~8주 뒤 GSC에서 학교 이름 + tuition 검색어 노출 확인
