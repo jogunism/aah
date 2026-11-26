@@ -26,6 +26,7 @@ import { CURRENCY_SYMBOL, type Currency } from '@/lib/currency';
 import BoldText from '@/components/common/BoldText';
 import ShareMenu, { type ShareMethod } from '@/components/plan/ShareMenu';
 import { SITE_URL } from '@/lib/locales';
+import { offersProgram as offers, planPath } from '@/lib/plan';
 // Analytics
 import { trackTuitionCalculationOpen, trackTuitionCalculationSubmit, event } from '@/lib/gtag';
 
@@ -67,11 +68,7 @@ const programKey = (type: ProgramType) => (type === ProgramType.SHORT ? 'short' 
 const getProgram = (uni: University | null, type: ProgramType): ProgramPricing | null =>
   uni?.pricing?.[programKey(type)] ?? null;
 
-// A school is offered for a program if it has synced pricing for it, or a legacy price
-const offersProgram = (uni: University, type: ProgramType) =>
-  uni.pricing
-    ? !!uni.pricing[programKey(type)]
-    : (type === ProgramType.SHORT ? uni.priceShort : uni.priceLong) > 0;
+const offersProgram = (uni: University, type: ProgramType) => offers(uni, programKey(type));
 
 export default function PlanBuilder({
   lang,
@@ -313,11 +310,11 @@ export default function PlanBuilder({
     });
   };
 
-  // Query that reopens this exact selection (PlanBuilderFromQuery reads it back)
+  // Path and query that reopen this exact selection (the school page reads them back)
+  const selectionPath = planPath(lang, university?.id);
   const selectionQuery = (() => {
     const query = new URLSearchParams({ program: programKey(programType) });
     if (university) {
-      query.set('school', university.id);
       if (term) query.set('period', String(term.period));
       if (selectedDorm) query.set('stay', String(dormitories.indexOf(selectedDorm) + 1));
     }
@@ -325,7 +322,7 @@ export default function PlanBuilder({
     query.set('cur', list.currency);
     return query.toString();
   })();
-  const shareUrl = university ? `${SITE_URL}/${lang}/plan?${selectionQuery}` : '';
+  const shareUrl = university ? `${SITE_URL}${selectionPath}?${selectionQuery}` : '';
   const sharePlan = university
     ? [university.title, programTitle, term && durationLabel(term), totalText !== '-' && totalText]
         .filter(Boolean)
@@ -363,15 +360,19 @@ export default function PlanBuilder({
     return () => clearPrefill();
   }, [clearPrefill, trackOpen]);
 
-  // Keep the address bar on the current selection, so switching language (which keeps the
-  // query), reloading or copying the address keeps it. replaceState: no navigation, no history entry
+  // Keep the address bar on the current selection (the school page /plan/{id} plus the query), so
+  // switching language (which keeps the query), reloading or copying the address keeps it.
+  // replaceState: no navigation (the page would re-render and flash), no history entry.
+  // The tab title follows the school like the school page's own title
   useEffect(() => {
     if (!syncUrl) return;
-    const next = `${window.location.pathname}?${selectionQuery}${window.location.hash}`;
+    const next = `${selectionPath}?${selectionQuery}${window.location.hash}`;
     if (next !== `${window.location.pathname}${window.location.search}${window.location.hash}`) {
       window.history.replaceState(null, '', next);
     }
-  }, [syncUrl, selectionQuery]);
+    const title = university ? t('PLAN_SCHOOL_META_TITLE', { school: university.title }) : t('PLAN_META_TITLE');
+    document.title = `${title} | aah! education`;
+  }, [syncUrl, selectionPath, selectionQuery, university, t]);
 
   // Refetch when the visitor switches currency
   useEffect(() => {
@@ -442,297 +443,303 @@ export default function PlanBuilder({
   );
 
   return (
-    <div className="grid lg:grid-cols-[1fr_380px] lg:gap-14 items-start" data-price-block={list.currency}>
-      {/* Choices */}
-      <div className="space-y-10 mb-10 lg:mb-0">
-        {/* 1. Program */}
-        <fieldset>
-          <legend className={stepTitle}>1. {t('TUITION_CALCULATOR_PROGRAM')}</legend>
-          <div className="mt-4 grid grid-cols-2 gap-3">
-            {[ProgramType.SHORT, ProgramType.LONG].map(type => {
-              const active = programType === type;
-              const border = type === ProgramType.SHORT ? 'border-aah-red' : 'border-aah-blue';
-              return (
-                <button
-                  key={type}
-                  type="button"
-                  aria-pressed={active}
-                  onClick={() => handleSelectProgramType(type)}
-                  className={`rounded-[18px] border-2 bg-white px-4 py-4 text-left transition-colors ${
-                    active ? border : 'border-line hover:border-ink-2'
-                  }`}
-                >
-                  <span className="block font-bold text-ink">
-                    {type === ProgramType.SHORT
-                      ? t('TUITION_SHORT_TERM_TITLE')
-                      : t('TUITION_LONG_TERM_TITLE')}
-                  </span>
-                  <span className="block mt-0.5 text-[13px] text-muted">
-                    {t(type === ProgramType.SHORT ? 'TILE_SHORT_SUB' : 'TILE_LONG_SUB')}
-                  </span>
-                </button>
-              );
-            })}
-          </div>
-        </fieldset>
+    <>
+      {/* Lead under the page title: names the selected school (the school page's text for search engines) */}
+      <p className="mt-3 mb-10 md:mb-12 max-w-[680px] text-[17px] md:text-xl leading-relaxed text-ink-2">
+        {university ? t('PLAN_SCHOOL_LEAD', { school: university.title }) : t('PLAN_LEAD')}
+      </p>
+      <div className="grid lg:grid-cols-[1fr_380px] lg:gap-14 items-start" data-price-block={list.currency}>
+        {/* Choices */}
+        <div className="space-y-10 mb-10 lg:mb-0">
+          {/* 1. Program */}
+          <fieldset>
+            <legend className={stepTitle}>1. {t('TUITION_CALCULATOR_PROGRAM')}</legend>
+            <div className="mt-4 grid grid-cols-2 gap-3">
+              {[ProgramType.SHORT, ProgramType.LONG].map(type => {
+                const active = programType === type;
+                const border = type === ProgramType.SHORT ? 'border-aah-red' : 'border-aah-blue';
+                return (
+                  <button
+                    key={type}
+                    type="button"
+                    aria-pressed={active}
+                    onClick={() => handleSelectProgramType(type)}
+                    className={`rounded-[18px] border-2 bg-white px-4 py-4 text-left transition-colors ${
+                      active ? border : 'border-line hover:border-ink-2'
+                    }`}
+                  >
+                    <span className="block font-bold text-ink">
+                      {type === ProgramType.SHORT
+                        ? t('TUITION_SHORT_TERM_TITLE')
+                        : t('TUITION_LONG_TERM_TITLE')}
+                    </span>
+                    <span className="block mt-0.5 text-[13px] text-muted">
+                      {t(type === ProgramType.SHORT ? 'TILE_SHORT_SUB' : 'TILE_LONG_SUB')}
+                    </span>
+                  </button>
+                );
+              })}
+            </div>
+          </fieldset>
 
-        {/* 2. School */}
-        <fieldset>
-          <legend className={stepTitle}>2. {t('TUITION_CALCULATOR_UNIVERSITY')}</legend>
-          <div className="mt-4 space-y-6">
-            {groups.map(group => (
-              <div key={group.key}>
-                {groups.length > 1 && (
-                  <p className="mb-2 text-xs font-bold uppercase tracking-wide text-muted">
-                    {group.label}
-                  </p>
-                )}
-                <ul className="grid sm:grid-cols-2 gap-2.5">
-                  {group.items.map(uni => {
-                    const active = uni.id === schoolId;
-                    return (
-                      <li key={uni.id}>
-                        <button
-                          type="button"
-                          aria-pressed={active}
-                          onClick={() => handleUniversitySelect(uni)}
-                          className={`w-full flex items-center gap-3 rounded-[16px] border-2 bg-white px-3.5 py-3 text-left transition-colors ${
-                            active ? accentBorder : 'border-line hover:border-ink-2'
-                          }`}
-                        >
-                          <Image
-                            src={`/assets/emblem/${uni.id}.png`}
-                            alt=""
-                            width={36}
-                            height={36}
-                            className="w-9 h-9 object-contain shrink-0"
-                          />
-                          <span className="min-w-0">
-                            <span className="block text-sm font-semibold text-ink leading-tight">
-                              {uni.title}
+          {/* 2. School */}
+          <fieldset>
+            <legend className={stepTitle}>2. {t('TUITION_CALCULATOR_UNIVERSITY')}</legend>
+            <div className="mt-4 space-y-6">
+              {groups.map(group => (
+                <div key={group.key}>
+                  {groups.length > 1 && (
+                    <p className="mb-2 text-xs font-bold uppercase tracking-wide text-muted">
+                      {group.label}
+                    </p>
+                  )}
+                  <ul className="grid sm:grid-cols-2 gap-2.5">
+                    {group.items.map(uni => {
+                      const active = uni.id === schoolId;
+                      return (
+                        <li key={uni.id}>
+                          <button
+                            type="button"
+                            aria-pressed={active}
+                            onClick={() => handleUniversitySelect(uni)}
+                            className={`w-full flex items-center gap-3 rounded-[16px] border-2 bg-white px-3.5 py-3 text-left transition-colors ${
+                              active ? accentBorder : 'border-line hover:border-ink-2'
+                            }`}
+                          >
+                            <Image
+                              src={`/assets/emblem/${uni.id}.png`}
+                              alt=""
+                              width={36}
+                              height={36}
+                              className="w-9 h-9 object-contain shrink-0"
+                            />
+                            <span className="min-w-0">
+                              <span className="block text-sm font-semibold text-ink leading-tight">
+                                {uni.title}
+                              </span>
+                              <span className="block text-xs text-muted truncate">{uni.subTitle}</span>
                             </span>
-                            <span className="block text-xs text-muted truncate">{uni.subTitle}</span>
-                          </span>
-                        </button>
-                      </li>
-                    );
-                  })}
-                </ul>
-              </div>
-            ))}
-          </div>
-        </fieldset>
+                          </button>
+                        </li>
+                      );
+                    })}
+                  </ul>
+                </div>
+              ))}
+            </div>
+          </fieldset>
 
-        {/* 3. Duration + 4. Accommodation */}
-        {program && term && (
-          <>
-            {program.terms.length > 1 && (
+          {/* 3. Duration + 4. Accommodation */}
+          {program && term && (
+            <>
+              {program.terms.length > 1 && (
+                <fieldset>
+                  <legend className={stepTitle}>3. {t('TUITION_CALCULATOR_DURATION')}</legend>
+                  <div className="mt-4 flex flex-wrap gap-2">
+                    {program.terms.map(tm => (
+                      <button
+                        key={tm.period}
+                        type="button"
+                        aria-pressed={term.period === tm.period}
+                        onClick={() => setPeriod(tm.period)}
+                        className={chip(term.period === tm.period)}
+                      >
+                        {durationLabel(tm)}
+                      </button>
+                    ))}
+                  </div>
+                </fieldset>
+              )}
+
               <fieldset>
-                <legend className={stepTitle}>3. {t('TUITION_CALCULATOR_DURATION')}</legend>
+                <legend className={stepTitle}>
+                  {program.terms.length > 1 ? 4 : 3}. {t('TUITION_CALCULATOR_ACCOMMODATION')}
+                </legend>
                 <div className="mt-4 flex flex-wrap gap-2">
-                  {program.terms.map(tm => (
+                  <button
+                    type="button"
+                    aria-pressed={!selectedDorm}
+                    onClick={() => setStayKey(SCHOOL_ONLY)}
+                    className={chip(!selectedDorm)}
+                  >
+                    {t('TUITION_CALCULATOR_ACCOMMODATION_SEPARATE')}
+                  </button>
+                  {dormitories.map(dorm => (
                     <button
-                      key={tm.period}
+                      key={dorm.name}
                       type="button"
-                      aria-pressed={term.period === tm.period}
-                      onClick={() => setPeriod(tm.period)}
-                      className={chip(term.period === tm.period)}
+                      aria-pressed={selectedDorm?.name === dorm.name}
+                      onClick={() => setStayKey(dorm.name)}
+                      className={chip(selectedDorm?.name === dorm.name)}
                     >
-                      {durationLabel(tm)}
+                      {dormLabel(dorm)}
                     </button>
                   ))}
                 </div>
+                {dormitories.length === 0 && (
+                  <p className="text-[13px] text-muted mt-2">{t('TUITION_CALCULATOR_NO_DORMITORY')}</p>
+                )}
               </fieldset>
-            )}
-
-            <fieldset>
-              <legend className={stepTitle}>
-                {program.terms.length > 1 ? 4 : 3}. {t('TUITION_CALCULATOR_ACCOMMODATION')}
-              </legend>
-              <div className="mt-4 flex flex-wrap gap-2">
-                <button
-                  type="button"
-                  aria-pressed={!selectedDorm}
-                  onClick={() => setStayKey(SCHOOL_ONLY)}
-                  className={chip(!selectedDorm)}
-                >
-                  {t('TUITION_CALCULATOR_ACCOMMODATION_SEPARATE')}
-                </button>
-                {dormitories.map(dorm => (
-                  <button
-                    key={dorm.name}
-                    type="button"
-                    aria-pressed={selectedDorm?.name === dorm.name}
-                    onClick={() => setStayKey(dorm.name)}
-                    className={chip(selectedDorm?.name === dorm.name)}
-                  >
-                    {dormLabel(dorm)}
-                  </button>
-                ))}
-              </div>
-              {dormitories.length === 0 && (
-                <p className="text-[13px] text-muted mt-2">{t('TUITION_CALCULATOR_NO_DORMITORY')}</p>
-              )}
-            </fieldset>
-          </>
-        )}
-      </div>
-
-      {/* Mobile: total bar. Sticks to the bottom while scrolling, then docks as the top of the summary below */}
-      <div
-        aria-live="polite"
-        className="lg:hidden sticky bottom-0 z-[800] min-w-0 rounded-t-[24px] bg-soft px-6 md:px-7 py-4 flex items-end justify-between gap-4"
-      >
-        <div className="min-w-0">
-          <p className="text-xs font-bold uppercase tracking-wide text-muted">{programTitle}</p>
-          <p className="mt-1 font-bold text-ink leading-tight">
-            {university?.title ?? t('TUITION_CALCULATOR_MODAL_SELECT_UNIVERSITY')}
-          </p>
-          {university && term && (
-            <p className="text-[13px] text-muted truncate">
-              {durationLabel(term)} ·{' '}
-              {selectedDorm ? dormLabel(selectedDorm) : t('TUITION_CALCULATOR_ACCOMMODATION_SEPARATE')}
-            </p>
+            </>
           )}
         </div>
-        <div className="shrink-0 flex items-end gap-3">
-          <div className="text-right">
-            <p className={`text-2xl leading-tight font-extrabold tracking-tight ${accentText}`}>{totalText}</p>
-            {breakdown && !breakdown.accommodation && (
-              <p className="text-xs font-semibold text-ink-2">{t('TUITION_CALCULATOR_PLUS_ACCOMMODATION')}</p>
-            )}
-          </div>
-          {shareMenu('up', false)}
-        </div>
-      </div>
 
-      {/* Summary */}
-      <aside
-        aria-live="polite"
-        className="lg:sticky lg:top-[84px] rounded-b-[24px] lg:rounded-[24px] bg-soft p-6 md:p-7 pt-0 md:pt-0 lg:pt-7"
-      >
-        <p className="hidden lg:block text-xs font-bold uppercase tracking-wide text-muted">{programTitle}</p>
-        {university ? (
-          <div className="mt-3 hidden lg:flex items-center gap-3">
-            <Image
-              src={`/assets/emblem/${university.id}.png`}
-              alt=""
-              width={40}
-              height={40}
-              className="w-10 h-10 object-contain shrink-0"
-            />
-            <div className="min-w-0">
-              <p className="font-bold text-ink leading-tight">{university.title}</p>
-              <p className="text-[13px] text-muted">
-                {term ? durationLabel(term) : university.subTitle}
+        {/* Mobile: total bar. Sticks to the bottom while scrolling, then docks as the top of the summary below */}
+        <div
+          aria-live="polite"
+          className="lg:hidden sticky bottom-0 z-[800] min-w-0 rounded-t-[24px] bg-soft px-6 md:px-7 py-4 flex items-end justify-between gap-4"
+        >
+          <div className="min-w-0">
+            <p className="text-xs font-bold uppercase tracking-wide text-muted">{programTitle}</p>
+            <p className="mt-1 font-bold text-ink leading-tight">
+              {university?.title ?? t('TUITION_CALCULATOR_MODAL_SELECT_UNIVERSITY')}
+            </p>
+            {university && term && (
+              <p className="text-[13px] text-muted truncate">
+                {durationLabel(term)} ·{' '}
+                {selectedDorm ? dormLabel(selectedDorm) : t('TUITION_CALCULATOR_ACCOMMODATION_SEPARATE')}
               </p>
-            </div>
-          </div>
-        ) : (
-          <p className="mt-3 hidden lg:block text-ink-2">{t('TUITION_CALCULATOR_MODAL_SELECT_UNIVERSITY')}</p>
-        )}
-
-        {breakdown && (
-          <dl className="lg:mt-5 text-[15px] text-ink-2 divide-y divide-line border-y border-line">
-            {breakdown.entrance > 0 && (
-              <div className="flex justify-between gap-4 py-2.5">
-                <dt>{t('TUITION_CALCULATOR_ENTRANCE_FEE')}</dt>
-                <dd className="font-medium text-ink">{money(breakdown.entrance)}</dd>
-              </div>
             )}
-            <div className="grid grid-cols-[1fr_auto] gap-x-4 py-2.5">
-              <dt>
-                {hasClassInfo
-                  ? expandButton('tuition', t('TUITION_CALCULATOR_TUITION'))
-                  : t('TUITION_CALCULATOR_TUITION')}
-              </dt>
-              <dd className="font-medium text-ink">{money(breakdown.tuition)}</dd>
-              {hasClassInfo && open.tuition && (
-                <dd id="plan-row-tuition" className="col-span-2 mt-1 space-y-0.5 text-[13px] text-muted">
-                  {(scheduleParts.length > 0 || slots.length > 0) && (
-                    <p>
-                      {t('CLASS_HOURS_LABEL')}:{' '}
-                      {[...scheduleParts, ...slots].map((part, i) => (
-                        <React.Fragment key={part}>
-                          {i > 0 && (i <= scheduleParts.length ? ' · ' : ' / ')}
-                          <span className="whitespace-nowrap">{part}</span>
-                        </React.Fragment>
-                      ))}
-                    </p>
-                  )}
-                  {sizeText && (
-                    <p>
-                      {t('CLASS_SIZE_LABEL')}: {sizeText}
-                    </p>
-                  )}
-                </dd>
+          </div>
+          <div className="shrink-0 flex items-end gap-3">
+            <div className="text-right">
+              <p className={`text-2xl leading-tight font-extrabold tracking-tight ${accentText}`}>{totalText}</p>
+              {breakdown && !breakdown.accommodation && (
+                <p className="text-xs font-semibold text-ink-2">{t('TUITION_CALCULATOR_PLUS_ACCOMMODATION')}</p>
               )}
             </div>
-            {breakdown.accommodation && (
-              <div className="flex justify-between gap-4 py-2.5">
-                <dt>{t('TUITION_CALCULATOR_DORMITORY_FEE')}</dt>
-                <dd className="font-medium text-ink">{moneyRange(breakdown.accommodation)}</dd>
-              </div>
-            )}
-            <div className="grid grid-cols-[1fr_auto] gap-x-4 py-2.5">
-              <dt>{expandButton('fee', t('TUITION_CALCULATOR_AAH_FEE'))}</dt>
-              <dd className="font-medium text-ink">{money(breakdown.aahFee)}</dd>
-              {open.fee && (
-                <dd id="plan-row-fee" className="col-span-2 mt-2 space-y-3 text-[13px] text-muted">
-                  {FEE_SERVICES[programKey(programType)].map(({ group, items: all }) => {
-                    // Housing help follows the chosen stay: dormitory application, or booking elsewhere
-                    const items =
-                      group === 'HOUSING'
-                        ? all.filter(item => (selectedDorm ? item === 'DORM' : item !== 'DORM'))
-                        : all;
-                    return (
-                      <div key={group}>
-                        <p className="font-semibold text-ink-2">{t(`FEE_GROUP_${group}`)}</p>
-                        <ul className="mt-1 space-y-0.5">
-                          {items.map(item => (
-                            <li key={item} className="flex gap-1.5">
-                              <span aria-hidden="true">✓</span>
-                              {t(`FEE_SVC_${item}`)}
-                            </li>
-                          ))}
-                        </ul>
-                      </div>
-                    );
-                  })}
-                  <p className="flex gap-1"><span aria-hidden="true">※</span><span>{t('FEE_ARRIVAL_NOTE')}</span></p>
-                </dd>
-              )}
-            </div>
-          </dl>
-        )}
-
-        <div className="mt-5 hidden lg:block">
-          <p className="text-sm font-semibold text-ink-2">
-            {breakdown ? t('TUITION_CALCULATOR_TOTAL') : t('TUITION_CALCULATOR_MODAL_ESTIMATED_PRICE')}
-          </p>
-          <div className="mt-1 flex items-center justify-between gap-3">
-            <p className={`text-[32px] leading-tight font-extrabold tracking-tight ${accentText}`}>
-              {totalText}
-            </p>
-            {shareMenu('down', true)}
+            {shareMenu('up', false)}
           </div>
-          {breakdown && !breakdown.accommodation && (
-            <p className="text-sm font-semibold text-ink-2">
-              {t('TUITION_CALCULATOR_PLUS_ACCOMMODATION')}
-            </p>
-          )}
         </div>
 
-        {inquiryButton('mt-6 w-full h-12 px-6 inline-flex')}
-
-        <ul className="mt-4 text-xs text-muted space-y-1">
-          {selectedDorm && term && term.duration.unit === 'semester' && term.duration.value > 1 && (
-            <li className="flex gap-1"><span aria-hidden="true">※</span><span>{t('TUITION_CALCULATOR_DORM_NOTE')}</span></li>
+        {/* Summary */}
+        <aside
+          aria-live="polite"
+          className="lg:sticky lg:top-[84px] rounded-b-[24px] lg:rounded-[24px] bg-soft p-6 md:p-7 pt-0 md:pt-0 lg:pt-7"
+        >
+          <p className="hidden lg:block text-xs font-bold uppercase tracking-wide text-muted">{programTitle}</p>
+          {university ? (
+            <div className="mt-3 hidden lg:flex items-center gap-3">
+              <Image
+                src={`/assets/emblem/${university.id}.png`}
+                alt=""
+                width={40}
+                height={40}
+                className="w-10 h-10 object-contain shrink-0"
+              />
+              <div className="min-w-0">
+                <p className="font-bold text-ink leading-tight">{university.title}</p>
+                <p className="text-[13px] text-muted">
+                  {term ? durationLabel(term) : university.subTitle}
+                </p>
+              </div>
+            </div>
+          ) : (
+            <p className="mt-3 hidden lg:block text-ink-2">{t('TUITION_CALCULATOR_MODAL_SELECT_UNIVERSITY')}</p>
           )}
-          <li className="flex gap-1"><span aria-hidden="true">※</span><span><BoldText text={t('PLAN_ESTIMATE_NOTE')} /></span></li>
-          <li className="flex gap-1"><span aria-hidden="true">※</span><span>{t('TUITION_CALCULATOR_PRICE_NOTE')}</span></li>
-        </ul>
-      </aside>
-    </div>
+
+          {breakdown && (
+            <dl className="lg:mt-5 text-[15px] text-ink-2 divide-y divide-line border-y border-line">
+              {breakdown.entrance > 0 && (
+                <div className="flex justify-between gap-4 py-2.5">
+                  <dt>{t('TUITION_CALCULATOR_ENTRANCE_FEE')}</dt>
+                  <dd className="font-medium text-ink">{money(breakdown.entrance)}</dd>
+                </div>
+              )}
+              <div className="grid grid-cols-[1fr_auto] gap-x-4 py-2.5">
+                <dt>
+                  {hasClassInfo
+                    ? expandButton('tuition', t('TUITION_CALCULATOR_TUITION'))
+                    : t('TUITION_CALCULATOR_TUITION')}
+                </dt>
+                <dd className="font-medium text-ink">{money(breakdown.tuition)}</dd>
+                {hasClassInfo && open.tuition && (
+                  <dd id="plan-row-tuition" className="col-span-2 mt-1 space-y-0.5 text-[13px] text-muted">
+                    {(scheduleParts.length > 0 || slots.length > 0) && (
+                      <p>
+                        {t('CLASS_HOURS_LABEL')}:{' '}
+                        {[...scheduleParts, ...slots].map((part, i) => (
+                          <React.Fragment key={part}>
+                            {i > 0 && (i <= scheduleParts.length ? ' · ' : ' / ')}
+                            <span className="whitespace-nowrap">{part}</span>
+                          </React.Fragment>
+                        ))}
+                      </p>
+                    )}
+                    {sizeText && (
+                      <p>
+                        {t('CLASS_SIZE_LABEL')}: {sizeText}
+                      </p>
+                    )}
+                  </dd>
+                )}
+              </div>
+              {breakdown.accommodation && (
+                <div className="flex justify-between gap-4 py-2.5">
+                  <dt>{t('TUITION_CALCULATOR_DORMITORY_FEE')}</dt>
+                  <dd className="font-medium text-ink">{moneyRange(breakdown.accommodation)}</dd>
+                </div>
+              )}
+              <div className="grid grid-cols-[1fr_auto] gap-x-4 py-2.5">
+                <dt>{expandButton('fee', t('TUITION_CALCULATOR_AAH_FEE'))}</dt>
+                <dd className="font-medium text-ink">{money(breakdown.aahFee)}</dd>
+                {open.fee && (
+                  <dd id="plan-row-fee" className="col-span-2 mt-2 space-y-3 text-[13px] text-muted">
+                    {FEE_SERVICES[programKey(programType)].map(({ group, items: all }) => {
+                      // Housing help follows the chosen stay: dormitory application, or booking elsewhere
+                      const items =
+                        group === 'HOUSING'
+                          ? all.filter(item => (selectedDorm ? item === 'DORM' : item !== 'DORM'))
+                          : all;
+                      return (
+                        <div key={group}>
+                          <p className="font-semibold text-ink-2">{t(`FEE_GROUP_${group}`)}</p>
+                          <ul className="mt-1 space-y-0.5">
+                            {items.map(item => (
+                              <li key={item} className="flex gap-1.5">
+                                <span aria-hidden="true">✓</span>
+                                {t(`FEE_SVC_${item}`)}
+                              </li>
+                            ))}
+                          </ul>
+                        </div>
+                      );
+                    })}
+                    <p className="flex gap-1"><span aria-hidden="true">※</span><span>{t('FEE_ARRIVAL_NOTE')}</span></p>
+                  </dd>
+                )}
+              </div>
+            </dl>
+          )}
+
+          <div className="mt-5 hidden lg:block">
+            <p className="text-sm font-semibold text-ink-2">
+              {breakdown ? t('TUITION_CALCULATOR_TOTAL') : t('TUITION_CALCULATOR_MODAL_ESTIMATED_PRICE')}
+            </p>
+            <div className="mt-1 flex items-center justify-between gap-3">
+              <p className={`text-[32px] leading-tight font-extrabold tracking-tight ${accentText}`}>
+                {totalText}
+              </p>
+              {shareMenu('down', true)}
+            </div>
+            {breakdown && !breakdown.accommodation && (
+              <p className="text-sm font-semibold text-ink-2">
+                {t('TUITION_CALCULATOR_PLUS_ACCOMMODATION')}
+              </p>
+            )}
+          </div>
+
+          {inquiryButton('mt-6 w-full h-12 px-6 inline-flex')}
+
+          <ul className="mt-4 text-xs text-muted space-y-1">
+            {selectedDorm && term && term.duration.unit === 'semester' && term.duration.value > 1 && (
+              <li className="flex gap-1"><span aria-hidden="true">※</span><span>{t('TUITION_CALCULATOR_DORM_NOTE')}</span></li>
+            )}
+            <li className="flex gap-1"><span aria-hidden="true">※</span><span><BoldText text={t('PLAN_ESTIMATE_NOTE')} /></span></li>
+            <li className="flex gap-1"><span aria-hidden="true">※</span><span>{t('TUITION_CALCULATOR_PRICE_NOTE')}</span></li>
+          </ul>
+        </aside>
+      </div>
+    </>
   );
 }

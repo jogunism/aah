@@ -40,7 +40,7 @@ export default function SchoolPrices({
   }, [currency, state.currency]);
 
   // Same rule as the plan builder (synced pricing first, legacy price otherwise), so every
-  // "Select" link opens /plan with the school preselected
+  // "Select" link opens the school's plan page
   const offered = state.schools.filter(
     (s) => (s.pricing ? !!s.pricing[program] : true) && priceOf(s, program) > 0,
   );
@@ -84,7 +84,7 @@ export default function SchoolPrices({
                   {program === 'long' && <> {labels.perSemester}</>}
                 </p>
                 <Link
-                  href={`/${lang}/plan?program=${program}&school=${s.id}`}
+                  href={`/${lang}/plan/${s.id}?program=${program}`}
                   className="inline-flex shrink-0 h-9 px-3 sm:px-4 items-center rounded-full border-[1.5px] border-aah-red text-aah-red text-[13px] font-semibold hover:bg-aah-red/5"
                 >
                   {labels.select}

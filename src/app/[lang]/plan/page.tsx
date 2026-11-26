@@ -1,11 +1,6 @@
-// 플랜 빌더 페이지(/plan). 프로그램·학교 쿼리를 받아 견적을 보여주고 아래 문의 폼으로 연결
+// 플랜 빌더 페이지(/plan, 학교 선택 전). 학교를 고르면 학교 페이지(/plan/{학교})로 이어지고 아래 문의 폼으로 연결
 import { Metadata } from 'next';
-import Header from '@/components/context/Header';
-import Footer from '@/components/context/Footer';
-import Contactus from '@/components/context/Contactus';
-import { Suspense } from 'react';
-import PlanBuilder from '@/components/plan/PlanBuilder';
-import PlanBuilderFromQuery from '@/components/plan/PlanBuilderFromQuery';
+import PlanPage from '@/components/plan/PlanPage';
 import { getTranslation } from '@/lib/i18n.server';
 import { getServerCurrency } from '@/lib/currency.server';
 import { getSchools } from '@/api/server';
@@ -52,7 +47,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   };
 }
 
-export default async function PlanPage({ params }: PageProps) {
+export default async function PlanIndexPage({ params }: PageProps) {
   const { lang: langParam } = await params;
   const lang = isSupportedLocale(langParam) ? langParam : DEFAULT_LOCALE;
   const { t } = await getTranslation(lang);
@@ -60,31 +55,12 @@ export default async function PlanPage({ params }: PageProps) {
   const schools = await getSchools(currency);
 
   return (
-    <div className="flex flex-col min-h-screen bg-white">
-      <Header lang={lang} />
-      <div className="h-[60px]" />
-
-      <main className="flex-grow">
-        <section id="plan" className="max-w-[1180px] mx-auto px-5 md:px-6 pt-12 md:pt-16 pb-16 md:pb-24">
-          <h1 className="text-[34px] md:text-[52px] leading-[1.08] font-extrabold tracking-[-0.03em] text-ink">
-            {t('PLAN_TITLE')}
-          </h1>
-          <p className="mt-3 mb-10 md:mb-12 max-w-[680px] text-[17px] md:text-xl leading-relaxed text-ink-2">
-            {t('PLAN_LEAD')}
-          </p>
-          {/* The static HTML holds the default builder; the URL query (?program=&school=) is read in the browser */}
-          <Suspense
-            fallback={
-              <PlanBuilder lang={lang} initialProgram="short" initial={schools} initialCurrency={currency} trackOpen={false} />
-            }
-          >
-            <PlanBuilderFromQuery lang={lang} initial={schools} initialCurrency={currency} />
-          </Suspense>
-        </section>
-        <Contactus />
-      </main>
-
-      <Footer lang={lang} />
-    </div>
+    <PlanPage
+      lang={lang}
+      title={t('PLAN_TITLE')}
+      schools={schools}
+      currency={currency}
+      defaultProgram="short"
+    />
   );
 }

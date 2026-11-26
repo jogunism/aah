@@ -74,7 +74,7 @@ Estimated totals for the first option at each university (registration fee, tuit
       s.priceShort > 0 && `short-term from ${euro(s.priceShort)}${firstTerm(s, 'short')}`,
       s.priceLong > 0 && `long-term from ${euro(s.priceLong)}${firstTerm(s, 'long')}`,
     ].filter(Boolean);
-    return `- ${s.title} (${s.subTitle})${offers.length ? `: ${offers.join(', ')}` : ''}`;
+    return `- [${s.title}](${SITE_URL}/en/plan/${s.id}) (${s.subTitle})${offers.length ? `: ${offers.join(', ')}` : ''}`;
   };
   const schoolGroup = (type: 'university' | 'language_school', heading: string) => {
     const lines = schools.filter((s) => (s.schoolType ?? 'university') === type).map(schoolLine);

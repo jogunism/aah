@@ -390,6 +390,9 @@
   "PLAN_META_TITLE": "Pianifica il tuo studio in Corea",
   "PLAN_TITLE": "Pianifica il tuo studio in Corea.",
   "PLAN_LEAD": "Scegli programma, scuola, durata e alloggio per vedere il costo stimato. Inviacelo e un consulente ti risponderà.",
+  "PLAN_SCHOOL_META_TITLE": "{{school}} corso di coreano: costi e tariffe",
+  "PLAN_SCHOOL_META_DESC": "Corso di coreano presso {{school}}: da {{price}} per {{duration}}, con iscrizione, retta e tariffa aah! inclusi. Scegli durata e alloggio per vedere il totale.",
+  "PLAN_SCHOOL_LEAD": "{{school}}: costi e tariffe. Scegli durata e alloggio per vedere il costo totale stimato. Inviacelo e un consulente ti risponderà.",
 
   "***** CLASS HOURS *****": "",
   "CLASS_HOURS_LABEL": "Orario delle lezioni",

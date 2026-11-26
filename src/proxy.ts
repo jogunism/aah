@@ -35,6 +35,17 @@ export function proxy(request: NextRequest) {
   );
 
   if (pathnameHasLocale) {
+    // 학교 페이지 이전의 플랜 링크(/xx/plan?school=id)는 학교 페이지로 영구 이동.
+    // 나머지 쿼리(program, period, stay, cur)는 유지
+    const plan = pathname.match(/^\/([a-z]{2})\/plan\/?$/);
+    const school = request.nextUrl.searchParams.get('school');
+    if (plan && school) {
+      const url = request.nextUrl.clone();
+      url.pathname = `/${plan[1]}/plan/${school}`;
+      url.searchParams.delete('school');
+      return NextResponse.redirect(url, 308);
+    }
+
     // 현재 언어를 헤더에 추가하여 서버 컴포넌트에서 접근 가능하게 함
     const locale = pathname.split('/')[1];
     const response = NextResponse.next();
